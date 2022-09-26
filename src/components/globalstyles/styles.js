@@ -18,8 +18,6 @@ export const Style = createGlobalStyle`
 		line-height: 1.5;
 		color: var(--black);
 		text-rendering: optimizeSpeed;
-		height: 1000px;
-		background: red;
 	}
 
 	input,
