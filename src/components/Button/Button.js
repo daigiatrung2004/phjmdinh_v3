@@ -4,7 +4,7 @@ function Button({ children, className, theme, leftIcon, rightIcon, handle, ...pr
 	return (
 		<button
 			className={className}
-			onClick={() => handle}
+			onClick={handle}
 			{...propsDefault}
 		>
 			{leftIcon && <span className="iconLeft">{leftIcon}</span>}

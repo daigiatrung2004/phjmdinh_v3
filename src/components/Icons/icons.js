@@ -1,4 +1,4 @@
-export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) => {
+export const LoadingIcon = ({ width = '20rem', height = '20rem', className }) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity={1}
+						fillOpacity={1}
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -68,7 +68,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.875"
+						fillOpacity="0.875"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -106,7 +106,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.75"
+						fillOpacity="0.75"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -144,7 +144,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.625"
+						fillOpacity="0.625"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -182,7 +182,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.5"
+						fillOpacity="0.5"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -220,7 +220,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.375"
+						fillOpacity="0.375"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -258,7 +258,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.25"
+						fillOpacity="0.25"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
@@ -296,7 +296,7 @@ export const LoadingIcons = ({ width = '20rem', height = '20rem', className }) =
 						cy={0}
 						r={6}
 						fill="#ff727d"
-						fillopacity="0.125"
+						fillOpacity="0.125"
 						style={{ animationPlayState: 'running', animationDelay: '0s' }}
 					>
 						<animateTransform
