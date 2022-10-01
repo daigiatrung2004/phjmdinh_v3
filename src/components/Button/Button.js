@@ -1,16 +1,29 @@
 import PropTypes from 'prop-types';
+import * as $ from './Styles';
 
-function Button({ children, className, theme, leftIcon, rightIcon, handle, ...propsDefault }) {
+function Button({
+	children,
+	className,
+	theme = { type: 'default', size: 'medium' },
+	leftIcon,
+	rightIcon,
+	handle,
+	...propsDefault
+}) {
+	for (let key in theme) {
+		className += ' ' + theme[key];
+	}
+
 	return (
-		<button
+		<$.Button
 			className={className}
 			onClick={handle}
 			{...propsDefault}
 		>
-			{leftIcon && <span className="iconLeft">{leftIcon}</span>}
-			<span>{children}</span>
-			{rightIcon && <span className="iconRight">{rightIcon}</span>}
-		</button>
+			{leftIcon && <span className="icon iconLeft">{leftIcon}</span>}
+			<span className="content">{children}</span>
+			{rightIcon && <span className="icon iconRight">{rightIcon}</span>}
+		</$.Button>
 	);
 }
 

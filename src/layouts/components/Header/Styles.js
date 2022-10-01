@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ImageComponent from '~/components/Image';
-import { forwardRef } from 'react';
 
 // wrapper
 export const Header = styled.header`
@@ -35,10 +34,6 @@ export const Search = styled.div`
 	background-color: var(--white);
 `;
 
-const inputCustom = forwardRef((props, ref) => {
-	return <input />;
-});
-
 export const Input = styled.input`
 	font-size: 2rem;
 	margin: 10px 25px 10px 25px;
@@ -48,6 +43,10 @@ export const Input = styled.input`
 export const Button = styled(FontAwesomeIcon)`
 	font-size: 2.5rem;
 	padding: 1.7rem;
+	cursor: pointer;
+
+	&:focus:active {
+	}
 `;
 
 export const Spacer = styled.span`
@@ -70,10 +69,21 @@ const rotate = keyframes`
 export const Loading = styled(FontAwesomeIcon)`
 	font-size: 1.6rem;
 	margin: 22px 20px 22px 0px;
-	animation: ${rotate} 1s ease-in-out infinite;
+	animation: ${rotate} 0.75s ease-in-out infinite;
+`;
+
+export const Close = styled(FontAwesomeIcon)`
+	font-size: 1.6rem;
+	margin: 22px 20px 22px 0px;
+	cursor: pointer;
 `;
 
 export const User = styled.div`
 	display: flex;
 	align-items: center;
+`;
+
+// User
+export const SignUpIcon = styled(FontAwesomeIcon)`
+	font-size: 1.8rem;
 `;
