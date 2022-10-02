@@ -15,8 +15,8 @@ export const Header = styled.header`
 
 // logo
 export const Image = styled(ImageComponent)`
-	height: 6rem;
-	width: 6rem;
+	height: 10rem;
+	width: 15rem;
 	display: flex;
 `;
 

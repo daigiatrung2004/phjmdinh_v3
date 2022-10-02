@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import axios from 'axios';
 
+import Images from '~/assets/images';
 import Button from '~/components/Button';
 import Popper from '~/components/popper';
 import FilmItems from '~/components/FilmItems';
@@ -71,7 +72,7 @@ function Header() {
 	return (
 		<$.Header>
 			<$.Image
-				src="logo192.png"
+				src={Images.logo}
 				alt="logo"
 			/>
 			<Tippy
@@ -97,7 +98,7 @@ function Header() {
 						placeholder="Search"
 						onChange={() => {
 							setTextSearch(inputRef.current.value);
-							if (inputRef.current.value == '') {
+							if (inputRef.current.value === '') {
 								resetSearchHandle();
 							}
 						}}
