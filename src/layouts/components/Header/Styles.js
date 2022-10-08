@@ -5,18 +5,18 @@ import ImageComponent from '~/components/Image';
 
 // wrapper
 export const Header = styled.header`
-	background-color: var(--bg-color-override);
-	height: 20rem;
 	width: 100%;
+	min-height: 10rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	background-color: var(--bg-color-override);
 `;
 
 // logo
 export const Image = styled(ImageComponent)`
 	height: 10rem;
-	width: 15rem;
+	width: 20rem;
 	display: flex;
 `;
 

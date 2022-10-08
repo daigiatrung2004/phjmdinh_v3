@@ -2,20 +2,23 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 import ImageDefault from '~/assets/images';
-import { StaticImage } from './Styles';
+import * as $ from './Styles';
 
-function Image({ src, alt = 'No title image', className, ...propsDefault }) {
+function Image({ href, src, alt = 'No title image', className, children, ...propsDefault }) {
 	const [fallBack, setFallBack] = useState('');
-	let Img = className ? 'img' : StaticImage;
+	let Img = className ? 'img' : $.StaticImage;
 
 	return (
-		<Img
-			src={fallBack || src}
-			alt={alt}
-			className={className}
-			onError={() => setFallBack(ImageDefault.noImage)}
-			{...propsDefault}
-		/>
+		<$.Wrapper to={href}>
+			<Img
+				src={fallBack || src}
+				alt={alt}
+				className={className}
+				onError={() => setFallBack(ImageDefault.noImage)}
+				{...propsDefault}
+			/>
+			{children}
+		</$.Wrapper>
 	);
 }
 
