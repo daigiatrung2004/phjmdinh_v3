@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import Label from '~/components/Label';
@@ -14,7 +12,6 @@ function Home() {
 	const [itemsTrending, setItemsTrending] = useState([]);
 	const [itemsUpComing, setItemsUpComing] = useState([]);
 	const [itemsLastest, setItemsLastest] = useState([]);
-	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		async function getData() {
 			try {
@@ -51,24 +48,13 @@ function Home() {
 				>
 					POPULAR
 				</Label>
-				{loading ? (
-					Array(3).map(() => (
-						<>
-							Skeleton baseColor="#1F4662" highlightColor="#537187" height={'225px'}
-							width={'155px'}> Skeleton baseColor="#1F4662" highlightColor="#537187" width={'155px'}
-							count={1.5}>
-						</>
-					))
-				) : (
-					<$.ItemsWrapper>
-						<Items
-							src="/reviewfilm/"
-							items={itemsPopular}
-							type="VERTICAL_DISPLAY_TYPE"
-						/>
-					</$.ItemsWrapper>
-				)}
-
+				<$.ItemsWrapper>
+					<Items
+						src="/reviewfilm/"
+						items={itemsPopular}
+						type="VERTICAL_DISPLAY_TYPE"
+					/>
+				</$.ItemsWrapper>
 				<Label
 					type={'h3'}
 					fontSize="30px"

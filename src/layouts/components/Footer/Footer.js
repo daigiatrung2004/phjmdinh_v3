@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 
 import Background from '~/components/Background';
-import * as $ from './Styles';
 
 function Footer() {
 	return (

@@ -68,13 +68,13 @@ export const Image = styled(ImageComponent)`
 	max-width: var(--width-img-item);
 	padding-right: 5px;
 	transition: all var(--time-scale-item) ease-in-out;
+	box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
 
 	&.img__vertical {
 		max-height: none;
 		max-width: none;
 		height: calc(15rem * 1.5);
 		width: calc(10rem * 1.5);
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 		background-size: cover;
 		border: none;
 		border-radius: 15px;
@@ -85,7 +85,6 @@ export const Image = styled(ImageComponent)`
 		max-width: none;
 		width: calc(30rem);
 		height: calc(30rem / 1.78);
-		box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 		background-size: 50% 50%;
 		border: none;
 		border-radius: 15px;
