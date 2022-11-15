@@ -38,7 +38,7 @@ export const Item = styled(ItemCustom)`
 		float: left;
 		height: ${({ h }) => (h ? h : '250px')};
 		width: ${({ w }) => (w ? w : '150px')};
-		margin: 20px 75px 80px 0px;
+		margin: ${({ margin }) => (margin ? margin : '20px 75px 80px 0px')};
 	}
 
 	&.item__display-horizontal {

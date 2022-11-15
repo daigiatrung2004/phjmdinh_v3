@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Background from '~/components/Background';
 import Item from '~/components/Item';
+import Label from '~/components/Label';
 import { getItemFilm } from '~/services/moviesService';
 import * as $ from './Styles';
 
@@ -17,19 +18,31 @@ function ReviewFilm() {
 	return (
 		<>
 			<Background
-				minHeight="500px"
+				minHeight="740px"
 				src={item && item.backdropPath}
 			>
-				<$.Wrapped>
+				<$.Wrapped minHeight="740px">
 					{item ? (
-						<Item
-							hImage="400px"
-							wImage="300px"
-							isHideTitle
-							src="/reviewfilm/"
-							data={item}
-							type={'VERTICAL_DISPLAY_TYPE'}
-						/>
+						<>
+							<Item
+								h="100%"
+								w="auto"
+								hImage="400px"
+								wImage="300px"
+								margin="0px"
+								isHideTitle
+								src="/reviewfilm/"
+								data={item}
+								type={'VERTICAL_DISPLAY_TYPE'}
+							/>
+							<$.InfoFilm>
+								<Label fontSize="26px">{item.title}</Label>
+								<Label>THỜI GIAN: {item.runtime} phút</Label>
+								<Label>ĐẠO DIỄN: N/A</Label>
+								<Label>Ngày công chiếu: {item.releaseDate}</Label>
+								<Label>Thể loại phim: {item.genres.map(genre => genre.name).join(' , ')}</Label>
+							</$.InfoFilm>
+						</>
 					) : (
 						'NOT DATA'
 					)}

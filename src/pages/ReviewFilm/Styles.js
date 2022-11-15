@@ -6,4 +6,11 @@ export const Wrapped = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	padding: 0px 250px 0px 250px;
+	min-height: ${({ minHeight }) => (minHeight ? minHeight : '0px')};
+`;
+
+export const InfoFilm = styled.div`
+	flex-grow: 1;
+	color: var(--white);
 `;
