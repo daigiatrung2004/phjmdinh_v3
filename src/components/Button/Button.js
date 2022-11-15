@@ -8,6 +8,7 @@ function Button({
 	leftIcon,
 	rightIcon,
 	handle,
+	stylesCustom,
 	...propsDefault
 }) {
 	for (let key in theme) {
@@ -18,6 +19,7 @@ function Button({
 		<$.Button
 			className={className}
 			onClick={handle}
+			stylesCustom={stylesCustom}
 			{...propsDefault}
 		>
 			{leftIcon && <span className="icon iconLeft">{leftIcon}</span>}
@@ -34,6 +36,7 @@ Button.propTypes = {
 	leftIcons: PropTypes.node,
 	rightIcons: PropTypes.node,
 	handle: PropTypes.func,
+	stylesCustom: PropTypes.object,
 };
 
 export default Button;

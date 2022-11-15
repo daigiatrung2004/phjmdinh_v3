@@ -75,3 +75,16 @@ export const getLastest = async ({ page = 1, adults, ...options }) => {
 		throw Error('error happened!');
 	}
 };
+
+export const getItemFilm = async id => {
+	try {
+		let response = await get(`/movie/${id}`);
+
+		let data = JSON.parse(response.data);
+		console.log('movie item special =', data);
+		return data;
+	} catch (error) {
+		console.log(error);
+		throw Error('error happened!');
+	}
+};

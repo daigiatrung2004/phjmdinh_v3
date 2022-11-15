@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import Item from './Item';
+import Item from '~/components/Item';
 
 /**
  * Returns function component FilmItem.

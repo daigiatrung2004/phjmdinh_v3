@@ -4,11 +4,15 @@ import * as $ from './Styles';
 
 function Background({ children, ...propsDefault }) {
 	return (
-		<$.Background
-			className="background"
-			{...propsDefault}
-		>
-			{children}
+		<$.Background>
+			<$.Overlay>
+				<$.Content
+					className="content"
+					{...propsDefault}
+				>
+					{children}
+				</$.Content>
+			</$.Overlay>
 		</$.Background>
 	);
 }

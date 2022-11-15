@@ -1,4 +1,4 @@
-import { faCircleXmark, faMagnifyingGlass, faSpinner, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faMagnifyingGlass, faSpinner, faPlus, faSackDollar } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
@@ -8,7 +8,9 @@ import Popper from '~/components/popper';
 import FilmItems from '~/components/FilmItems';
 import useDebounced from '~/hooks/useDebounced';
 import { search } from '~/services/searchService';
+import StylesBase from '~/utils/StylesBase';
 import * as $ from './Styles';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Header() {
 	const [items, setItems] = useState([]);
@@ -20,6 +22,8 @@ function Header() {
 
 	const timeDebounced = 1000; // 1 second
 	let textDebouncedCurrent = useDebounced(textSearch, timeDebounced);
+
+	const user = false;
 
 	useEffect(() => {
 		if (textDebouncedCurrent) {
@@ -111,13 +115,24 @@ function Header() {
 				</$.Search>
 			</Tippy>
 			<$.User>
-				<Button theme={{ type: 'primary', size: 'medium' }}>Log in</Button>
-				<Button
-					theme={{ type: 'primary', size: 'medium' }}
-					rightIcon={<$.SignUpIcon icon={faPlus} />}
-				>
-					Sign in
-				</Button>
+				{user ? (
+					<FontAwesomeIcon icon={faSackDollar} />
+				) : (
+					<>
+						<Button
+							stylesCustom={StylesBase.colors.backgroundColor}
+							// theme={{ type: 'primary', size: 'medium' }}
+						>
+							Log in
+						</Button>
+						<Button
+							theme={{ type: 'primary', size: 'medium' }}
+							rightIcon={<$.SignUpIcon icon={faPlus} />}
+						>
+							Sign in
+						</Button>
+					</>
+				)}
 			</$.User>
 		</$.Header>
 	);

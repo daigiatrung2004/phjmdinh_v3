@@ -55,4 +55,6 @@ export const Button = styled.button`
 	.content ~ .icon {
 		margin-left: 10px;
 	}
+
+	${props => ({ ...props.stylesCustom })}
 `;
