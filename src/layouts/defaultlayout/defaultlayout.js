@@ -6,9 +6,9 @@ import Footer from '~/layouts/components/Footer';
 function DefaultLayout({ children }) {
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<main>{children}</main>
-			<Footer />
+			{/* <Footer /> */}
 		</>
 	);
 }
