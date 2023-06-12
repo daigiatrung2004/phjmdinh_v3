@@ -1,15 +1,17 @@
 import * as $ from './Styles';
 import PopUp from '~/components/PopUp';
+import { PUSettings } from '~/utils/StylesBase';
 
 function Testpopup() {
+	let config = {
+		shape: PUSettings['shape']['square'],
+		isFooter: true,
+		isHeader: true,
+		content: 'Whoops !!',
+	};
 	return (
 		<$.Modal>
-			<PopUp
-				shape="square"
-				isFooter={true}
-				isHeader={true}
-			/>
-			{console.log('react components:', <PopUp shape="square" />)}
+			<PopUp settings={config} />
 		</$.Modal>
 	);
 }
