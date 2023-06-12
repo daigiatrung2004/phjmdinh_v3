@@ -22,6 +22,10 @@ export const Button = styled.button`
 		padding: 10px 36px;
 	}
 
+	&.fullW {
+		width: 95%;
+	}
+
 	&.large {
 		padding: 16px 32px;
 	}
@@ -49,6 +53,12 @@ export const Button = styled.button`
 	&.default {
 		background-color: var(--white);
 		color: var(--black);
+	}
+
+	&.transparent {
+		background-color: transparent;
+		box-shadow: none;
+		padding: 0;
 	}
 
 	.icon ~ .content,
