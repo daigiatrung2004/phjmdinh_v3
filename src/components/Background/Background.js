@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 
 import * as $ from './Styles';
 
-function Background({ children, ...propsDefault }) {
+function Background({ children, src, ...propsDefault }) {
 	return (
-		<$.Background>
+		<$.Background
+			src={src}
+			{...propsDefault}
+		>
 			<$.Overlay>
 				<$.Content
 					className="content"
