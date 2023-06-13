@@ -3,7 +3,7 @@ import ImageComponent from '~/components/Image';
 import { Link } from 'react-router-dom';
 
 // item
-const ItemCustom = ({ src, className, children }) => {
+const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 	let Tag = 'div';
 	if (src) {
 		Tag = Link;
@@ -13,6 +13,7 @@ const ItemCustom = ({ src, className, children }) => {
 		<Tag
 			to={src}
 			className={className}
+			{...propsDefault}
 		>
 			{children}
 		</Tag>

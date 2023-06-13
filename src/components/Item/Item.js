@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 import Label from '~/components/Label';
 import * as $ from './Styles';
+import { useContext } from 'react';
+import ItemContext from '~/pages/Home/ItemContext';
 
 function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImage, ...propsDefault }) {
 	let src = data.posterPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.posterPath}` : '';
@@ -9,6 +11,9 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 	if (type === 'HORIZON_DISPLAY_TYPE') {
 		src = data.backdropPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}` : '';
 	}
+
+	const mouseEnter = useContext(ItemContext);
+	console.log(mouseEnter);
 
 	const typeClassNames = {
 		SEARCH_TYPE: '',
@@ -25,6 +30,7 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 			src={to}
 			{...propsDefault}
 			className={typeClassNames[type].wrapperItem}
+			onMouseEnter={() => mouseEnter(src)}
 		>
 			<$.Image
 				src={src}

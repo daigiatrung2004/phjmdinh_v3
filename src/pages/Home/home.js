@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -7,12 +7,20 @@ import Label from '~/components/Label';
 import Items from '~/components/FilmItems';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
+import ItemContext from './ItemContext';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
 	const [itemsTrending, setItemsTrending] = useState([]);
 	const [itemsUpComing, setItemsUpComing] = useState([]);
 	const [itemsLastest, setItemsLastest] = useState([]);
+	const [srcTrailer, setSrcTrailer] = useState(null);
+
+	const handleMouseEnter = useCallback(src => {
+		console.log('src:', src);
+		setSrcTrailer(src);
+	}, []);
+
 	useEffect(() => {
 		// (async function getData() {
 		// 	let popularData = await handleError(getPopular({ page: 1, adults: false }));
@@ -35,6 +43,13 @@ function Home() {
 				setItemsTrending(trendingData);
 				setItemsUpComing(upcomingData);
 				setItemsLastest(latestData);
+				if (latestData.length > 1) {
+					setSrcTrailer(
+						latestData[0].backdropPath
+							? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${latestData[0].backdropPath}`
+							: ''
+					);
+				}
 			})
 			.catch(error => console.log(error));
 	}, []);
@@ -105,13 +120,15 @@ function Home() {
 					LASTEST TRAILERS
 				</Label>
 			</$.Wrapper>
-			<$.Trailer>
-				<Items
-					src="/reviewfilm/"
-					items={itemsLastest}
-					type={'HORIZON_DISPLAY_TYPE'}
-					icon={<$.PlayIcon />}
-				/>
+			<$.Trailer src={srcTrailer}>
+				<ItemContext.Provider value={handleMouseEnter}>
+					<Items
+						src="/reviewfilm/"
+						items={itemsLastest}
+						type={'HORIZON_DISPLAY_TYPE'}
+						icon={<$.PlayIcon />}
+					/>
+				</ItemContext.Provider>
 			</$.Trailer>
 		</>
 	);

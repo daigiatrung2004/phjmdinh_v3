@@ -16,8 +16,7 @@ export const Content = styled.div`
 
 export const Background = styled.div`
 	clear: both;
-	background: ${({ src }) =>
-		src ? `url('${src}')` : `url('http://image.tmdb.org/t/p/w500/7ABsaBkO1jA2psC8Hy4IDhkID4h.jpg')`};
+	background: ${({ src }) => (src ? `url('${src}')` : ``)};
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
