@@ -1,1 +1,1 @@
-export { default } from './testpopup';
+export { default, TestContext } from './testpopup';

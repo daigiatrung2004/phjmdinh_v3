@@ -17,7 +17,6 @@ export const ItemsWrapper = styled.div`
 //trailers
 export const Trailer = styled(Background)`
 	display: flex;
-	margin-bottom: 50px;
 
 	& > * {
 		z-index: 100;

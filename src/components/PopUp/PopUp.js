@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useState } from 'react';
 import Button from '~/components/Button';
 import * as $ from './Styles';
 import { PUSettings } from '~/utils/StylesBase';
@@ -7,6 +7,9 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import Images from '~/assets/images';
 import Image from '~/components/Image';
 import logger from '~/utils/logger';
+import { memo } from 'react';
+import { useContext } from 'react';
+import { TestContext } from '~/pages/TestPopUp';
 
 /*
 useEffect 
@@ -24,8 +27,31 @@ useLayoutEffect
 5. render UI
 */
 
+// function reducer(state, action) {
+// 	switch (action.TYPE) {
+// 		case 'increment':
+// 			console.log('increment:', state);
+// 			state.count = state.count + 1;
+// 			return { ...state };
+// 		case 'decrease':
+// 			state.count = state.count - 1;
+// 			console.log('decrease:', state);
+// 			return { ...state };
+// 	}
+// }
+
+// function logger1(state) {
+// 	const log = logger('debug123');
+// 	log(`state is current : ${JSON.stringify(state)}`);
+// 	return state;
+// }
+
 function PopUp({ settings }) {
 	const [isShow, setIsShow] = useState(true);
+
+	let test = useContext(TestContext);
+	console.log('context render:', test);
+	// const [state, dispatch] = useReducer(reducer, { count: 0 }, logger1);
 	// const [num, setNum] = useState(0);
 	const config = {
 		shape: PUSettings['shape']['square'],
@@ -89,6 +115,7 @@ function PopUp({ settings }) {
 						/>
 					)}
 					<p>{config.content}</p>
+					{/* <p>{state.count}</p> */}
 					{config.rightIcon && (
 						<Image
 							className={'icon'}
@@ -103,14 +130,21 @@ function PopUp({ settings }) {
 						<Button
 							theme={{ type: 'primary', size: 'small fullW' }}
 							onClick={() => setIsShow(false)}
-							// onClick={() => setNum(num + 1)}
+							// onClick={() => dispatch({ TYPE: 'increment' })}
 						>
 							OK
 						</Button>
+						{/* <Button
+							theme={{ type: 'primary', size: 'small fullW' }}
+							// onClick={() => setIsShow(false)}
+							onClick={() => dispatch({ TYPE: 'decrease' })}
+						>
+							CANCEL
+						</Button> */}
 					</$.Footer>
 				)}
 			</$.ModalGeneral>
 		)
 	);
 }
-export default PopUp;
+export default memo(PopUp);

@@ -19,7 +19,7 @@ export const ErrorType = styled.small`
 `;
 
 export const Detail = styled.h5`
-	font-size: 18px;
+	font-size: 14px;
 `;
 
 export const Wrapper = styled.div`
