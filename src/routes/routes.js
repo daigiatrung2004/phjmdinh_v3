@@ -2,6 +2,7 @@ import Home from '~/pages/Home';
 import ReviewFilm from '~/pages/ReviewFilm';
 import Testpopup from '~/pages/TestPopUp';
 import Error from '~/pages/Static/Error';
+import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
 
 export const privateRoutes = [
@@ -25,6 +26,10 @@ export const privateRoutes = [
 				}}
 			/>
 		),
+	},
+	{
+		path: '/tool',
+		component: <PageTool />,
 	},
 	{
 		path: '/abc',
