@@ -4,6 +4,7 @@ import Testpopup from '~/pages/TestPopUp';
 import Error from '~/pages/Static/Error';
 import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
+import Watch from '~/pages/WatchFilm';
 
 export const privateRoutes = [
 	{
@@ -42,6 +43,10 @@ export const privateRoutes = [
 	{
 		path: '/',
 		component: <Testpopup />,
+	},
+	{
+		path: '/ ',
+		component: <Watch />,
 	},
 ];
 

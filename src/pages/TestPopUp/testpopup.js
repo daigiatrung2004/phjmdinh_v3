@@ -2,7 +2,7 @@ import * as $ from './Styles';
 import PopUp from '~/components/PopUp';
 import { PUSettings } from '~/utils/StylesBase';
 import { createContext, useState } from 'react';
-import Button from '~/components/Button';
+import { Success } from '~/components/Icons';
 
 export const TestContext = createContext('123');
 
@@ -17,6 +17,7 @@ function Testpopup() {
 	// };
 	const [config, setConfig] = useState({
 		shape: PUSettings['shape']['square'],
+		// srcIcon: Success,
 		isFooter: true,
 		isHeader: true,
 		content: 'Whoops !!',

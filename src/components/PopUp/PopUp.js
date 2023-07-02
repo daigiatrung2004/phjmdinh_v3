@@ -10,6 +10,7 @@ import logger from '~/utils/logger';
 import { memo } from 'react';
 import { useContext } from 'react';
 import { TestContext } from '~/pages/TestPopUp';
+import { Success } from '~/components/Icons';
 
 /*
 useEffect 
@@ -113,6 +114,7 @@ function PopUp({ settings }) {
 							width={config.wIcon}
 							height={config.hIcon}
 						/>
+						// <Success />
 					)}
 					<p>{config.content}</p>
 					{/* <p>{state.count}</p> */}
