@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PUSettings } from '~/utils/StylesBase';
 
 import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import Label from '~/components/Label';
@@ -8,6 +9,7 @@ import Items from '~/components/FilmItems';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
 import ItemContext from './ItemContext';
+import PopUp from '~/components/PopUp';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -15,10 +17,22 @@ function Home() {
 	const [itemsUpComing, setItemsUpComing] = useState([]);
 	const [itemsLastest, setItemsLastest] = useState([]);
 	const [srcTrailer, setSrcTrailer] = useState(null);
+	const [showPopUp, setShowPopUp] = useState(false);
+	const [config, setConfig] = useState({
+		shape: PUSettings['shape']['square'],
+		// srcIcon: Success,
+		isFooter: true,
+		isHeader: true,
+		content: 'System remaining ...!',
+	});
 
 	const handleMouseEnter = useCallback(src => {
 		console.log('src:', src);
 		setSrcTrailer(src);
+	}, []);
+
+	const handlePopUP = useCallback(() => {
+		setShowPopUp(false);
 	}, []);
 
 	useEffect(() => {
@@ -56,7 +70,7 @@ function Home() {
 
 	return (
 		<>
-			<$.Wrapper>
+			{/* <$.Wrapper>
 				<Label
 					type={'h3'}
 					fontSize="30px"
@@ -119,17 +133,24 @@ function Home() {
 				>
 					LASTEST TRAILERS
 				</Label>
-			</$.Wrapper>
+			</$.Wrapper> */}
 			<$.Trailer src={srcTrailer}>
 				<ItemContext.Provider value={handleMouseEnter}>
 					<Items
-						src="/reviewfilm/"
+						// src="/reviewfilm/"
 						items={itemsLastest}
 						type={'HORIZON_DISPLAY_TYPE'}
 						icon={<$.PlayIcon />}
+						onClick={() => setShowPopUp(true)}
 					/>
 				</ItemContext.Provider>
 			</$.Trailer>
+			{showPopUp && (
+				<PopUp
+					settings={config}
+					onClick={handlePopUP}
+				/>
+			)}
 		</>
 	);
 }

@@ -18,7 +18,7 @@ function Testpopup() {
 	const [config, setConfig] = useState({
 		shape: PUSettings['shape']['square'],
 		// srcIcon: Success,
-		isFooter: true,
+		isFooter: false,
 		isHeader: true,
 		content: 'Whoops !!',
 	});

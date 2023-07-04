@@ -3,14 +3,14 @@ import Button from '~/components/Button';
 import * as $ from './Styles';
 import { PUSettings } from '~/utils/StylesBase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faCircleCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Images from '~/assets/images';
 import Image from '~/components/Image';
 import logger from '~/utils/logger';
 import { memo } from 'react';
 import { useContext } from 'react';
 import { TestContext } from '~/pages/TestPopUp';
-import { Success } from '~/components/Icons';
+import { Warning } from '~/components/Icons';
 
 /*
 useEffect 
@@ -47,7 +47,7 @@ useLayoutEffect
 // 	return state;
 // }
 
-function PopUp({ settings }) {
+function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 	const [isShow, setIsShow] = useState(true);
 
 	let test = useContext(TestContext);
@@ -55,27 +55,47 @@ function PopUp({ settings }) {
 	// const [state, dispatch] = useReducer(reducer, { count: 0 }, logger1);
 	// const [num, setNum] = useState(0);
 	const config = {
-		shape: PUSettings['shape']['square'],
-		isFooter: true,
-		isHeader: true,
-		content: 'Whoops !!',
-		contrast: PUSettings['contrast']['light'],
-		border: '5px',
-		leftIcon: false,
-		rightIcon: false,
-		centerIcon: true,
-		srcIcon: Images.warning,
-		hIcon: '100px',
-		wIcon: '100px',
-		height: '320px',
-		width: '320px',
-		top: height => (window.innerHeight - height.replace('px', '') - 3) / 2 + 'px',
-		left: width => (window.innerWidth - width.replace('px', '') - 3) / 2 + 'px',
+		Normal: {
+			type: 'Normal',
+			shape: PUSettings['shape']['square'],
+			isFooter: true,
+			isHeader: true,
+			content: 'Whoops !!',
+			contrast: PUSettings['contrast']['light'],
+			border: '5px',
+			leftIcon: false,
+			rightIcon: false,
+			centerIcon: true,
+			srcIcon: Images.warning,
+			hIcon: '80px',
+			wIcon: '80px',
+			height: '320px',
+			width: '320px',
+			top: height => (window.innerHeight - height.replace('px', '') - 3) / 2 + 'px',
+			left: width => (window.innerWidth - width.replace('px', '') - 3) / 2 + 'px',
+			isOverlay: false,
+		},
+		Error: {
+			type: 'Error',
+			leftIcon: true,
+			rightIcon: false,
+			centerIcon: false,
+			isFooter: false,
+			isHeader: true,
+			srcIcon: Images.warning,
+			content: 'No message!!!',
+			contrast: PUSettings['contrast']['light'],
+			hIcon: '80px',
+			wIcon: '80px',
+			height: '320px',
+			width: '320px',
+			position: 'left',
+			isOverlay: false,
+		},
 	};
 
-	Object.assign(config, settings);
+	Object.assign(config[type], settings);
 	let log = logger('debug');
-	log(`config : ${config}`);
 
 	// let id = useLayoutEffect(() => {
 	// 	if (num > 3) setNum(0);
@@ -94,58 +114,96 @@ function PopUp({ settings }) {
 
 	return (
 		isShow && (
-			<$.ModalGeneral {...config}>
-				{config.isHeader && (
-					<$.Header>
-						<Button
-							theme={{ type: 'default transparent', size: 'small' }}
-							stylesCustom={{ position: 'absolute', right: '5px', top: '5px' }}
-							onClick={() => setIsShow(false)}
-						>
-							<FontAwesomeIcon icon={faXmark} />
-						</Button>
-					</$.Header>
-				)}
-				<$.Content centerIcon={config.centerIcon}>
-					{(config.leftIcon || config.centerIcon) && (
-						<Image
-							className={'icon'}
-							src={config.srcIcon}
-							width={config.wIcon}
-							height={config.hIcon}
-						/>
-						// <Success />
+			<>
+				{config[type].isOverlay && <$.Overlay />}
+				<$.ModalGeneral
+					{...config[type]}
+					{...propsDefault}
+				>
+					{config[type].isHeader && (
+						<$.Header>
+							<Button
+								theme={{ type: 'default transparent', size: 'small' }}
+								stylesCustom={{ position: 'absolute', right: '5px', top: '5px' }}
+								onClick={() => {
+									setIsShow(false);
+									typeof onClick == 'function' && onClick();
+								}}
+							>
+								<FontAwesomeIcon icon={faXmark} />
+							</Button>
+						</$.Header>
 					)}
-					<p>{config.content}</p>
-					{/* <p>{state.count}</p> */}
-					{config.rightIcon && (
-						<Image
-							className={'icon'}
-							src={config.srcIcon}
-							width={config.wIcon}
-							height={config.hIcon}
-						/>
+					{type == 'Error' ? (
+						<$.Content>
+							{(config[type].leftIcon || config[type].centerIcon) && (
+								<FontAwesomeIcon
+									icon={faCircleCheck}
+									style={{ fontSize: '20px' }}
+								/>
+							)}
+							<p>{config[type].content}</p>
+							{config[type].rightIcon && (
+								<FontAwesomeIcon
+									icon={faCircleCheck}
+									style={{ fontSize: '20px' }}
+								/>
+							)}
+						</$.Content>
+					) : (
+						<$.Content centerIcon={config[type].centerIcon}>
+							{(config[type].leftIcon || config[type].centerIcon) && (
+								// <Image
+								// 	className={'icon'}
+								// 	src={config[type].srcIcon}
+								// 	width={config[type].wIcon}
+								// 	height={config[type].hIcon}
+								// />
+								<Warning
+									width={config[type].wIcon}
+									height={config[type].hIcon}
+								/>
+								// <LoadingIcon
+								// 	width="100px"
+								// 	height="100px"
+								// />
+							)}
+							<p>{config[type].content}</p>
+							{/* <p>{state.count}</p> */}
+							{config[type].rightIcon && (
+								<Image
+									className={'icon'}
+									src={config[type].srcIcon}
+									width={config[type].wIcon}
+									height={config[type].hIcon}
+								/>
+							)}
+						</$.Content>
 					)}
-				</$.Content>
-				{config.isFooter && (
-					<$.Footer>
-						<Button
-							theme={{ type: 'primary', size: 'small fullW' }}
-							onClick={() => setIsShow(false)}
-							// onClick={() => dispatch({ TYPE: 'increment' })}
-						>
-							OK
-						</Button>
-						{/* <Button
-							theme={{ type: 'primary', size: 'small fullW' }}
-							// onClick={() => setIsShow(false)}
-							onClick={() => dispatch({ TYPE: 'decrease' })}
-						>
-							CANCEL
-						</Button> */}
-					</$.Footer>
-				)}
-			</$.ModalGeneral>
+					{config[type].isFooter && (
+						<$.Footer>
+							<Button
+								theme={{ type: 'primary', size: 'small fullW' }}
+								onClick={() => {
+									setIsShow(false);
+									typeof onClick == 'function' && onClick();
+								}}
+								// onClick={() => dispatch({ TYPE: 'increment' })}
+							>
+								OK
+							</Button>
+							{/* <Button
+									theme={{ type: 'primary', size: 'small fullW' }}
+									// onClick={() => setIsShow(false)}
+									onClick={() => dispatch({ TYPE: 'decrease' })}
+								>
+									CANCEL
+								</Button> */}
+						</$.Footer>
+					)}
+				</$.ModalGeneral>
+				{/* </$.Overlay> */}
+			</>
 		)
 	);
 }
