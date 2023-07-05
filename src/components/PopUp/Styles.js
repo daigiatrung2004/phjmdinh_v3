@@ -29,6 +29,18 @@ const transitionAnimation = keyframes`
 	}
 `;
 
+const processAnimation = keyframes`
+	0% {
+		width: 0%;
+		border-bottom-right-radius: 0px;
+	}
+
+	100% {
+		width: 100%;
+		border-bottom-right-radius: 5px;
+	}
+`;
+
 const Square = styled.div`
 	position: absolute;
 	top: ${({ top, height }) => (top ? top(height) : '0')};
@@ -51,13 +63,20 @@ const Rectangle = styled(Square)`
 const Toast = styled.div`
 	position: fixed;
 	display: flex;
-	padding: 0px 10px 0px 10px;
 	top: 5px;
 	right: 5px;
 	background-color: ${({ contrast }) => contrast};
 	border-radius: 5px;
 	animation: ${transitionAnimation} 0.6s ease-out 1 normal forwards;
 	flex-direction: column;
+	min-width: 200px;
+`;
+
+const ProcessBar = styled.div`
+	height: 5px;
+	background-color: var(--primary);
+	animation: ${processAnimation} 2s ease-in 1 normal forwards;
+	border-bottom-left-radius: 5px;
 `;
 
 export const ModalGeneral = ({ type, shape, children, contrast, border, ...style }) => {
@@ -69,6 +88,7 @@ export const ModalGeneral = ({ type, shape, children, contrast, border, ...style
 				{...style}
 			>
 				{children}
+				<ProcessBar />
 			</Toast>
 		);
 	}
@@ -98,6 +118,7 @@ export const ModalGeneral = ({ type, shape, children, contrast, border, ...style
 export const Header = styled.div`
 	border-radius: 5px;
 	position: relative;
+	min-height: 20px;
 `;
 
 export const Footer = styled(Header)`
@@ -111,10 +132,21 @@ export const Footer = styled(Header)`
 export const Content = styled.div`
 	flex-grow: 1;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
-	flex-direction: ${centerIcon => (centerIcon ? 'row' : 'column')};
+	flex-direction: ${({ centerIcon }) => {
+		console.log(centerIcon);
+		return centerIcon ? 'column' : 'row';
+	}};
 	padding: 25px;
+
+	& p {
+		padding-left: 5px;
+		padding-right: 5px;
+		margin: 0px;
+		flex-grow: 1;
+		text-align: left;
+	}
 `;
 
 export const Overlay = styled.div`
@@ -127,4 +159,11 @@ export const Overlay = styled.div`
 	opacity: 0.1;
 	overflow: hidden;
 	z-index: 9900;
+`;
+
+export const Icon = styled.div`
+	display: flex;
+	justify-content: center;
+	width: 20%;
+	align-items: center;
 `;

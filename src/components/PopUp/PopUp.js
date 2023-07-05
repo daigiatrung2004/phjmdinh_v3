@@ -11,6 +11,7 @@ import { memo } from 'react';
 import { useContext } from 'react';
 import { TestContext } from '~/pages/TestPopUp';
 import { Warning } from '~/components/Icons';
+import useTimeOutEffect from '~/hooks/useTimeOutEffect';
 
 /*
 useEffect 
@@ -49,9 +50,6 @@ useLayoutEffect
 
 function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 	const [isShow, setIsShow] = useState(true);
-
-	let test = useContext(TestContext);
-	console.log('context render:', test);
 	// const [state, dispatch] = useReducer(reducer, { count: 0 }, logger1);
 	// const [num, setNum] = useState(0);
 	const config = {
@@ -91,11 +89,16 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			width: '320px',
 			position: 'left',
 			isOverlay: false,
+			timeOut: 2000,
 		},
 	};
-
 	Object.assign(config[type], settings);
-	let log = logger('debug');
+	let isExpiredTime = useTimeOutEffect(isShow, config[type].timeOut);
+
+	useEffect(() => {
+		// console.log('isExpiredTime:', isExpiredTime);
+		if (type == 'Error' && isShow) setIsShow(isExpiredTime);
+	}, [isExpiredTime]);
 
 	// let id = useLayoutEffect(() => {
 	// 	if (num > 3) setNum(0);
@@ -135,19 +138,23 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 						</$.Header>
 					)}
 					{type == 'Error' ? (
-						<$.Content>
+						<$.Content style={{ padding: '10px' }}>
 							{(config[type].leftIcon || config[type].centerIcon) && (
-								<FontAwesomeIcon
-									icon={faCircleCheck}
-									style={{ fontSize: '20px' }}
-								/>
+								<$.Icon>
+									<FontAwesomeIcon
+										icon={faCircleCheck}
+										style={{ fontSize: '20px', color: '#3dff3d' }}
+									/>
+								</$.Icon>
 							)}
-							<p>{config[type].content}</p>
+							<div>{config[type].content}</div>
 							{config[type].rightIcon && (
-								<FontAwesomeIcon
-									icon={faCircleCheck}
-									style={{ fontSize: '20px' }}
-								/>
+								<$.Icon>
+									<FontAwesomeIcon
+										icon={faCircleCheck}
+										style={{ fontSize: '20px' }}
+									/>
+								</$.Icon>
 							)}
 						</$.Content>
 					) : (
@@ -180,6 +187,7 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 							)}
 						</$.Content>
 					)}
+					{console.log('log:', config[type].isFooter)}
 					{config[type].isFooter && (
 						<$.Footer>
 							<Button
