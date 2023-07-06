@@ -48,7 +48,8 @@ const Square = styled.div`
 	height: ${({ height }) => (height ? height : '320px')};
 	width: ${({ width }) => (width ? width : '320px')};
 	background-color: ${({ contrast }) => contrast};
-	animation: ${vibrateAnimation} 0.6s ease-out 1 normal forwards;
+	animation: ${vibrateAnimation} ${({ timeVibrate }) => `${timeVibrate ? timeVibrate / 1000 : 0.6}s`} ease-out 1
+		normal forwards;
 	display: flex;
 	flex-direction: column;
 	border-radius: 5px;
@@ -67,7 +68,8 @@ const Toast = styled.div`
 	right: 5px;
 	background-color: ${({ contrast }) => contrast};
 	border-radius: 5px;
-	animation: ${transitionAnimation} 0.6s ease-out 1 normal forwards;
+	animation: ${transitionAnimation} ${({ timeTransition }) => `${timeTransition ? timeTransition / 1000 : 0.6}s`}
+		ease-out 1 normal forwards;
 	flex-direction: column;
 	min-width: 200px;
 `;
@@ -75,11 +77,11 @@ const Toast = styled.div`
 const ProcessBar = styled.div`
 	height: 5px;
 	background-color: var(--primary);
-	animation: ${processAnimation} 2s ease-in 1 normal forwards;
+	animation: ${processAnimation} ${({ timeOut }) => `${timeOut ? timeOut / 1000 : 2}s`} ease-in 1 normal forwards;
 	border-bottom-left-radius: 5px;
 `;
 
-export const ModalGeneral = ({ type, shape, children, contrast, border, ...style }) => {
+export const ModalGeneral = ({ type, shape, children, contrast, border, timeOut, ...style }) => {
 	if (type == 'Error') {
 		return (
 			<Toast
@@ -88,7 +90,7 @@ export const ModalGeneral = ({ type, shape, children, contrast, border, ...style
 				{...style}
 			>
 				{children}
-				<ProcessBar />
+				<ProcessBar timeOut={timeOut} />
 			</Toast>
 		);
 	}
@@ -118,7 +120,7 @@ export const ModalGeneral = ({ type, shape, children, contrast, border, ...style
 export const Header = styled.div`
 	border-radius: 5px;
 	position: relative;
-	min-height: 20px;
+	min-height: 10px;
 `;
 
 export const Footer = styled(Header)`
@@ -140,7 +142,7 @@ export const Content = styled.div`
 	}};
 	padding: 25px;
 
-	& p {
+	& > p {
 		padding-left: 5px;
 		padding-right: 5px;
 		margin: 0px;

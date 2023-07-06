@@ -24,7 +24,7 @@ function Image({ href, src, alt = 'No title image', className, children, ...prop
 }
 
 Image.propTypes = {
-	src: PropTypes.string.isRequired,
+	src: PropTypes.string,
 	alt: PropTypes.string,
 	className: PropTypes.string,
 };

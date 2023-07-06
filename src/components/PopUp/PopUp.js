@@ -1,17 +1,12 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useReducer, useState } from 'react';
-import Button from '~/components/Button';
-import * as $ from './Styles';
-import { PUSettings } from '~/utils/StylesBase';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { isValidElement, memo, useEffect, useState } from 'react';
 import Images from '~/assets/images';
+import Button from '~/components/Button';
 import Image from '~/components/Image';
-import logger from '~/utils/logger';
-import { memo } from 'react';
-import { useContext } from 'react';
-import { TestContext } from '~/pages/TestPopUp';
-import { Warning } from '~/components/Icons';
 import useTimeOutEffect from '~/hooks/useTimeOutEffect';
+import { PUSettings } from '~/utils/StylesBase';
+import * as $ from './Styles';
 
 /*
 useEffect 
@@ -50,8 +45,6 @@ useLayoutEffect
 
 function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 	const [isShow, setIsShow] = useState(true);
-	// const [state, dispatch] = useReducer(reducer, { count: 0 }, logger1);
-	// const [num, setNum] = useState(0);
 	const config = {
 		Normal: {
 			type: 'Normal',
@@ -64,7 +57,22 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			leftIcon: false,
 			rightIcon: false,
 			centerIcon: true,
-			srcIcon: Images.warning,
+			srcIcon: {
+				type: Image,
+				props: {
+					className: 'icon',
+					src: Images.warning,
+					width: '80px',
+					height: '80px',
+				},
+			},
+			// srcIcon: {
+			// 	type: Warning,
+			// 	props: {
+			// 		width: '80px',
+			// 		height: '80px',
+			// 	},
+			// },
 			hIcon: '80px',
 			wIcon: '80px',
 			height: '320px',
@@ -72,6 +80,7 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			top: height => (window.innerHeight - height.replace('px', '') - 3) / 2 + 'px',
 			left: width => (window.innerWidth - width.replace('px', '') - 3) / 2 + 'px',
 			isOverlay: false,
+			timeVibrate: 600,
 		},
 		Error: {
 			type: 'Error',
@@ -80,7 +89,13 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			centerIcon: false,
 			isFooter: false,
 			isHeader: true,
-			srcIcon: Images.warning,
+			srcIcon: {
+				type: FontAwesomeIcon,
+				props: {
+					icon: faCircleCheck,
+					style: { fontSize: '20px', color: '#3dff3d' },
+				},
+			},
 			content: 'No message!!!',
 			contrast: PUSettings['contrast']['light'],
 			hIcon: '80px',
@@ -90,30 +105,37 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			position: 'left',
 			isOverlay: false,
 			timeOut: 2000,
+			timeTransition: 600,
 		},
 	};
+
 	Object.assign(config[type], settings);
-	let isExpiredTime = useTimeOutEffect(isShow, config[type].timeOut);
+	let IconComponent = {
+		type: Image,
+		props: {
+			src: '',
+		},
+	};
+	let isExpiredTime = useTimeOutEffect(isShow, (config[type].timeOut ?? 0) + 300);
 
 	useEffect(() => {
-		// console.log('isExpiredTime:', isExpiredTime);
 		if (type == 'Error' && isShow) setIsShow(isExpiredTime);
 	}, [isExpiredTime]);
 
-	// let id = useLayoutEffect(() => {
-	// 	if (num > 3) setNum(0);
-
-	// 	console.log('uselayouteffect');
-	// 	return 1;
-	// }, [num]);
-
-	// let test = useMemo(() => {
-	// 	console.log('sdfasdf');
-	// 	return 1;
-	// }, [num]);
-
-	// console.log('test :', test);
-	// console.log('id :', id);
+	if (typeof config[type].srcIcon == 'string') {
+		Object.assign(IconComponent, {
+			props: {
+				className: 'icon',
+				src: config[type].srcIcon,
+				width: config[type].wIcon,
+				height: config[type].hIcon,
+			},
+		});
+	} else if (isValidElement(config[type].srcIcon)) {
+		IconComponent = config[type].srcIcon;
+	} else if (typeof config[type].srcIcon == 'object') {
+		Object.assign(IconComponent, config[type].srcIcon);
+	}
 
 	return (
 		isShow && (
@@ -127,7 +149,7 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 						<$.Header>
 							<Button
 								theme={{ type: 'default transparent', size: 'small' }}
-								stylesCustom={{ position: 'absolute', right: '5px', top: '5px' }}
+								stylesCustom={{ position: 'absolute', right: '2px', top: '2px' }}
 								onClick={() => {
 									setIsShow(false);
 									typeof onClick == 'function' && onClick();
@@ -138,16 +160,17 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 						</$.Header>
 					)}
 					{type == 'Error' ? (
-						<$.Content style={{ padding: '10px' }}>
-							{(config[type].leftIcon || config[type].centerIcon) && (
+						<$.Content style={{ padding: '10px', paddingTop: '5px' }}>
+							{config[type].leftIcon && (
 								<$.Icon>
-									<FontAwesomeIcon
-										icon={faCircleCheck}
-										style={{ fontSize: '20px', color: '#3dff3d' }}
-									/>
+									{isValidElement(IconComponent) ? (
+										IconComponent
+									) : (
+										<IconComponent.type {...IconComponent.props} />
+									)}
 								</$.Icon>
 							)}
-							<div>{config[type].content}</div>
+							<p>{config[type].content}</p>
 							{config[type].rightIcon && (
 								<$.Icon>
 									<FontAwesomeIcon
@@ -160,34 +183,26 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 					) : (
 						<$.Content centerIcon={config[type].centerIcon}>
 							{(config[type].leftIcon || config[type].centerIcon) && (
-								// <Image
-								// 	className={'icon'}
-								// 	src={config[type].srcIcon}
-								// 	width={config[type].wIcon}
-								// 	height={config[type].hIcon}
-								// />
-								<Warning
-									width={config[type].wIcon}
-									height={config[type].hIcon}
-								/>
-								// <LoadingIcon
-								// 	width="100px"
-								// 	height="100px"
-								// />
+								<$.Icon>
+									{isValidElement(IconComponent) ? (
+										IconComponent
+									) : (
+										<IconComponent.type {...IconComponent.props} />
+									)}
+								</$.Icon>
 							)}
 							<p>{config[type].content}</p>
-							{/* <p>{state.count}</p> */}
 							{config[type].rightIcon && (
-								<Image
-									className={'icon'}
-									src={config[type].srcIcon}
-									width={config[type].wIcon}
-									height={config[type].hIcon}
-								/>
+								<$.Icon>
+									{isValidElement(IconComponent) ? (
+										IconComponent
+									) : (
+										<IconComponent.type {...IconComponent.props} />
+									)}
+								</$.Icon>
 							)}
 						</$.Content>
 					)}
-					{console.log('log:', config[type].isFooter)}
 					{config[type].isFooter && (
 						<$.Footer>
 							<Button
@@ -196,21 +211,12 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 									setIsShow(false);
 									typeof onClick == 'function' && onClick();
 								}}
-								// onClick={() => dispatch({ TYPE: 'increment' })}
 							>
 								OK
 							</Button>
-							{/* <Button
-									theme={{ type: 'primary', size: 'small fullW' }}
-									// onClick={() => setIsShow(false)}
-									onClick={() => dispatch({ TYPE: 'decrease' })}
-								>
-									CANCEL
-								</Button> */}
 						</$.Footer>
 					)}
 				</$.ModalGeneral>
-				{/* </$.Overlay> */}
 			</>
 		)
 	);
