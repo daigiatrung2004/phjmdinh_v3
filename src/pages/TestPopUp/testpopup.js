@@ -3,6 +3,7 @@ import PopUp from '~/components/PopUp';
 import { PUSettings } from '~/utils/StylesBase';
 import { createContext, useState } from 'react';
 import { Success } from '~/components/Icons';
+import TabList from '~/components/TabList';
 
 export const TestContext = createContext('123');
 
@@ -33,7 +34,8 @@ function Testpopup() {
 				>
 					ok
 				</Button> */}
-				<PopUp settings={config} />
+				{/* <PopUp settings={config} /> */}
+				<TabList />
 			</$.Modal>
 		</TestContext.Provider>
 	);
