@@ -19,6 +19,7 @@ const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 		</Tag>
 	);
 };
+
 export const Item = styled(ItemCustom)`
 	--height-img-item: 40px;
 	--width-img-item: 40px;
