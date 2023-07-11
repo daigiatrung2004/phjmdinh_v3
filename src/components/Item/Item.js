@@ -12,8 +12,11 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 		src = data.backdropPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}` : '';
 	}
 
-	const mouseEnter = useContext(ItemContext);
-	console.log(mouseEnter);
+	let mouseEnter = useContext(ItemContext);
+	console.log('mouseenter:', mouseEnter);
+	if (typeof mouseEnter != 'function') {
+		mouseEnter = () => {};
+	}
 
 	const typeClassNames = {
 		SEARCH_TYPE: '',

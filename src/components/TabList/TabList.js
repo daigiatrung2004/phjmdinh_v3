@@ -7,13 +7,20 @@ import { useState } from 'react';
 
 function TabList({ settings }) {
 	const [isActive, setIsActive] = useState(0);
+	const [liveNum, setLiveNum] = useState(1);
 	const config = [
 		{
 			header: {
 				title: 'Exposide',
 				icon: {
 					position: 'left',
-					srcIcon: <FontAwesomeIcon icon={faHippo} />,
+					srcIcon: (
+						<Image
+							src={Images.music}
+							width={'20px'}
+							height={'20px'}
+						/>
+					),
 				},
 			},
 			detail: {
@@ -33,7 +40,7 @@ function TabList({ settings }) {
 			detail: {
 				type: 'Full',
 				content:
-					'Sau M?ng Hoang K?, Th?n Ph? Tinh Kh?ng, C?u ??nh K?, B?n Long, Tinh Th?n Bi?n, Th?n Mang, Tinh Phong Truy?n Thuy?t, th? ??y l? t?c ph?m th? 8 c?a C? Chua. C?ng nh?n t?c gi? Ng? C?t T?y H?ng Th? c? l?c b?t kh?ng kh?p th?t.',
+					'Theo WSJ, nhiều người dùng Twitter tỏ ra mệt mỏi sau hơn nửa năm bất ổn của nền tảng dưới thời Elon Musk. Họ nhanh chóng đăng ký dùng Threads ngay khi ứng dụng được tung ra thị trường ngày 5/7, bất chấp những lo ngại về quyền riêng tư trên các dịch vụ của Meta. Những lo ngại này từng biến Zuckerberg, CEO Meta, bị công chúng ghét bỏ. Người dùng mạng xã hội của Meta phải đối mặt với thực tế là bài viết, hình ảnh của họ bị sử dụng cho hoạt động quảng cáo.',
 				img: {
 					position: 'left',
 					src: (
@@ -47,6 +54,7 @@ function TabList({ settings }) {
 			},
 		},
 	];
+
 	return (
 		<$.Tabs>
 			<$.Header>
@@ -57,9 +65,13 @@ function TabList({ settings }) {
 							isActive={index == isActive ? 1 : 0}
 							onClick={() => setIsActive(index)}
 						>
-							{item['header']['position'] == 'left' && <span>{item['header']['srcIcon']}</span>}
+							{item['header']['icon']['position'] == 'left' && (
+								<span className="icon">{item['header']['icon']['srcIcon']}</span>
+							)}
 							<span>{item['header']['title']}</span>
-							{item['header']['position'] == 'right' && <span>{item['header']['srcIcon']}</span>}
+							{item['header']['icon']['position'] == 'right' && (
+								<span className="icon">{item['header']['icon']['srcIcon']}</span>
+							)}
 						</$.Tab>
 					);
 				})}
@@ -72,15 +84,17 @@ function TabList({ settings }) {
 								{Array(item['detail']['sizeSupply'])
 									.fill(0)
 									.map((item2, index) => {
-										return index <= item['detail']['sizeReal'] ? (
+										var i = index + 1;
+										return i <= item['detail']['sizeReal'] ? (
 											<$.Item
-												className="active"
-												key={'list-' + index}
+												className={`active ${liveNum > 0 && liveNum == i ? 'live' : ''}`}
+												key={'list-' + i}
+												onClick={() => setLiveNum(i)}
 											>
-												{index}
+												{i}
 											</$.Item>
 										) : (
-											<$.Item key={'list-' + index}>{index}</$.Item>
+											<$.Item key={'list-' + i}>{i}</$.Item>
 										);
 									})}
 							</$.Detail>

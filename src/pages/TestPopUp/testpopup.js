@@ -4,6 +4,7 @@ import { PUSettings } from '~/utils/StylesBase';
 import { createContext, useState } from 'react';
 import { Success } from '~/components/Icons';
 import TabList from '~/components/TabList';
+import Slide from '~/components/Slide/Slide';
 
 export const TestContext = createContext('123');
 
@@ -35,7 +36,8 @@ function Testpopup() {
 					ok
 				</Button> */}
 				{/* <PopUp settings={config} /> */}
-				<TabList />
+				{/* <TabList /> */}
+				<Slide />
 			</$.Modal>
 		</TestContext.Provider>
 	);

@@ -64,6 +64,7 @@ function Home() {
 							: ''
 					);
 				}
+				console.log('lastestData:', latestData);
 			})
 			.catch(error => console.log(error));
 	}, []);
@@ -139,7 +140,7 @@ function Home() {
 					<Items
 						// src="/reviewfilm/"
 						items={itemsLastest}
-						type={'HORIZON_DISPLAY_TYPE'}
+						
 						icon={<$.PlayIcon />}
 						onClick={() => setShowPopUp(true)}
 					/>

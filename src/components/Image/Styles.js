@@ -2,11 +2,11 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StaticImage = styled.img`
-	height: 400px;
-	width: 400px;
-	border-radius: 50%;
+	height: ${({ height }) => (height ? height : '400px')};
+	width: ${({ width }) => (width ? width : '400px')};
+	border-radius: ${({ isBorder }) => (isBorder ? '50%' : '0px')};
 	object-fit: cover;
-	border: 1px solid black;
+	border: ${({ isBorder }) => (isBorder ? '1px solid black' : 'none')};
 `;
 
 const Tag = ({ children, to }) => {

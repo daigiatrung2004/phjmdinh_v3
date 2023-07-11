@@ -1,4 +1,14 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const renderAnimation = keyframes`
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+`;
 
 export const Tabs = styled.div`
 	display: flex;
@@ -18,6 +28,10 @@ export const Tab = styled.div`
 	cursor: pointer;
 	width: 180px;
 	background-color: ${({ isActive }) => (isActive ? 'rgba(13, 27, 36)' : 'rgba(0, 0, 0, 0.2)')};
+
+	& .icon {
+		margin-right: 10px;
+	}
 
 	&:nth-child(2n)::after {
 		content: '';
@@ -61,6 +75,7 @@ export const Detail = styled.div`
 	border-top: 1px solid rgba(0, 0, 0, 0.4);
 	padding: 20px;
 	clear: both;
+	animation: ${renderAnimation} 0.2s ease-in-out 1 normal forwards;
 `;
 
 export const Item = styled.div`
@@ -74,9 +89,11 @@ export const Item = styled.div`
 	margin-right: 20px;
 	width: 20px;
 	margin-bottom: 20px;
+	user-select: none;
 
 	&.active {
 		color: var(--white);
+		cursor: pointer;
 	}
 
 	&.live {

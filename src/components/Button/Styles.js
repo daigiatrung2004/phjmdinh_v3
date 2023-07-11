@@ -8,6 +8,7 @@ export const Button = styled.button`
 	margin-left: 10px;
 	margin-right: 10px;
 	box-sizing: border-box;
+	user-select: none;
 
 	&:active {
 		background-color: rgba(255, 198, 0);
