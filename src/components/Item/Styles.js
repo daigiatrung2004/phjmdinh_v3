@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 import ImageComponent from '~/components/Image';
 import { Link } from 'react-router-dom';
+import ItemsContext from '~/Slide/itemscontext';
 
 // item
 const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 	let Tag = 'div';
+	const ref = useContext(ItemsContext);
 	if (src) {
 		Tag = Link;
 		className = `hover-underline ${className}`;
