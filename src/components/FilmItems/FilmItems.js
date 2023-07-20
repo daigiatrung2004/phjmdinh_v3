@@ -10,10 +10,11 @@ import Item from '~/components/Item';
  * @return {component} <FilmItem/>.
  */
 function FilmItem({ items, type, src, ...propsDefault }) {
-	return items.map(item => (
+	console.log('items rerender:', items);
+	return items.map((item, index) => (
 		<Item
 			to={src}
-			key={item.id}
+			key={index}
 			data={item}
 			type={type}
 			{...propsDefault}

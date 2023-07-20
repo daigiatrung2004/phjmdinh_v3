@@ -54,7 +54,7 @@ const Square = styled.div`
 	flex-direction: column;
 	border-radius: 5px;
 	box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(255, 255, 255, 0.06) 0px 2px 4px -1px;
-	z-index: 10000;
+	z-index: 100000;
 `;
 
 const Rectangle = styled(Square)`
@@ -72,6 +72,7 @@ const Toast = styled.div`
 		ease-out 1 normal forwards;
 	flex-direction: column;
 	min-width: 200px;
+	z-index: 100000;
 `;
 
 const ProcessBar = styled.div`

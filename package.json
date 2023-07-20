@@ -53,9 +53,15 @@
 	},
 	"overrides": {
 		"react-error-overlay": "6.0.9"
-	  },
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not op_mini all"
+	],
 	"devDependencies": {
 		"fast-glob": "^3.3.0",
-		"react-ace": "^10.1.0"
+		"react-ace": "^10.1.0",
+		"react-spring": "^9.7.2"
 	}
 }

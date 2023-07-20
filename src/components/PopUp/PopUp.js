@@ -7,6 +7,7 @@ import Image from '~/components/Image';
 import useTimeOutEffect from '~/hooks/useTimeOutEffect';
 import { PUSettings } from '~/utils/StylesBase';
 import * as $ from './Styles';
+import { createPortal } from 'react-dom';
 
 /*
 useEffect 
@@ -138,7 +139,8 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 	}
 
 	return (
-		isShow && (
+		isShow &&
+		createPortal(
 			<>
 				{config[type].isOverlay && <$.Overlay />}
 				<$.ModalGeneral
@@ -217,7 +219,9 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 						</$.Footer>
 					)}
 				</$.ModalGeneral>
-			</>
+			</>,
+			document.body,
+			1
 		)
 	);
 }

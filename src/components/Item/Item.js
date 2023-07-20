@@ -13,7 +13,8 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 	}
 
 	let mouseEnter = useContext(ItemContext);
-	console.log('mouseenter:', mouseEnter);
+
+	// console.log('mouseenter:', mouseEnter);
 	if (typeof mouseEnter != 'function') {
 		mouseEnter = () => {};
 	}

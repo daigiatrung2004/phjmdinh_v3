@@ -7,7 +7,7 @@ import * as $ from './Styles';
 function Image({ href, src, alt = 'No title image', className, children, ...propsDefault }) {
 	const [fallBack, setFallBack] = useState('');
 	let Img = className ? 'img' : $.StaticImage;
-	console.log('className:', className);
+	// console.log('className:', className);
 
 	return (
 		<$.Wrapper to={href}>
