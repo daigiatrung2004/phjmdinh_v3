@@ -1,3 +1,3 @@
-import { createContext, useReducer, useRef } from 'react';
+import { createContext } from 'react';
 const ItemsContext = createContext();
 export default ItemsContext;

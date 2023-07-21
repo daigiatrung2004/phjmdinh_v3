@@ -1,18 +1,47 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
 import { Link } from 'react-router-dom';
-import ItemsContext from '~/Slide/itemscontext';
+import ItemsContext from '~/components/Slide/itemscontext';
+import { useContext } from 'react';
+import { useRef } from 'react';
+
+const frame = (position, transform) => keyframes`
+	${console.log('position:', position)}
+	from {
+		left: ${-transform}px;
+	}
+	to {
+		left: 0px;
+	}
+`;
 
 // item
 const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 	let Tag = 'div';
-	const ref = useContext(ItemsContext);
+	const context = useContext(ItemsContext);
+	const ref = useRef();
+
+	// console.log('ref item custom:', ref.current);
+	// console.dir(ref.current);
+	// console.log('context:', context);
+	// if (context && typeof context == 'function' && ref.current) {
+	// 	const styled = window.getComputedStyle(ref.current);
+	// 	const marginWidth = parseInt(styled.marginRight) + parseInt(styled.marginLeft);
+	// 	const width = ref.current.offsetWidth;
+	// 	// let scrollWidth = ref.current.scrollWidth;
+	// 	// console.log('marginWidth :', marginWidth);
+	// 	// console.log('width :', width);
+	// 	// console.log('scrollWidth :', scrollWidth);
+	// 	context(marginWidth + width);
+	// }
+
 	if (src) {
 		Tag = Link;
-		className = `hover-underline ${className}`;
+		className = `hover-underline ${className} animation`;
 	}
 	return (
 		<Tag
+			ref={ref}
 			to={src}
 			className={className}
 			{...propsDefault}
@@ -31,6 +60,21 @@ export const Item = styled(ItemCustom)`
 	border-bottom: 1px dashed;
 	max-height: 40px;
 	position: relative;
+
+	/* https://css-tricks.com/restart-css-animation/ */
+	&.animation {
+		animation-name: ${({ isslide, translatexslide, position, transform }) => {
+			if (isslide == 'true' && translatexslide == 'true') {
+				return frame(position, transform);
+			} else {
+				return '';
+			}
+		}};
+		/* animation-iteration-count: 2; */
+		animation-timing-function: linear;
+		animation-duration: 0.5s;
+		/* animation-fill-mode: forwards; */
+	}
 
 	&.item__display-vertical {
 		display: block;

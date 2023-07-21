@@ -9,14 +9,13 @@ import reducer from './reducer';
 import { useReducer, useRef, useState } from 'react';
 
 function Slide(settings) {
-	// const [position, setPosition] = useState(0);
-	const [position, dispatch] = useReducer(reducer, 0);
-	const [widthItem, setWidthItem] = useState(0);
-	const refItem = useRef(1);
+	// const [position, setPosition] = useState(0)
 
 	const config = {
 		type: 'default',
 		transitionTime: 1000,
+		itemshowlength: 4,
+		widthItem: 300,
 		list: [
 			{
 				id: 1,
@@ -99,70 +98,74 @@ function Slide(settings) {
 		],
 	};
 
+	Object.assign(config, settings);
+
+	const [position, dispatch] = useReducer(reducer, 0);
+	const [widthItem, setWidthItem] = useState(420);
+	const refItemWrapper = useRef();
 	const [list, setList] = useState(config['list']);
+	const [isTranslateXSlide, setIsTranslateXSlide] = useState(false);
 
 	function handleLeft() {
+		setIsTranslateXSlide(true);
 		setList(arr => {
 			arr = [...arr, arr[0]];
-			console.log('array=', arr);
+			// console.log('array=', arr);
 			return arr;
 		});
+
 		setTimeout(() => {
-			console.log('co vao day=');
-			refItemWrapper.current.style.transition = '';
+			// refItemWrapper.current.style.transition = '';
+			setIsTranslateXSlide(false);
 			dispatch({
 				type: 'right',
-				payload: 420,
+				payload: widthItem,
 			});
-			console.log('style = ', refItemWrapper.current.style);
+
 			setList(arr => {
-				console.log('co vao day 123:', arr);
 				arr.shift();
-				console.log('array set timeout=', arr);
 				return [...arr];
 			});
 		}, config['transitionTime']);
 		dispatch({
 			type: 'left',
-			payload: 420,
+			payload: widthItem,
 		});
 
-		refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
+		// refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
 	}
 
 	function handleRight() {
+		setIsTranslateXSlide(true);
 		setList(arr => {
 			arr = [arr[arr.length - 1], ...arr];
 			console.log('array=', arr);
 			return arr;
 		});
-		setTimeout(() => {
-			console.log('co vao day=');
-			refItemWrapper.current.style.transition = '';
-			dispatch({
-				type: 'left',
-				payload: 420,
-			});
-			console.log('style = ', refItemWrapper.current.style);
-			setList(arr => {
-				console.log('co vao day 123:', arr);
-				arr.pop();
-				console.log('array set timeout=', arr);
-				return [...arr];
-			});
-		}, config['transitionTime']);
+		// setTimeout(() => {
+		// 	refItemWrapper.current.style.transition = '';
+		// 	dispatch({
+		// 		type: 'left',
+		// 		payload: widthItem,
+		// 	});
+		// 	console.log('style = ', refItemWrapper.current.style);
+		// 	setList(arr => {
+		// 		arr.pop();
+		// 		return [...arr];
+		// 	});
+		// }, config['transitionTime']);
 
 		dispatch({
 			type: 'right',
-			payload: 420,
+			payload: widthItem,
 		});
 
-		refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
+		// refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
 	}
 
 	Object.assign(config, settings);
 
-	console.log('list re-render:', list);
+	// console.log('list re-render:', list);
 	return (
 		<Background style={{ overflow: 'hidden' }}>
 			<Button
@@ -188,20 +191,24 @@ function Slide(settings) {
 				}}
 			>
 				<div
-					ref={refItemWrapper}
+					// ref={refItemWrapper}
 					style={{
-						transform: `translateX(${position}px)`,
 						display: 'flex',
-						transition: `all ${config['transitionTime'] / 1000}s ease-out`,
-						width: '1680px',
+						width: `${config['itemshowlength'] * widthItem}px`,
 					}}
 				>
 					{console.log('list before rerender:', list)}
-					<ItemsContext.Provider value={refItem}>
+					<ItemsContext.Provider value={setWidthItem}>
 						<Items
+							w={widthItem}
 							src="/reviewfilm/"
 							items={list}
 							type={'HORIZON_DISPLAY_TYPE'}
+							isslide={'true'}
+							translatexslide={`${isTranslateXSlide}`}
+							transitiontime={config['transitionTime']}
+							transform={widthItem}
+							position={position}
 						/>
 					</ItemsContext.Provider>
 				</div>
