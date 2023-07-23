@@ -105,9 +105,11 @@ function Slide(settings) {
 	const refItemWrapper = useRef();
 	const [list, setList] = useState(config['list']);
 	const [isTranslateXSlide, setIsTranslateXSlide] = useState(false);
+	const [state, setState] = useState(false);
 
 	function handleLeft() {
 		setIsTranslateXSlide(true);
+		setState(!state);
 		setList(arr => {
 			arr = [...arr, arr[0]];
 			// console.log('array=', arr);
@@ -136,6 +138,7 @@ function Slide(settings) {
 	}
 
 	function handleRight() {
+		setState(true);
 		setIsTranslateXSlide(true);
 		setList(arr => {
 			arr = [arr[arr.length - 1], ...arr];
@@ -200,6 +203,8 @@ function Slide(settings) {
 					{console.log('list before rerender:', list)}
 					<ItemsContext.Provider value={setWidthItem}>
 						<Items
+							setState={setState}
+							state={state}
 							w={widthItem}
 							src="/reviewfilm/"
 							items={list}

@@ -2,8 +2,9 @@ import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
 import { Link } from 'react-router-dom';
 import ItemsContext from '~/components/Slide/itemscontext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useRef } from 'react';
+import { useEffect } from 'react';
 
 const frame = (position, transform) => keyframes`
 	${console.log('position:', position)}
@@ -16,10 +17,11 @@ const frame = (position, transform) => keyframes`
 `;
 
 // item
-const ItemCustom = ({ src, className, children, ...propsDefault }) => {
+const ItemCustom = ({ src, className, children, state, setState, ...propsDefault }) => {
 	let Tag = 'div';
 	const context = useContext(ItemsContext);
 	const ref = useRef();
+	const [statef, setStatef] = useState(false);
 
 	// console.log('ref item custom:', ref.current);
 	// console.dir(ref.current);
@@ -34,6 +36,9 @@ const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 	// 	// console.log('scrollWidth :', scrollWidth);
 	// 	context(marginWidth + width);
 	// }
+	useEffect(() => {
+		setState(false);
+	}, [state]);
 
 	if (src) {
 		Tag = Link;
@@ -44,6 +49,7 @@ const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 			ref={ref}
 			to={src}
 			className={className}
+			state={state}
 			{...propsDefault}
 		>
 			{children}
@@ -63,8 +69,8 @@ export const Item = styled(ItemCustom)`
 
 	/* https://css-tricks.com/restart-css-animation/ */
 	&.animation {
-		animation-name: ${({ isslide, translatexslide, position, transform }) => {
-			if (isslide == 'true' && translatexslide == 'true') {
+		animation-name: ${({ isslide, translatexslide, position, transform, state }) => {
+			if (isslide == 'true' && translatexslide == 'true' && state) {
 				return frame(position, transform);
 			} else {
 				return '';
@@ -73,6 +79,7 @@ export const Item = styled(ItemCustom)`
 		/* animation-iteration-count: 2; */
 		animation-timing-function: linear;
 		animation-duration: 0.5s;
+		/* animation-iteration-count: infinite; */
 		/* animation-fill-mode: forwards; */
 	}
 
