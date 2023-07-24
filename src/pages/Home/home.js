@@ -140,7 +140,7 @@ function Home() {
 					<Items
 						// src="/reviewfilm/"
 						items={itemsLastest}
-						
+						type="HORIZON_DISPLAY_TYPE"
 						icon={<$.PlayIcon />}
 						onClick={() => setShowPopUp(true)}
 					/>
