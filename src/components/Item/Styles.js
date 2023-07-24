@@ -1,24 +1,23 @@
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
-import { Link } from 'react-router-dom';
-import ItemsContext from '~/components/Slide/itemscontext';
-import { useContext } from 'react';
-import { useRef } from 'react';
 
-const frame = (position, transform) => keyframes`
-	${console.log('position:', position)}
+const frame = (sign, transform) => keyframes`
 	from {
-		left: ${-transform}px;
+		left: ${sign > 0 ? 0 : -transform}px;
 	}
 	to {
-		left: 0px;
+		left: ${sign > 0 ? -transform : 0}px;
 	}
 `;
 
+// state pass params.true false
+//
+
 // item
-const ItemCustom = ({ src, className, children, ...propsDefault }) => {
+const ItemCustom = ({ src, className, children, state, setState, transitiontime, ...propsDefault }) => {
 	let Tag = 'div';
-	const context = useContext(ItemsContext);
 	const ref = useRef();
 
 	// console.log('ref item custom:', ref.current);
@@ -35,6 +34,16 @@ const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 	// 	context(marginWidth + width);
 	// }
 
+	useEffect(() => {
+		if (state) {
+			const id = setTimeout(() => {
+				setState(false);
+			}, transitiontime);
+
+			return () => clearTimeout(id);
+		}
+	}, [state, transitiontime]);
+
 	if (src) {
 		Tag = Link;
 		className = `hover-underline ${className} animation`;
@@ -43,7 +52,9 @@ const ItemCustom = ({ src, className, children, ...propsDefault }) => {
 		<Tag
 			ref={ref}
 			to={src}
+			state={state}
 			className={className}
+			transitiontime={transitiontime}
 			{...propsDefault}
 		>
 			{children}
@@ -61,19 +72,18 @@ export const Item = styled(ItemCustom)`
 	max-height: 40px;
 	position: relative;
 
-	/* https://css-tricks.com/restart-css-animation/ */
+	/* https://codesandbox.io/s/react-reset-css-animation-63dsx */
 	&.animation {
-		animation-name: ${({ isslide, translatexslide, position, transform }) => {
-			if (isslide == 'true' && translatexslide == 'true') {
-				return frame(position, transform);
-			} else {
-				return '';
-			}
-		}};
-		/* animation-iteration-count: 2; */
-		animation-timing-function: linear;
-		animation-duration: 0.5s;
-		/* animation-fill-mode: forwards; */
+		animation: ${({ isslide, translatexslide, transform, state, sign }) => {
+				console.log('state init:', state);
+
+				if (isslide == 'true' && translatexslide == 'true' && state) {
+					return frame(sign, transform);
+				} else {
+					return '';
+				}
+			}}
+			${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear;
 	}
 
 	&.item__display-vertical {

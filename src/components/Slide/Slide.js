@@ -1,19 +1,16 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Button from '~/components/Button';
-import * as $ from './Styles';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 import Background from '~/components/Background';
+import Button from '~/components/Button';
 import Items from '~/components/FilmItems';
+import * as $ from './Styles';
 import ItemsContext from './itemscontext';
-import reducer from './reducer';
-import { useReducer, useRef, useState } from 'react';
 
 function Slide(settings) {
-	// const [position, setPosition] = useState(0)
-
 	const config = {
 		type: 'default',
-		transitionTime: 1000,
+		transitionTime: 500,
 		itemshowlength: 4,
 		widthItem: 300,
 		list: [
@@ -100,82 +97,70 @@ function Slide(settings) {
 
 	Object.assign(config, settings);
 
-	const [position, dispatch] = useReducer(reducer, 0);
 	const [widthItem, setWidthItem] = useState(420);
-	const refItemWrapper = useRef();
 	const [list, setList] = useState(config['list']);
 	const [isTranslateXSlide, setIsTranslateXSlide] = useState(false);
+	const [state, setState] = useState(false);
+	const [sign, setSign] = useState(null);
 
 	function handleLeft() {
 		setIsTranslateXSlide(true);
+		setState(true);
+		setSign(1);
 		setList(arr => {
 			arr = [...arr, arr[0]];
-			// console.log('array=', arr);
 			return arr;
 		});
 
 		setTimeout(() => {
-			// refItemWrapper.current.style.transition = '';
-			setIsTranslateXSlide(false);
-			dispatch({
-				type: 'right',
-				payload: widthItem,
-			});
-
 			setList(arr => {
 				arr.shift();
 				return [...arr];
 			});
 		}, config['transitionTime']);
-		dispatch({
-			type: 'left',
-			payload: widthItem,
-		});
-
-		// refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
 	}
 
 	function handleRight() {
 		setIsTranslateXSlide(true);
+		setState(true);
+		setSign(-1);
 		setList(arr => {
 			arr = [arr[arr.length - 1], ...arr];
 			console.log('array=', arr);
 			return arr;
 		});
-		// setTimeout(() => {
-		// 	refItemWrapper.current.style.transition = '';
-		// 	dispatch({
-		// 		type: 'left',
-		// 		payload: widthItem,
-		// 	});
-		// 	console.log('style = ', refItemWrapper.current.style);
-		// 	setList(arr => {
-		// 		arr.pop();
-		// 		return [...arr];
-		// 	});
-		// }, config['transitionTime']);
-
-		dispatch({
-			type: 'right',
-			payload: widthItem,
-		});
-
-		// refItemWrapper.current.style.transition = `all ${config['transitionTime'] / 1000}s ease-out`;
+		setTimeout(() => {
+			setList(arr => {
+				arr.pop();
+				return [...arr];
+			});
+		}, config['transitionTime']);
 	}
 
-	Object.assign(config, settings);
-
-	// console.log('list re-render:', list);
 	return (
 		<Background style={{ overflow: 'hidden' }}>
 			<Button
-				style={{ position: 'absolute', top: '0', bottom: '0', left: '0', zIndex: '100000', margin: '0px' }}
+				style={{
+					position: 'absolute',
+					top: '0',
+					bottom: '0',
+					left: '0',
+					zIndex: '100000',
+					margin: '0px',
+				}}
 				onClick={() => handleLeft()}
 			>
 				<FontAwesomeIcon icon={faChevronLeft} />
 			</Button>
 			<Button
-				style={{ position: 'absolute', top: '0', bottom: '0', right: '0', zIndex: '10000', margin: '0px' }}
+				style={{
+					position: 'absolute',
+					top: '0',
+					bottom: '0',
+					right: '0',
+					zIndex: '10000',
+					margin: '0px',
+				}}
 				onClick={() => handleRight()}
 			>
 				<FontAwesomeIcon icon={faChevronRight} />
@@ -191,15 +176,16 @@ function Slide(settings) {
 				}}
 			>
 				<div
-					// ref={refItemWrapper}
 					style={{
 						display: 'flex',
 						width: `${config['itemshowlength'] * widthItem}px`,
 					}}
 				>
-					{console.log('list before rerender:', list)}
 					<ItemsContext.Provider value={setWidthItem}>
 						<Items
+							sign={sign}
+							state={state}
+							setState={setState}
 							w={widthItem}
 							src="/reviewfilm/"
 							items={list}
@@ -208,7 +194,6 @@ function Slide(settings) {
 							translatexslide={`${isTranslateXSlide}`}
 							transitiontime={config['transitionTime']}
 							transform={widthItem}
-							position={position}
 						/>
 					</ItemsContext.Provider>
 				</div>
