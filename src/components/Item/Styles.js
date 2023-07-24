@@ -19,6 +19,7 @@ const frame = (sign, transform) => keyframes`
 const ItemCustom = ({ src, className, children, state, setState, transitiontime, ...propsDefault }) => {
 	let Tag = 'div';
 	const ref = useRef();
+	const [statef, setStatef] = useState(false);
 
 	// console.log('ref item custom:', ref.current);
 	// console.dir(ref.current);
