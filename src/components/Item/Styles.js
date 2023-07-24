@@ -20,6 +20,8 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 	let Tag = 'div';
 	const ref = useRef();
 
+	console.log('class');
+
 	// console.log('ref item custom:', ref.current);
 	// console.dir(ref.current);
 	// console.log('context:', context);
