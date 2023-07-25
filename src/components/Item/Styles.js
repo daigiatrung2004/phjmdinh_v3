@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
@@ -20,7 +20,7 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 	let Tag = 'div';
 	const ref = useRef();
 
-	console.log('class');
+	// console.log('class');
 
 	// console.log('ref item custom:', ref.current);
 	// console.dir(ref.current);
@@ -41,7 +41,6 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 			const id = setTimeout(() => {
 				setState(false);
 			}, transitiontime);
-
 			return () => clearTimeout(id);
 		}
 	}, [state, transitiontime]);
@@ -73,16 +72,15 @@ export const Item = styled(ItemCustom)`
 	border-bottom: 1px dashed;
 	max-height: 40px;
 	position: relative;
+	transition: all ${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear;
 
 	/* https://codesandbox.io/s/react-reset-css-animation-63dsx */
 	&.animation {
 		animation: ${({ isslide, translatexslide, transform, state, sign }) => {
-				console.log('state init:', state);
+				// console.log('state init:', state);
 
 				if (isslide == 'true' && translatexslide == 'true' && state) {
 					return frame(sign, transform);
-				} else {
-					return '';
 				}
 			}}
 			${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear;
