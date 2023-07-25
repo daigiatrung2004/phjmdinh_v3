@@ -76,14 +76,14 @@ export const Item = styled(ItemCustom)`
 
 	/* https://codesandbox.io/s/react-reset-css-animation-63dsx */
 	&.animation {
-		animation: ${({ isslide, translatexslide, transform, state, sign }) => {
-				// console.log('state init:', state);
+		/* animation: ${({ isslide, translatexslide, transform, state, sign }) => {
+			// console.log('state init:', state);
 
-				if (isslide == 'true' && translatexslide == 'true' && state) {
-					return frame(sign, transform);
-				}
-			}}
-			${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear;
+			if (isslide == 'true' && translatexslide == 'true' && state) {
+				return frame(sign, transform);
+			}
+		}}
+			${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear; */
 	}
 
 	&.item__display-vertical {
