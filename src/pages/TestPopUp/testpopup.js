@@ -6,7 +6,9 @@ import { Success } from '~/components/Icons';
 import TabList from '~/components/TabList';
 import Slide from '~/components/Slide/Slide';
 import { useTransition, animated } from '@react-spring/web';
+import Image from '~/components/Image';
 import './test.css';
+import { flushSync } from 'react-dom';
 
 export const TestContext = createContext('123');
 
@@ -119,6 +121,41 @@ const App = () => (
 	</div>
 );
 
+const List = ({ children, scale }) => {
+	return (
+		<div
+			style={{
+				display: 'flex',
+			}}
+		>
+			{children}
+		</div>
+	);
+};
+
+const Cardo = ({ src, scale, className }) => (
+	<Image
+		src={src}
+		style={{
+			height: '300px',
+			width: '200px',
+			borderRadius: '5px',
+			margin: '0px 5px 0px 5px',
+			transform: `scale(${scale})`,
+			animation: `${(scale == 1.1 && 'scaleItem') || 'scaleItemNormal'} 0.2s ease-out forwards`,
+			transition: 'all 0.2s linear',
+		}}
+		className={className}
+	/>
+);
+
+function handleDisplay(index) {
+	const currentArr = [...dataCards];
+	const arrDelete = currentArr.splice(0, index + 1);
+	currentArr.push(...arrDelete);
+	return currentArr.slice(0, 3);
+}
+
 function Testpopup() {
 	// let config = {
 	// 	shape: PUSettings['shape']['square'],
@@ -126,6 +163,8 @@ function Testpopup() {
 	// 	isHeader: true,
 	// 	content: 'Whoops !!',
 	// };
+	const [list, setList] = useState([dataCards[0], dataCards[1], dataCards[2]]);
+	const [index, setIndex] = useState(0);
 	const [config, setConfig] = useState({
 		shape: PUSettings['shape']['square'],
 		// srcIcon: Success,
@@ -133,22 +172,69 @@ function Testpopup() {
 		isHeader: true,
 		content: 'Whoops !!',
 	});
+
+	const [moveClass, setMoveClass] = useState('');
 	const [count, setCount] = useState(0);
+
+	useEffect(() => {
+		setInterval(() => {
+			let indexTmp;
+			setIndex(index => {
+				indexTmp = index;
+				if (indexTmp + 1 > 5) {
+					return (indexTmp = 0);
+				} else {
+					return (indexTmp = indexTmp + 1);
+				}
+			});
+			setList(handleDisplay(indexTmp));
+			setMoveClass('center');
+		}, 2000);
+	}, []);
+
+	function handleAnimationEnd() {
+		console.log('co vao day');
+		setMoveClass('');
+	}
 
 	return (
 		<TestContext.Provider value={count}>
-			<$.Modal>
-				{/* <Button
+			{/* <$.Modal> */}
+			{/* <Button
 					theme={{ type: 'primary', size: 'medium' }}
 					onClick={() => setCount(count + 1)}
 				>
 					ok
 				</Button> */}
-				<PopUp settings={config} />
-				{/* <TabList /> */}
-				<Slide />
-			</$.Modal>
+			{/* <PopUp settings={config} /> */}
+			{/* <TabList /> */}
+			{/* <Slide />
+			</$.Modal> */}
 			{/* <App /> */}
+			<List>
+				{list.map((item, index) => {
+					let className;
+					if (moveClass == '') {
+						className = '';
+					} else if (index == 2) {
+						className = 'center';
+					} else if (index == 3) {
+						className = 'right';
+					} else {
+						className = 'left';
+					}
+
+					return (
+						<Cardo
+							key={`card-${index}`}
+							src={item.imageURL}
+							scale={index % 2 != 0 ? 1.1 : 0.8}
+							className={className}
+							onAnimationEnd={handleAnimationEnd}
+						/>
+					);
+				})}
+			</List>
 		</TestContext.Provider>
 	);
 }
