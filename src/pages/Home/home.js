@@ -138,7 +138,7 @@ function Home() {
 			<$.Trailer src={srcTrailer}>
 				<ItemContext.Provider value={handleMouseEnter}>
 					<Items
-						// src="/reviewfilm/"
+						src="/reviewfilm/"
 						items={itemsLastest}
 						type="HORIZON_DISPLAY_TYPE"
 						icon={<$.PlayIcon />}

@@ -1,15 +1,19 @@
 import PropTypes from 'prop-types';
+import { Suspense, lazy } from 'react';
 
 import Header from '~/layouts/components/Header';
 import Footer from '~/layouts/components/Footer';
 
 function DefaultLayout({ children }) {
+	// const Test = lazy(() => import('~/pages/WatchFilm'));
+	// console.log('test layout============:', Test);
 	return (
-		<>
-			{/* <Header /> */}
+		<Suspense fallback="loading...">
+			<Header />
+			{/* <Test /> */}
 			<main>{children}</main>
 			{/* <Footer /> */}
-		</>
+		</Suspense>
 	);
 }
 

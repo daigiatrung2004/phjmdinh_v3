@@ -1,10 +1,13 @@
-import Home from '~/pages/Home';
+// import Home from '~/pages/Home';
 import ReviewFilm from '~/pages/ReviewFilm';
 import Testpopup from '~/pages/TestPopUp';
 import Error from '~/pages/Static/Error';
 import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
 import Watch from '~/pages/WatchFilm';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('~/pages/Home'));
 
 export const privateRoutes = [
 	{

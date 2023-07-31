@@ -1,5 +1,5 @@
 import { faCircleXmark, faMagnifyingGlass, faSpinner, faPlus, faSackDollar } from '@fortawesome/free-solid-svg-icons';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
 import Images from '~/assets/images';
@@ -68,11 +68,11 @@ function Header() {
 
 	return (
 		<$.Header>
-			<$.Image
+			{/* <$.Image
 				src={Images.logo}
 				alt="logo"
 				href={'/'}
-			/>
+			/> */}
 			<Tippy
 				interactive
 				placement={'bottom-start'}
@@ -88,9 +88,11 @@ function Header() {
 					console.log('inside =', showResults, 'items = ', items);
 					return (
 						showResults && (
-							<Popper>
-								<FilmItems items={items} />
-							</Popper>
+							<Suspense fallback={<h2>loading...</h2>}>
+								<Popper>
+									<FilmItems items={items} />
+								</Popper>
+							</Suspense>
 						)
 					);
 				}}

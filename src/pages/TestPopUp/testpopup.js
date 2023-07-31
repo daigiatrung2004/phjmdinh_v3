@@ -211,7 +211,7 @@ function Testpopup() {
 			{/* <Slide />
 			</$.Modal> */}
 			{/* <App /> */}
-			<List>
+			{/* <List>
 				{list.map((item, index) => {
 					let className;
 					if (moveClass == '') {
@@ -234,7 +234,7 @@ function Testpopup() {
 						/>
 					);
 				})}
-			</List>
+			</List> */}
 		</TestContext.Provider>
 	);
 }
