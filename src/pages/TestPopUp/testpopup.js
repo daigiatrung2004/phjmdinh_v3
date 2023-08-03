@@ -133,28 +133,30 @@ const List = ({ children, scale }) => {
 	);
 };
 
-const Cardo = ({ src, scale, className }) => (
-	<Image
-		src={src}
-		style={{
-			height: '300px',
-			width: '200px',
-			borderRadius: '5px',
-			margin: '0px 5px 0px 5px',
-			transform: `scale(${scale})`,
-			animation: `${(scale == 1.1 && 'scaleItem') || 'scaleItemNormal'} 0.2s ease-out forwards`,
-			transition: 'all 0.2s linear',
-		}}
+const Cardo = ({ src, scale, className, onAnimationEnd }) => (
+	<div
 		className={className}
-	/>
+		onAnimationEnd={onAnimationEnd}
+		style={{
+			transform: `scale(${scale})`,
+		}}
+	>
+		<Image
+			src={src}
+			style={{
+				height: '300px',
+				width: '200px',
+				borderRadius: '5px',
+				margin: '0px 5px 0px 5px',
+				// transform: `scale(${scale})`,
+				// animation: `${(scale == 1.1 && 'scaleItem') || 'scaleItemNormal'} 0.2s ease-out forwards`,
+				// transition: 'all 0.2s linear',
+				boxShadow: 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px',
+				imageRendering: 'auto',
+			}}
+		/>
+	</div>
 );
-
-function handleDisplay(index) {
-	const currentArr = [...dataCards];
-	const arrDelete = currentArr.splice(0, index + 1);
-	currentArr.push(...arrDelete);
-	return currentArr.slice(0, 3);
-}
 
 function Testpopup() {
 	// let config = {
@@ -164,6 +166,7 @@ function Testpopup() {
 	// 	content: 'Whoops !!',
 	// };
 	const [list, setList] = useState([dataCards[0], dataCards[1], dataCards[2]]);
+	const [dataOri, setDataOri] = useState(dataCards);
 	const [index, setIndex] = useState(0);
 	const [config, setConfig] = useState({
 		shape: PUSettings['shape']['square'],
@@ -172,6 +175,17 @@ function Testpopup() {
 		isHeader: true,
 		content: 'Whoops !!',
 	});
+
+	function handleDisplay(index) {
+		// const arrDelete = currentArr.splice(0, index + 1);
+		// currentArr.push(...arrDelete);
+		let dataTmp;
+		setDataOri(dataOriPrev => {
+			dataTmp = dataOriPrev;
+			return dataOriPrev;
+		});
+		return dataTmp.slice(0, 4);
+	}
 
 	const [moveClass, setMoveClass] = useState('');
 	const [count, setCount] = useState(0);
@@ -189,12 +203,19 @@ function Testpopup() {
 			});
 			setList(handleDisplay(indexTmp));
 			setMoveClass('center');
-		}, 2000);
+		}, 4000);
 	}, []);
 
 	function handleAnimationEnd() {
-		console.log('co vao day');
-		setMoveClass('');
+		if (moveClass != '') {
+			const currentArr = [...dataOri];
+			const arrDelete = currentArr.splice(0, 1);
+			currentArr.push(...arrDelete);
+			console.log('animationEnd:', currentArr);
+			setList(currentArr.slice(0, 3));
+			setDataOri(currentArr);
+			setMoveClass('');
+		}
 	}
 
 	return (
@@ -211,30 +232,34 @@ function Testpopup() {
 			{/* <Slide />
 			</$.Modal> */}
 			{/* <App /> */}
-			{/* <List>
+			<List>
 				{list.map((item, index) => {
 					let className;
 					if (moveClass == '') {
 						className = '';
-					} else if (index == 2) {
+					} else if (index == 1) {
 						className = 'center';
-					} else if (index == 3) {
+					} else if (index == 2) {
 						className = 'right';
+					} else if (index == 3) {
+						className = 'hidden';
 					} else {
 						className = 'left';
 					}
+
+					console.log('className:', className);
 
 					return (
 						<Cardo
 							key={`card-${index}`}
 							src={item.imageURL}
-							scale={index % 2 != 0 ? 1.1 : 0.8}
+							scale={index % 2 != 0 && index % 3 != 0 ? 1.1 : 0.8}
 							className={className}
 							onAnimationEnd={handleAnimationEnd}
 						/>
 					);
 				})}
-			</List> */}
+			</List>
 		</TestContext.Provider>
 	);
 }

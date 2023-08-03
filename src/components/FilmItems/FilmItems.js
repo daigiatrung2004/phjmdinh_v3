@@ -55,44 +55,47 @@ function FilmItem({
 	// console.log('items rerender:', items);
 	// useEffect(() => getPopular({ page: 1, adults: false }), []);
 	const datafetch = data.read();
-	return items.map((item, index) => {
-		if (isSlide) {
-			return (
-				<Item
-					to={src}
-					key={index}
-					data={item}
-					type={type}
-					isslide="true"
-					// style={
-					// 	translateXSlide
-					// 		? (index == 0 && {
-					// 				transform: `translateX(0px)`,
-					// 				transition: `all ${transitionTime / 1000}s ease-out`,
-					// 		  }) || {
-					// 				transform: `translateX(${position}px)`,
-					// 				transition: `all ${transitionTime / 1000}s ease-out`,
-					// 		  }
-					// 		: {
-					// 				transform: `translateX(0px)`,
-					// 				transition: `unset`,
-					// 		  }
-					// }
-					{...propsDefault}
-				/>
-			);
-		} else {
-			return (
-				<Item
-					to={src}
-					key={index}
-					data={item}
-					type={type}
-					{...propsDefault}
-				/>
-			);
-		}
-	});
+	return (
+		items &&
+		items.map((item, index) => {
+			if (isSlide) {
+				return (
+					<Item
+						to={src}
+						key={index}
+						data={item}
+						type={type}
+						isslide="true"
+						// style={
+						// 	translateXSlide
+						// 		? (index == 0 && {
+						// 				transform: `translateX(0px)`,
+						// 				transition: `all ${transitionTime / 1000}s ease-out`,
+						// 		  }) || {
+						// 				transform: `translateX(${position}px)`,
+						// 				transition: `all ${transitionTime / 1000}s ease-out`,
+						// 		  }
+						// 		: {
+						// 				transform: `translateX(0px)`,
+						// 				transition: `unset`,
+						// 		  }
+						// }
+						{...propsDefault}
+					/>
+				);
+			} else {
+				return (
+					<Item
+						to={src}
+						key={index}
+						data={item}
+						type={type}
+						{...propsDefault}
+					/>
+				);
+			}
+		})
+	);
 }
 
 FilmItem.propTypes = {
