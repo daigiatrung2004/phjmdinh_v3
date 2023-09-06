@@ -9,6 +9,7 @@ import { useTransition, animated } from '@react-spring/web';
 import Image from '~/components/Image';
 import './test.css';
 import { flushSync } from 'react-dom';
+import Loading from '~/components/Loading';
 
 export const TestContext = createContext('123');
 
@@ -260,6 +261,7 @@ function Testpopup() {
 					);
 				})}
 			</List>
+			{/* <Loading /> */}
 		</TestContext.Provider>
 	);
 }
