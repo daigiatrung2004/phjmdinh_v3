@@ -21,10 +21,12 @@ function Header() {
 	const [showResults, setShowResults] = useState(false);
 	const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
 	const [lang, setLang] = useState(['Tiếng Việt', 'English']);
+	const [background, setBackground] = useState(false);
 	const kindFilmsRef = useRef();
 	const historyRef = useRef();
 	const languageRef = useRef();
 	const accountRef = useRef();
+	const headerRef = useRef();
 
 	const inputRef = useRef('');
 
@@ -32,6 +34,15 @@ function Header() {
 	let textDebouncedCurrent = useDebounced(textSearch, timeDebounced);
 
 	const user = false;
+
+	function handleScroll() {
+		let headerEle = headerRef.current;
+		if (headerEle && window.scrollY > headerEle.clientHeight) {
+			headerEle.style.backgroundColor = 'var(--bg-color-override)';
+		} else if (window.scrollY == '0') {
+			headerEle.style.backgroundColor = 'var(--color-transparent)';
+		}
+	}
 
 	useEffect(() => {
 		if (textDebouncedCurrent) {
@@ -48,6 +59,12 @@ function Header() {
 				})
 				.catch(err => console.log(err));
 		}
+		window.addEventListener('scroll', function () {
+			handleScroll();
+		});
+		return window.removeEventListener('scroll', function () {
+			handleScroll();
+		});
 	}, [textDebouncedCurrent]);
 
 	function resetSearchHandle() {
@@ -75,7 +92,7 @@ function Header() {
 	}
 
 	return (
-		<$.Header>
+		<$.Header ref={headerRef}>
 			<$.Image
 				src={Images.logo}
 				alt="logo"

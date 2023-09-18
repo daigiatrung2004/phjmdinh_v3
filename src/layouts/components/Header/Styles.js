@@ -13,6 +13,8 @@ export const Header = styled.header`
 	justify-content: start;
 	background-color: var(--color-transparent);
 	position: fixed;
+	transition: background-color 0.5s linear 0s;
+	z-index: 10000;
 `;
 
 // logo
