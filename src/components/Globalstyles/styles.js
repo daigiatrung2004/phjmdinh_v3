@@ -8,10 +8,18 @@ export const Style = createGlobalStyle`
 
 	:root {
 		--black: #000;
-		--bg-color: #193549;
-		--bg-color-override: #163042;
+		/* --bg-color: #193549; #0a0c0f*/
+		--bg-color: #111319;
+		--bg-color-override: #0a0c0f;
 		--white: #fff;
-		--primary: #FFC600;
+		/* --primary: #FFC600; */
+		--primary: #00dc5a;
+		--color-transparent: transparent;
+		--bg-list-search: #1a1c22;
+		/* --bg-overlay:rgba(3, 37, 65, 0.7); */
+		--bg-overlay:#0a0c0fb3;
+		--bg-search: rgba(255, 255, 255, 0.2);
+		--text-color-search: #ffffff99;
 		--bg-img-after: rgba(35, 78, 109, 0.35);
 		--scale-item: 1.05;
 		--size-icon: 40px;
@@ -28,9 +36,13 @@ export const Style = createGlobalStyle`
 		line-height: 1.5;
 		color: var(--black);
 		text-rendering: optimizeSpeed;
+		background-color: var(--bg-color);
+	}
+
+	* {
+		box-sizing: border-box;
 		margin: 0;
 		padding: 0;
-		background-color: var(--bg-color);
 	}
 
 	input,
@@ -41,7 +53,7 @@ export const Style = createGlobalStyle`
 	}
 
 	a[href] {
-		color: var(--black);
+		color: var(--white);
 		text-decoration: none;
 		border: none;
 	}

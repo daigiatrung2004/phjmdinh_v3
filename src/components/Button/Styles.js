@@ -19,6 +19,11 @@ export const Button = styled.button`
 		padding: 6px 20px;
 	}
 
+	&.mini-small {
+		padding: 6px;
+		font-size: 1.2rem;
+	}
+
 	&.medium {
 		padding: 10px 36px;
 	}
@@ -36,7 +41,7 @@ export const Button = styled.button`
 	}
 
 	&.primary {
-		background-color: rgba(255, 198, 0);
+		background-color: var(--primary);
 		color: var(--white);
 		border-radius: 5px;
 

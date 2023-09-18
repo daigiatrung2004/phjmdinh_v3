@@ -1,22 +1,30 @@
-import { faCircleXmark, faMagnifyingGlass, faSpinner, faPlus, faSackDollar } from '@fortawesome/free-solid-svg-icons';
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import { faCaretDown, faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
+import { Suspense, useEffect, useRef, useState } from 'react';
 
 import Images from '~/assets/images';
-import Button from '~/components/Button';
-import Popper from '~/components/popper';
 import FilmItems from '~/components/FilmItems';
+import { Account, History, Language, Promote } from '~/components/Icons';
+import Label from '~/components/Label';
+import Popper from '~/components/popper';
 import useDebounced from '~/hooks/useDebounced';
 import { search } from '~/services/searchService';
-import StylesBase from '~/utils/StylesBase';
 import * as $ from './Styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from '~/components/Image';
+import Button from '~/components/Button';
 
 function Header() {
 	const [items, setItems] = useState([]);
 	const [textSearch, setTextSearch] = useState('');
 	const [toggle, setToggle] = useState(false);
 	const [showResults, setShowResults] = useState(false);
+	const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
+	const [lang, setLang] = useState(['Tiếng Việt', 'English']);
+	const kindFilmsRef = useRef();
+	const historyRef = useRef();
+	const languageRef = useRef();
+	const accountRef = useRef();
 
 	const inputRef = useRef('');
 
@@ -68,11 +76,59 @@ function Header() {
 
 	return (
 		<$.Header>
-			{/* <$.Image
+			<$.Image
 				src={Images.logo}
 				alt="logo"
 				href={'/'}
-			/> */}
+			/>
+			<$.KindRecommend>
+				<Label
+					type={'label'}
+					className={'channel hover-text-color pointer'}
+				>
+					Đề xuất
+				</Label>
+				<Label
+					type={'label'}
+					className={'channel hover-text-color pointer'}
+				>
+					Vân Chi Vũ
+				</Label>
+				<Tippy
+					interactive
+					placement={'bottom-start'}
+					offset={[-60, 25]}
+					render={() => {
+						return (
+							<Popper>
+								{kindFilms.map((item, index) => {
+									return (
+										<$.MenuItem>
+											<Label
+												key={`channel-${index}`}
+												type="label"
+												src="/recommend"
+												className="channel hover-text-color pointer"
+											>
+												{item}
+											</Label>
+										</$.MenuItem>
+									);
+								})}
+							</Popper>
+						);
+					}}
+				>
+					<Label
+						ref={kindFilmsRef}
+						type={'label'}
+						className={'channel hover-text-color pointer'}
+						rightIcons={<FontAwesomeIcon icon={faCaretDown} />}
+					>
+						Khác
+					</Label>
+				</Tippy>
+			</$.KindRecommend>
 			<Tippy
 				interactive
 				placement={'bottom-start'}
@@ -117,6 +173,139 @@ function Header() {
 				</$.Search>
 			</Tippy>
 			<$.User>
+				<Tippy
+					id="history"
+					interactive
+					placement={'bottom-start'}
+					offset={[-140, 25]}
+					render={() => {
+						return (
+							<Popper>
+								<$.ListPage>
+									<Image
+										src={Images.blank}
+										width="80px"
+										height="80px"
+									/>
+									<Label
+										type="label"
+										className="list-page-title"
+									>
+										Đăng nhập để quản lý lịch sử xem nội dung trên các thiết bị khác nhau
+									</Label>
+									<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
+								</$.ListPage>
+							</Popper>
+						);
+					}}
+				>
+					<Label
+						type={'label'}
+						className={'channel hover-text-color pointer vertical flex-center text-italic'}
+						leftIcons={<History />}
+						style={{
+							height: '40px',
+							fontSize: '12px',
+							marginLeft: '16px',
+						}}
+					>
+						Lịch sử xem
+					</Label>
+				</Tippy>
+				<Tippy
+					id="language"
+					interactive
+					placement={'bottom-start'}
+					offset={[-85, 25]}
+					render={() => {
+						return (
+							<Popper>
+								<$.LanguageArea>
+									{lang.map((item, index) => {
+										return (
+											<Label
+												key={`language-${index}`}
+												type="label"
+												src="/recommend"
+												className="language hover-text-color pointer"
+											>
+												{item}
+											</Label>
+										);
+									})}
+								</$.LanguageArea>
+							</Popper>
+						);
+					}}
+				>
+					<Label
+						type={'label'}
+						className={'channel hover-text-color pointer vertical flex-center text-italic'}
+						leftIcons={<Language />}
+						style={{
+							height: '40px',
+							fontSize: '12px',
+							marginLeft: '16px',
+						}}
+					>
+						Ngôn ngữ
+					</Label>
+				</Tippy>
+				<Tippy
+					id="account"
+					interactive
+					placement={'bottom-start'}
+					offset={[-90, 25]}
+					render={() => {
+						return (
+							<Popper>
+								<$.Account>
+									<Label
+										type="label"
+										className="list-page-title"
+										style={{
+											marginBottom: '20px',
+											fontWeight: 'normal',
+											fontSize: '1.2rem',
+										}}
+									>
+										Đăng nhập để theo dõi các nội dung mới nhất
+									</Label>
+									<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
+								</$.Account>
+							</Popper>
+						);
+					}}
+				>
+					<Label
+						type={'label'}
+						className={'channel hover-text-color pointer vertical flex-center text-italic'}
+						leftIcons={<Account />}
+						style={{
+							height: '40px',
+							fontSize: '12px',
+							marginLeft: '16px',
+						}}
+					>
+						Tài Khoản của tôi
+					</Label>
+				</Tippy>
+				<Label
+					type={'label'}
+					className={'channel pointer flex-center vertical'}
+					rightIcons={<Promote />}
+					style={{
+						height: '40px',
+						fontSize: '12px',
+						marginLeft: '16px',
+						marginTop: '15px',
+						position: 'relative',
+					}}
+				>
+					<$.TitlePremote>Khuyên mãi có thời hạn</$.TitlePremote>
+				</Label>
+			</$.User>
+			{/* <$.User>
 				{user ? (
 					<FontAwesomeIcon icon={faSackDollar} />
 				) : (
@@ -135,7 +324,7 @@ function Header() {
 						</Button>
 					</>
 				)}
-			</$.User>
+			</$.User> */}
 		</$.Header>
 	);
 }

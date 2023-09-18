@@ -71,7 +71,7 @@ function Home() {
 
 	return (
 		<>
-			{/* <$.Wrapper>
+			<$.Wrapper>
 				<Label
 					type={'h3'}
 					fontSize="30px"
@@ -134,7 +134,7 @@ function Home() {
 				>
 					LASTEST TRAILERS
 				</Label>
-			</$.Wrapper> */}
+			</$.Wrapper>
 			<$.Trailer src={srcTrailer}>
 				<ItemContext.Provider value={handleMouseEnter}>
 					<Items

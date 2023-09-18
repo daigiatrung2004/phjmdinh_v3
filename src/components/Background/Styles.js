@@ -26,7 +26,7 @@ export const Background = styled.div`
 `;
 
 export const Overlay = styled.div`
-	background-color: rgba(3, 37, 65, 0.7);
+	background-color: var(--bg-overlay);
 	position: relative;
 	z-index: 50;
 	height: 100%;

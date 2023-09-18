@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 import { Anchor } from './Styles';
+import { forwardRef } from 'react';
 
-function Label({ type = 'label', src, children, className, leftIcons, rightIcons, ...propsDefaults }) {
+const Label = forwardRef(function (
+	{ type = 'label', src, children, className, leftIcons, rightIcons, ...propsDefaults },
+	ref
+) {
 	return (
 		<Anchor
 			type={type}
 			to={src}
+			ref={ref}
 			className={className}
 			{...propsDefaults}
 		>
@@ -14,7 +19,7 @@ function Label({ type = 'label', src, children, className, leftIcons, rightIcons
 			{rightIcons && <span className="icon rightIcon">{rightIcons}</span>}
 		</Anchor>
 	);
-}
+});
 
 Label.propTypes = {
 	type: PropTypes.string,
