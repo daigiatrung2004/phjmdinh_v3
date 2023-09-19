@@ -10,7 +10,7 @@ export const Header = styled.header`
 	height: var(--width-header);
 	display: flex;
 	align-items: center;
-	justify-content: start;
+	justify-content: space-around;
 	background-color: var(--color-transparent);
 	position: fixed;
 	transition: background-color 0.5s linear 0s;
@@ -62,8 +62,8 @@ export const Input = styled.input`
 	flex-shrink: 0;
 	&:focus-within {
 		/* border: 1px solid var(--white); */
-		box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-			rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+		/* box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+			rgba(255, 255, 255, 0.08) 0px 1px 0px inset; */
 	}
 `;
 

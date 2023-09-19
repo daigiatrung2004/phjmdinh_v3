@@ -120,9 +120,8 @@ function Header() {
 							<Popper>
 								{kindFilms.map((item, index) => {
 									return (
-										<$.MenuItem>
+										<$.MenuItem key={`channel-${index}`}>
 											<Label
-												key={`channel-${index}`}
 												type="label"
 												src="/recommend"
 												className="channel hover-text-color pointer"
