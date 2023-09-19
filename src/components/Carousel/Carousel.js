@@ -4,7 +4,18 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { forwardRef, useEffect, useState } from 'react';
 
 function Carousel(
-	{ CarouselItems = [], children, render, type, height = '700px', width = '100%', offset, ...attrs },
+	{
+		CarouselItems = [],
+		children,
+		render,
+		type,
+		height = '700px',
+		width = '100%',
+		offset,
+		indicatorFlag,
+		offsetIndicator,
+		...attrs
+	},
 	ref
 ) {
 	const [move, setMove] = useState('');

@@ -50,11 +50,11 @@ export const CarouselItem = styled.div`
 	float: left;
 
 	&.right {
-		animation: ${rightKeyFrame} 0.5s linear forwards;
+		animation: ${rightKeyFrame} 0.5s var(--timing-function-carousel) forwards;
 	}
 
 	&.left {
-		animation: ${leftKeyFrame} 0.5s linear forwards;
+		animation: ${leftKeyFrame} 0.5s var(--timing-function-carousel) forwards;
 	}
 `;
 

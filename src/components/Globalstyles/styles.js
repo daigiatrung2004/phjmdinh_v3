@@ -24,6 +24,7 @@ export const Style = createGlobalStyle`
 		--scale-item: 1.05;
 		--size-icon: 40px;
 		--time-scale-item:0.25s;
+		--timing-function-carousel: cubic-bezier(.54,.36,.31,1);
 	}
 
 	html {
