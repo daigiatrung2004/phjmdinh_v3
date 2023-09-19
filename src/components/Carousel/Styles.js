@@ -75,7 +75,7 @@ export const Control = styled.div`
 	transform: translateY(-50%);
 	height: var(--height-control);
 	width: var(--width-control);
-	color: var(--white);
+	color: var(--black);
 	font-size: var(--font-size-control);
 	padding: 1.5rem;
 	cursor: pointer;
