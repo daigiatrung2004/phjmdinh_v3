@@ -58,24 +58,21 @@ function Carousel(
 					>
 						{listTmp.map((item, index) => {
 							return (
-								<>
-									<$.CarouselItem
-										onAnimationEnd={() => handleMove('')}
-										key={index}
-										src={item.imgSrc}
-										className={`carousel-item ${move}`}
-										style={{ translate: '-100%' }}
-									/>
-									<$.Infomation
-										key={`info-${index}`}
-										offset={offset}
-										className="infomation"
-									>
-										{render(item)}
-									</$.Infomation>
-								</>
+								<$.CarouselItem
+									onAnimationEnd={() => handleMove('')}
+									key={index}
+									src={item}
+									className={`carousel-item ${move}`}
+									style={{ translate: '-100%' }}
+								/>
 							);
 						})}
+						<$.Infomation
+							offset={offset}
+							className="infomation"
+						>
+							{render()}
+						</$.Infomation>
 						<$.Control className="control-left">
 							<FontAwesomeIcon
 								icon={faChevronLeft}
