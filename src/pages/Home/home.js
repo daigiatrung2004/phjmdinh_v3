@@ -11,6 +11,7 @@ import * as $ from './Styles';
 import ItemContext from './ItemContext';
 import PopUp from '~/components/PopUp';
 import Carousel from '~/components/Carousel';
+import { Play, Collector, CollectorHover } from '~/components/Icons';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -377,6 +378,19 @@ function Home() {
 							<$.Info>{item.info}</$.Info>
 							<$.Tags>{item.tags}</$.Tags>
 							<$.Desc>{item.desc}</$.Desc>
+							<$.WrapBtn>
+								<$.PlayWrap className="wrap pointer">
+									<Play />
+								</$.PlayWrap>
+								<$.CollectorWrap>
+									<div className="collector pointer">
+										<Collector />
+									</div>
+									<div className="collector-hover pointer">
+										<CollectorHover />
+									</div>
+								</$.CollectorWrap>
+							</$.WrapBtn>
 						</>
 					);
 				}}

@@ -59,6 +59,10 @@ export const Style = createGlobalStyle`
 		border: none;
 	}
 
+	.pointer {
+		cursor: pointer;
+	}
+
 /* custom scrollbar */
 	::-webkit-scrollbar {
 		width: 20px;

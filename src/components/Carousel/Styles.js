@@ -75,10 +75,16 @@ export const Control = styled.div`
 	transform: translateY(-50%);
 	height: var(--height-control);
 	width: var(--width-control);
-	color: var(--black);
+	color: var(--text-color-search);
 	font-size: var(--font-size-control);
 	padding: 1.5rem;
 	cursor: pointer;
+	opacity: 0.8;
+
+	& svg {
+		filter: drop-shadow(3px 1px 2px rgb(0 0 0 / 0.4));
+	}
+
 	&.control-left {
 		left: 10px;
 	}
@@ -88,8 +94,7 @@ export const Control = styled.div`
 	}
 
 	&:hover {
-		color: var(--black);
-		background-color: var(--white);
+		color: var(--white);
 	}
 	transition: all 0.2s linear;
 	z-index: 1000;

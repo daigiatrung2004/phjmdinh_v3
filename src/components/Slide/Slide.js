@@ -8,7 +8,7 @@ import * as $ from './Styles';
 import ItemsContext from './itemscontext';
 import reducer from './reducer';
 
-const Slide = forwardRef(function (setting, ref) {
+const Slide = forwardRef(function (settings, ref) {
 	const config = {
 		type: 'default',
 		transitionTime: 500,
