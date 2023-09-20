@@ -2,10 +2,13 @@ import PropTypes from 'prop-types';
 
 import Label from '~/components/Label';
 import * as $ from './Styles';
-import { useContext } from 'react';
+import { forwardRef, useContext } from 'react';
 import ItemContext from '~/pages/Home/ItemContext';
 
-function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImage, ...propsDefault }) {
+const Item = forwardRef(function (
+	{ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImage, ...propsDefault },
+	ref
+) {
 	let src = data.posterPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.posterPath}` : '';
 
 	if (type === 'HORIZON_DISPLAY_TYPE') {
@@ -31,6 +34,7 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 
 	return (
 		<$.Item
+			ref={ref}
 			src={to}
 			{...propsDefault}
 			className={typeClassNames[type].wrapperItem}
@@ -51,7 +55,7 @@ function Item({ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImag
 			</$.ItemInfo>
 		</$.Item>
 	);
-}
+});
 
 Item.propTypes = {
 	to: PropTypes.string,

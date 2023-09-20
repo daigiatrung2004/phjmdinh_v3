@@ -1,8 +1,9 @@
+import { forwardRef } from 'react';
 import * as $ from './Styles';
 
-function Loading() {
+const Loading = forwardRef(function (props, ref) {
 	return (
-		<$.Wrapper>
+		<$.Wrapper ref={ref}>
 			<div
 				className="right1"
 				style={{
@@ -27,6 +28,6 @@ function Loading() {
 			></div>
 		</$.Wrapper>
 	);
-}
+});
 
 export default Loading;

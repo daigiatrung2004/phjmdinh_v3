@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 
 import Item from '~/components/Item';
-import { useEffect } from 'react';
+import { forwardRef, useEffect } from 'react';
 
 /**
  * Returns function component FilmItem.
@@ -41,17 +41,20 @@ function use(promise) {
 	};
 }
 
-function FilmItem({
-	items,
-	type,
-	src,
-	// translateXSlide,
-	// transitionTime,
-	// transform,
-	isSlide,
-	// position,
-	...propsDefault
-}) {
+const FilmItem = forwardRef(function (
+	{
+		items,
+		type,
+		src,
+		// translateXSlide,
+		// transitionTime,
+		// transform,
+		isSlide,
+		// position,
+		...propsDefault
+	},
+	ref
+) {
 	// console.log('items rerender:', items);
 	// useEffect(() => getPopular({ page: 1, adults: false }), []);
 	const datafetch = data.read();
@@ -66,6 +69,7 @@ function FilmItem({
 						data={item}
 						type={type}
 						isslide="true"
+						ref={ref}
 						// style={
 						// 	translateXSlide
 						// 		? (index == 0 && {
@@ -96,7 +100,7 @@ function FilmItem({
 			}
 		})
 	);
-}
+});
 
 FilmItem.propTypes = {
 	items: PropTypes.array.isRequired,

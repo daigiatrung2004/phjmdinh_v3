@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import * as $ from './Styles';
 import Button from '~/components/Button';
 
-function Dialog({ children, IconLeft, IconRight, IconTop, ok, ignore, title }) {
+const Dialog = forwardRef(function Dialog({ children, IconLeft, IconRight, IconTop, ok, ignore, title }, ref) {
 	return (
-		<$.Overlay>
+		<$.Overlay ref={ref}>
 			<$.PopUp>
 				<$.HeaderPopup>
 					<$.CloseIcon icon={faXmark} />
@@ -22,7 +22,7 @@ function Dialog({ children, IconLeft, IconRight, IconTop, ok, ignore, title }) {
 			</$.PopUp>
 		</$.Overlay>
 	);
-}
+});
 
 Dialog.propTypes = {
 	children: PropTypes.node.isRequired,

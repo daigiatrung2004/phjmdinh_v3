@@ -1,6 +1,6 @@
 import { faCircleCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { isValidElement, memo, useEffect, useState } from 'react';
+import { forwardRef, isValidElement, memo, useEffect, useState } from 'react';
 import Images from '~/assets/images';
 import Button from '~/components/Button';
 import Image from '~/components/Image';
@@ -44,7 +44,7 @@ useLayoutEffect
 // 	return state;
 // }
 
-function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
+const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...propsDefault }, ref) {
 	const [isShow, setIsShow] = useState(true);
 	const config = {
 		Normal: {
@@ -144,6 +144,7 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			<>
 				{config[type].isOverlay && <$.Overlay />}
 				<$.ModalGeneral
+					ref={ref}
 					{...config[type]}
 					{...propsDefault}
 				>
@@ -224,5 +225,5 @@ function PopUp({ settings, onClick, type = 'Error', ...propsDefault }) {
 			1
 		)
 	);
-}
+});
 export default memo(PopUp);

@@ -3,9 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Images from '~/assets/images';
 import Image from '~/components/Image';
 import * as $ from './Styles';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 
-function TabList({ settings }) {
+const TabList = forwardRef(function ({ settings }, ref) {
 	const [isActive, setIsActive] = useState(0);
 	const [liveNum, setLiveNum] = useState(1);
 	const config = [
@@ -56,7 +56,7 @@ function TabList({ settings }) {
 	];
 
 	return (
-		<$.Tabs>
+		<$.Tabs ref={ref}>
 			<$.Header>
 				{config.map((item, index) => {
 					return (
@@ -106,6 +106,6 @@ function TabList({ settings }) {
 			})}
 		</$.Tabs>
 	);
-}
+});
 
 export default TabList;

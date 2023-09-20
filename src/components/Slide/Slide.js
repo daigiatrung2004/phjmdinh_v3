@@ -1,6 +1,6 @@
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useReducer, useRef, useState } from 'react';
+import { forwardRef, useReducer, useRef, useState } from 'react';
 import Background from '~/components/Background';
 import Button from '~/components/Button';
 import Items from '~/components/FilmItems';
@@ -8,7 +8,7 @@ import * as $ from './Styles';
 import ItemsContext from './itemscontext';
 import reducer from './reducer';
 
-function Slide(settings) {
+const Slide = forwardRef(function (setting, ref) {
 	const config = {
 		type: 'default',
 		transitionTime: 500,
@@ -218,6 +218,7 @@ function Slide(settings) {
 				<FontAwesomeIcon icon={faChevronRight} />
 			</Button>
 			<$.Frame
+				ref={ref}
 				style={{
 					marginTop: '20px',
 					padding: '0px',
@@ -256,6 +257,6 @@ function Slide(settings) {
 			</$.Frame>
 		</Background>
 	);
-}
+});
 
 export default Slide;

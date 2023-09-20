@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 
 import ImageDefault from '~/assets/images';
 import * as $ from './Styles';
 
-function Image({ href, src, alt = 'No title image', className, children, ...propsDefault }) {
+const Image = forwardRef(function ({ href, src, alt = 'No title image', className, children, ...propsDefault }, ref) {
 	const [fallBack, setFallBack] = useState('');
 	let Img = className ? 'img' : $.StaticImage;
 	// console.log('className:', className);
@@ -12,6 +12,7 @@ function Image({ href, src, alt = 'No title image', className, children, ...prop
 	return (
 		<$.Wrapper to={href}>
 			<Img
+				ref={ref}
 				src={fallBack || src}
 				alt={alt}
 				className={className}
@@ -21,7 +22,7 @@ function Image({ href, src, alt = 'No title image', className, children, ...prop
 			{children}
 		</$.Wrapper>
 	);
-}
+});
 
 Image.propTypes = {
 	src: PropTypes.string,
