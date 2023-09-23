@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from './Styles';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { forwardRef, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 
 function Carousel(
 	{
@@ -20,6 +21,8 @@ function Carousel(
 ) {
 	const [move, setMove] = useState('');
 	const [listTmp, setListTmp] = useState(CarouselItems);
+	const [indexActive, setIndexActive] = useState(0);
+
 	function handleMove(move) {
 		if (move == 'right') {
 			handleMoveRight();
@@ -31,15 +34,20 @@ function Carousel(
 
 	function handleMoveRight() {
 		let lastItem = listTmp.pop();
-		setListTmp([lastItem, ...listTmp]);
+		let arr_new = [lastItem, ...listTmp];
+		setIndexActive(prev => (prev + 1 > arr_new.length - 1 ? 0 : prev + 1));
+		setListTmp(arr_new);
 	}
 
 	function handleMoveLeft() {
 		let firstItem = listTmp.shift();
-		setListTmp([...listTmp, firstItem]);
+		let arr_new = [...listTmp, firstItem];
+		setIndexActive(prev => (prev - 1 < 0 ? arr_new.length - 1 : prev - 1));
+		setListTmp(arr_new);
 	}
 
 	useEffect(() => {
+		console.log('carouselitems:', listTmp);
 		if (CarouselItems.length < 3) {
 			throw new Error('Carousel must have greater than 2 item');
 		}
@@ -58,29 +66,34 @@ function Carousel(
 					>
 						{listTmp.map((item, index) => {
 							return (
-								<>
+								<Fragment key={'wrap-' + index}>
 									<$.CarouselItem
 										onAnimationEnd={() => handleMove('')}
 										key={index}
 										src={item.imgSrc}
 										className={`carousel-item ${move}`}
 										style={{ translate: '-100%' }}
-									/>
-									<$.Infomation
-										key={`info-${index}`}
-										offset={offset}
-										className="infomation"
+										// theme={item.theme}
 									>
-										{render(item)}
-									</$.Infomation>
-								</>
+										<$.Infomation
+											key={`info-${index}`}
+											offset={offset}
+											className="infomation"
+										>
+											{render(item)}
+										</$.Infomation>
+										<$.BgLeft className="bg-left" />
+										<$.BgTop className="bg-top" />
+										<$.BgBottom className="bg-bottom" />
+									</$.CarouselItem>
+								</Fragment>
 							);
 						})}
-						<$.Control className="control-left">
-							<FontAwesomeIcon
-								icon={faChevronLeft}
-								onClick={() => handleMove('left')}
-							/>
+						<$.Control
+							className="control-left"
+							onClick={() => handleMove('left')}
+						>
+							<FontAwesomeIcon icon={faChevronLeft} />
 						</$.Control>
 						<$.Control
 							className="control-right"
@@ -88,6 +101,22 @@ function Carousel(
 						>
 							<FontAwesomeIcon icon={faChevronRight} />
 						</$.Control>
+						<$.Indicators
+							className="indicators"
+							totalsize={listTmp.length}
+							bottom={'2rem'}
+							right={'2rem'}
+							offset={offset}
+						>
+							{listTmp.map((element, index) => {
+								return (
+									<$.Indicator
+										className={index == indexActive ? 'active' : ''}
+										key={`indicator-${index}`}
+									/>
+								);
+							})}
+						</$.Indicators>
 					</$.Sheet>
 					<$.SheetNeighbor className="sheetNeighbor">{children}</$.SheetNeighbor>
 				</>

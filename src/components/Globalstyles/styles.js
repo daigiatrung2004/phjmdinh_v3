@@ -29,6 +29,7 @@ export const Style = createGlobalStyle`
 
 	html {
 		font-size: 62.5%;
+		/* overflow-x: hidden; */
 	}
 
 	body {
@@ -59,27 +60,33 @@ export const Style = createGlobalStyle`
 		border: none;
 	}
 
+	ul {
+		list-style-type: none;
+	}
+
 	.pointer {
 		cursor: pointer;
 	}
 
 /* custom scrollbar */
 	::-webkit-scrollbar {
-		width: 20px;
+		width: 1.7rem;
 	}
 
 	::-webkit-scrollbar-track {
-		background-color: transparent;
+		background-color: var(--white);
+
 	}
 
 	::-webkit-scrollbar-thumb {
-		background-color: #d6dee1;
+		/* background-color: #d6dee1; */
+		background-color: var(--black);
 		border-radius: 20px;
-		border: 6px solid transparent;
+		border: 4px solid transparent;
 		background-clip: content-box;
 	}
 
 	::-webkit-scrollbar-thumb:hover {
-		background-color: #a8bbbf;
+		background-color: rgba(0, 0, 0, 0.8);
 	}
 `;

@@ -704,7 +704,7 @@ export const Play = ({ width = '20rem', height = '20rem', className }) => {
 			viewBox="0 0 60 60"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
-			class="play-button"
+			className="play-button"
 		>
 			<g
 				id="Btn/Play/Normal"
@@ -782,7 +782,7 @@ export const Collector = () => {
 			>
 				<circle
 					id="bg"
-					fill-opacity="0.6"
+					fillOpacity="0.6"
 					fill="#FFFFFF"
 					cx="30"
 					cy="30"

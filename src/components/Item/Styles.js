@@ -93,9 +93,9 @@ export const Item = styled(ItemCustom)`
 		max-height: none;
 		padding: 0px;
 		flex-shrink: 0;
-		float: left;
-		height: ${({ h }) => (h ? h : '250px')};
-		width: ${({ w }) => (w ? w : '150px')};
+		/* float: left; */
+		height: ${({ h }) => (h ? h : 'auto')};
+		width: ${({ w }) => (w ? w : 'auto')};
 		margin: ${({ margin }) => (margin ? margin : '20px 75px 80px 0px')};
 	}
 
@@ -105,7 +105,7 @@ export const Item = styled(ItemCustom)`
 		max-height: none;
 		padding: 0px;
 		flex-shrink: 0;
-		float: left;
+		/* float: left; */
 		height: ${({ h }) => (h ? h : '250px')};
 		width: ${({ w }) => (w ? w : '300px')};
 		margin: ${({ margin }) => (margin ? margin : '20px 60px 20px 60px')};

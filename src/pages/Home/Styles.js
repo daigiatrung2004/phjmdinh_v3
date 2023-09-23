@@ -5,11 +5,15 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 export const Wrapper = styled.div`
 	padding-left: 83px;
+	position: relative;
+	z-index: 1000;
 `;
 
 export const ItemsWrapper = styled.div`
-	display: block;
-	max-width: calc(225px * 5);
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	/* grid-auto-flow: column; */
+	/* max-width: calc(225px * 5); */
 	/* flex-wrap: wrap;
 	justify-items: center; */
 `;
