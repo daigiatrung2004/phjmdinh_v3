@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { forwardRef } from 'react';
 
-const Tag = forwardRef(({ to, type, children, ...propsDefault }, ref) => {
+const ElementTag = forwardRef(({ to, type, children, ...propsDefault }, ref) => {
 	let Element = 'h4';
 	if (to) {
 		Element = Link;
@@ -20,7 +20,7 @@ const Tag = forwardRef(({ to, type, children, ...propsDefault }, ref) => {
 	);
 });
 
-export const Anchor = styled(Tag)`
+export const Anchor = styled(ElementTag)`
 	font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
 	display: block;
 	clear: both;

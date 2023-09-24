@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { Style } from './styles';
+import load from '~/utils/utility.function';
 
 function GlobalStyles({ children }) {
+	load();
 	return (
 		<>
 			<Style />

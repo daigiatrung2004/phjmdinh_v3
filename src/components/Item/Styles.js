@@ -17,7 +17,7 @@ const frame = (sign, transform) => keyframes`
 
 // item
 const ItemCustom = ({ src, className, children, state, setState, transitiontime, ...propsDefault }) => {
-	let Tag = 'div';
+	let Ele = 'div';
 	const ref = useRef();
 
 	// console.log('class');
@@ -46,11 +46,11 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 	}, [state, transitiontime]);
 
 	if (src) {
-		Tag = Link;
+		Ele = Link;
 		className = `hover-underline ${className} animation`;
 	}
 	return (
-		<Tag
+		<Ele
 			ref={ref}
 			to={src}
 			state={state}
@@ -59,7 +59,7 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 			{...propsDefault}
 		>
 			{children}
-		</Tag>
+		</Ele>
 	);
 };
 
@@ -155,6 +155,14 @@ export const Image = styled(ImageComponent)`
 	&.hover-scaling:hover {
 		transform: scale(var(--scale-item));
 	}
+
+	&.not-border-radius {
+		border-radius: unset;
+	}
+
+	&.not-padding {
+		padding: unset;
+	}
 `;
 
 export const Title = styled.h4`
@@ -173,4 +181,73 @@ export const ItemInfo = styled.div`
 	width: 125px;
 	word-break: break-word;
 	display: ${props => (props.isHide ? 'none' : 'block')};
+`;
+
+export const Cardo = styled.div`
+	background-color: #1a1c22;
+	position: absolute;
+	top: 50%;
+	left: -12.5%;
+	z-index: var(--zIndex-general);
+	border-radius: 0.5rem;
+	transform: translate(0%, -50%);
+	height: 110%;
+`;
+
+export const CardoBody = styled.div`
+	padding: 8px;
+
+	& div.broken-line {
+		width: 2px;
+		height: 10px;
+		border: none;
+		background: rgba(255, 255, 255, 0.2);
+		color: rgb(230, 230, 230);
+		margin: 0px 6px;
+		display: inline-block;
+	}
+
+	& span {
+		letter-spacing: 0px;
+		text-shadow: rgba(0, 0, 0, 0.7) 1px 1px 0px;
+		font-weight: 400;
+		line-height: 1.9rem;
+	}
+	// luc dung after/before luc dung div ????
+`;
+
+export const Score = styled.div`
+	display: inline-flex;
+	color: white;
+	position: relative;
+	-webkit-box-align: center;
+	align-items: center;
+	font-size: 1.4rem;
+
+	& span.score-info-greenStar {
+		font-size: 1.2rem;
+		margin-right: 0.5rem;
+		display: flex;
+	}
+`;
+
+export const Episode = styled.span`
+	font-size: 1.2rem;
+`;
+
+export const Episode_Info_Tag = styled.div`
+	color: var(--white);
+	font-size: 1.6rem;
+	letter-spacing: 0px;
+	line-height: 2.2rem;
+`;
+
+export const HashTagSheet = styled.div`
+	height: 1.8rem;
+	margin-top: 0.6rem;
+	display: flex;
+	flex-wrap: wrap;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 `;

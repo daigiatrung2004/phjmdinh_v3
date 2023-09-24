@@ -12,7 +12,6 @@ import ItemContext from './ItemContext';
 import PopUp from '~/components/PopUp';
 import Carousel from '~/components/Carousel';
 import { Play, Collector, CollectorHover } from '~/components/Icons';
-import sortObj from '~/utils/sortObj';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -57,6 +56,7 @@ function Home() {
 		])
 			.then(([popularData, trendingData, upcomingData, latestData]) => {
 				setItemsPopular(popularData);
+				console.log('popularData:', popularData);
 				setItemsTrending(trendingData);
 				setItemsUpComing(upcomingData);
 				setItemsLastest(latestData);
@@ -369,7 +369,7 @@ function Home() {
 	return (
 		<>
 			<Carousel
-				CarouselItems={sortObj(ListItems, 'index')}
+				CarouselItems={Array.isArray(ListItems) && ListItems.sortobj('index')}
 				type="strecth"
 				offset={['unset', '5rem', '20rem']}
 				indicatorFlag

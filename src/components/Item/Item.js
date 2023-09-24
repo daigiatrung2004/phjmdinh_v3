@@ -4,6 +4,9 @@ import Label from '~/components/Label';
 import * as $ from './Styles';
 import { forwardRef, useContext } from 'react';
 import ItemContext from '~/pages/Home/ItemContext';
+import { Star } from '~/components/Icons';
+import HashTag from '~/components/HashTag';
+import Paragraph from '~/components/Paragraph';
 
 const Item = forwardRef(function (
 	{ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImage, ...propsDefault },
@@ -53,6 +56,52 @@ const Item = forwardRef(function (
 				<Label className={typeClassNames[type].title}>{data.title}</Label>
 				<$.SubTitle>{data.originalTitle}</$.SubTitle>
 			</$.ItemInfo>
+			<$.Cardo>
+				<$.Image
+					src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
+					alt={data.title}
+					h={'14.5rem'}
+					w={'25.5rem'}
+					className={typeClassNames[type].img + ' not-border-radius not-padding'}
+				/>
+				<$.CardoBody>
+					<Label
+						className={typeClassNames[type].title}
+						style={{}}
+					>
+						{data.title}
+					</Label>
+					<$.Episode_Info_Tag>
+						<$.Score>
+							<span className="score-info-greenStar">
+								<Star
+									width="12px"
+									height="12px"
+								/>
+							</span>
+							<span className="score-info-number">{data.voteAverage}</span>
+							<div className="broken-line"></div>
+							<$.Episode>{(data.adult && 'T18') || 'T13'}</$.Episode>
+							<div className="broken-line"></div>
+							<span>2023</span>
+						</$.Score>
+						<$.HashTagSheet>
+							<HashTag>Thái Lan</HashTag>
+							<HashTag>Tình Tiết</HashTag>
+							<HashTag>Thái Lan</HashTag>
+						</$.HashTagSheet>
+						<Paragraph
+							style={{ fontSize: '1.2rem', marginTop: '1.2rem' }}
+							isTextOverFlow
+							numLine={5}
+							moreTitle="Xem thêm"
+							linkMore={'./reviewfilm/'}
+						>
+							{data.overview}
+						</Paragraph>
+					</$.Episode_Info_Tag>
+				</$.CardoBody>
+			</$.Cardo>
 		</$.Item>
 	);
 });

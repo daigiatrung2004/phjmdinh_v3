@@ -1,4 +1,10 @@
-function sortObj(arr = [], propObjCP) {
+// check object is empty
+function isObjEmpty(obj) {
+	return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
+// sort array have item is object
+function sortObj(propObjCP) {
 	function swap(arr, index1, index2) {
 		var tmp = arr[index1];
 		arr[index1] = arr[index2];
@@ -21,13 +27,13 @@ function sortObj(arr = [], propObjCP) {
 			if (leftPointer >= rightPointer) {
 				break;
 			} else {
-				console.log('swap data : left pointer=' + leftPointer + ', right pointer = ' + rightPointer);
+				// console.log('swap data : left pointer=' + leftPointer + ', right pointer = ' + rightPointer);
 				swap(arr, leftPointer, rightPointer);
 			}
 		}
 
 		swap(arr, leftPointer, right);
-		console.log('arr:', arr);
+		// console.log('arr:', arr);
 		return leftPointer;
 	}
 
@@ -43,7 +49,12 @@ function sortObj(arr = [], propObjCP) {
 		}
 	}
 
-	return quickSort(arr, 0, arr.length - 1);
+	return quickSort(this, 0, this.length - 1);
 }
 
-export default sortObj;
+function load() {
+	window.isobjempty = isObjEmpty;
+	Array.prototype.sortobj = sortObj;
+}
+
+export default load;

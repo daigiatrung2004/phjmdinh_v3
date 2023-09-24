@@ -9,15 +9,15 @@ export const StaticImage = styled.img`
 	border: ${({ isBorder }) => (isBorder ? '1px solid black' : 'none')};
 `;
 
-const Tag = ({ children, to }) => {
-	let Tag = 'div';
+const Element = ({ children, to }) => {
+	let Ele = 'div';
 	if (to) {
-		Tag = Link;
+		Ele = Link;
 	}
-	return <Tag className="wrapper">{children}</Tag>;
+	return <Ele className="wrapper">{children}</Ele>;
 };
 
-export const Wrapper = styled(Tag)`
+export const Wrapper = styled(Element)`
 	&.wrapper {
 		position: relative;
 	}
