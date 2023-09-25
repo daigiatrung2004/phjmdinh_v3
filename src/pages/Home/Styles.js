@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Background from '~/components/Background';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import Label from '~/components/Label';
 
 export const Wrapper = styled.div`
 	padding-left: 83px;
@@ -280,5 +281,74 @@ export const CollectorWrap = styled.div`
 
 	&:hover > div.collector-hover {
 		display: block;
+	}
+`;
+
+// backtop
+
+export const BackTop = styled.div`
+	background: rgb(49, 52, 57);
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	border-radius: 999px;
+	flex-direction: column;
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	z-index: var(--zIndex-general);
+	display: none;
+`;
+
+export const Line = styled.div`
+	opacity: 0.08;
+	background: var(--white);
+	border-radius: 1px;
+	width: 16px;
+	height: 1px;
+	margin: 0px auto;
+`;
+
+export const BtnBackHome = styled(Label)`
+	width: 44px;
+	height: 44px;
+	background: rgb(49, 52, 57);
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	justify-content: center;
+	border-radius: 50%;
+
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-bottom-right-radius: 0px;
+		border-bottom-left-radius: 0px;
+	}
+
+	&:active {
+		cursor: default;
+		background: rgb(49, 52, 57);
+		border-top-right-radius: 999px;
+		border-top-left-radius: 999px;
+	}
+`;
+
+export const BtnBackTop = styled(BtnBackHome)`
+	&:hover {
+		cursor: pointer;
+		background-color: rgba(255, 255, 255, 0.05);
+		border-top-right-radius: 0px;
+		border-top-left-radius: 0px;
+	}
+
+	&:active {
+		cursor: default;
+		background: rgb(49, 52, 57);
+		border-bottom-right-radius: 999px;
+		border-bottom-left-radius: 999px;
 	}
 `;

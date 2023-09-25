@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
-import { faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { faChevronUp, faHome, faPaperclip } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PUSettings } from '~/utils/StylesBase';
 
@@ -12,6 +12,7 @@ import ItemContext from './ItemContext';
 import PopUp from '~/components/PopUp';
 import Carousel from '~/components/Carousel';
 import { Play, Collector, CollectorHover } from '~/components/Icons';
+import { createPortal } from 'react-dom';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -27,6 +28,7 @@ function Home() {
 		isHeader: true,
 		content: 'System remaining ...!',
 	});
+	const backTopRef = useRef();
 
 	const handleMouseEnter = useCallback(src => {
 		console.log('src:', src);
@@ -36,6 +38,20 @@ function Home() {
 	const handlePopUP = useCallback(() => {
 		setShowPopUp(false);
 	}, []);
+
+	function handleBackTop() {
+		window.scrollTo(0, 0);
+	}
+
+	function handleToggleBackTop(e) {
+		console.log('handleToggleBackTop log:', window.scrollY);
+		console.log('handleToggleBackTop ref log:', backTopRef.current);
+		if (window.scrollY > 499) {
+			backTopRef.current.style.display = 'flex';
+		} else {
+			backTopRef.current.style.display = 'none';
+		}
+	}
 
 	useEffect(() => {
 		// (async function getData() {
@@ -70,6 +86,10 @@ function Home() {
 				console.log('lastestData:', latestData);
 			})
 			.catch(error => console.log(error));
+
+		window.addEventListener('scroll', handleToggleBackTop);
+
+		return () => window.removeEventListener('scroll', handleToggleBackTop);
 	}, []);
 
 	const ListItems = [
@@ -486,6 +506,27 @@ function Home() {
 					settings={config}
 					onClick={handlePopUP}
 				/>
+			)}
+			{createPortal(
+				<$.BackTop
+					className="backtop"
+					ref={backTopRef}
+				>
+					<$.BtnBackHome
+						className={'primary'}
+						src={'http://localhost:5000/'}
+					>
+						<FontAwesomeIcon icon={faHome} />
+					</$.BtnBackHome>
+					<$.Line />
+					<$.BtnBackTop
+						className={'primary'}
+						onClick={handleBackTop}
+					>
+						<FontAwesomeIcon icon={faChevronUp} />
+					</$.BtnBackTop>
+				</$.BackTop>,
+				document.querySelector('div.App')
 			)}
 		</>
 	);
