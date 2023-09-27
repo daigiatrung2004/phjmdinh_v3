@@ -119,6 +119,11 @@ export const Item = styled(ItemCustom)`
 	& > .wrapper {
 		position: relative;
 	}
+
+	&:hover .cardo {
+		opacity: 1;
+		transform: scale(1.05);
+	}
 `;
 
 export const Image = styled(ImageComponent)`
@@ -186,12 +191,16 @@ export const ItemInfo = styled.div`
 export const Cardo = styled.div`
 	background-color: #1a1c22;
 	position: absolute;
-	top: 50%;
+	top: 0%;
 	left: -12.5%;
 	z-index: var(--zIndex-general);
-	border-radius: 0.5rem;
-	transform: translate(0%, -50%);
+	border-radius: 0.5rem 0.5rem 0rem 0rem;
+	transform: translate(0%, 0%) scale(1);
+	width: 25.5rem;
 	height: 110%;
+	opacity: 0;
+	transition: all 0.3s ease 0s;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 
 export const CardoBody = styled.div`

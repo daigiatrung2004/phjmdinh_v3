@@ -40,14 +40,14 @@ const Item = forwardRef(function (
 			ref={ref}
 			src={to}
 			{...propsDefault}
-			className={typeClassNames[type].wrapperItem}
+			className={typeClassNames[type].wrapperItem + ' item'}
 			onMouseEnter={() => mouseEnter(src)}
 		>
 			<$.Image
 				src={src}
 				alt={data.title}
-				h={hImage}
-				w={wImage}
+				h={'100%'}
+				w={'100%'}
 				className={typeClassNames[type].img}
 			>
 				{icon}
@@ -56,13 +56,14 @@ const Item = forwardRef(function (
 				<Label className={typeClassNames[type].title}>{data.title}</Label>
 				<$.SubTitle>{data.originalTitle}</$.SubTitle>
 			</$.ItemInfo>
-			<$.Cardo>
+			<$.Cardo className="cardo">
 				<$.Image
 					src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
 					alt={data.title}
 					h={'14.5rem'}
 					w={'25.5rem'}
 					className={typeClassNames[type].img + ' not-border-radius not-padding'}
+					style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
 				/>
 				<$.CardoBody>
 					<Label
