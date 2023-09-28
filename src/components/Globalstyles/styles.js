@@ -69,6 +69,12 @@ export const Style = createGlobalStyle`
 		cursor: pointer;
 	}
 
+	.flex-center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
 /* custom scrollbar */
 	::-webkit-scrollbar {
 		width: 1.7rem;

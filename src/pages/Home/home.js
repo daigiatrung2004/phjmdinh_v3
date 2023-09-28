@@ -479,7 +479,7 @@ function Home() {
 						wImage={'19.0167rem'}
 					/>
 				</$.ItemsWrapper>
-				<Label
+				{/* <Label
 					type={'h3'}
 					fontSize="30px"
 					fontWeight="700"
@@ -488,9 +488,9 @@ function Home() {
 					iconsize={'20px'}
 				>
 					LASTEST TRAILERS
-				</Label>
+				</Label> */}
 			</$.Wrapper>
-			<$.Trailer src={srcTrailer}>
+			{/* <$.Trailer src={srcTrailer}>
 				<ItemContext.Provider value={handleMouseEnter}>
 					<Items
 						src="/reviewfilm/"
@@ -500,7 +500,7 @@ function Home() {
 						onClick={() => setShowPopUp(true)}
 					/>
 				</ItemContext.Provider>
-			</$.Trailer>
+			</$.Trailer> */}
 			{showPopUp && (
 				<PopUp
 					settings={config}

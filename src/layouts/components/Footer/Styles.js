@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Background from '~/components/Background';
 
 export const Footer = styled.footer`
 	clear: both;
@@ -9,6 +10,7 @@ export const Footer = styled.footer`
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
+	overflow: hidden;
 
 	&:after {
 		content: '';
@@ -22,4 +24,22 @@ export const Footer = styled.footer`
 		height: 100%;
 		background-color: var(--bg-img-after);
 	}
+`;
+
+export const Grid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	font-size: 1.2rem;
+	width: 80%;
+	overflow: hidden;
+`;
+
+export const CustomBg = styled(Background)`
+	&:hover {
+		height: 100% !important;
+		cursor: pointer;
+	}
+
+	transition: all 0.2s ease;
 `;

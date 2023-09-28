@@ -12,7 +12,7 @@ function DefaultLayout({ children }) {
 			<Header />
 			{/* <Test /> */}
 			<main>{children}</main>
-			{/* <Footer /> */}
+			<Footer />
 		</Suspense>
 	);
 }

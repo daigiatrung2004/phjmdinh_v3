@@ -102,9 +102,9 @@ const FilmItem = forwardRef(function (
 	);
 });
 
-FilmItem.propTypes = {
-	items: PropTypes.array.isRequired,
-	type: PropTypes.string,
-};
+// FilmItem.propTypes = {
+// 	items: PropTypes.array.isRequired,
+// 	type: PropTypes.string,
+// };
 
 export default FilmItem;
