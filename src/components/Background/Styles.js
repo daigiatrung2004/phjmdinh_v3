@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Content = styled.div`
 	clear: both;
-	min-height: ${({ minHeight }) => (minHeight ? minHeight : '300px')};
+	min-height: ${({ minHeight }) => (minHeight ? minHeight : '10rem')};
 	position: relative;
 	overflow-x: scroll;
 	overflow-y: hidden;

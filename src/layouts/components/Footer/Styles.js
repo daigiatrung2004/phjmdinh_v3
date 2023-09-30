@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Background from '~/components/Background';
+import Label from '~/components/Label';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Footer = styled.footer`
 	clear: both;
@@ -35,11 +37,71 @@ export const Grid = styled.div`
 	overflow: hidden;
 `;
 
-export const CustomBg = styled(Background)`
+export const CustomBg = styled(Background)``;
+
+export const Copy = styled.div`
+	--copy-color: rgb(155, 155, 155);
+	margin-top: 2rem;
+	text-align: center;
+	font-family: 'Noto Sans';
+	display: flex;
+	-webkit-box-align: center;
+	align-items: center;
+	-webkit-box-pack: justify;
+	justify-content: center;
+	margin-bottom: 2rem;
+`;
+
+export const CopyContent = styled.div`
+	margin-right: 4.5rem;
+`;
+
+export const CopyRight = styled.p`
+	font-size: 12px;
+	line-height: 16px;
+	font-weight: 300;
+	color: var(--copy-color);
+	text-align: left;
+	margin: 0px auto;
+	line-height: 1.9rem;
+`;
+
+export const App = styled.div`
+	display: flex;
+	-webkit-box-pack: justify;
+	justify-content: center;
+	align-items: flex-end;
+	height: 40px;
+	margin: 0px auto 0px 62px;
+	min-width: 122px;
+`;
+
+export const FooterSheet = styled.div`
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: var(--zIndex-general);
+	background-color: var(--bg-color-override);
+	padding-bottom: 2rem;
+	overflow: hidden;
+	height: 9rem;
+
 	&:hover {
-		height: 100% !important;
+		height: 29.4rem;
 		cursor: pointer;
 	}
 
-	transition: all 0.2s ease;
+	transition: all 0.4s ease;
+`;
+
+export const Social = styled(Label)``;
+
+export const Icon = styled(FontAwesomeIcon)`
+	font-size: 3rem;
+	margin-left: 1.5rem;
+
+	&:hover {
+		color: var(--primary);
+	}
 `;
