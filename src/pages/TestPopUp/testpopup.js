@@ -167,9 +167,9 @@ function Testpopup() {
 	// 	isHeader: true,
 	// 	content: 'Whoops !!',
 	// };
-	// const [list, setList] = useState([dataCards[0], dataCards[1], dataCards[2]]);
-	// const [dataOri, setDataOri] = useState(dataCards);
-	// const [index, setIndex] = useState(0);
+	const [list, setList] = useState([dataCards[0], dataCards[1], dataCards[2]]);
+	const [dataOri, setDataOri] = useState(dataCards);
+	const [index, setIndex] = useState(0);
 	// const [config, setConfig] = useState({
 	// 	shape: PUSettings['shape']['square'],
 	// 	// srcIcon: Success,
@@ -178,47 +178,47 @@ function Testpopup() {
 	// 	content: 'Whoops !!',
 	// });
 
-	// function handleDisplay(index) {
-	// 	// const arrDelete = currentArr.splice(0, index + 1);
-	// 	// currentArr.push(...arrDelete);
-	// 	let dataTmp;
-	// 	setDataOri(dataOriPrev => {
-	// 		dataTmp = dataOriPrev;
-	// 		return dataOriPrev;
-	// 	});
-	// 	return dataTmp.slice(0, 4);
-	// }
+	function handleDisplay(index) {
+		// const arrDelete = currentArr.splice(0, index + 1);
+		// currentArr.push(...arrDelete);
+		let dataTmp;
+		setDataOri(dataOriPrev => {
+			dataTmp = dataOriPrev;
+			return dataOriPrev;
+		});
+		return dataTmp.slice(0, 4);
+	}
 
-	// const [moveClass, setMoveClass] = useState('');
+	const [moveClass, setMoveClass] = useState('');
 	// const [count, setCount] = useState(0);
 
-	// useEffect(() => {
-	// 	setInterval(() => {
-	// 		let indexTmp;
-	// 		setIndex(index => {
-	// 			indexTmp = index;
-	// 			if (indexTmp + 1 > 5) {
-	// 				return (indexTmp = 0);
-	// 			} else {
-	// 				return (indexTmp = indexTmp + 1);
-	// 			}
-	// 		});
-	// 		setList(handleDisplay(indexTmp));
-	// 		setMoveClass('center');
-	// 	}, 4000);
-	// }, []);
+	useEffect(() => {
+		setInterval(() => {
+			let indexTmp;
+			setIndex(index => {
+				indexTmp = index;
+				if (indexTmp + 1 > 5) {
+					return (indexTmp = 0);
+				} else {
+					return (indexTmp = indexTmp + 1);
+				}
+			});
+			setList(handleDisplay(indexTmp));
+			setMoveClass('center');
+		}, 4000);
+	}, []);
 
-	// function handleAnimationEnd() {
-	// 	if (moveClass != '') {
-	// 		const currentArr = [...dataOri];
-	// 		const arrDelete = currentArr.splice(0, 1);
-	// 		currentArr.push(...arrDelete);
-	// 		console.log('animationEnd:', currentArr);
-	// 		setList(currentArr.slice(0, 3));
-	// 		setDataOri(currentArr);
-	// 		setMoveClass('');
-	// 	}
-	// }
+	function handleAnimationEnd() {
+		if (moveClass != '') {
+			const currentArr = [...dataOri];
+			const arrDelete = currentArr.splice(0, 1);
+			currentArr.push(...arrDelete);
+			console.log('animationEnd:', currentArr);
+			setList(currentArr.slice(0, 3));
+			setDataOri(currentArr);
+			setMoveClass('');
+		}
+	}
 	const ListItems = [
 		'https://media.istockphoto.com/id/1466755525/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%AE%E9%A3%BE%E3%82%8A%E3%82%92%E3%81%98%E3%81%A3%E3%81%8F%E3%82%8A%E8%A6%8B%E3%82%8B%E8%8B%A5%E3%81%84%E5%A5%B3%E3%81%AE%E5%AD%90.jpg?s=1024x1024&w=is&k=20&c=3VqBgbjC2cr4EWurSutMUBNM9IXs83jrAFuOKcQNlqE=',
 		'https://media.istockphoto.com/id/1318144940/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E8%B5%A4%E3%83%A9%E3%83%B3%E3%83%97%E3%81%AE%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%83%E3%83%97%E5%86%99%E7%9C%9F%E7%81%AB%E7%81%BD%E5%A0%B1%E7%9F%A5%E5%99%A8%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0%E3%83%9C%E3%82%BF%E3%83%B3.jpg?s=1024x1024&w=is&k=20&c=0k38Q0UgtkcmnIO-y_mHsfh0hzPeZqOodCAIhtG0WXA=',
@@ -240,44 +240,44 @@ function Testpopup() {
 		// 	{/* <Slide />
 		// 	</$.Modal> */}
 		// 	{/* <App /> */}
-		// 	<List>
-		// 		{list.map((item, index) => {
-		// 			let className;
-		// 			if (moveClass == '') {
-		// 				className = '';
-		// 			} else if (index == 1) {
-		// 				className = 'center';
-		// 			} else if (index == 2) {
-		// 				className = 'right';
-		// 			} else if (index == 3) {
-		// 				className = 'hidden';
-		// 			} else {
-		// 				className = 'left';
-		// 			}
+		<List>
+			{list.map((item, index) => {
+				let className;
+				if (moveClass == '') {
+					className = '';
+				} else if (index == 1) {
+					className = 'center';
+				} else if (index == 2) {
+					className = 'right';
+				} else if (index == 3) {
+					className = 'hidden';
+				} else {
+					className = 'left';
+				}
 
-		// 			console.log('className:', className);
+				console.log('className:', className);
 
-		// 			return (
-		// 				<Cardo
-		// 					key={`card-${index}`}
-		// 					src={item.imageURL}
-		// 					scale={index % 2 != 0 && index % 3 != 0 ? 1.1 : 0.8}
-		// 					className={className}
-		// 					onAnimationEnd={handleAnimationEnd}
-		// 				/>
-		// 			);
-		// 		})}
-		// 	</List>
+				return (
+					<Cardo
+						key={`card-${index}`}
+						src={item.imageURL}
+						scale={index % 2 != 0 && index % 3 != 0 ? 1.1 : 0.8}
+						className={className}
+						onAnimationEnd={handleAnimationEnd}
+					/>
+				);
+			})}
+		</List>
 		// 	{/* <Loading /> */}
 		// </TestContext.Provider>
-		<Carousel
-			CarouselItems={ListItems}
-			type="strecth"
-			offset={['unset', 0, 0]}
-			render={() => {
-				return <h1>xin chao</h1>;
-			}}
-		/>
+		// <Carousel
+		// 	CarouselItems={ListItems}
+		// 	type="strecth"
+		// 	offset={['unset', 0, 0]}
+		// 	render={() => {
+		// 		return <h1>xin chao</h1>;
+		// 	}}
+		// />
 	);
 }
 

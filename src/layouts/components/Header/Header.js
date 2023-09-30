@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from '~/components/Image';
 import Button from '~/components/Button';
 
-function Header() {
+function Header({ layout = 'default' }) {
 	const [items, setItems] = useState([]);
 	const [textSearch, setTextSearch] = useState('');
 	const [toggle, setToggle] = useState(false);
@@ -92,235 +92,247 @@ function Header() {
 	}
 
 	return (
-		<$.Header ref={headerRef}>
+		<$.Header
+			ref={headerRef}
+			style={
+				layout == 'landing' ? { top: '0', background: 'var(--bg-color-override)', justifyContent: 'start' } : ''
+			}
+		>
 			<$.Image
 				src={Images.logo}
 				alt="logo"
 				href={'/'}
 			/>
-			<$.KindRecommend>
-				<Label
-					type={'label'}
-					className={'channel hover-text-color pointer'}
-				>
-					Đề xuất
-				</Label>
-				<Label
-					type={'label'}
-					className={'channel hover-text-color pointer'}
-				>
-					Vân Chi Vũ
-				</Label>
-				<Tippy
-					interactive
-					placement={'bottom-start'}
-					offset={[-60, 25]}
-					render={() => {
-						return (
-							<Popper>
-								{kindFilms.map((item, index) => {
-									return (
-										<$.MenuItem key={`channel-${index}`}>
+
+			{layout == 'landing' ? (
+				''
+			) : (
+				<>
+					<$.KindRecommend>
+						<Label
+							type={'label'}
+							className={'channel hover-text-color pointer'}
+						>
+							Đề xuất
+						</Label>
+						<Label
+							type={'label'}
+							className={'channel hover-text-color pointer'}
+						>
+							Vân Chi Vũ
+						</Label>
+						<Tippy
+							interactive
+							placement={'bottom-start'}
+							offset={[-60, 25]}
+							render={() => {
+								return (
+									<Popper>
+										{kindFilms.map((item, index) => {
+											return (
+												<$.MenuItem key={`channel-${index}`}>
+													<Label
+														type="label"
+														src="/recommend"
+														className="channel hover-text-color pointer"
+													>
+														{item}
+													</Label>
+												</$.MenuItem>
+											);
+										})}
+									</Popper>
+								);
+							}}
+						>
+							<Label
+								ref={kindFilmsRef}
+								type={'label'}
+								className={'channel hover-text-color pointer'}
+								rightIcons={<FontAwesomeIcon icon={faCaretDown} />}
+							>
+								Khác
+							</Label>
+						</Tippy>
+					</$.KindRecommend>
+					<Tippy
+						interactive
+						placement={'bottom-start'}
+						offset={[20, 5]}
+						onClickOutside={() => {
+							setToggle(true);
+							setShowResults(false);
+							console.log('outside =', showResults);
+						}}
+						trigger={'click'}
+						hideOnClick={false}
+						render={() => {
+							console.log('inside =', showResults, 'items = ', items);
+							return (
+								showResults && (
+									<Suspense fallback={<h2>loading...</h2>}>
+										<Popper>
+											<FilmItems items={items} />
+										</Popper>
+									</Suspense>
+								)
+							);
+						}}
+					>
+						<$.Search>
+							<$.Input
+								ref={inputRef}
+								type={'text'}
+								placeholder="Search"
+								onChange={changeHandle}
+								onFocus={() => setShowResults(true)}
+							/>
+							{textSearch.length > 0 && !toggle && <$.Loading icon={faSpinner} />}
+							{textSearch.length > 0 && toggle && (
+								<$.Close
+									icon={faCircleXmark}
+									onClick={resetSearchHandle}
+								/>
+							)}
+							<$.Spacer />
+							<$.Button icon={faMagnifyingGlass} />
+						</$.Search>
+					</Tippy>
+					<$.User>
+						<Tippy
+							id="history"
+							interactive
+							placement={'bottom-start'}
+							offset={[-140, 25]}
+							render={() => {
+								return (
+									<Popper>
+										<$.ListPage>
+											<Image
+												src={Images.blank}
+												width="80px"
+												height="80px"
+											/>
 											<Label
 												type="label"
-												src="/recommend"
-												className="channel hover-text-color pointer"
+												className="list-page-title"
 											>
-												{item}
+												Đăng nhập để quản lý lịch sử xem nội dung trên các thiết bị khác nhau
 											</Label>
-										</$.MenuItem>
-									);
-								})}
-							</Popper>
-						);
-					}}
-				>
-					<Label
-						ref={kindFilmsRef}
-						type={'label'}
-						className={'channel hover-text-color pointer'}
-						rightIcons={<FontAwesomeIcon icon={faCaretDown} />}
-					>
-						Khác
-					</Label>
-				</Tippy>
-			</$.KindRecommend>
-			<Tippy
-				interactive
-				placement={'bottom-start'}
-				offset={[20, 5]}
-				onClickOutside={() => {
-					setToggle(true);
-					setShowResults(false);
-					console.log('outside =', showResults);
-				}}
-				trigger={'click'}
-				hideOnClick={false}
-				render={() => {
-					console.log('inside =', showResults, 'items = ', items);
-					return (
-						showResults && (
-							<Suspense fallback={<h2>loading...</h2>}>
-								<Popper>
-									<FilmItems items={items} />
-								</Popper>
-							</Suspense>
-						)
-					);
-				}}
-			>
-				<$.Search>
-					<$.Input
-						ref={inputRef}
-						type={'text'}
-						placeholder="Search"
-						onChange={changeHandle}
-						onFocus={() => setShowResults(true)}
-					/>
-					{textSearch.length > 0 && !toggle && <$.Loading icon={faSpinner} />}
-					{textSearch.length > 0 && toggle && (
-						<$.Close
-							icon={faCircleXmark}
-							onClick={resetSearchHandle}
-						/>
-					)}
-					<$.Spacer />
-					<$.Button icon={faMagnifyingGlass} />
-				</$.Search>
-			</Tippy>
-			<$.User>
-				<Tippy
-					id="history"
-					interactive
-					placement={'bottom-start'}
-					offset={[-140, 25]}
-					render={() => {
-						return (
-							<Popper>
-								<$.ListPage>
-									<Image
-										src={Images.blank}
-										width="80px"
-										height="80px"
-									/>
-									<Label
-										type="label"
-										className="list-page-title"
-									>
-										Đăng nhập để quản lý lịch sử xem nội dung trên các thiết bị khác nhau
-									</Label>
-									<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
-								</$.ListPage>
-							</Popper>
-						);
-					}}
-				>
-					<Label
-						type={'label'}
-						className={'channel hover-text-color pointer vertical flex-center text-italic'}
-						leftIcons={<History />}
-						style={{
-							height: '40px',
-							fontSize: '12px',
-							marginLeft: '16px',
-						}}
-					>
-						Lịch sử xem
-					</Label>
-				</Tippy>
-				<Tippy
-					id="language"
-					interactive
-					placement={'bottom-start'}
-					offset={[-85, 25]}
-					render={() => {
-						return (
-							<Popper>
-								<$.LanguageArea>
-									{lang.map((item, index) => {
-										return (
+											<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
+										</$.ListPage>
+									</Popper>
+								);
+							}}
+						>
+							<Label
+								type={'label'}
+								className={'channel hover-text-color pointer vertical flex-center text-italic'}
+								leftIcons={<History />}
+								style={{
+									height: '40px',
+									fontSize: '12px',
+									marginLeft: '16px',
+								}}
+							>
+								Lịch sử xem
+							</Label>
+						</Tippy>
+						<Tippy
+							id="language"
+							interactive
+							placement={'bottom-start'}
+							offset={[-85, 25]}
+							render={() => {
+								return (
+									<Popper>
+										<$.LanguageArea>
+											{lang.map((item, index) => {
+												return (
+													<Label
+														key={`language-${index}`}
+														type="label"
+														src="/recommend"
+														className="language hover-text-color pointer"
+													>
+														{item}
+													</Label>
+												);
+											})}
+										</$.LanguageArea>
+									</Popper>
+								);
+							}}
+						>
+							<Label
+								type={'label'}
+								className={'channel hover-text-color pointer vertical flex-center text-italic'}
+								leftIcons={<Language />}
+								style={{
+									height: '40px',
+									fontSize: '12px',
+									marginLeft: '16px',
+								}}
+							>
+								Ngôn ngữ
+							</Label>
+						</Tippy>
+						<Tippy
+							id="account"
+							interactive
+							placement={'bottom-start'}
+							offset={[-90, 25]}
+							render={() => {
+								return (
+									<Popper>
+										<$.Account>
 											<Label
-												key={`language-${index}`}
 												type="label"
-												src="/recommend"
-												className="language hover-text-color pointer"
+												className="list-page-title"
+												style={{
+													marginBottom: '20px',
+													fontWeight: 'normal',
+													fontSize: '1.2rem',
+												}}
 											>
-												{item}
+												Đăng nhập để theo dõi các nội dung mới nhất
 											</Label>
-										);
-									})}
-								</$.LanguageArea>
-							</Popper>
-						);
-					}}
-				>
-					<Label
-						type={'label'}
-						className={'channel hover-text-color pointer vertical flex-center text-italic'}
-						leftIcons={<Language />}
-						style={{
-							height: '40px',
-							fontSize: '12px',
-							marginLeft: '16px',
-						}}
-					>
-						Ngôn ngữ
-					</Label>
-				</Tippy>
-				<Tippy
-					id="account"
-					interactive
-					placement={'bottom-start'}
-					offset={[-90, 25]}
-					render={() => {
-						return (
-							<Popper>
-								<$.Account>
-									<Label
-										type="label"
-										className="list-page-title"
-										style={{
-											marginBottom: '20px',
-											fontWeight: 'normal',
-											fontSize: '1.2rem',
-										}}
-									>
-										Đăng nhập để theo dõi các nội dung mới nhất
-									</Label>
-									<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
-								</$.Account>
-							</Popper>
-						);
-					}}
-				>
-					<Label
-						type={'label'}
-						className={'channel hover-text-color pointer vertical flex-center text-italic'}
-						leftIcons={<Account />}
-						style={{
-							height: '40px',
-							fontSize: '12px',
-							marginLeft: '16px',
-						}}
-					>
-						Tài Khoản của tôi
-					</Label>
-				</Tippy>
-				<Label
-					type={'label'}
-					className={'channel pointer flex-center vertical'}
-					rightIcons={<Promote />}
-					style={{
-						height: '40px',
-						fontSize: '12px',
-						marginLeft: '16px',
-						marginTop: '15px',
-						position: 'relative',
-					}}
-				>
-					<$.TitlePremote>Khuyên mãi có thời hạn</$.TitlePremote>
-				</Label>
-			</$.User>
+											<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
+										</$.Account>
+									</Popper>
+								);
+							}}
+						>
+							<Label
+								type={'label'}
+								className={'channel hover-text-color pointer vertical flex-center text-italic'}
+								leftIcons={<Account />}
+								style={{
+									height: '40px',
+									fontSize: '12px',
+									marginLeft: '16px',
+								}}
+							>
+								Tài Khoản của tôi
+							</Label>
+						</Tippy>
+						<Label
+							type={'label'}
+							className={'channel pointer flex-center vertical'}
+							rightIcons={<Promote />}
+							style={{
+								height: '40px',
+								fontSize: '12px',
+								marginLeft: '16px',
+								marginTop: '15px',
+								position: 'relative',
+							}}
+						>
+							<$.TitlePremote>Khuyên mãi có thời hạn</$.TitlePremote>
+						</Label>
+					</$.User>
+				</>
+			)}
 			{/* <$.User>
 				{user ? (
 					<FontAwesomeIcon icon={faSackDollar} />

@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { LoadingIcon } from '~/components/Icons';
-import Layout from '~/layouts/defaultlayout';
+import DefaultLayout from '~/layouts/defaultlayout';
+import LandingLayout from '~/layouts/LayoutLanding';
 import routes from '~/routes';
 
 function App() {
@@ -12,6 +13,16 @@ function App() {
 					<Routes>
 						{routes.privateRoutes &&
 							routes.privateRoutes.map((route, index) => {
+								let Layout;
+								switch (route.denp) {
+									case 'landing':
+										Layout = LandingLayout;
+										break;
+
+									default:
+										Layout = DefaultLayout;
+										break;
+								}
 								return (
 									<Route
 										key={index}

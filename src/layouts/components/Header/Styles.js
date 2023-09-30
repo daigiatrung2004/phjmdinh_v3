@@ -5,7 +5,6 @@ import ImageComponent from '~/components/Image';
 
 // wrapper
 export const Header = styled.header`
-	--width-header: 60px;
 	width: 100%;
 	height: var(--width-header);
 	display: flex;

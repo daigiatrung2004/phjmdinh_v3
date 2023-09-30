@@ -7,6 +7,8 @@ const Images = {
 	error: require('./img-err.gif').default,
 	music: require('./IBl7-unscreen.gif').default,
 	blank: require('./fallback-2.png').default,
+	BgAbout: require('./bg1024-aboutus.png').default,
+	BgEarthAbout: require('./earth-aboutus.png').default,
 };
 
 export default Images;

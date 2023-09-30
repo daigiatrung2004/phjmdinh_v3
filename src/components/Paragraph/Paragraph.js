@@ -17,18 +17,20 @@ function Paragraph({ children, className, isTextOverFlow = false, numLine, moreT
 			{...attrs}
 		>
 			<span>{children}</span>
-			<$.More
-				className={'primary flex-center'}
-				rightIcons={
-					<FontAwesomeIcon
-						icon={faChevronRight}
-						style={{ marginLeft: '0rem' }}
-						src={linkMore}
-					/>
-				}
-			>
-				{moreTitle}
-			</$.More>
+			{isTextOverFlow && (
+				<$.More
+					className={'primary flex-center'}
+					rightIcons={
+						<FontAwesomeIcon
+							icon={faChevronRight}
+							style={{ marginLeft: '0rem' }}
+							src={linkMore}
+						/>
+					}
+				>
+					{moreTitle}
+				</$.More>
+			)}
 		</$.ParagraphSheet>
 	);
 }

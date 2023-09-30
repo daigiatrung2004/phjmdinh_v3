@@ -5,6 +5,7 @@ import Error from '~/pages/Static/Error';
 import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
 import Watch from '~/pages/WatchFilm';
+import About from '~/pages/LandingPage/About';
 import { lazy } from 'react';
 
 const Home = lazy(() => import('~/pages/Home'));
@@ -48,8 +49,13 @@ export const privateRoutes = [
 		component: <Testpopup />,
 	},
 	{
-		path: '/ ',
+		path: '/watch ',
 		component: <Watch />,
+	},
+	{
+		path: '/aboutus',
+		component: <About />,
+		denp: 'landing',
 	},
 ];
 

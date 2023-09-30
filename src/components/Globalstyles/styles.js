@@ -26,6 +26,7 @@ export const Style = createGlobalStyle`
 		--time-scale-item:0.25s;
 		--timing-function-carousel: cubic-bezier(.54,.36,.31,1);
 		--zIndex-general: 1000;
+		--width-header: 60px;
 	}
 
 	html {

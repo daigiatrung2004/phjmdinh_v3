@@ -20,7 +20,7 @@ function Footer() {
 			>
 				<$.Grid className="grid">
 					<Label
-						className="pointer"
+						className="pointer footer"
 						style={{ color: 'var(--white)', marginBottom: '2rem' }}
 					>
 						Giới thiệu về chúng tôi
@@ -46,6 +46,7 @@ function Footer() {
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						src={'./aboutus'}
 					>
 						Thông tin công ty
 					</Label>
