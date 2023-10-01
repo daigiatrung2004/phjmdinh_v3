@@ -95,7 +95,7 @@ function Header({ layout = 'default' }) {
 		<$.Header
 			ref={headerRef}
 			style={
-				layout == 'landing' ? { top: '0', background: 'var(--bg-color-override)', justifyContent: 'start' } : ''
+				layout == 'landing' ? { top: '0', background: 'var(--bg-color-override)', justifyContent: 'start' } : {}
 			}
 		>
 			<$.Image

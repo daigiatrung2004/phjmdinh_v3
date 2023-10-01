@@ -45,68 +45,71 @@ function Footer() {
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
-						src={'./aboutus'}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/aboutus'}
 					>
 						Thông tin công ty
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Đăng quảng cáo
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Phản ánh ý kiến
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/privacy'}
 					>
 						Điểu khoản quyền riêng tư
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Giới thiệu dịch vụ sản phẩm
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Quan hệ kinh doanh
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Trung tâm phản hồi bảo mật
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/termofuse'}
 					>
 						Điều khoản sử dụng
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Cách xem
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/preinstall'}
 					>
 						Hợp tác cài đặt trước
 					</Label>
 					<Label
 						className="hover-text-color pointer"
-						style={{ lineHeight: '2.1rem', fontWeight: 'normal' }}
+						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
 						Câu hỏi thường gặp
 					</Label>
@@ -126,7 +129,7 @@ function Footer() {
 								aria-label="iq-privacy-agreement"
 								style={{ fontSize: '1.2rem', color: 'var(--copy-color)' }}
 							>
-								Chính sách quyền riêng tư iQIYI
+								Chính sách quyền riêng tư PHJMDINH
 							</Label>
 						</u>
 					</$.CopyRight>

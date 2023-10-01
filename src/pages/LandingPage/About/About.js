@@ -144,8 +144,8 @@ function About() {
 						tập, phim điện ảnh, TV Show và các bộ phim hoạt hình anime với chất lượng cao cùng phụ đề ngôn
 						ngữ địa phương. iQiyi International cũng đã thiết lập quan hệ đối tác SaaS với một số công ty
 						giải trí và chia sẻ công nghệ của mình với các đối tác. Người dùng có thể thưởng thức nội dung
-						cung cấp bởi iQiyi International trên mọi thiết bị thông qua iQ.com và ứng dụng. iQIYI
-						International thuộc sở hữu của iQIYI, Inc. (Nasdaq: IQ)
+						cung cấp bởi iQiyi International trên mọi thiết bị thông qua iQ.com và ứng dụng. PHJMDINH
+						International thuộc sở hữu của PHJMDINH, Inc. (Nasdaq: IQ)
 					</Paragraph>
 					<Image src="https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"></Image>
 				</$.ContentSheet>

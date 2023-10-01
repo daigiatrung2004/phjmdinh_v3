@@ -6,6 +6,9 @@ import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
 import Watch from '~/pages/WatchFilm';
 import About from '~/pages/LandingPage/About';
+import Privacy from '~/pages/LandingPage/Privacy';
+import TermOfUse from '~/pages/LandingPage/TermOfUse';
+import PreInstall from '~/pages/LandingPage/PreInstall';
 import { lazy } from 'react';
 
 const Home = lazy(() => import('~/pages/Home'));
@@ -55,6 +58,21 @@ export const privateRoutes = [
 	{
 		path: '/aboutus',
 		component: <About />,
+		denp: 'landing',
+	},
+	{
+		path: '/privacy',
+		component: <Privacy />,
+		denp: 'landing',
+	},
+	{
+		path: '/termofuse',
+		component: <TermOfUse />,
+		denp: 'landing',
+	},
+	{
+		path: '/preinstall',
+		component: <PreInstall />,
 		denp: 'landing',
 	},
 ];

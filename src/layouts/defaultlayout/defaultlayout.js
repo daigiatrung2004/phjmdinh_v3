@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
 		<Suspense fallback={<Loading />}>
 			<Header />
 			{/* <Test /> */}
-			<main>{children}</main>
+			<main style={{ paddingBottom: '30rem' }}>{children}</main>
 			<Footer />
 		</Suspense>
 	);

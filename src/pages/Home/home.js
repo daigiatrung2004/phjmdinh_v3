@@ -102,7 +102,7 @@ function Home() {
 					<span className="focus-item-label-top">
 						<span className="focus-item-label-rank">TOP 8</span>Top Phim Thịnh Hành
 					</span>
-					<span className="focus-item-label-original">iQIYI sản xuất</span>
+					<span className="focus-item-label-original">PHJMDINH sản xuất</span>
 				</div>
 			),
 			info: (
@@ -175,7 +175,7 @@ function Home() {
 					<span className="focus-item-label-top">
 						<span className="focus-item-label-rank">TOP 8</span>Top Phim Thịnh Hành
 					</span>
-					<span className="focus-item-label-original">iQIYI sản xuất</span>
+					<span className="focus-item-label-original">PHJMDINH sản xuất</span>
 				</div>
 			),
 			info: (
@@ -248,7 +248,7 @@ function Home() {
 					<span className="focus-item-label-top">
 						<span className="focus-item-label-rank">TOP 8</span>Top Phim Thịnh Hành
 					</span>
-					<span className="focus-item-label-original">iQIYI sản xuất</span>
+					<span className="focus-item-label-original">PHJMDINH sản xuất</span>
 				</div>
 			),
 			info: (
@@ -321,7 +321,7 @@ function Home() {
 					<span className="focus-item-label-top">
 						<span className="focus-item-label-rank">TOP 8</span>Top Phim Thịnh Hành
 					</span>
-					<span className="focus-item-label-original">iQIYI sản xuất</span>
+					<span className="focus-item-label-original">PHJMDINH sản xuất</span>
 				</div>
 			),
 			info: (

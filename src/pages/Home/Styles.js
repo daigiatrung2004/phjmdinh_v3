@@ -231,6 +231,7 @@ export const WrapBtn = styled.div`
 `;
 
 export const PlayWrap = styled.div`
+	color: var(--white);
 	&:hover svg.play-button circle {
 		fill: rgb(73, 210, 109);
 	}
