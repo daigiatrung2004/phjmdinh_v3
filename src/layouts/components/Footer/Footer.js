@@ -53,6 +53,7 @@ function Footer() {
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/partnership'}
 					>
 						Đăng quảng cáo
 					</Label>
@@ -78,12 +79,14 @@ function Footer() {
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/partnership'}
 					>
 						Quan hệ kinh doanh
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/oversea'}
 					>
 						Trung tâm phản hồi bảo mật
 					</Label>

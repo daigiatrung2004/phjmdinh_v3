@@ -9,6 +9,8 @@ import About from '~/pages/LandingPage/About';
 import Privacy from '~/pages/LandingPage/Privacy';
 import TermOfUse from '~/pages/LandingPage/TermOfUse';
 import PreInstall from '~/pages/LandingPage/PreInstall';
+import OverSea from '~/pages/LandingPage/OverSea';
+import PartnerShip from '~/pages/LandingPage/PartnerShip';
 import { lazy } from 'react';
 
 const Home = lazy(() => import('~/pages/Home'));
@@ -73,6 +75,16 @@ export const privateRoutes = [
 	{
 		path: '/preinstall',
 		component: <PreInstall />,
+		denp: 'landing',
+	},
+	{
+		path: '/oversea',
+		component: <OverSea />,
+		denp: 'landing',
+	},
+	{
+		path: '/partnership',
+		component: <PartnerShip />,
 		denp: 'landing',
 	},
 ];

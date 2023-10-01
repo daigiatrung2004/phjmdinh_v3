@@ -13,6 +13,10 @@ export const ParagraphSheet = styled.p`
 		white-space: normal;
 		line-height: 1.8rem;
 	}
+
+	&.primary {
+		color: var(--primary);
+	}
 `;
 
 export const More = styled(Label)`
