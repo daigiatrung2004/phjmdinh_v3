@@ -37,10 +37,12 @@ function Header({ layout = 'default' }) {
 
 	function handleScroll() {
 		let headerEle = headerRef.current;
-		if (headerEle && window.scrollY > headerEle.clientHeight) {
-			headerEle.style.backgroundColor = 'var(--bg-color-override)';
-		} else if (window.scrollY == '0') {
-			headerEle.style.backgroundColor = 'var(--color-transparent)';
+		if (headerEle && headerEle.style) {
+			if (window.scrollY > headerEle.clientHeight) {
+				headerEle.style.backgroundColor = 'var(--bg-color-override)';
+			} else if (window.scrollY == '0') {
+				headerEle.style.backgroundColor = 'var(--color-transparent)';
+			}
 		}
 	}
 
@@ -101,7 +103,7 @@ function Header({ layout = 'default' }) {
 			<$.Image
 				src={Images.logo}
 				alt="logo"
-				href={'/'}
+				href={'http://localhost:5000/'}
 			/>
 
 			{layout == 'landing' ? (

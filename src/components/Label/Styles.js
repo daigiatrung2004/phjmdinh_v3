@@ -55,11 +55,11 @@ export const Anchor = styled(ElementTag)`
 	}
 
 	&.hover-text-color:hover {
-		color: var(--primary);
+		color: var(--primary) !important;
 	}
 
 	&.hover-text-color:hover .icon > svg path {
-		fill: var(--primary);
+		fill: var(--primary) !important;
 	}
 
 	&.pointer {

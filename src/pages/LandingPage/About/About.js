@@ -86,7 +86,7 @@ function About() {
 			dataTmp = dataOriPrev;
 			return dataOriPrev;
 		});
-		return dataTmp.slice(0, 4);
+		return Array.isArray(dataTmp) ? dataTmp.slice(0, 4) : [];
 	}
 
 	const [moveClass, setMoveClass] = useState('');

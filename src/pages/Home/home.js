@@ -44,12 +44,14 @@ function Home() {
 	}
 
 	function handleToggleBackTop(e) {
-		console.log('handleToggleBackTop log:', window.scrollY);
-		console.log('handleToggleBackTop ref log:', backTopRef.current);
-		if (window.scrollY > 499) {
-			backTopRef.current.style.display = 'flex';
-		} else {
-			backTopRef.current.style.display = 'none';
+		// console.log('handleToggleBackTop log:', window.scrollY);
+		// console.log('handleToggleBackTop ref log:', backTopRef.current);
+		if (backTopRef && backTopRef.current && backTopRef.current.style) {
+			if (window.scrollY > 499) {
+				backTopRef.current.style.display = 'flex';
+			} else {
+				backTopRef.current.style.display = 'none';
+			}
 		}
 	}
 

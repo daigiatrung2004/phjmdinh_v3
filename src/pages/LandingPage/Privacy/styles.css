@@ -2019,6 +2019,10 @@ textarea.form-control {
 	}
 }
 
+.global-content {
+	background-color: var(--white);
+}
+
 .global-container .global-content .breadcrumb {
 	margin: 0 0 24px
 }
