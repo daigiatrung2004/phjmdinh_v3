@@ -4,7 +4,7 @@ import Label from '~/components/Label';
 import * as $ from './Styles';
 import { forwardRef, useContext } from 'react';
 import ItemContext from '~/pages/Home/ItemContext';
-import { Star } from '~/components/Icons';
+import { Star, Play, Collector, CollectorHover } from '~/components/Icons';
 import HashTag from '~/components/HashTag';
 import Paragraph from '~/components/Paragraph';
 
@@ -57,14 +57,38 @@ const Item = forwardRef(function (
 				<$.SubTitle>{data.originalTitle}</$.SubTitle>
 			</$.ItemInfo>
 			<$.Cardo className="cardo">
-				<$.Image
-					src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
-					alt={data.title}
-					h={'14.5rem'}
-					w={'25.5rem'}
-					className={typeClassNames[type].img + ' not-border-radius not-padding'}
-					style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
-				/>
+				<$.ImageSheet>
+					<$.Image
+						src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
+						alt={data.title}
+						h={'14.5rem'}
+						w={'25.5rem'}
+						className={typeClassNames[type].img + ' not-border-radius not-padding'}
+						style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
+					/>
+					<$.ControlSheet>
+						<$.PlayWrap className="wrap pointer flex-center">
+							<Play
+								width="4rem"
+								height="4rem"
+							/>
+						</$.PlayWrap>
+						<$.CollectorWrap>
+							<div className="collector pointer">
+								<Collector
+									width="4rem"
+									height="4rem"
+								/>
+							</div>
+							<div className="collector-hover pointer">
+								<CollectorHover
+									width="4rem"
+									height="4rem"
+								/>
+							</div>
+						</$.CollectorWrap>
+					</$.ControlSheet>
+				</$.ImageSheet>
 				<$.CardoBody>
 					<Label
 						className={typeClassNames[type].title}

@@ -696,11 +696,11 @@ export const Promote = ({ width = '20rem', height = '20rem', className }) => {
 	);
 };
 
-export const Play = ({ width = '20rem', height = '20rem', className }) => {
+export const Play = ({ width = '6rem', height = '6rem', className }) => {
 	return (
 		<svg
-			width="60px"
-			height="60px"
+			width={width}
+			height={height}
 			viewBox="0 0 60 60"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
@@ -731,11 +731,11 @@ export const Play = ({ width = '20rem', height = '20rem', className }) => {
 	);
 };
 
-export const CollectorHover = ({ width = '20rem', height = '20rem', className }) => {
+export const CollectorHover = ({ width = '6rem', height = '6rem', className }) => {
 	return (
 		<svg
-			width="60px"
-			height="60px"
+			width={width}
+			height={height}
 			viewBox="0 0 60 60"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"
@@ -764,11 +764,11 @@ export const CollectorHover = ({ width = '20rem', height = '20rem', className })
 	);
 };
 
-export const Collector = () => {
+export const Collector = ({ width = '6rem', height = '6rem', className }) => {
 	return (
 		<svg
-			width="60px"
-			height="60px"
+			width={width}
+			height={height}
 			viewBox="0 0 60 60"
 			version="1.1"
 			xmlns="http://www.w3.org/2000/svg"

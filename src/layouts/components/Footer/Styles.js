@@ -92,7 +92,7 @@ export const FooterSheet = styled.div`
 		cursor: pointer;
 	}
 
-	transition: all 0.4s ease;
+	transition: all 0.5s 0.4s ease;
 `;
 
 export const Social = styled(Label)``;

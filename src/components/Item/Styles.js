@@ -170,6 +170,80 @@ export const Image = styled(ImageComponent)`
 	}
 `;
 
+export const ImageSheet = styled.div`
+	position: relative;
+`;
+
+export const ControlSheet = styled.div`
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	width: 15rem;
+
+	&:hover svg.play-button circle {
+		fill: rgb(73, 210, 109);
+	}
+`;
+
+export const PlayWrap = styled.div`
+	&:hover svg.play-button circle {
+		fill: rgb(73, 210, 109);
+	}
+
+	& svg.play-button {
+		width: 3.51562vw;
+		height: 3.51562vw;
+		align-items: flex-start;
+		max-width: 4rem;
+		max-height: 4rem;
+	}
+`;
+
+export const CollectorWrap = styled.div`
+	position: relative;
+	width: 3.51562vw;
+	height: 3.51562vw;
+	align-items: flex-start;
+	max-width: 4rem;
+	max-height: 4rem;
+	margin-left: 1rem;
+	& div {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+	}
+
+	& svg {
+		width: 3.51562vw;
+		height: 3.51562vw;
+		align-items: flex-start;
+		color: #111319;
+		max-width: 4rem;
+		max-height: 4rem;
+	}
+
+	& div.collector {
+		display: block;
+	}
+
+	& div.collector-hover {
+		display: none;
+	}
+
+	&:hover > div.collector {
+		display: none;
+	}
+
+	&:hover > div.collector-hover {
+		display: block;
+	}
+`;
+
 export const Title = styled.h4`
 	font-size: 1.8rem;
 	margin: 0;
@@ -199,7 +273,7 @@ export const Cardo = styled.div`
 	width: 25.5rem;
 	height: 110%;
 	opacity: 0;
-	transition: all 0.3s ease 0s;
+	transition: all 0.7s 0.05s ease;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 `;
 

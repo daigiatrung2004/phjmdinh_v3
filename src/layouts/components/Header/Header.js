@@ -114,6 +114,7 @@ function Header({ layout = 'default' }) {
 						<Label
 							type={'label'}
 							className={'channel hover-text-color pointer'}
+							style={{ color: 'var(--white)' }}
 						>
 							Đề xuất
 						</Label>
@@ -235,6 +236,7 @@ function Header({ layout = 'default' }) {
 									height: '40px',
 									fontSize: '12px',
 									marginLeft: '16px',
+									color: 'var(--white)',
 								}}
 							>
 								Lịch sử xem
@@ -274,6 +276,7 @@ function Header({ layout = 'default' }) {
 									height: '40px',
 									fontSize: '12px',
 									marginLeft: '16px',
+									color: 'var(--white)',
 								}}
 							>
 								Ngôn ngữ
@@ -295,6 +298,7 @@ function Header({ layout = 'default' }) {
 													marginBottom: '20px',
 													fontWeight: 'normal',
 													fontSize: '1.2rem',
+													color: 'var(--white)',
 												}}
 											>
 												Đăng nhập để theo dõi các nội dung mới nhất
@@ -313,6 +317,7 @@ function Header({ layout = 'default' }) {
 									height: '40px',
 									fontSize: '12px',
 									marginLeft: '16px',
+									color: 'var(--white)',
 								}}
 							>
 								Tài Khoản của tôi
