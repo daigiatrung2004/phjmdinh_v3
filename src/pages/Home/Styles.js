@@ -353,3 +353,28 @@ export const BtnBackTop = styled(BtnBackHome)`
 		border-bottom-left-radius: 999px;
 	}
 `;
+
+export const TitleLabel = styled(Label)`
+	margin-left: 1rem;
+	cursor: pointer;
+
+	&:hover svg {
+		color: var(--primary) !important;
+	}
+
+	&:hover .extend-icon {
+		width: 10rem;
+	}
+	transition: all 0.2s 0.4s ease;
+`;
+
+export const ExtendIcon = styled.span`
+	color: var(--primary);
+	display: inline-flex;
+	width: 0rem;
+	height: 2.7rem;
+	overflow: hidden;
+	font-size: 2rem;
+	font-weight: normal;
+	transition: all 0.1s 0.2s ease;
+`;

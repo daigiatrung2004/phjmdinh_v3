@@ -161,7 +161,7 @@ function Header({ layout = 'default' }) {
 					<Tippy
 						interactive
 						placement={'bottom-start'}
-						offset={[20, 5]}
+						offset={[-25, 5]}
 						onClickOutside={() => {
 							setToggle(true);
 							setShowResults(false);
@@ -174,7 +174,10 @@ function Header({ layout = 'default' }) {
 							return (
 								showResults && (
 									<Suspense fallback={<h2>loading...</h2>}>
-										<Popper>
+										<Popper
+											maxHeight="20rem"
+											width="30rem"
+										>
 											<FilmItems items={items} />
 										</Popper>
 									</Suspense>

@@ -1,18 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { faChevronUp, faHome, faPaperclip } from '@fortawesome/free-solid-svg-icons';
+import { faChevronRight, faChevronUp, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { PUSettings } from '~/utils/StylesBase';
 
-import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
-import Label from '~/components/Label';
+import { createPortal } from 'react-dom';
+import Carousel from '~/components/Carousel';
 import Items from '~/components/FilmItems';
+import { Collector, CollectorHover, Play } from '~/components/Icons';
+import Label from '~/components/Label';
+import PopUp from '~/components/PopUp';
+import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
-import ItemContext from './ItemContext';
-import PopUp from '~/components/PopUp';
-import Carousel from '~/components/Carousel';
-import { Play, Collector, CollectorHover } from '~/components/Icons';
-import { createPortal } from 'react-dom';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -442,16 +441,26 @@ function Home() {
 						wImage={'19.0167rem'}
 					/>
 				</$.ItemsWrapper>
-				<Label
+				<$.TitleLabel
 					type={'h3'}
 					fontSize="30px"
 					fontWeight="700"
 					className={'primary'}
-					leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
+					rightIcons={
+						<>
+							<$.ExtendIcon className="extend-icon">
+								<span style={{ flexShrink: '0' }}>xem thêm</span>
+							</$.ExtendIcon>
+							<FontAwesomeIcon
+								icon={faChevronRight}
+								style={{ color: 'var(--text-color-search)' }}
+							/>
+						</>
+					}
 					iconsize={'20px'}
 				>
 					TRENDING
-				</Label>
+				</$.TitleLabel>
 				<$.ItemsWrapper>
 					<Items
 						src="/reviewfilm/"
@@ -467,7 +476,12 @@ function Home() {
 					fontSize="30px"
 					fontWeight="700"
 					className={'primary'}
-					leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
+					rightIcons={
+						<FontAwesomeIcon
+							icon={faChevronRight}
+							style={{ color: 'var(--text-color-search)' }}
+						/>
+					}
 					iconsize={'20px'}
 				>
 					UPCOMING
