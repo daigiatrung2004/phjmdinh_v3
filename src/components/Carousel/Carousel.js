@@ -1,18 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from './Styles';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Fragment } from 'react';
+import Items from '~/components/FilmItems';
 
 function Carousel(
 	{
 		CarouselItems = [],
 		children,
 		render,
-		type,
+		type = 'strecth',
 		height = '700px',
 		width = '100%',
 		offset,
+		step = '1',
 		indicatorFlag,
 		offsetIndicator,
 		...attrs
@@ -22,36 +24,81 @@ function Carousel(
 	const [move, setMove] = useState('');
 	const [listTmp, setListTmp] = useState(CarouselItems);
 	const [indexActive, setIndexActive] = useState(0);
+	const [distance, setDistance] = useState(0);
+	const [skips, setSkips] = useState(0);
+	const refItem = useRef();
 
-	function handleMove(move) {
+	function handleMove(move, ...options) {
 		if (move == 'right') {
-			handleMoveRight();
+			handleMoveRight(...options);
 		} else if (move == 'left') {
-			handleMoveLeft();
+			handleMoveLeft(...options);
 		}
 		setMove(move);
 	}
 
-	function handleMoveRight() {
-		let lastItem = listTmp.pop();
-		let arr_new = [lastItem, ...listTmp];
-		setIndexActive(prev => (prev + 1 > arr_new.length - 1 ? 0 : prev + 1));
-		setListTmp(arr_new);
-	}
-
-	function handleMoveLeft() {
-		let firstItem = listTmp.shift();
-		let arr_new = [...listTmp, firstItem];
-		setIndexActive(prev => (prev - 1 < 0 ? arr_new.length - 1 : prev - 1));
-		setListTmp(arr_new);
-	}
-
-	useEffect(() => {
-		console.log('carouselitems:', listTmp);
-		if (CarouselItems.length < 3) {
-			throw new Error('Carousel must have greater than 2 item');
+	const transitionSize = useMemo(() => {
+		if (refItem.current && type == 'multi') {
+			let itemSize = refItem.current;
+			console.log('co refitem:', itemSize, 'step:', step);
+			let size = step * (itemSize['width'] + itemSize['space']);
+			setDistance(size * -1 * skips);
+			return size;
+		} else {
+			console.log('k co refitem:', refItem.current);
 		}
-	}, []);
+		return 0;
+	}, [step, skips]);
+
+	function handleMoveRight(type) {
+		if (type == 'multi') {
+			setSkips(skipstmp => {
+				if (skipstmp + 1 > step) {
+					return step;
+				} else {
+					return skipstmp + 1;
+				}
+			});
+			console.log('ref item carousel:', refItem);
+			console.log('transitionSize:', transitionSize);
+		} else {
+			let lastItem = listTmp.pop();
+			let arr_new = [lastItem, ...listTmp];
+			setIndexActive(prev => (prev + 1 > arr_new.length - 1 ? 0 : prev + 1));
+			setListTmp(arr_new);
+		}
+	}
+
+	function handleMoveLeft(type) {
+		if (type == 'multi') {
+			setSkips(skipstmp => {
+				if (skipstmp - 1 < 0) {
+					return skipstmp;
+				} else {
+					return skipstmp - 1;
+				}
+			});
+			setDistance(distance + 1 * transitionSize);
+		} else {
+			let firstItem = listTmp.shift();
+			let arr_new = [...listTmp, firstItem];
+			setIndexActive(prev => (prev - 1 < 0 ? arr_new.length - 1 : prev - 1));
+			setListTmp(arr_new);
+		}
+	}
+
+	useLayoutEffect(() => {
+		console.log('carouselitems:', listTmp);
+		if (CarouselItems && CarouselItems.length < 3) {
+			// throw new Error('Carousel must have greater than 2 item');
+			console.warn('Carousel must have greater than 2 item');
+		} else {
+			console.warn('have 2 data');
+			if (CarouselItems) {
+				setListTmp(CarouselItems);
+			}
+		}
+	}, [CarouselItems]);
 
 	switch (type) {
 		case 'strecth':
@@ -89,12 +136,14 @@ function Carousel(
 								</Fragment>
 							);
 						})}
-						<$.Control
-							className="control-left"
-							onClick={() => handleMove('left')}
-						>
-							<FontAwesomeIcon icon={faChevronLeft} />
-						</$.Control>
+						{
+							<$.Control
+								className="control-left"
+								onClick={() => handleMove('left')}
+							>
+								<FontAwesomeIcon icon={faChevronLeft} />
+							</$.Control>
+						}
 						<$.Control
 							className="control-right"
 							onClick={() => handleMove('right')}
@@ -122,6 +171,58 @@ function Carousel(
 				</>
 			);
 		case 'multi':
+			return (
+				<$.SupperMultiSheet className="super-multi-sheet">
+					<$.MultiSheet
+						size={listTmp.length}
+						className="multi"
+						maxwidth={
+							refItem.current
+								? (refItem.current.width * parseInt(step) +
+										refItem.current.space * (parseInt(step) + 1)) /
+										10 +
+								  'rem'
+								: ''
+						}
+						space={(refItem.current && refItem.current.space / 10 + 'rem') || ''}
+						{...attrs}
+					>
+						<$.ItemSheet
+							className="items-sheet"
+							space={(refItem.current && refItem.current.space / 10 + 'rem') || ''}
+							// step={step}
+							distance={distance + 'px'}
+							{...attrs}
+						>
+							<Items
+								ref={refItem}
+								// src="/reviewfilm/"
+								items={listTmp}
+								type="VERTICAL_DISPLAY_TYPE"
+								hImage={'25.35rem'}
+								wImage={'23rem'}
+							/>
+						</$.ItemSheet>
+					</$.MultiSheet>
+					{skips > 0 && (
+						<$.Control
+							className="control-left"
+							onClick={() => handleMove('left', type)}
+						>
+							<FontAwesomeIcon icon={faChevronLeft} />
+						</$.Control>
+					)}
+					{skips + step < listTmp.length && (
+						<$.Control
+							className="control-right"
+							onClick={() => handleMove('right', type)}
+						>
+							<FontAwesomeIcon icon={faChevronRight} />
+						</$.Control>
+					)}
+				</$.SupperMultiSheet>
+			);
+		case 'multi_one_step':
 			return <></>;
 
 		default:

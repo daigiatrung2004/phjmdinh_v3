@@ -422,79 +422,112 @@ function Home() {
 				}}
 			/>
 			<$.Wrapper>
-				<Label
-					type={'h3'}
-					fontSize="30px"
-					fontWeight="700"
-					className={'primary'}
-					// leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
-					// iconsize={'20px'}
-				>
-					Đề xuất hot
-				</Label>
-				<$.ItemsWrapper>
-					<Items
-						src="/reviewfilm/"
-						items={itemsPopular}
-						type="VERTICAL_DISPLAY_TYPE"
-						hImage={'25.35rem'}
-						wImage={'19.0167rem'}
-					/>
-				</$.ItemsWrapper>
-				<$.TitleLabel
-					type={'h3'}
-					fontSize="30px"
-					fontWeight="700"
-					className={'primary'}
-					rightIcons={
-						<>
-							<$.ExtendIcon className="extend-icon">
-								<span style={{ flexShrink: '0' }}>xem thêm</span>
-							</$.ExtendIcon>
-							<FontAwesomeIcon
-								icon={faChevronRight}
-								style={{ color: 'var(--text-color-search)' }}
-							/>
-						</>
-					}
-					iconsize={'20px'}
-				>
-					TRENDING
-				</$.TitleLabel>
-				<$.ItemsWrapper>
-					<Items
-						src="/reviewfilm/"
-						items={itemsTrending}
-						type="VERTICAL_DISPLAY_TYPE"
-						hImage={'25.35rem'}
-						wImage={'19.0167rem'}
-					/>
-				</$.ItemsWrapper>
+				<$.Row>
+					<Label
+						type={'h3'}
+						fontSize="30px"
+						fontWeight="700"
+						className={'primary'}
 
-				<Label
-					type={'h3'}
-					fontSize="30px"
-					fontWeight="700"
-					className={'primary'}
-					rightIcons={
-						<FontAwesomeIcon
-							icon={faChevronRight}
-							style={{ color: 'var(--text-color-search)' }}
+						// leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
+						// iconsize={'20px'}
+					>
+						Đề xuất hot
+					</Label>
+					{/* <$.ItemsWrapper>
+						<Items
+							src="/reviewfilm/"
+							items={itemsPopular}
+							type="VERTICAL_DISPLAY_TYPE"
+							hImage={'25.35rem'}
+							wImage={'19.0167rem'}
 						/>
-					}
-					iconsize={'20px'}
-				>
-					UPCOMING
-				</Label>
-				<$.ItemsWrapper>
-					<Items
-						src="/reviewfilm/"
-						items={itemsUpComing}
-						type="VERTICAL_DISPLAY_TYPE"
-						hImage={'25.35rem'}
-						wImage={'19.0167rem'}
-					/>
-				</$.ItemsWrapper>
+					</$.ItemsWrapper> */}
+					<$.ItemsWrapper>
+						<Carousel
+							CarouselItems={itemsPopular}
+							type="multi"
+							step={'5'}
+						/>
+					</$.ItemsWrapper>
+				</$.Row>
+				<$.Row>
+					<$.TitleLabel
+						type={'h3'}
+						fontSize="30px"
+						fontWeight="700"
+						className={'primary'}
+						rightIcons={
+							<>
+								<$.ExtendIcon className="extend-icon">
+									<span style={{ flexShrink: '0' }}>xem thêm</span>
+								</$.ExtendIcon>
+								<FontAwesomeIcon
+									icon={faChevronRight}
+									style={{ color: 'var(--text-color-search)' }}
+								/>
+							</>
+						}
+						iconsize={'20px'}
+					>
+						TRENDING
+					</$.TitleLabel>
+					{/* <$.ItemsWrapper>
+						<Items
+							src="/reviewfilm/"
+							items={itemsTrending}
+							type="VERTICAL_DISPLAY_TYPE"
+							hImage={'25.35rem'}
+							wImage={'19.0167rem'}
+						/>
+					</$.ItemsWrapper> */}
+					<$.ItemsWrapper>
+						<Carousel
+							CarouselItems={itemsTrending}
+							type="multi"
+							step={'5'}
+						/>
+					</$.ItemsWrapper>
+				</$.Row>
+
+				<$.Row>
+					<$.TitleLabel
+						type={'h3'}
+						fontSize="30px"
+						fontWeight="700"
+						className={'primary'}
+						rightIcons={
+							<>
+								<$.ExtendIcon className="extend-icon">
+									<span style={{ flexShrink: '0' }}>xem thêm</span>
+								</$.ExtendIcon>
+								<FontAwesomeIcon
+									icon={faChevronRight}
+									style={{ color: 'var(--text-color-search)' }}
+								/>
+							</>
+						}
+						iconsize={'20px'}
+					>
+						UPCOMING
+					</$.TitleLabel>
+					{/* <$.ItemsWrapper>
+						<Items
+							src="/reviewfilm/"
+							items={itemsUpComing}
+							type="VERTICAL_DISPLAY_TYPE"
+							hImage={'25.35rem'}
+							wImage={'19.0167rem'}
+						/>
+					</$.ItemsWrapper> */}
+					<$.ItemsWrapper>
+						<Carousel
+							CarouselItems={itemsUpComing}
+							type="multi"
+							step={'5'}
+						/>
+					</$.ItemsWrapper>
+				</$.Row>
 				{/* <Label
 					type={'h3'}
 					fontSize="30px"

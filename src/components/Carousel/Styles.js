@@ -58,6 +58,64 @@ export const Sheet = styled.div`
 
 	margin-bottom: -12.5%;
 `;
+export const SupperMultiSheet = styled.div`
+	--padding-left: 2.5rem;
+	--carousel-transition-2: cubic-bezier(0.3, 0.23, 0.63, 0.87);
+	position: relative;
+	display: block;
+	/* background-color: green; */
+
+	&.super-multi-sheet .control-left {
+		top: 50%;
+		transform: translateY(-100%);
+		left: calc(var(--padding-left) * -2.5);
+
+		& svg {
+			font-size: ${({ fontsize }) => (fontsize ? fontsize : '3rem')};
+		}
+		z-index: var(--zIndex-general);
+	}
+
+	&.super-multi-sheet .control-right {
+		top: 50%;
+		right: calc(var(--padding-left) * 1.5);
+		transform: translateY(-100%);
+
+		& svg {
+			font-size: ${({ fontsize }) => (fontsize ? fontsize : '3rem')};
+		}
+		z-index: var(--zIndex-general);
+	}
+`;
+export const MultiSheet = styled.div`
+	/* background-color: var(--bg-color); */
+	/* margin-left: calc(var(--padding-left) * 1.75 * -1); */
+	position: relative;
+	display: flex;
+	justify-content: center;
+	overflow: hidden;
+	max-width: ${({ maxwidth }) => (maxwidth ? `calc(${maxwidth})` : 'calc(130rem)')};
+	/* margin-left: 10rem; */
+	/* padding: 0rem 7rem 0rem 7rem; */
+	z-index: calc(var(--zIndex-general));
+	margin-left: ${({ space }) => (space ? `calc(${space} * -1)` : '')};
+`;
+
+export const ItemSheet = styled.div`
+	position: relative;
+	width: 100%;
+	display: grid;
+	/* background-color: red; */
+	grid-template-columns: repeat(${({ size }) => (size ? size : '20')}, minmax(23.7rem, 23.7rem));
+	/* overflow: hidden; */
+	height: 100%;
+	/* padding: 0rem var(--padding-left) 0rem var(--padding-left); */
+	grid-template-rows: 1;
+	padding-left: ${({ space }) => (space ? `calc(${space} * 1)` : '')};
+	translate: ${({ distance }) => (distance ? distance : '0px')};
+	transition: all 0.4s var(--carousel-transition-2);
+	z-index: calc(var(--zIndex-general) - 1);
+`;
 
 const rightKeyFrame = keyframes`
 	from {

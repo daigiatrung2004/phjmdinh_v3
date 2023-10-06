@@ -43,19 +43,21 @@ const Item = forwardRef(function (
 			className={typeClassNames[type].wrapperItem + ' item'}
 			onMouseEnter={() => mouseEnter(src)}
 		>
-			<$.Image
-				src={src}
-				alt={data.title}
-				h={'100%'}
-				w={'100%'}
-				className={typeClassNames[type].img}
-			>
-				{icon}
-			</$.Image>
-			<$.ItemInfo isHide={isHideTitle}>
-				<Label className={typeClassNames[type].title}>{data.title}</Label>
-				<$.SubTitle>{data.originalTitle}</$.SubTitle>
-			</$.ItemInfo>
+			<$.PresentItem className="item-present">
+				<$.Image
+					src={src}
+					alt={data.title}
+					h={'100%'}
+					w={'100%'}
+					className={typeClassNames[type].img}
+				>
+					{icon}
+				</$.Image>
+				<$.ItemInfo isHide={isHideTitle}>
+					<Label className={typeClassNames[type].title}>{data.title}</Label>
+					<$.SubTitle>{data.originalTitle}</$.SubTitle>
+				</$.ItemInfo>
+			</$.PresentItem>
 			<$.Cardo className="cardo">
 				<$.ImageSheet>
 					<$.Image

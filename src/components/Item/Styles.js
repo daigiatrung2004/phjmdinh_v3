@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
@@ -16,9 +16,9 @@ const frame = (sign, transform) => keyframes`
 //
 
 // item
-const ItemCustom = ({ src, className, children, state, setState, transitiontime, ...propsDefault }) => {
+const ItemCustom = forwardRef(({ src, className, children, state, setState, transitiontime, ...propsDefault }, ref) => {
 	let Ele = 'div';
-	const ref = useRef();
+	const refElement = useRef();
 
 	// console.log('class');
 
@@ -35,6 +35,23 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 	// 	// console.log('scrollWidth :', scrollWidth);
 	// 	context(marginWidth + width);
 	// }
+	useImperativeHandle(
+		ref,
+		() => {
+			if (!refElement.current) {
+				return {
+					width: 0,
+					margin: 0,
+				};
+			}
+			var style = refElement.current.currentStyle || window.getComputedStyle(refElement.current);
+			return {
+				width: refElement.current.offsetWidth,
+				space: style ? parseInt(style.marginRight.replace('px')) : 0,
+			};
+		},
+		[]
+	);
 
 	useEffect(() => {
 		if (state) {
@@ -51,7 +68,7 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 	}
 	return (
 		<Ele
-			ref={ref}
+			ref={refElement}
 			to={src}
 			state={state}
 			className={className}
@@ -61,7 +78,7 @@ const ItemCustom = ({ src, className, children, state, setState, transitiontime,
 			{children}
 		</Ele>
 	);
-};
+});
 
 export const Item = styled(ItemCustom)`
 	--height-img-item: 40px;
@@ -96,7 +113,7 @@ export const Item = styled(ItemCustom)`
 		/* float: left; */
 		height: ${({ h }) => (h ? h : 'auto')};
 		width: ${({ w }) => (w ? w : 'auto')};
-		margin: ${({ margin }) => (margin ? margin : '20px 75px 80px 0px')};
+		margin: ${({ margin }) => (margin ? margin : '2rem 5.5rem 0rem 0px')};
 	}
 
 	&.item__display-horizontal {
@@ -122,8 +139,24 @@ export const Item = styled(ItemCustom)`
 
 	&:hover .cardo {
 		opacity: 1;
+		width: 25.5rem;
 		transform: scale(1.05);
+		height: 110%;
 	}
+`;
+
+export const PresentItem = styled.div`
+	position: relative;
+	/* z-index: 100; */
+	/* &.item-present:hover ~ .cardo {
+		opacity: 1;
+		transform: scale(1.05);
+		z-index: 101;
+	} */
+
+	/* &.item-present:hover {
+		z-index: 98;
+	} */
 `;
 
 export const Image = styled(ImageComponent)`
@@ -270,11 +303,20 @@ export const Cardo = styled.div`
 	z-index: var(--zIndex-general);
 	border-radius: 0.5rem 0.5rem 0rem 0rem;
 	transform: translate(0%, 0%) scale(1);
-	width: 25.5rem;
-	height: 110%;
+	width: 100%;
+	height: 100%;
 	opacity: 0;
 	transition: all 0.7s 0.05s ease;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	z-index: 99;
+	overflow: hidden;
+
+	/* &:hover {
+		opacity: 1;
+		transform: scale(1.05);
+	} */
+
+	/* &:hover ~ .item */
 `;
 
 export const CardoBody = styled.div`

@@ -58,6 +58,7 @@ const FilmItem = forwardRef(function (
 	// console.log('items rerender:', items);
 	// useEffect(() => getPopular({ page: 1, adults: false }), []);
 	const datafetch = data.read();
+	console.log('items.....:', items);
 	return (
 		items &&
 		items.map((item, index) => {
@@ -94,6 +95,7 @@ const FilmItem = forwardRef(function (
 						key={index}
 						data={item}
 						type={type}
+						ref={ref}
 						{...propsDefault}
 					/>
 				);

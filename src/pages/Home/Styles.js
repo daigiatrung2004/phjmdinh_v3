@@ -5,18 +5,25 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import Label from '~/components/Label';
 
 export const Wrapper = styled.div`
-	padding-left: 83px;
+	/* padding-left: 83px; */
 	position: relative;
 	z-index: 1000;
 `;
-
+export const Row = styled.div`
+	position: relative;
+	margin-left: 8.3rem;
+`;
 export const ItemsWrapper = styled.div`
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	display: block;
+	/* grid-template-columns: repeat(20, minmax(23.7rem, 1fr)); */
 	/* grid-auto-flow: column; */
+	/* justify-content: center; */
 	/* max-width: calc(225px * 5); */
 	/* flex-wrap: wrap;
 	justify-items: center; */
+	/* overflow-x: hidden;
+	padding-left: 2.5rem; */
+	margin-bottom: 8rem;
 `;
 
 //trailers
