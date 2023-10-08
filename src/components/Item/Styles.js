@@ -138,10 +138,13 @@ export const Item = styled(ItemCustom)`
 	}
 
 	&:hover .cardo {
+		visibility: visible;
 		opacity: 1;
-		width: 25.5rem;
+		pointer-events: auto;
+
+		/* width: 25.5rem;
 		transform: scale(1.05);
-		height: 110%;
+		height: 110%; */
 	}
 `;
 
@@ -310,6 +313,12 @@ export const Cardo = styled.div`
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	z-index: 99;
 	overflow: hidden;
+	color: var(--white);
+	width: 25.5rem;
+	transform: scale(1.05);
+	height: 110%;
+	visibility: hidden;
+	pointer-events: none;
 
 	/* &:hover {
 		opacity: 1;

@@ -11,6 +11,7 @@ import Label from '~/components/Label';
 import PopUp from '~/components/PopUp';
 import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
+import Images from '~/assets/images';
 import * as $ from './Styles';
 
 function Home() {
@@ -96,7 +97,8 @@ function Home() {
 	const ListItems = [
 		{
 			index: 0,
-			imgSrc: 'https://media.istockphoto.com/id/1466755525/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%81%AE%E9%A3%BE%E3%82%8A%E3%82%92%E3%81%98%E3%81%A3%E3%81%8F%E3%82%8A%E8%A6%8B%E3%82%8B%E8%8B%A5%E3%81%84%E5%A5%B3%E3%81%AE%E5%AD%90.jpg?s=1024x1024&w=is&k=20&c=3VqBgbjC2cr4EWurSutMUBNM9IXs83jrAFuOKcQNlqE=',
+			imgSrc: Images.PrimaryTest,
+			bgSrc: Images.BgTest,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
 			rank: (
 				<div className="focus-item focus-item-labels">
@@ -169,7 +171,8 @@ function Home() {
 		},
 		{
 			index: 1,
-			imgSrc: 'https://media.istockphoto.com/id/1318144940/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AE%E8%B5%A4%E3%83%A9%E3%83%B3%E3%83%97%E3%81%AE%E3%82%AF%E3%83%AD%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%83%E3%83%97%E5%86%99%E7%9C%9F%E7%81%AB%E7%81%BD%E5%A0%B1%E7%9F%A5%E5%99%A8%E3%82%A2%E3%83%A9%E3%83%BC%E3%83%A0%E3%83%9C%E3%82%BF%E3%83%B3.jpg?s=1024x1024&w=is&k=20&c=0k38Q0UgtkcmnIO-y_mHsfh0hzPeZqOodCAIhtG0WXA=',
+			imgSrc: Images.PrimaryTest2,
+			bgSrc: Images.BgTest2,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
 			rank: (
 				<div className="focus-item focus-item-labels">
@@ -242,7 +245,8 @@ function Home() {
 		},
 		{
 			index: 2,
-			imgSrc: 'https://media.istockphoto.com/id/1280885379/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E5%86%AC%E4%BC%91%E3%81%BF%E7%A5%9D%E3%81%86%E5%B9%B8%E3%81%9B%E3%81%AA%E3%82%A2%E3%83%95%E3%83%AA%E3%82%AB%E7%B3%BB%E3%82%A2%E3%83%A1%E3%83%AA%E3%82%AB%E4%BA%BA%E3%81%AE%E3%82%AB%E3%83%83%E3%83%97%E3%83%AB.jpg?s=1024x1024&w=is&k=20&c=19IAt8pLCRIFKCByUCAcC4Sf-xuRpYvesCGCcYStY0Y=',
+			imgSrc: Images.PrimaryTest3,
+			bgSrc: Images.BgTest3,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
 			rank: (
 				<div className="focus-item focus-item-labels">
@@ -315,7 +319,8 @@ function Home() {
 		},
 		{
 			index: 3,
-			imgSrc: 'https://media.istockphoto.com/id/1442033196/ja/%E3%82%B9%E3%83%88%E3%83%83%E3%82%AF%E3%83%95%E3%82%A9%E3%83%88/%E3%82%BB%E3%83%BC%E3%82%BF%E3%83%BC%E3%82%92%E7%9D%80%E3%81%A6%E3%83%99%E3%83%83%E3%83%89%E3%81%AB%E5%BA%A7%E3%82%8A%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%9E%E3%82%B9%E3%83%84%E3%83%AA%E3%83%BC%E3%81%AE%E8%BF%91%E3%81%8F%E3%81%A7%E6%8A%B1%E3%81%8D%E3%81%97%E3%82%81%E3%82%8B%E8%8B%A5%E3%81%84%E5%A5%B3%E6%80%A7%E3%81%A8%E7%94%B7%E6%80%A7.jpg?s=1024x1024&w=is&k=20&c=RcPBhV3TsZIqt4p_nMuf98UTvksciduCkEeP3NXlAl0=',
+			imgSrc: Images.PrimaryTest4,
+			bgSrc: Images.BgTest4,
 			titleSrc: 'https://pic7.iqiyipic.com/hamster/20230307/1f/26/c96adc8a2d_xxx.webp',
 			rank: (
 				<div className="focus-item focus-item-labels">

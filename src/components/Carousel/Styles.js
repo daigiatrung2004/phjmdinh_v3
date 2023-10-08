@@ -1,5 +1,25 @@
 import styled, { keyframes } from 'styled-components';
 
+const opacityFrame = keyframes`
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+`;
+
+const opacityFrameHide = keyframes`
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+`;
+
 const colors = {
 	degree: '269deg',
 	blueStrong: [
@@ -51,12 +71,29 @@ export const Sheet = styled.div`
 	--zIndex-caoursel: 100;
 	position: relative;
 	display: flex;
+	background: center center / cover no-repeat;
+	background-image: linear-gradient(
+			rgba(0, 0, 0, 0.8) 0%,
+			rgba(0, 0, 0, 0.3) 4%,
+			rgba(0, 0, 0, 0) 12%,
+			rgba(0, 0, 0, 0) 88%,
+			rgba(0, 0, 0, 0.3) 95%,
+			rgba(0, 0, 0, 0.8) 100%
+		),url(${({ backgroundImage }) => (backgroundImage ? backgroundImage : '')});
 	/* justify-content: center; */
 	height: ${({ height }) => height};
 	width: ${({ width }) => width};
 	overflow: hidden;
 
 	margin-bottom: -12.5%;
+
+	&.bg-animation-hide {
+		animation: ${opacityFrameHide} .3s ease forwards;
+	}
+
+	&.bg-animation {
+		animation: ${opacityFrame} .2s ease-out forwards;
+	}
 `;
 export const SupperMultiSheet = styled.div`
 	--padding-left: 2.5rem;
@@ -137,16 +174,9 @@ const leftKeyFrame = keyframes`
 `;
 
 export const CarouselItem = styled.div`
-	background-image: linear-gradient(
-			rgba(0, 0, 0, 0.8) 0%,
-			rgba(0, 0, 0, 0.3) 4%,
-			rgba(0, 0, 0, 0) 12%,
-			rgba(0, 0, 0, 0) 88%,
-			rgba(0, 0, 0, 0.3) 95%,
-			rgba(0, 0, 0, 0.8) 100%
-		),
-		url(${({ src }) => src});
-	background-size: 100% 100%;
+	background-image: url(${({ src }) => src});
+	background-size: 50% 80%;
+	background-position: 80% 20%;
 	background-repeat: no-repeat;
 	height: 100%;
 	width: 100%;

@@ -4,6 +4,7 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Fragment } from 'react';
 import Items from '~/components/FilmItems';
+import ImageDefault from '~/assets/images';
 
 function Carousel(
 	{
@@ -22,7 +23,17 @@ function Carousel(
 	ref
 ) {
 	const [move, setMove] = useState('');
+	const [bgMove, setBgMove] = useState('');
 	const [listTmp, setListTmp] = useState(CarouselItems);
+	const [bgActive, setBgActive] = useState(function () {
+		if (CarouselItems && CarouselItems.length > 1) {
+			console.log('carousel...===', CarouselItems);
+			return CarouselItems[1].bgSrc;
+		} else {
+			console.log('not carousel..........=====', CarouselItems);
+			return ImageDefault.noImage;
+		}
+	});
 	const [indexActive, setIndexActive] = useState(0);
 	const [distance, setDistance] = useState(0);
 	const [skips, setSkips] = useState(0);
@@ -35,6 +46,7 @@ function Carousel(
 			handleMoveLeft(...options);
 		}
 		setMove(move);
+		setBgMove('bg-animation-hide');
 	}
 
 	const transitionSize = useMemo(() => {
@@ -65,6 +77,9 @@ function Carousel(
 			let lastItem = listTmp.pop();
 			let arr_new = [lastItem, ...listTmp];
 			setIndexActive(prev => (prev + 1 > arr_new.length - 1 ? 0 : prev + 1));
+			if (arr_new && arr_new.length > 1) {
+				setBgActive(arr_new[1].bgSrc);
+			}
 			setListTmp(arr_new);
 		}
 	}
@@ -84,6 +99,9 @@ function Carousel(
 			let arr_new = [...listTmp, firstItem];
 			setIndexActive(prev => (prev - 1 < 0 ? arr_new.length - 1 : prev - 1));
 			setListTmp(arr_new);
+			if (arr_new && arr_new.length > 1) {
+				setBgActive(arr_new[1].bgSrc);
+			}
 		}
 	}
 
@@ -108,14 +126,18 @@ function Carousel(
 						height={height}
 						width={width}
 						{...attrs}
-						className="sheet"
+						className={`sheet ${bgMove}`}
 						ref={ref}
+						backgroundImage={bgActive}
+						onAnimationEnd={() => setBgMove('bg-animation')}
 					>
 						{listTmp.map((item, index) => {
 							return (
 								<Fragment key={'wrap-' + index}>
 									<$.CarouselItem
-										onAnimationEnd={() => handleMove('')}
+										onAnimationEnd={() => {
+											handleMove('');
+										}}
 										key={index}
 										src={item.imgSrc}
 										className={`carousel-item ${move}`}
@@ -152,7 +174,7 @@ function Carousel(
 						</$.Control>
 						<$.Indicators
 							className="indicators"
-							totalsize={listTmp.length}
+							totalsize={listTmp && listTmp.length}
 							bottom={'2rem'}
 							right={'2rem'}
 							offset={offset}
