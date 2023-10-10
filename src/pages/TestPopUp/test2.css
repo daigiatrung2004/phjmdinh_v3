@@ -1,0 +1,7 @@
+.dropzone {
+
+}
+
+.dropzone:focus {
+	border-color: #2196f3;
+}
