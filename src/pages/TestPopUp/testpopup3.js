@@ -20,7 +20,7 @@ function TestPopUp3() {
 				<ToggleList subListItems={list}>Vấn đề hội viên</ToggleList>
 				<ToggleList subListItems={list}>Vấn đề hội viên</ToggleList>
 				<ToggleList subListItems={list}>Vấn đề hội viên</ToggleList>
-				<Dropify>Drag 'n' drop some files here, or click to select files</Dropify>
+				<Dropify title={'Tải ảnh lên:'}>Drag 'n' drop some files here, or click to select files</Dropify>
 			</Form>
 		</>
 	);

@@ -16,12 +16,13 @@ export const Form = styled.form`
 	border-radius: var(--border-radius);
 	min-height: ${({ minHeight }) => (minHeight ? minHeight : '50rem')};
 	min-width: ${({ minWidth }) => (minWidth ? minWidth : '100rem')};
+	background-color: var(--white);
 `;
 
 export const Header = styled.header`
 	min-height: ${({ minHeight }) => (minHeight ? minHeight : '10rem')};
 	background-image: url(${({ backgroundImage }) => (backgroundImage ? backgroundImage : '')});
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat; */
 	background-size: contain;
 	border-top-right-radius: var(--border-radius);
 	border-top-left-radius: var(--border-radius);

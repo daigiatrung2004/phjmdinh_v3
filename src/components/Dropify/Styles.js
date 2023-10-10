@@ -22,3 +22,7 @@ export const DropZone = styled.div`
 		border-color: var(--primary);
 	}
 `;
+
+export const Title = styled.h3`
+	margin-bottom: 2rem;
+`;
