@@ -177,8 +177,12 @@ function Header({ layout = 'default' }) {
 										<Popper
 											maxHeight="20rem"
 											width="30rem"
+											style={{ padding: '0rem' }}
 										>
-											<FilmItems items={items} />
+											<FilmItems
+												items={items}
+												hoverBackgroundColorFlag
+											/>
 										</Popper>
 									</Suspense>
 								)

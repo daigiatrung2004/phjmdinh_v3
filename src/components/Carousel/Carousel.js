@@ -223,6 +223,7 @@ function Carousel(
 								type="VERTICAL_DISPLAY_TYPE"
 								hImage={'25.35rem'}
 								wImage={'23rem'}
+								hoverCardoFlag
 							/>
 						</$.ItemSheet>
 					</$.MultiSheet>

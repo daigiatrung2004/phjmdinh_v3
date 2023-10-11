@@ -9,7 +9,18 @@ import HashTag from '~/components/HashTag';
 import Paragraph from '~/components/Paragraph';
 
 const Item = forwardRef(function (
-	{ to, data, type = 'SEARCH_TYPE', icon, isHideTitle, hImage, wImage, ...propsDefault },
+	{
+		to,
+		data,
+		type = 'SEARCH_TYPE',
+		icon,
+		isHideTitle,
+		hImage,
+		wImage,
+		hoverCardoFlag = false,
+		hoverBackgroundColorFlag = false,
+		...propsDefault
+	},
 	ref
 ) {
 	let src = data.posterPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.posterPath}` : '';
@@ -26,12 +37,26 @@ const Item = forwardRef(function (
 	}
 
 	const typeClassNames = {
-		SEARCH_TYPE: '',
-		VERTICAL_DISPLAY_TYPE: { img: 'img__vertical', wrapperItem: 'item__display-vertical', title: 'primary' },
+		SEARCH_TYPE: {
+			img: '',
+			wrapperItem: 'item__display-searchtype',
+			title: '',
+			item: 'item-horizontal',
+			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
+		},
+		VERTICAL_DISPLAY_TYPE: {
+			img: 'img__vertical',
+			wrapperItem: 'item__display-vertical',
+			title: 'primary',
+			item: 'item-vertical',
+			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
+		},
 		HORIZON_DISPLAY_TYPE: {
 			img: 'hover-scaling img__horizontal',
 			wrapperItem: 'item__display-horizontal',
 			title: 'primary',
+			item: 'item-horizontal',
+			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
 		},
 	};
 
@@ -40,10 +65,10 @@ const Item = forwardRef(function (
 			ref={ref}
 			src={to}
 			{...propsDefault}
-			className={typeClassNames[type].wrapperItem + ' item'}
+			className={`${typeClassNames[type].wrapperItem} item ${typeClassNames[type].hoverBgColor}`}
 			onMouseEnter={() => mouseEnter(src)}
 		>
-			<$.PresentItem className="item-present">
+			<$.PresentItem className={`item-present ${typeClassNames[type].item} ${typeClassNames[type].wrapperItem}`}>
 				<$.Image
 					src={src}
 					alt={data.title}
@@ -58,77 +83,79 @@ const Item = forwardRef(function (
 					<$.SubTitle>{data.originalTitle}</$.SubTitle>
 				</$.ItemInfo>
 			</$.PresentItem>
-			<$.Cardo className="cardo">
-				<$.ImageSheet>
-					<$.Image
-						src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
-						alt={data.title}
-						h={'14.5rem'}
-						w={'25.5rem'}
-						className={typeClassNames[type].img + ' not-border-radius not-padding'}
-						style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
-					/>
-					<$.ControlSheet>
-						<$.PlayWrap className="wrap pointer flex-center">
-							<Play
-								width="4rem"
-								height="4rem"
-							/>
-						</$.PlayWrap>
-						<$.CollectorWrap>
-							<div className="collector pointer">
-								<Collector
+			{hoverCardoFlag && (
+				<$.Cardo className="cardo">
+					<$.ImageSheet>
+						<$.Image
+							src={`${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}`}
+							alt={data.title}
+							h={'14.5rem'}
+							w={'25.5rem'}
+							className={typeClassNames[type].img + ' not-border-radius not-padding'}
+							style={{ borderTopLeftRadius: '0.5rem', borderTopRightRadius: '0.5rem' }}
+						/>
+						<$.ControlSheet>
+							<$.PlayWrap className="wrap pointer flex-center">
+								<Play
 									width="4rem"
 									height="4rem"
 								/>
-							</div>
-							<div className="collector-hover pointer">
-								<CollectorHover
-									width="4rem"
-									height="4rem"
-								/>
-							</div>
-						</$.CollectorWrap>
-					</$.ControlSheet>
-				</$.ImageSheet>
-				<$.CardoBody>
-					<Label
-						className={typeClassNames[type].title}
-						style={{}}
-					>
-						{data.title}
-					</Label>
-					<$.Episode_Info_Tag>
-						<$.Score>
-							<span className="score-info-greenStar">
-								<Star
-									width="12px"
-									height="12px"
-								/>
-							</span>
-							<span className="score-info-number">{data.voteAverage}</span>
-							<div className="broken-line"></div>
-							<$.Episode>{(data.adult && 'T18') || 'T13'}</$.Episode>
-							<div className="broken-line"></div>
-							<span>2023</span>
-						</$.Score>
-						<$.HashTagSheet>
-							<HashTag>Thái Lan</HashTag>
-							<HashTag>Tình Tiết</HashTag>
-							<HashTag>Thái Lan</HashTag>
-						</$.HashTagSheet>
-						<Paragraph
-							style={{ fontSize: '1.2rem', marginTop: '1.2rem' }}
-							isTextOverFlow
-							numLine={5}
-							moreTitle="Xem thêm"
-							linkMore={'./reviewfilm/'}
+							</$.PlayWrap>
+							<$.CollectorWrap>
+								<div className="collector pointer">
+									<Collector
+										width="4rem"
+										height="4rem"
+									/>
+								</div>
+								<div className="collector-hover pointer">
+									<CollectorHover
+										width="4rem"
+										height="4rem"
+									/>
+								</div>
+							</$.CollectorWrap>
+						</$.ControlSheet>
+					</$.ImageSheet>
+					<$.CardoBody>
+						<Label
+							className={typeClassNames[type].title}
+							style={{}}
 						>
-							{data.overview}
-						</Paragraph>
-					</$.Episode_Info_Tag>
-				</$.CardoBody>
-			</$.Cardo>
+							{data.title}
+						</Label>
+						<$.Episode_Info_Tag>
+							<$.Score>
+								<span className="score-info-greenStar">
+									<Star
+										width="12px"
+										height="12px"
+									/>
+								</span>
+								<span className="score-info-number">{data.voteAverage}</span>
+								<div className="broken-line"></div>
+								<$.Episode>{(data.adult && 'T18') || 'T13'}</$.Episode>
+								<div className="broken-line"></div>
+								<span>2023</span>
+							</$.Score>
+							<$.HashTagSheet>
+								<HashTag>Thái Lan</HashTag>
+								<HashTag>Tình Tiết</HashTag>
+								<HashTag>Thái Lan</HashTag>
+							</$.HashTagSheet>
+							<Paragraph
+								style={{ fontSize: '1.2rem', marginTop: '1.2rem' }}
+								isTextOverFlow
+								numLine={5}
+								moreTitle="Xem thêm"
+								linkMore={'./reviewfilm/'}
+							>
+								{data.overview}
+							</Paragraph>
+						</$.Episode_Info_Tag>
+					</$.CardoBody>
+				</$.Cardo>
+			)}
 		</$.Item>
 	);
 });

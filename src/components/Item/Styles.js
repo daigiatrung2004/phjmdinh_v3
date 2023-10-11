@@ -84,11 +84,12 @@ export const Item = styled(ItemCustom)`
 	--height-img-item: 40px;
 	--width-img-item: 40px;
 	display: flex;
-	padding: 2px 10px 10px 10px;
-	margin-bottom: 8px;
+	padding: 2px 10px 10px 18px;
+	/* margin-bottom: 8px; */
 	border-bottom: 1px dashed;
-	max-height: 40px;
+	/* max-height: 40px; */
 	position: relative;
+	cursor: pointer;
 	transition: all ${({ transitiontime }) => (transitiontime ? transitiontime / 1000 + 's' : '0.5s')} linear;
 
 	/* https://codesandbox.io/s/react-reset-css-animation-63dsx */
@@ -133,6 +134,15 @@ export const Item = styled(ItemCustom)`
 		text-decoration-color: var(--white);
 	}
 
+	&.hover-text-color {
+		color: var(--primary);
+	}
+
+	&.hover-background:hover {
+		background-color: var(--primary);
+		color: var(--white);
+	}
+
 	& > .wrapper {
 		position: relative;
 	}
@@ -160,6 +170,30 @@ export const PresentItem = styled.div`
 	/* &.item-present:hover {
 		z-index: 98;
 	} */
+
+	&.item__display-searchtype {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+
+		& .content,
+		& small {
+			max-width: 21rem;
+			display: inline-block;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+
+	&.item-vertical {
+		flex-direction: column;
+	}
+
+	&.item-horizontal {
+		flex-direction: row;
+	}
 `;
 
 export const Image = styled(ImageComponent)`
