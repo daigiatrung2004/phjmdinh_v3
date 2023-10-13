@@ -13,6 +13,7 @@ import OverSea from '~/pages/LandingPage/OverSea';
 import PartnerShip from '~/pages/LandingPage/PartnerShip';
 import { lazy } from 'react';
 import Feedback from '~/pages/LandingPage/Feedback';
+import Support from '~/pages/LandingPage/Support';
 
 const Home = lazy(() => import('~/pages/Home'));
 
@@ -91,6 +92,11 @@ export const privateRoutes = [
 	{
 		path: '/feedback',
 		component: <Feedback />,
+		denp: 'landing',
+	},
+	{
+		path: '/support',
+		component: <Support />,
 		denp: 'landing',
 	},
 ];

@@ -114,6 +114,7 @@ function Footer() {
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
+						src={'http://localhost:5000/support'}
 					>
 						Câu hỏi thường gặp
 					</Label>
