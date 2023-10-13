@@ -5,6 +5,7 @@ export const StyleGeneral = styled.div`
 	--border-color: #dbdbdb;
 	--border-width: 0.1rem;
 	flex-grow: 1;
+	display: flex;
 `;
 
 export const InputText = styled.input`
@@ -19,6 +20,13 @@ export const InputText = styled.input`
 	&:active {
 		outline: none;
 	}
+`;
+
+export const InputRadio = styled.input``;
+
+export const LabelRadio = styled.label`
+	color: var(--black);
+	flex-grow: 1;
 `;
 
 export const LabelText = styled.label`

@@ -19,6 +19,8 @@ export const Form = styled.form`
 	background-color: var(--white);
 `;
 
+export const TitleHeader = styled.h2``;
+
 export const Header = styled.header`
 	min-height: ${({ minHeight }) => (minHeight ? minHeight : '10rem')};
 	background-image: url(${({ backgroundImage }) => (backgroundImage ? backgroundImage : '')});

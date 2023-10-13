@@ -17,6 +17,7 @@ const Images = {
 	PrimaryTest3: require('./primary_test3.webp').default,
 	BgTest4: require('./bg_test4.webp').default,
 	PrimaryTest4: require('./primary_test4.webp').default,
+	HeaderBgFeed: require('./header-bg-feedback.png').default,
 };
 
 export default Images;

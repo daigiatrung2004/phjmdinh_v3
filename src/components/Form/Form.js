@@ -1,6 +1,6 @@
 import * as $ from './Styles';
 
-function Form({ children, action, isHeaderFlag, isFooterFlag, contentHeader, contentFooter, ...attrs }) {
+function Form({ children, action, isHeaderFlag, isFooterFlag, contentHeader, contentFooter, bgHeaderImg, ...attrs }) {
 	return (
 		<$.FormSheet>
 			<$.Form
@@ -9,10 +9,15 @@ function Form({ children, action, isHeaderFlag, isFooterFlag, contentHeader, con
 			>
 				{isHeaderFlag && (
 					<$.Header
+						className="flex-center"
 						backgroundImage={
-							'https://as2.ftcdn.net/v2/jpg/02/92/49/43/1000_F_292494319_cbLrN5FGaZ9eP4UjOjdOFHiDEYFgN5eq.jpg'
+							bgHeaderImg
+								? bgHeaderImg
+								: 'https://as2.ftcdn.net/v2/jpg/02/92/49/43/1000_F_292494319_cbLrN5FGaZ9eP4UjOjdOFHiDEYFgN5eq.jpg'
 						}
-					></$.Header>
+					>
+						<$.TitleHeader>{contentHeader}</$.TitleHeader>
+					</$.Header>
 				)}
 				<$.Content>
 					{children}

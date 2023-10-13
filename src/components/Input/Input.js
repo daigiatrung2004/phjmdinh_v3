@@ -14,7 +14,17 @@ function Input({ type = 'text', value, labelText, ...attrs }) {
 						/>
 					</$.StyleGeneral>
 				);
-
+			case 'radio':
+				return (
+					<$.StyleGeneral>
+						<$.InputRadio
+							{...attrs}
+							type={type}
+							value={value}
+						/>
+						<$.LabelRadio>{labelText}</$.LabelRadio>
+					</$.StyleGeneral>
+				);
 			default:
 				return '';
 		}
