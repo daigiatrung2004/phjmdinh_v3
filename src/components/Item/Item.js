@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 
 import Label from '~/components/Label';
 import * as $ from './Styles';
-import { forwardRef, useContext } from 'react';
+import { forwardRef, useContext, useEffect, useState } from 'react';
 import ItemContext from '~/pages/Home/ItemContext';
 import { Star, Play, Collector, CollectorHover } from '~/components/Icons';
 import HashTag from '~/components/HashTag';
 import Paragraph from '~/components/Paragraph';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const Item = forwardRef(function (
 	{
@@ -19,10 +21,12 @@ const Item = forwardRef(function (
 		wImage,
 		hoverCardoFlag = false,
 		hoverBackgroundColorFlag = false,
+		isLoadingCurrent = false,
 		...propsDefault
 	},
 	ref
 ) {
+	const [isLoading, setIsLoading] = useState(isLoadingCurrent);
 	let src = data.posterPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.posterPath}` : '';
 
 	if (type === 'HORIZON_DISPLAY_TYPE') {
@@ -60,7 +64,11 @@ const Item = forwardRef(function (
 		},
 	};
 
-	return (
+	useEffect(() => {
+		setIsLoading(isLoadingCurrent);
+	}, [isLoadingCurrent]);
+
+	return isLoading ? (
 		<$.Item
 			ref={ref}
 			src={to}
@@ -157,6 +165,38 @@ const Item = forwardRef(function (
 				</$.Cardo>
 			)}
 		</$.Item>
+	) : (
+		<SkeletonTheme
+			baseColor="#202020"
+			highlightColor="#444"
+			enableAnimation
+		>
+			<$.Item
+				ref={ref}
+				src={to}
+				{...propsDefault}
+				className={`${typeClassNames[type].wrapperItem} item ${typeClassNames[type].hoverBgColor}`}
+				onMouseEnter={() => mouseEnter(src)}
+			>
+				<$.PresentItem
+					className={`item-present ${typeClassNames[type].item} ${typeClassNames[type].wrapperItem}`}
+				>
+					<Skeleton
+						height={265.5}
+						width={182}
+						duration={2}
+						// enableAnimation={true}
+						style={{ '--pseudo-element-display': 'auto' }}
+					/>
+					<$.ItemInfo isHide={isHideTitle}>
+						<Skeleton
+							count={1.5}
+							style={{ '--pseudo-element-display': 'auto' }}
+						/>
+					</$.ItemInfo>
+				</$.PresentItem>
+			</$.Item>
+		</SkeletonTheme>
 	);
 });
 

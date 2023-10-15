@@ -224,6 +224,7 @@ function Carousel(
 								hImage={'25.35rem'}
 								wImage={'23rem'}
 								hoverCardoFlag
+								{...attrs}
 							/>
 						</$.ItemSheet>
 					</$.MultiSheet>

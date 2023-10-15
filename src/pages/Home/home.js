@@ -21,6 +21,7 @@ function Home() {
 	const [itemsLastest, setItemsLastest] = useState([]);
 	const [srcTrailer, setSrcTrailer] = useState(null);
 	const [showPopUp, setShowPopUp] = useState(false);
+	const [isLoaded, setIsLoaded] = useState(false);
 	const [config, setConfig] = useState({
 		shape: PUSettings['shape']['square'],
 		// srcIcon: Success,
@@ -85,9 +86,16 @@ function Home() {
 							: ''
 					);
 				}
+
+				setIsLoaded(true);
+				console.log('co vao day==========');
+				// console.log('isloaded======:', isLoaded);
 				console.log('lastestData:', latestData);
 			})
-			.catch(error => console.log(error));
+			.catch(error => {
+				console.log(error);
+				setIsLoaded(true);
+			});
 
 		window.addEventListener('scroll', handleToggleBackTop);
 
@@ -449,11 +457,27 @@ function Home() {
 						/>
 					</$.ItemsWrapper> */}
 					<$.ItemsWrapper>
-						<Carousel
-							CarouselItems={itemsPopular}
-							type="multi"
-							step={'5'}
-						/>
+						{(isLoaded && (
+							<Carousel
+								CarouselItems={itemsPopular}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)) || (
+							<Carousel
+								CarouselItems={[
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+								]}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)}
 					</$.ItemsWrapper>
 				</$.Row>
 				<$.Row>
@@ -487,11 +511,27 @@ function Home() {
 						/>
 					</$.ItemsWrapper> */}
 					<$.ItemsWrapper>
-						<Carousel
-							CarouselItems={itemsTrending}
-							type="multi"
-							step={'5'}
-						/>
+						{(isLoaded && (
+							<Carousel
+								CarouselItems={itemsTrending}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)) || (
+							<Carousel
+								CarouselItems={[
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+								]}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)}
 					</$.ItemsWrapper>
 				</$.Row>
 
@@ -526,11 +566,27 @@ function Home() {
 						/>
 					</$.ItemsWrapper> */}
 					<$.ItemsWrapper>
-						<Carousel
-							CarouselItems={itemsUpComing}
-							type="multi"
-							step={'5'}
-						/>
+						{(isLoaded && (
+							<Carousel
+								CarouselItems={itemsUpComing}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)) || (
+							<Carousel
+								CarouselItems={[
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+									{ bgSrc: '' },
+								]}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)}
 					</$.ItemsWrapper>
 				</$.Row>
 				{/* <Label
