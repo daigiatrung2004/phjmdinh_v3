@@ -2,10 +2,27 @@ import Label from '~/components/Label';
 import * as $ from './Styles';
 import { faInstagram, faSquareFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
 
 function Footer() {
+	const [percentDisplay, setPercentDisplay] = useState('opacity-transparent');
+
+	function handleDisplay() {
+		console.log('co vao handleDisplay ==========');
+		if (window.scrollY >= 1100) {
+			setPercentDisplay('');
+		} else {
+			setPercentDisplay('opacity-transparent');
+		}
+	}
+	useEffect(() => {
+		window.addEventListener('scroll', handleDisplay);
+
+		return () => window.removeEventListener('scroll', handleDisplay);
+	}, []);
+
 	return (
-		<$.FooterSheet className="footer-sheet">
+		<$.FooterSheet className={`footer-sheet ${percentDisplay}`}>
 			<$.CustomBg
 				// src="https://image.tmdb.org/t/p/w1920_and_h600_multi_faces_filter(duotone,032541,01b4e4)/hreiLoPysWG79TsyQgMzFKaOTF5.jpg"
 				className="flex-center hover-footer"

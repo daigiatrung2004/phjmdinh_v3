@@ -92,6 +92,12 @@ export const FooterSheet = styled.div`
 		cursor: pointer;
 	}
 
+	&.opacity-transparent {
+		pointer-events: none;
+		height: 0rem;
+		opacity: 0;
+	}
+
 	transition: all 0.5s 0.4s ease;
 `;
 
