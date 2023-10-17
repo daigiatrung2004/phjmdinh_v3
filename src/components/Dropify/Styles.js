@@ -21,8 +21,19 @@ export const DropZone = styled.div`
 	&:focus {
 		border-color: var(--primary);
 	}
+
+	&:focus svg {
+		color: var(--primary);
+	}
 `;
 
 export const Title = styled.h3`
 	margin-bottom: 2rem;
+`;
+
+export const TitleUpload = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 `;
