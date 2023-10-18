@@ -13,6 +13,7 @@ import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
 import Images from '~/assets/images';
 import * as $ from './Styles';
+import { carouselDataDefault } from '~/utils/dataDefaults';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -466,13 +467,7 @@ function Home() {
 							/>
 						)) || (
 							<Carousel
-								CarouselItems={[
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-								]}
+								CarouselItems={carouselDataDefault}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -520,13 +515,7 @@ function Home() {
 							/>
 						)) || (
 							<Carousel
-								CarouselItems={[
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-								]}
+								CarouselItems={carouselDataDefault}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -575,13 +564,7 @@ function Home() {
 							/>
 						)) || (
 							<Carousel
-								CarouselItems={[
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-									{ bgSrc: '' },
-								]}
+								CarouselItems={carouselDataDefault}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}
