@@ -13,9 +13,11 @@ function HashTag({ children, externalChildren, isShowExtension = false, styleHov
 			hovering={styleHovering}
 			{...attrs}
 		>
-			{isShowExtension && extension['placement'] == 'left' && <$.Extension>{extension['children']}</$.Extension>}
+			{isShowExtension && extension['placement'] === 'left' && <$.Extension>{extension['children']}</$.Extension>}
 			{children}
-			{isShowExtension && extension['placement'] == 'right' && <$.Extension>{extension['children']}</$.Extension>}
+			{isShowExtension && extension['placement'] === 'right' && (
+				<$.Extension>{extension['children']}</$.Extension>
+			)}
 		</$.TagSheet>
 	);
 }

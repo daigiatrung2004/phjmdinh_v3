@@ -112,7 +112,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 
 	Object.assign(config[type], settings);
 	let IconComponent = {
-		type: Image,
+		Type: Image,
 		props: {
 			src: '',
 		},
@@ -120,10 +120,10 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 	let isExpiredTime = useTimeOutEffect(isShow, (config[type].timeOut ?? 0) + 300);
 
 	useEffect(() => {
-		if (type == 'Error' && isShow) setIsShow(isExpiredTime);
-	}, [isExpiredTime]);
+		if (type === 'Error' && isShow) setIsShow(isExpiredTime);
+	}, [isExpiredTime, isShow, type]);
 
-	if (typeof config[type].srcIcon == 'string') {
+	if (typeof config[type].srcIcon === 'string') {
 		Object.assign(IconComponent, {
 			props: {
 				className: 'icon',
@@ -134,7 +134,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 		});
 	} else if (isValidElement(config[type].srcIcon)) {
 		IconComponent = config[type].srcIcon;
-	} else if (typeof config[type].srcIcon == 'object') {
+	} else if (typeof config[type].srcIcon === 'object') {
 		Object.assign(IconComponent, config[type].srcIcon);
 	}
 
@@ -155,21 +155,21 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 								stylesCustom={{ position: 'absolute', right: '2px', top: '2px' }}
 								onClick={() => {
 									setIsShow(false);
-									typeof onClick == 'function' && onClick();
+									typeof onClick === 'function' && onClick();
 								}}
 							>
 								<FontAwesomeIcon icon={faXmark} />
 							</Button>
 						</$.Header>
 					)}
-					{type == 'Error' ? (
+					{type === 'Error' ? (
 						<$.Content style={{ padding: '10px', paddingTop: '5px' }}>
 							{config[type].leftIcon && (
 								<$.Icon>
 									{isValidElement(IconComponent) ? (
 										IconComponent
 									) : (
-										<IconComponent.type {...IconComponent.props} />
+										<IconComponent.Type {...IconComponent.props} />
 									)}
 								</$.Icon>
 							)}
@@ -190,7 +190,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 									{isValidElement(IconComponent) ? (
 										IconComponent
 									) : (
-										<IconComponent.type {...IconComponent.props} />
+										<IconComponent.Type {...IconComponent.props} />
 									)}
 								</$.Icon>
 							)}
@@ -200,7 +200,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 									{isValidElement(IconComponent) ? (
 										IconComponent
 									) : (
-										<IconComponent.type {...IconComponent.props} />
+										<IconComponent.Type {...IconComponent.props} />
 									)}
 								</$.Icon>
 							)}
@@ -212,7 +212,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 								theme={{ type: 'primary', size: 'small fullW' }}
 								onClick={() => {
 									setIsShow(false);
-									typeof onClick == 'function' && onClick();
+									typeof onClick === 'function' && onClick();
 								}}
 							>
 								OK

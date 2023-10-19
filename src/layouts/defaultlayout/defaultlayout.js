@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { Suspense, lazy } from 'react';
+import { Suspense } from 'react';
 import Loading from '~/components/Loading';
-import Header from '~/layouts/components/Header';
 import Footer from '~/layouts/components/Footer';
+import Header from '~/layouts/components/Header';
 
 function DefaultLayout({ children }) {
 	// const Test = lazy(() => import('~/pages/WatchFilm'));

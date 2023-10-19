@@ -3,5 +3,10 @@
 	"editor.defaultFormatter:": "esbenp.prettier-vscode",
 	"emmet.includeLanguages": {
 		"javascript": "javascriptreact"
-	}
+	},
+	// "editor.codeActionsOnSave": {
+	// 	"source.fixAll": true,
+	// 	"source.organizeImports": true,
+	// 	"source.sortMembers": true
+	//   }
 }

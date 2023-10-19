@@ -1,10 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as $ from './Styles';
-import { useDropzone } from 'react-dropzone';
 import { faCloudArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useDropzone } from 'react-dropzone';
+import * as $ from './Styles';
 
 function Dropify({ children, title }) {
-	const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+	const { getRootProps, getInputProps } = useDropzone();
 	return (
 		<>
 			{title && <$.Title>{title}</$.Title>}

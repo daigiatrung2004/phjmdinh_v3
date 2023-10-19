@@ -1,12 +1,7 @@
-import PropTypes from 'prop-types';
-
-import * as $ from './Styles';
 import { forwardRef } from 'react';
+import * as $ from './Styles';
 
 const Background = forwardRef(function ({ children, src, className, ...propsDefault }, ref) {
-	{
-		console.log('children background:', children);
-	}
 	return (
 		<$.Background
 			src={src}

@@ -83,7 +83,7 @@ const ProcessBar = styled.div`
 `;
 
 export const ModalGeneral = ({ type, shape, children, contrast, border, timeOut, ...style }) => {
-	if (type == 'Error') {
+	if (type === 'Error') {
 		return (
 			<Toast
 				contrast={contrast}

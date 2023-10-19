@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useLayoutEffect, useRef } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
@@ -60,7 +60,7 @@ const ItemCustom = forwardRef(({ src, className, children, state, setState, tran
 			}, transitiontime);
 			return () => clearTimeout(id);
 		}
-	}, [state, transitiontime]);
+	}, [state, transitiontime, setState]);
 
 	if (src) {
 		Ele = Link;
@@ -97,7 +97,7 @@ export const Item = styled(ItemCustom)`
 		/* animation: ${({ isslide, translatexslide, transform, state, sign }) => {
 			// console.log('state init:', state);
 
-			if (isslide == 'true' && translatexslide == 'true' && state) {
+			if (isslide === 'true' && translatexslide === 'true' && state) {
 				return frame(sign, transform);
 			}
 		}}

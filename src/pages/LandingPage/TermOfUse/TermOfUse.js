@@ -109,7 +109,6 @@ function TermOfUse() {
 													on the "Account" link available at the top of the pages under your
 													profile name.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -126,7 +125,6 @@ function TermOfUse() {
 													limitations and conditions will be disclosed when you sign-up for
 													the Offer or in other communications made available to you.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -209,7 +207,6 @@ function TermOfUse() {
 													change to your subscription plan, you can cancel your subscription
 													before the change takes effect.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -337,7 +334,6 @@ function TermOfUse() {
 													versions of the Netflix software and related third-party software.
 													<br />
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -358,7 +354,6 @@ function TermOfUse() {
 													account on hold in order to protect you, Netflix or our partners
 													from identity theft or other fraudulent activity.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -370,7 +365,6 @@ function TermOfUse() {
 													warranties or consumer protection rights that you may be entitled to
 													under the mandatory laws of your country of residence.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>
@@ -384,7 +378,6 @@ function TermOfUse() {
 													claims, and may not otherwise preside over any form of a
 													representative or class proceeding.
 												</p>
-												<h2 />
 											</li>
 											<li>
 												<p>

@@ -1,7 +1,6 @@
 import ToggleList from '~/components/ToggleList';
 import * as $ from './Styles';
 import * as dataset from './dataset';
-import { Fragment } from 'react';
 
 function Support() {
 	return (

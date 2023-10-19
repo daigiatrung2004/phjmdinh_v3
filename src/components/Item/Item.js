@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-import Label from '~/components/Label';
-import * as $ from './Styles';
 import { forwardRef, useContext, useEffect, useState } from 'react';
-import ItemContext from '~/pages/Home/ItemContext';
-import { Star, Play, Collector, CollectorHover } from '~/components/Icons';
-import HashTag from '~/components/HashTag';
-import Paragraph from '~/components/Paragraph';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import HashTag from '~/components/HashTag';
+import { Collector, CollectorHover, Play, Star } from '~/components/Icons';
+import Label from '~/components/Label';
+import Paragraph from '~/components/Paragraph';
+import ItemContext from '~/pages/Home/ItemContext';
+import * as $ from './Styles';
 
 const Item = forwardRef(function (
 	{

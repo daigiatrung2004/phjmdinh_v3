@@ -29,7 +29,10 @@ function PreInstall() {
 					href="//static-s.iqiyi.com/lequ/20210616/license-agreement.pdf"
 					download="license-agreement.pdf"
 				>
-					<img src="https://pic2.iqiyipic.com/lequ/20210615/Download-preinstall.png" />{' '}
+					<img
+						alt="phjmdinh"
+						src="https://pic2.iqiyipic.com/lequ/20210615/Download-preinstall.png"
+					/>{' '}
 					<span>Download Licensing Agreement</span>
 				</a>
 				<p style={{ fontSize: '16px' }}>
@@ -41,7 +44,10 @@ function PreInstall() {
 					href="https://www.iq.com/intl-common/preinstall.html"
 					download="technical-integration.docx"
 				>
-					<img src="https://pic2.iqiyipic.com/lequ/20210615/Download-preinstall.png" />{' '}
+					<img
+						alt="phjmdinh"
+						src="https://pic2.iqiyipic.com/lequ/20210615/Download-preinstall.png"
+					/>{' '}
 					<span>Download Technical Integration </span>
 				</a>
 				<p className="lastp">

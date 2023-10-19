@@ -1,9 +1,8 @@
-import Form from '~/components/Form';
-import * as $ from './Styles';
-import ToggleList from '~/components/ToggleList';
-import Dropify from '~/components/Dropify';
-import TextArea from '~/components/TextArea';
 import Images from '~/assets/images';
+import Dropify from '~/components/Dropify';
+import Form from '~/components/Form';
+import TextArea from '~/components/TextArea';
+import ToggleList from '~/components/ToggleList';
 import * as dataset from './dataset';
 
 function Feedback() {

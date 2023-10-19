@@ -1,8 +1,7 @@
+import { faInstagram, faSquareFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { useEffect, useState } from 'react';
 import Label from '~/components/Label';
 import * as $ from './Styles';
-import { faInstagram, faSquareFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
 
 function Footer() {
 	const [percentDisplay, setPercentDisplay] = useState('opacity-transparent');

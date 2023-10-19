@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function useTimeOutEffect(cleanUpFlag, timeout = 0) {
 	const [isExpired, setIsExpired] = useState(cleanUpFlag);
@@ -13,7 +13,7 @@ function useTimeOutEffect(cleanUpFlag, timeout = 0) {
 			setIsExpired(cleanUpFlag);
 			return clearTimeout(id);
 		}
-	}, [cleanUpFlag]);
+	}, [cleanUpFlag, timeout]);
 	return isExpired;
 }
 

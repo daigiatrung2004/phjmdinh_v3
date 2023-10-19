@@ -1,8 +1,7 @@
-import Input from '~/components/Input';
-import * as $ from './Styles';
-import Paragraph from '~/components/Paragraph';
-import TextArea from '~/components/TextArea';
 import DropDown from '~/components/DropDown';
+import Input from '~/components/Input';
+import TextArea from '~/components/TextArea';
+import * as $ from './Styles';
 
 function PartnerShip() {
 	let options = [

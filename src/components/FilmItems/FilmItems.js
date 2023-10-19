@@ -1,8 +1,5 @@
-import PropTypes from 'prop-types';
-import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
-
+import { forwardRef } from 'react';
 import Item from '~/components/Item';
-import { forwardRef, useEffect } from 'react';
 
 /**
  * Returns function component FilmItem.
@@ -12,34 +9,34 @@ import { forwardRef, useEffect } from 'react';
  * @return {component} <FilmItem/>.
  */
 
-const data = use(
-	fetch(
-		'https://api.themoviedb.org/3/movie/popular?api_key=53ae16d555ba0f93862d360f383c196a&language=vi-VN&page=1&adults=false'
-		// 	// 'https://www.sharpecho.com/microservices-and-the-n1-problem/'
-	)
-);
+// const data = use(
+// 	fetch(
+// 		'https://api.themoviedb.org/3/movie/popular?api_key=53ae16d555ba0f93862d360f383c196a&language=vi-VN&page=1&adults=false'
+// 		// 	// 'https://www.sharpecho.com/microservices-and-the-n1-problem/'
+// 	)
+// );
 
-function use(promise) {
-	let status = 'pending';
-	let result = promise.then(
-		resolved => {
-			status = 'success';
-			result = resolved;
-		},
-		rejected => {
-			status = 'error';
-			result = rejected;
-		}
-	);
-	return {
-		read() {
-			if (status === 'pending') throw result;
-			if (status === 'error') throw result;
-			if (status === 'success') return result;
-			throw new Error('This should be impossible');
-		},
-	};
-}
+// function use(promise) {
+// 	let status = 'pending';
+// 	let result = promise.then(
+// 		resolved => {
+// 			status = 'success';
+// 			result = resolved;
+// 		},
+// 		rejected => {
+// 			status = 'error';
+// 			result = rejected;
+// 		}
+// 	);
+// 	return {
+// 		read() {
+// 			if (status === 'pending') throw result;
+// 			if (status === 'error') throw result;
+// 			if (status === 'success') return result;
+// 			throw new Error('This should be impossible');
+// 		},
+// 	};
+// }
 
 const FilmItem = forwardRef(function (
 	{
@@ -57,7 +54,7 @@ const FilmItem = forwardRef(function (
 ) {
 	// console.log('items rerender:', items);
 	// useEffect(() => getPopular({ page: 1, adults: false }), []);
-	const datafetch = data.read();
+	// const datafetch = data.read();
 	console.log('items.....:', items);
 	return (
 		items &&

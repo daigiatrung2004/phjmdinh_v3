@@ -12,7 +12,7 @@ function DropDown({ options = [], name = 'dropdown', id = 'dropdown', defaultTex
 		// return () => {
 		// 	options.shift();
 		// };
-	}, []);
+	}, [defaultText, options]);
 
 	return (
 		<$.StyleGeneral>
@@ -26,7 +26,7 @@ function DropDown({ options = [], name = 'dropdown', id = 'dropdown', defaultTex
 					return (
 						<option
 							value={value}
-							selected={value == 'default' ? 'selected' : ''}
+							selected={value === 'default' ? 'selected' : ''}
 						>
 							{text}
 						</option>

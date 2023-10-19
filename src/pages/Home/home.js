@@ -4,38 +4,44 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { PUSettings } from '~/utils/StylesBase';
 
 import { createPortal } from 'react-dom';
+import Images from '~/assets/images';
 import Carousel from '~/components/Carousel';
-import Items from '~/components/FilmItems';
 import { Collector, CollectorHover, Play } from '~/components/Icons';
 import Label from '~/components/Label';
 import PopUp from '~/components/PopUp';
 import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
-import handleError from '~/utils/handleError';
-import Images from '~/assets/images';
-import * as $ from './Styles';
 import { carouselDataDefault } from '~/utils/dataDefaults';
+import handleError from '~/utils/handleError';
+import * as $ from './Styles';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
 	const [itemsTrending, setItemsTrending] = useState([]);
 	const [itemsUpComing, setItemsUpComing] = useState([]);
 	const [itemsLastest, setItemsLastest] = useState([]);
-	const [srcTrailer, setSrcTrailer] = useState(null);
+	// const [srcTrailer, setSrcTrailer] = useState(null);
 	const [showPopUp, setShowPopUp] = useState(false);
 	const [isLoaded, setIsLoaded] = useState(false);
-	const [config, setConfig] = useState({
+	// const [config, setConfig] = useState({
+	// 	shape: PUSettings['shape']['square'],
+	// 	// srcIcon: Success,
+	// 	isFooter: true,
+	// 	isHeader: true,
+	// 	content: 'System remaining ...!',
+	// });
+	const config = {
 		shape: PUSettings['shape']['square'],
 		// srcIcon: Success,
 		isFooter: true,
 		isHeader: true,
 		content: 'System remaining ...!',
-	});
+	};
 	const backTopRef = useRef();
 
-	const handleMouseEnter = useCallback(src => {
-		console.log('src:', src);
-		setSrcTrailer(src);
-	}, []);
+	// const handleMouseEnter = useCallback(src => {
+	// 	console.log('src:', src);
+	// 	setSrcTrailer(src);
+	// }, []);
 
 	const handlePopUP = useCallback(() => {
 		setShowPopUp(false);
@@ -80,13 +86,13 @@ function Home() {
 				setItemsTrending(trendingData);
 				setItemsUpComing(upcomingData);
 				setItemsLastest(latestData);
-				if (latestData.length > 1) {
-					setSrcTrailer(
-						latestData[0].backdropPath
-							? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${latestData[0].backdropPath}`
-							: ''
-					);
-				}
+				// if (latestData.length > 1) {
+				// 	setSrcTrailer(
+				// 		latestData[0].backdropPath
+				// 			? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${latestData[0].backdropPath}`
+				// 			: ''
+				// 	);
+				// }
 
 				setIsLoaded(true);
 				console.log('co vao day==========');
@@ -509,6 +515,54 @@ function Home() {
 						{(isLoaded && (
 							<Carousel
 								CarouselItems={itemsTrending}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)) || (
+							<Carousel
+								CarouselItems={carouselDataDefault}
+								type="multi"
+								step={'5'}
+								isLoadingCurrent={isLoaded}
+							/>
+						)}
+					</$.ItemsWrapper>
+				</$.Row>
+				<$.Row>
+					<$.TitleLabel
+						type={'h3'}
+						fontSize="30px"
+						fontWeight="700"
+						className={'primary'}
+						rightIcons={
+							<>
+								<$.ExtendIcon className="extend-icon">
+									<span style={{ flexShrink: '0' }}>xem thêm</span>
+								</$.ExtendIcon>
+								<FontAwesomeIcon
+									icon={faChevronRight}
+									style={{ color: 'var(--text-color-search)' }}
+								/>
+							</>
+						}
+						iconsize={'20px'}
+					>
+						NEW RELEASE
+					</$.TitleLabel>
+					{/* <$.ItemsWrapper>
+						<Items
+							src="/reviewfilm/"
+							items={itemsTrending}
+							type="VERTICAL_DISPLAY_TYPE"
+							hImage={'25.35rem'}
+							wImage={'19.0167rem'}
+						/>
+					</$.ItemsWrapper> */}
+					<$.ItemsWrapper>
+						{(isLoaded && (
+							<Carousel
+								CarouselItems={itemsLastest}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}

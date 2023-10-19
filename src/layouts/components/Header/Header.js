@@ -2,30 +2,33 @@ import { faCaretDown, faCircleXmark, faMagnifyingGlass, faSpinner } from '@forta
 import Tippy from '@tippyjs/react/headless';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Images from '~/assets/images';
+import Button from '~/components/Button';
 import FilmItems from '~/components/FilmItems';
 import { Account, History, Language, Promote } from '~/components/Icons';
+import Image from '~/components/Image';
 import Label from '~/components/Label';
 import Popper from '~/components/popper';
 import useDebounced from '~/hooks/useDebounced';
 import { search } from '~/services/searchService';
 import * as $ from './Styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from '~/components/Image';
-import Button from '~/components/Button';
 
 function Header({ layout = 'default' }) {
 	const [items, setItems] = useState([]);
 	const [textSearch, setTextSearch] = useState('');
 	const [toggle, setToggle] = useState(false);
 	const [showResults, setShowResults] = useState(false);
-	const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
-	const [lang, setLang] = useState(['Tiếng Việt', 'English']);
-	const [background, setBackground] = useState(false);
+	// const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
+	// const [lang, setLang] = useState(['Tiếng Việt', 'English']);
+	const kindFilms = ['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình'];
+	const lang = ['Tiếng Việt', 'English'];
+	// const [background, setBackground] = useState(false);
+
 	const kindFilmsRef = useRef();
-	const historyRef = useRef();
-	const languageRef = useRef();
-	const accountRef = useRef();
+	// const historyRef = useRef();
+	// const languageRef = useRef();
+	// const accountRef = useRef();
 	const headerRef = useRef();
 
 	const inputRef = useRef('');
@@ -33,14 +36,14 @@ function Header({ layout = 'default' }) {
 	const timeDebounced = 1000; // 1 second
 	let textDebouncedCurrent = useDebounced(textSearch, timeDebounced);
 
-	const user = false;
+	// const user = false;
 
 	function handleScroll() {
 		let headerEle = headerRef.current;
 		if (headerEle && headerEle.style) {
 			if (window.scrollY > headerEle.clientHeight) {
 				headerEle.style.backgroundColor = 'var(--bg-color-override)';
-			} else if (window.scrollY == '0') {
+			} else if (window.scrollY === '0') {
 				headerEle.style.backgroundColor = 'var(--color-transparent)';
 			}
 		}
@@ -97,7 +100,9 @@ function Header({ layout = 'default' }) {
 		<$.Header
 			ref={headerRef}
 			style={
-				layout == 'landing' ? { top: '0', background: 'var(--bg-color-override)', justifyContent: 'start' } : {}
+				layout === 'landing'
+					? { top: '0', background: 'var(--bg-color-override)', justifyContent: 'start' }
+					: {}
 			}
 		>
 			<$.Image
@@ -106,7 +111,7 @@ function Header({ layout = 'default' }) {
 				href={'http://localhost:5000/'}
 			/>
 
-			{layout == 'landing' ? (
+			{layout === 'landing' ? (
 				''
 			) : (
 				<>

@@ -26,8 +26,13 @@ function OverSea() {
 					<p>
 						To ensure your report could be processed in a timely manner, we recommend you to send the
 						security vulnerability via{' '}
-						<a style={{ cursor: 'pointer' }}>e-mail: echo NzFzcmNAcWl5aS5jb20K|base64 -d </a>. A detailed
-						description of the vulnerability and a proof of concept (POC) will be appreciated.
+						<a
+							href="http://localhost:5000"
+							style={{ cursor: 'pointer' }}
+						>
+							e-mail: echo NzFzcmNAcWl5aS5jb20K|base64 -d{' '}
+						</a>
+						. A detailed description of the vulnerability and a proof of concept (POC) will be appreciated.
 					</p>
 					<p>
 						If You have any questions(including inquiries or complaints), please contact us via e-mail at

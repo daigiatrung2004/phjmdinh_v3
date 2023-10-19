@@ -1,12 +1,11 @@
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { forwardRef, useReducer, useRef, useState } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import Background from '~/components/Background';
 import Button from '~/components/Button';
 import Items from '~/components/FilmItems';
 import * as $ from './Styles';
 import ItemsContext from './itemscontext';
-import reducer from './reducer';
 
 const Slide = forwardRef(function (settings, ref) {
 	const config = {

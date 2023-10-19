@@ -83,7 +83,7 @@ function Privacy() {
 							<ul className="nav navbar-nav member-sign-in account-dropdown pull-right">
 								<li className="dropdown">
 									<a
-										href="#"
+										href="http://localhost:5000"
 										className="btn btn-med hc-profile-name dropdown-toggle"
 										data-toggle="dropdown"
 										role="button"
@@ -998,6 +998,7 @@ function Privacy() {
 												<a
 													target="_blank"
 													href="https://www.netflix.com/account/getmyinfo"
+													rel="noreferrer"
 												>
 													netflix.com/account/getmyinfo
 												</a>{' '}

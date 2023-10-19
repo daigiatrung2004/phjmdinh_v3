@@ -1,10 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import * as $ from './Styles';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { forwardRef, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Fragment } from 'react';
-import Items from '~/components/FilmItems';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Fragment, forwardRef, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import ImageDefault from '~/assets/images';
+import Items from '~/components/FilmItems';
+import * as $ from './Styles';
 
 function Carousel(
 	{
@@ -27,10 +26,10 @@ function Carousel(
 	const [listTmp, setListTmp] = useState(CarouselItems);
 	const [bgActive, setBgActive] = useState(function () {
 		if (CarouselItems && CarouselItems.length > 1) {
-			console.log('carousel...===', CarouselItems);
+			console.log('carousel...====', CarouselItems);
 			return CarouselItems[1].bgSrc;
 		} else {
-			console.log('not carousel..........=====', CarouselItems);
+			console.log('not carousel..........=======', CarouselItems);
 			return ImageDefault.noImage;
 		}
 	});
@@ -40,9 +39,9 @@ function Carousel(
 	const refItem = useRef();
 
 	function handleMove(move, ...options) {
-		if (move == 'right') {
+		if (move === 'right') {
 			handleMoveRight(...options);
-		} else if (move == 'left') {
+		} else if (move === 'left') {
 			handleMoveLeft(...options);
 		}
 		setMove(move);
@@ -50,7 +49,7 @@ function Carousel(
 	}
 
 	const transitionSize = useMemo(() => {
-		if (refItem.current && type == 'multi') {
+		if (refItem.current && type === 'multi') {
 			let itemSize = refItem.current;
 			console.log('co refitem:', itemSize, 'step:', step);
 			let size = step * (itemSize['width'] + itemSize['space']);
@@ -60,10 +59,10 @@ function Carousel(
 			console.log('k co refitem:', refItem.current);
 		}
 		return 0;
-	}, [step, skips]);
+	}, [step, skips, type]);
 
 	function handleMoveRight(type) {
-		if (type == 'multi') {
+		if (type === 'multi') {
 			setSkips(skipstmp => {
 				if (skipstmp + 1 > step) {
 					return step;
@@ -85,7 +84,7 @@ function Carousel(
 	}
 
 	function handleMoveLeft(type) {
-		if (type == 'multi') {
+		if (type === 'multi') {
 			setSkips(skipstmp => {
 				if (skipstmp - 1 < 0) {
 					return skipstmp;
@@ -106,7 +105,6 @@ function Carousel(
 	}
 
 	useLayoutEffect(() => {
-		console.log('carouselitems:', listTmp);
 		if (CarouselItems && CarouselItems.length < 3) {
 			// throw new Error('Carousel must have greater than 2 item');
 			console.warn('Carousel must have greater than 2 item');
@@ -182,7 +180,7 @@ function Carousel(
 							{listTmp.map((element, index) => {
 								return (
 									<$.Indicator
-										className={index == indexActive ? 'active' : ''}
+										className={index === indexActive ? 'active' : ''}
 										key={`indicator-${index}`}
 									/>
 								);

@@ -6020,35 +6020,35 @@ html[lang=id] .page-article .title_of_media,html[lang=id] .article-content .titl
 }
 
 html[lang=fr-CA] .page-article .title_of_media::before,html[lang=fr-CA] .article-content .title_of_media::before {
-	content: "¬´¬†"
+	content: "¬´¬?"
 }
 
 html[lang=fr-CA] .page-article .title_of_media::after,html[lang=fr-CA] .article-content .title_of_media::after {
-	content: "¬†¬ª"
+	content: "¬?¬ª"
 }
 
 html[lang=ja] .page-article .title_of_media::before,html[lang=ja] .article-content .title_of_media::before {
-	content: "„Äå"
+	content: "„Ä?"
 }
 
 html[lang=ja] .page-article .title_of_media::after,html[lang=ja] .article-content .title_of_media::after {
-	content: "„Äç"
+	content: "„Ä?"
 }
 
 html[lang=de] .page-article .title_of_media::before,html[lang=de] .article-content .title_of_media::before {
-	content: "‚Äû"
+	content: "‚Ä?"
 }
 
 html[lang=de] .page-article .title_of_media::after,html[lang=de] .article-content .title_of_media::after {
-	content: "‚Äú"
+	content: "‚Ä?"
 }
 
 html[lang=th] .page-article .title_of_media::before,html[lang=th] .article-content .title_of_media::before {
-	content: "‚Äú"
+	content: "‚Ä?"
 }
 
 html[lang=th] .page-article .title_of_media::after,html[lang=th] .article-content .title_of_media::after {
-	content: "‚Äù"
+	content: "‚Ä?"
 }
 
 html[lang=he] .page-article .title_of_media::before,html[lang=he] .article-content .title_of_media::before {
@@ -6068,27 +6068,27 @@ html[lang=nl] .page-article .title_of_media::after,html[lang=nl] .article-conten
 }
 
 html[lang=ko] .page-article .title_of_media::before,html[lang=ko] .article-content .title_of_media::before {
-	content: "„Ää"
+	content: "„Ä?"
 }
 
 html[lang=ko] .page-article .title_of_media::after,html[lang=ko] .article-content .title_of_media::after {
-	content: "„Äã"
+	content: "„Ä?"
 }
 
 html[lang=zh-CN] .page-article .title_of_media::before,html[lang=zh-CN] .article-content .title_of_media::before {
-	content: "„Ää"
+	content: "„Ä?"
 }
 
 html[lang=zh-CN] .page-article .title_of_media::after,html[lang=zh-CN] .article-content .title_of_media::after {
-	content: "„Äã"
+	content: "„Ä?"
 }
 
 html[lang=zh-TW] .page-article .title_of_media::before,html[lang=zh-TW] .article-content .title_of_media::before {
-	content: "„Ää"
+	content: "„Ä?"
 }
 
 html[lang=zh-TW] .page-article .title_of_media::after,html[lang=zh-TW] .article-content .title_of_media::after {
-	content: "„Äã"
+	content: "„Ä?"
 }
 
 html[lang=ar] .page-article .title_of_media::before,html[lang=ar] .article-content .title_of_media::before {
@@ -6998,7 +6998,7 @@ html[dir=RTL] .page-contactus .top-article a::before {
 .page-contactus .recommendation {
 	display: flex;
 	flex-direction: row;
-	align-items: start;
+	align-items: flex-start;
 	margin: 0 0 16px
 }
 

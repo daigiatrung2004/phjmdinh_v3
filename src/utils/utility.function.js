@@ -54,6 +54,7 @@ function sortObj(propObjCP) {
 
 function load() {
 	window.isobjempty = isObjEmpty;
+	// eslint-disable-next-line
 	Array.prototype.sortobj = sortObj;
 }
 

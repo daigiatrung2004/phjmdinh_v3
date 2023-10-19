@@ -20,43 +20,43 @@ const opacityFrameHide = keyframes`
 	}
 `;
 
-const colors = {
-	degree: '269deg',
-	blueStrong: [
-		'rgba(20, 41, 51, 0) 1%',
-		'rgba(20, 41, 51, 0.02) 10%',
-		'rgba(20, 41, 51, 0.05) 18%',
-		'rgba(20, 41, 51, 0.12) 25%',
-		'rgba(20, 41, 51, 0.2) 32%',
-		'rgba(20, 41, 51, 0.29) 38%',
-		'rgba(20, 41, 51, 0.39) 44%',
-		'rgba(20, 41, 51, 0.5) 50%',
-		'rgba(20, 41, 51, 0.61) 57%',
-		'rgba(20, 41, 51, 0.71) 63%',
-		'rgba(20, 41, 51, 0.8) 69%',
-		'rgba(20, 41, 51, 0.88) 76%',
-		'rgba(20, 41, 51, 0.95) 83%',
-		'rgba(20, 41, 51, 0.98) 91%',
-		'rgb(20, 41, 51) 100%',
-	],
-	blue: [
-		'rgba(20, 40, 51, 0) 1%',
-		'rgba(20, 40, 51, 0.02) 10%',
-		'rgba(20, 40, 51, 0.05) 18%',
-		'rgba(20, 40, 51, 0.12) 25%',
-		'rgba(20, 40, 51, 0.2) 32%',
-		'rgba(20, 40, 51, 0.29) 38%',
-		'rgba(20, 40, 51, 0.39) 44%',
-		'rgba(20, 40, 51, 0.5) 50%',
-		'rgba(20, 40, 51, 0.61) 57%',
-		'rgba(20, 40, 51, 0.71) 63%',
-		'rgba(20, 40, 51, 0.8) 69%',
-		'rgba(20, 40, 51, 0.88) 76%',
-		'rgba(20, 40, 51, 0.95) 83%',
-		'rgba(20, 40, 51, 0.98) 91%',
-		'rgb(20, 40, 51) 100%',
-	],
-};
+// const colors = {
+// 	degree: '269deg',
+// 	blueStrong: [
+// 		'rgba(20, 41, 51, 0) 1%',
+// 		'rgba(20, 41, 51, 0.02) 10%',
+// 		'rgba(20, 41, 51, 0.05) 18%',
+// 		'rgba(20, 41, 51, 0.12) 25%',
+// 		'rgba(20, 41, 51, 0.2) 32%',
+// 		'rgba(20, 41, 51, 0.29) 38%',
+// 		'rgba(20, 41, 51, 0.39) 44%',
+// 		'rgba(20, 41, 51, 0.5) 50%',
+// 		'rgba(20, 41, 51, 0.61) 57%',
+// 		'rgba(20, 41, 51, 0.71) 63%',
+// 		'rgba(20, 41, 51, 0.8) 69%',
+// 		'rgba(20, 41, 51, 0.88) 76%',
+// 		'rgba(20, 41, 51, 0.95) 83%',
+// 		'rgba(20, 41, 51, 0.98) 91%',
+// 		'rgb(20, 41, 51) 100%',
+// 	],
+// 	blue: [
+// 		'rgba(20, 40, 51, 0) 1%',
+// 		'rgba(20, 40, 51, 0.02) 10%',
+// 		'rgba(20, 40, 51, 0.05) 18%',
+// 		'rgba(20, 40, 51, 0.12) 25%',
+// 		'rgba(20, 40, 51, 0.2) 32%',
+// 		'rgba(20, 40, 51, 0.29) 38%',
+// 		'rgba(20, 40, 51, 0.39) 44%',
+// 		'rgba(20, 40, 51, 0.5) 50%',
+// 		'rgba(20, 40, 51, 0.61) 57%',
+// 		'rgba(20, 40, 51, 0.71) 63%',
+// 		'rgba(20, 40, 51, 0.8) 69%',
+// 		'rgba(20, 40, 51, 0.88) 76%',
+// 		'rgba(20, 40, 51, 0.95) 83%',
+// 		'rgba(20, 40, 51, 0.98) 91%',
+// 		'rgb(20, 40, 51) 100%',
+// 	],
+// };
 
 export const Sheet = styled.div`
 	--height-sheet: ${({ height }) => height}
@@ -197,10 +197,10 @@ export const CarouselItem = styled.div`
 export const Infomation = styled.div`
 	position: absolute;
 	padding: 25px;
-	top: ${({ offset }) => (offset[0] == 'unset' || (!offset[0] && offset[0] != '0') ? 'auto' : offset[0])};
-	left: ${({ offset }) => (offset[1] == 'unset' || (!offset[1] && offset[1] != '0') ? 'auto' : offset[1])};
-	bottom: ${({ offset }) => (offset[2] == 'unset' || (!offset[2] && offset[2] != '0') ? 'auto' : offset[2])};
-	right: ${({ offset }) => (offset[3] == 'unset' || (!offset[3] && offset[3] != '0') ? 'auto' : offset[3])};
+	top: ${({ offset }) => (offset[0] === 'unset' || (!offset[0] && offset[0] !== '0') ? 'auto' : offset[0])};
+	left: ${({ offset }) => (offset[1] === 'unset' || (!offset[1] && offset[1] !== '0') ? 'auto' : offset[1])};
+	bottom: ${({ offset }) => (offset[2] === 'unset' || (!offset[2] && offset[2] !== '0') ? 'auto' : offset[2])};
+	right: ${({ offset }) => (offset[3] === 'unset' || (!offset[3] && offset[3] !== '0') ? 'auto' : offset[3])};
 	z-index: 1000;
 `;
 
@@ -239,10 +239,10 @@ export const Control = styled.div`
 
 export const Indicators = styled.ul`
 	position: absolute;
-	top: ${({ offset }) => (offset[0] == 'unset' || (!offset[0] && offset[0] != '0') ? 'auto' : offset[0])};
-	right: ${({ offset }) => (offset[1] == 'unset' || (!offset[1] && offset[1] != '0') ? 'auto' : offset[1])};
-	bottom: ${({ offset }) => (offset[2] == 'unset' || (!offset[2] && offset[2] != '0') ? 'auto' : offset[2])};
-	left: ${({ offset }) => (offset[3] == 'unset' || (!offset[3] && offset[3] != '0') ? 'auto' : offset[3])};
+	top: ${({ offset }) => (offset[0] === 'unset' || (!offset[0] && offset[0] !== '0') ? 'auto' : offset[0])};
+	right: ${({ offset }) => (offset[1] === 'unset' || (!offset[1] && offset[1] !== '0') ? 'auto' : offset[1])};
+	bottom: ${({ offset }) => (offset[2] === 'unset' || (!offset[2] && offset[2] !== '0') ? 'auto' : offset[2])};
+	left: ${({ offset }) => (offset[3] === 'unset' || (!offset[3] && offset[3] !== '0') ? 'auto' : offset[3])};
 	height: 2rem;
 	width: ${({ totalsize }) =>
 		totalsize ? `calc((var(--indicator-width) + var(--indicator-margin-left) + 1rem) * ${totalsize})` : '50%'};

@@ -1,4 +1,3 @@
-import * as $ from './Styles';
 import AceEditor from 'react-ace';
 // import listReactFiles from 'list-react-files';
 
