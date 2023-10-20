@@ -28,12 +28,10 @@ useLayoutEffect
 // function reducer(state, action) {
 // 	switch (action.TYPE) {
 // 		case 'increment':
-// 			console.log('increment:', state);
 // 			state.count = state.count + 1;
 // 			return { ...state };
 // 		case 'decrease':
 // 			state.count = state.count - 1;
-// 			console.log('decrease:', state);
 // 			return { ...state };
 // 	}
 // }
