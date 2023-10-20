@@ -113,7 +113,6 @@ function About() {
 			const currentArr = [...dataOri];
 			const arrDelete = currentArr.splice(0, 1);
 			currentArr.push(...arrDelete);
-			console.log('animationEnd:', currentArr);
 			setList(currentArr.slice(0, 3));
 			setDataOri(currentArr);
 			setMoveClass('');
@@ -167,8 +166,6 @@ function About() {
 							} else {
 								className = 'left';
 							}
-
-							console.log('className:', className);
 
 							return (
 								<Cardo

@@ -84,7 +84,6 @@ function Header({ layout = 'default' }) {
 	function changeHandle() {
 		setShowResults(true);
 		setToggle(false);
-		console.log('textDebouncedCurrent = ', textDebouncedCurrent, 'textSearch =', textSearch);
 		if (textDebouncedCurrent === inputRef.current.value) {
 			setToggle(true);
 		}
@@ -170,12 +169,10 @@ function Header({ layout = 'default' }) {
 						onClickOutside={() => {
 							setToggle(true);
 							setShowResults(false);
-							console.log('outside =', showResults);
 						}}
 						trigger={'click'}
 						hideOnClick={false}
 						render={() => {
-							console.log('inside =', showResults, 'items = ', items);
 							return (
 								showResults && (
 									<Suspense fallback={<h2>loading...</h2>}>

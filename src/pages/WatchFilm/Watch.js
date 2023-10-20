@@ -3,8 +3,6 @@ import Video from './Video';
 
 function Watch() {
 	let videoRef = useRef();
-
-	console.log('videoref:', videoRef);
 	return (
 		<>
 			<Video ref={videoRef} />

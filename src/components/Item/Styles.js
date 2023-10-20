@@ -20,19 +20,11 @@ const ItemCustom = forwardRef(({ src, className, children, state, setState, tran
 	let Ele = 'div';
 	const refElement = useRef();
 
-	// console.log('class');
-
-	// console.log('ref item custom:', ref.current);
-	// console.dir(ref.current);
-	// console.log('context:', context);
 	// if (context && typeof context == 'function' && ref.current) {
 	// 	const styled = window.getComputedStyle(ref.current);
 	// 	const marginWidth = parseInt(styled.marginRight) + parseInt(styled.marginLeft);
 	// 	const width = ref.current.offsetWidth;
 	// 	// let scrollWidth = ref.current.scrollWidth;
-	// 	// console.log('marginWidth :', marginWidth);
-	// 	// console.log('width :', width);
-	// 	// console.log('scrollWidth :', scrollWidth);
 	// 	context(marginWidth + width);
 	// }
 	useImperativeHandle(
@@ -95,8 +87,6 @@ export const Item = styled(ItemCustom)`
 	/* https://codesandbox.io/s/react-reset-css-animation-63dsx */
 	&.animation {
 		/* animation: ${({ isslide, translatexslide, transform, state, sign }) => {
-			// console.log('state init:', state);
-
 			if (isslide === 'true' && translatexslide === 'true' && state) {
 				return frame(sign, transform);
 			}

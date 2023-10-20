@@ -11,7 +11,6 @@ export const getTrending = async ({ page = 1, adults, ...options }) => {
 		});
 
 		let data = JSON.parse(response.data);
-		console.log('data =', data);
 		return data.results;
 	} catch (error) {
 		console.log(error);
@@ -30,7 +29,6 @@ export const getUpComing = async ({ page = 1, adults, ...options }) => {
 		});
 
 		let data = JSON.parse(response.data);
-		console.log('data =', data);
 		return data.results;
 	} catch (error) {
 		console.log(error);
@@ -68,7 +66,6 @@ export const getLastest = async ({ page = 1, adults, ...options }) => {
 		});
 
 		let data = JSON.parse(response.data);
-		console.log('data =', data);
 		return data.results;
 	} catch (error) {
 		console.log(error);
@@ -81,7 +78,6 @@ export const getItemFilm = async id => {
 		let response = await get(`/movie/${id}`);
 
 		let data = JSON.parse(response.data);
-		console.log('movie item special =', data);
 		return data;
 	} catch (error) {
 		console.log(error);

@@ -52,10 +52,8 @@ const FilmItem = forwardRef(function (
 	},
 	ref
 ) {
-	// console.log('items rerender:', items);
 	// useEffect(() => getPopular({ page: 1, adults: false }), []);
 	// const datafetch = data.read();
-	console.log('items.....:', items);
 	return (
 		items &&
 		items.map((item, index) => {

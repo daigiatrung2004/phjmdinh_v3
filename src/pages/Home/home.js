@@ -39,7 +39,6 @@ function Home() {
 	const backTopRef = useRef();
 
 	// const handleMouseEnter = useCallback(src => {
-	// 	console.log('src:', src);
 	// 	setSrcTrailer(src);
 	// }, []);
 
@@ -52,8 +51,6 @@ function Home() {
 	}
 
 	function handleToggleBackTop(e) {
-		// console.log('handleToggleBackTop log:', window.scrollY);
-		// console.log('handleToggleBackTop ref log:', backTopRef.current);
 		if (backTopRef && backTopRef.current && backTopRef.current.style) {
 			if (window.scrollY > 499) {
 				backTopRef.current.style.display = 'flex';
@@ -82,7 +79,6 @@ function Home() {
 		])
 			.then(([popularData, trendingData, upcomingData, latestData]) => {
 				setItemsPopular(popularData);
-				console.log('popularData:', popularData);
 				setItemsTrending(trendingData);
 				setItemsUpComing(upcomingData);
 				setItemsLastest(latestData);
@@ -95,9 +91,6 @@ function Home() {
 				// }
 
 				setIsLoaded(true);
-				console.log('co vao day==========');
-				// console.log('isloaded======:', isLoaded);
-				console.log('lastestData:', latestData);
 			})
 			.catch(error => {
 				console.log(error);

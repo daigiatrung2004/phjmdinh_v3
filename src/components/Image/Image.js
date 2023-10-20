@@ -7,7 +7,6 @@ import * as $ from './Styles';
 const Image = forwardRef(function ({ href, src, alt = 'No title image', className, children, ...propsDefault }, ref) {
 	const [fallBack, setFallBack] = useState('');
 	let Img = className ? 'img' : $.StaticImage;
-	// console.log('className:', className);
 
 	return (
 		<$.Wrapper to={href}>

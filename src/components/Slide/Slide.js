@@ -153,7 +153,6 @@ const Slide = forwardRef(function (settings, ref) {
 		// setSign(-1);
 		// setList(arr => {
 		// 	arr = [arr[arr.length - 1], ...arr];
-		// 	console.log('array=', arr);
 		// 	return arr;
 		// });
 		// setTimeout(() => {

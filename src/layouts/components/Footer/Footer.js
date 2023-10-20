@@ -7,7 +7,6 @@ function Footer() {
 	const [percentDisplay, setPercentDisplay] = useState('opacity-transparent');
 
 	function handleDisplay() {
-		console.log('co vao handleDisplay ==========');
 		if (window.scrollY >= 1100) {
 			setPercentDisplay('');
 		} else {

@@ -35,7 +35,6 @@ const Item = forwardRef(function (
 
 	let mouseEnter = useContext(ItemContext);
 
-	// console.log('mouseenter:', mouseEnter);
 	if (typeof mouseEnter != 'function') {
 		mouseEnter = () => {};
 	}

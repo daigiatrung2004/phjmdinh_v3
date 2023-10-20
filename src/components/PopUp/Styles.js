@@ -138,7 +138,6 @@ export const Content = styled.div`
 	justify-content: center;
 	align-items: center;
 	flex-direction: ${({ centerIcon }) => {
-		console.log(centerIcon);
 		return centerIcon ? 'column' : 'row';
 	}};
 	padding: 25px;

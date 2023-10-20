@@ -25,7 +25,6 @@ function Error({ settings }) {
 	Object.assign(config, settings);
 
 	const navigate = useNavigate();
-	// console.log('navigate:', navigate);
 
 	return (
 		<Background
@@ -45,8 +44,6 @@ function Error({ settings }) {
 					<Button
 						theme={{ type: 'primary', size: 'medium fullW' }}
 						onClick={() => {
-							console.log('click button');
-
 							navigate('/');
 						}}
 					>

@@ -21,3 +21,7 @@ https://www.makeuseof.com/tag/build-linux-web-server-computer-part-1/
 # build postgresql in web server
 
 https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
+
+# random background image
+
+https://codepen.io/mlorberdev/pen/OJvMJQq

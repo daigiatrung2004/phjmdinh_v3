@@ -27,13 +27,11 @@ function sortObj(propObjCP) {
 			if (leftPointer >= rightPointer) {
 				break;
 			} else {
-				// console.log('swap data : left pointer=' + leftPointer + ', right pointer = ' + rightPointer);
 				swap(arr, leftPointer, rightPointer);
 			}
 		}
 
 		swap(arr, leftPointer, right);
-		// console.log('arr:', arr);
 		return leftPointer;
 	}
 

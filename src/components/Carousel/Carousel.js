@@ -26,10 +26,8 @@ function Carousel(
 	const [listTmp, setListTmp] = useState(CarouselItems);
 	const [bgActive, setBgActive] = useState(function () {
 		if (CarouselItems && CarouselItems.length > 1) {
-			console.log('carousel...====', CarouselItems);
 			return CarouselItems[1].bgSrc;
 		} else {
-			console.log('not carousel..........=======', CarouselItems);
 			return ImageDefault.noImage;
 		}
 	});
@@ -51,13 +49,11 @@ function Carousel(
 	const transitionSize = useMemo(() => {
 		if (refItem.current && type === 'multi') {
 			let itemSize = refItem.current;
-			console.log('co refitem:', itemSize, 'step:', step);
 			let size = step * (itemSize['width'] + itemSize['space']);
 			setDistance(size * -1 * skips);
 			return size;
-		} else {
-			console.log('k co refitem:', refItem.current);
 		}
+
 		return 0;
 	}, [step, skips, type]);
 
@@ -70,8 +66,6 @@ function Carousel(
 					return skipstmp + 1;
 				}
 			});
-			console.log('ref item carousel:', refItem);
-			console.log('transitionSize:', transitionSize);
 		} else {
 			let lastItem = listTmp.pop();
 			let arr_new = [lastItem, ...listTmp];

@@ -6,7 +6,6 @@ import Header from '~/layouts/components/Header';
 
 function DefaultLayout({ children }) {
 	// const Test = lazy(() => import('~/pages/WatchFilm'));
-	// console.log('test layout============:', Test);
 	return (
 		<Suspense fallback={<Loading />}>
 			<Header />

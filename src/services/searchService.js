@@ -11,7 +11,6 @@ export const search = async (query, page, ...options) => {
 		});
 
 		let data = JSON.parse(response.data);
-		console.log('data =', data);
 		return data.results;
 	} catch (error) {
 		console.log(error);
