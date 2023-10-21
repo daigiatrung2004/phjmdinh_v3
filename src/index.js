@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from '~/pages/TestPopUp';
-import GlobalStyles from '~/components/Globalstyles';
+// import GlobalStyles from '~/components/Globalstyles';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 const router = createHashRouter([
