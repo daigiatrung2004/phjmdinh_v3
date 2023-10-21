@@ -22,6 +22,6 @@ https://www.makeuseof.com/tag/build-linux-web-server-computer-part-1/
 
 https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
 
-# random background image
+# random background image test
 
 https://codepen.io/mlorberdev/pen/OJvMJQq
