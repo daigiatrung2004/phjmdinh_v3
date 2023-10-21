@@ -1,32 +1,14 @@
 {
   "files": {
-    "main.css": "/phjmdinh_v3/static/css/main.5d62489d.css",
-    "main.js": "/phjmdinh_v3/static/js/main.a21ee566.js",
-    "static/js/348.739e65c2.chunk.js": "/phjmdinh_v3/static/js/348.739e65c2.chunk.js",
-    "static/media/a.mp4": "/phjmdinh_v3/static/media/a.e03dbf2df3a9edba1e00.mp4",
-    "static/media/img-err.gif": "/phjmdinh_v3/static/media/img-err.4d1e2e78de44c4358e7f.gif",
-    "static/media/bg1024-aboutus.png": "/phjmdinh_v3/static/media/bg1024-aboutus.3d26c10b8dfd3a22a5ab.png",
-    "static/media/primary_test4.webp": "/phjmdinh_v3/static/media/primary_test4.b04b8150c076e01c31d3.webp",
-    "static/media/bg_test2.webp": "/phjmdinh_v3/static/media/bg_test2.17a17032bad08e171592.webp",
-    "static/media/bg-err.png": "/phjmdinh_v3/static/media/bg-err.80b49fe06f2c4ddc2e7e.png",
-    "static/media/bg_test4.webp": "/phjmdinh_v3/static/media/bg_test4.ea3484da78efec7ae406.webp",
-    "static/media/primary_test3.webp": "/phjmdinh_v3/static/media/primary_test3.cf0a47908b51f5ec38dd.webp",
-    "static/media/primary_test.webp": "/phjmdinh_v3/static/media/primary_test.f73c9b5078c40691f332.webp",
-    "static/media/primary_test2.webp": "/phjmdinh_v3/static/media/primary_test2.90498821e6a0dbb25e57.webp",
-    "static/media/bg_test3.webp": "/phjmdinh_v3/static/media/bg_test3.65525ec34bd526ecfc4c.webp",
-    "static/media/IBl7-unscreen.gif": "/phjmdinh_v3/static/media/IBl7-unscreen.bb4d71ca1391b8f9c699.gif",
-    "static/media/earth-aboutus.png": "/phjmdinh_v3/static/media/earth-aboutus.37f9b26aa4ff029bb06e.png",
-    "static/media/bg_test.webp": "/phjmdinh_v3/static/media/bg_test.84b3de5ebc73ecc48bea.webp",
-    "static/media/warning-real.png": "/phjmdinh_v3/static/media/warning-real.abf811ea3739c08ee63f.png",
-    "static/media/logo-word-art.png": "/phjmdinh_v3/static/media/logo-word-art.04f467298fec1c606718.png",
+    "main.css": "/phjmdinh_v3/static/css/main.83238ba7.css",
+    "main.js": "/phjmdinh_v3/static/js/main.9a95e3ee.js",
     "static/media/nunito-400.woff2": "/phjmdinh_v3/static/media/nunito-400.c11139dfb754e449cf95.woff2",
     "index.html": "/phjmdinh_v3/index.html",
-    "main.5d62489d.css.map": "/phjmdinh_v3/static/css/main.5d62489d.css.map",
-    "main.a21ee566.js.map": "/phjmdinh_v3/static/js/main.a21ee566.js.map",
-    "348.739e65c2.chunk.js.map": "/phjmdinh_v3/static/js/348.739e65c2.chunk.js.map"
+    "main.83238ba7.css.map": "/phjmdinh_v3/static/css/main.83238ba7.css.map",
+    "main.9a95e3ee.js.map": "/phjmdinh_v3/static/js/main.9a95e3ee.js.map"
   },
   "entrypoints": [
-    "static/css/main.5d62489d.css",
-    "static/js/main.a21ee566.js"
+    "static/css/main.83238ba7.css",
+    "static/js/main.9a95e3ee.js"
   ]
 }
