@@ -1,5 +1,5 @@
 function ListFileComponent() {
-	return;
+	return <>test</>;
 }
 
 export default ListFileComponent;
