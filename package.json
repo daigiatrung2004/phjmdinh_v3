@@ -58,7 +58,9 @@
 	"devDependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
 		"fast-glob": "^3.3.0",
-		"react-ace": "^10.1.0",
-		"react-spring": "^9.7.2"
+		"react-ace": "^10.1.0"
+	},
+	"resolutions": {
+		"babel-jest": "24.9.0"
 	}
 }

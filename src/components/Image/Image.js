@@ -8,6 +8,10 @@ const Image = forwardRef(function ({ href, src, alt = 'No title image', classNam
 	const [fallBack, setFallBack] = useState('');
 	let Img = className ? 'img' : $.StaticImage;
 
+	// if (typeof src === 'string') {
+	// 	src = process.env.REACT_APP_API_URL_ORIGIN + src;
+	// }
+
 	return (
 		<$.Wrapper to={href}>
 			<Img
