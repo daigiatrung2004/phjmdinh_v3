@@ -393,7 +393,8 @@ export const BgTop = styled.div`
 export const BgBottom = styled(BgTop)`
 	bottom: -1%;
 	top: auto;
-	background-image: linear-gradient(
+	background-image: linear-gradient(rgba(17, 19, 25, 0) 2%, rgb(17, 19, 25) 94%);
+	/* background-image: linear-gradient(
 		360deg,
 		rgba(17, 19, 25, 0.88) 0%,
 		rgba(17, 19, 25, 0.89) 9%,
@@ -410,5 +411,5 @@ export const BgBottom = styled(BgTop)`
 		rgba(17, 19, 25, 0.05) 83%,
 		rgba(17, 19, 25, 0.01) 91%,
 		rgba(17, 19, 25, 0) 100%
-	);
+	); */
 `;
