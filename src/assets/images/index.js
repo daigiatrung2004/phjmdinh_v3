@@ -1,6 +1,6 @@
 const Images = {
 	noImage: require('./placeholder-image.png').default,
-	loading: require('./loading.svg').default,
+	loading: require('./img-err.gif').default,
 	logo: require('./logo-word-art.png').default,
 	warning: require('./warning-real.png').default,
 	BGerror: require('./bg-err.png').default,
