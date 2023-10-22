@@ -105,6 +105,7 @@ function Home() {
 	const ListItems = [
 		{
 			index: 0,
+			bgColors: [null, '#925d17'],
 			imgSrc: Images.PrimaryTest,
 			bgSrc: Images.BgTest,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
@@ -179,6 +180,7 @@ function Home() {
 		},
 		{
 			index: 1,
+			bgColors: [null, '#b79e64'],
 			imgSrc: Images.PrimaryTest2,
 			bgSrc: Images.BgTest2,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
@@ -253,6 +255,7 @@ function Home() {
 		},
 		{
 			index: 2,
+			bgColors: [null, '#fcf4c6'],
 			imgSrc: Images.PrimaryTest3,
 			bgSrc: Images.BgTest3,
 			titleSrc: 'https://pic6.iqiyipic.com/hamster/20230327/d1/9d/f66fac5fe1_xxx.webp',
@@ -327,6 +330,7 @@ function Home() {
 		},
 		{
 			index: 3,
+			bgColors: [null, '#fedac3'],
 			imgSrc: Images.PrimaryTest4,
 			bgSrc: Images.BgTest4,
 			titleSrc: 'https://pic7.iqiyipic.com/hamster/20230307/1f/26/c96adc8a2d_xxx.webp',

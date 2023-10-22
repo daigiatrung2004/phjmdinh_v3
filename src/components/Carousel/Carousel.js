@@ -143,8 +143,14 @@ function Carousel(
 										>
 											{render(item)}
 										</$.Infomation>
-										<$.BgLeft className="bg-left" />
-										<$.BgTop className="bg-top" />
+										<$.BgLeft
+											bgLeftColor={item.bgColors[1]}
+											className="bg-left"
+										/>
+										<$.BgTop
+											bgTopColor={item.bgColors[0]}
+											className="bg-top"
+										/>
 										<$.BgBottom className="bg-bottom" />
 									</$.CarouselItem>
 								</Fragment>

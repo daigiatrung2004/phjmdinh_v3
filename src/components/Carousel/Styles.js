@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { convertHEXToRGB } from '~/utils/utility.function';
 
 const opacityFrame = keyframes`
 	from {
@@ -269,24 +270,60 @@ export const BgLeft = styled.div`
 	top: 0;
 	width: 30%;
 	height: 100%;
-	background: linear-gradient(
-		269deg,
-		rgba(20, 40, 51, 0) 1%,
-		rgba(20, 40, 51, 0.02) 10%,
-		rgba(20, 40, 51, 0.05) 18%,
-		rgba(20, 40, 51, 0.12) 25%,
-		rgba(20, 40, 51, 0.2) 32%,
-		rgba(20, 40, 51, 0.29) 38%,
-		rgba(20, 40, 51, 0.39) 44%,
-		rgba(20, 40, 51, 0.5) 50%,
-		rgba(20, 40, 51, 0.61) 57%,
-		rgba(20, 40, 51, 0.71) 63%,
-		rgba(20, 40, 51, 0.8) 69%,
-		rgba(20, 40, 51, 0.88) 76%,
-		rgba(20, 40, 51, 0.95) 83%,
-		rgba(20, 40, 51, 0.98) 91%,
-		rgb(20, 40, 51) 100%
-	);
+	background: ${({ bgLeftColor }) => {
+		if (bgLeftColor) {
+			if (bgLeftColor[0] === '#') {
+				bgLeftColor = convertHEXToRGB(bgLeftColor);
+			}
+
+			bgLeftColor = bgLeftColor
+				.trim()
+				.toLowerCase()
+				.replace(/rgba\(/gim, '')
+				.replace(/\)/gim, '')
+				.split(',');
+			let red = bgLeftColor[0];
+			let green = bgLeftColor[1];
+			let blue = bgLeftColor[2];
+			return `linear-gradient(
+						269deg,
+						rgba(${red}, ${green}, ${blue}, 0) 1%,
+						rgba(${red}, ${green}, ${blue}, 0.02) 10%,
+						rgba(${red}, ${green}, ${blue}, 0.05) 18%,
+						rgba(${red}, ${green}, ${blue}, 0.12) 25%,
+						rgba(${red}, ${green}, ${blue}, 0.2) 32%,
+						rgba(${red}, ${green}, ${blue}, 0.29) 38%,
+						rgba(${red}, ${green}, ${blue}, 0.39) 44%,
+						rgba(${red}, ${green}, ${blue}, 0.5) 50%,
+						rgba(${red}, ${green}, ${blue}, 0.61) 57%,
+						rgba(${red}, ${green}, ${blue}, 0.71) 63%,
+						rgba(${red}, ${green}, ${blue}, 0.8) 69%,
+						rgba(${red}, ${green}, ${blue}, 0.88) 76%,
+						rgba(${red}, ${green}, ${blue}, 0.95) 83%,
+						rgba(${red}, ${green}, ${blue}, 0.98) 91%,
+						rgb(${red}, ${green}, ${blue}) 100%
+					)`;
+		} else {
+			return `linear-gradient(
+						269deg,
+						rgba(20, 40, 51, 0) 1%,
+						rgba(20, 40, 51, 0.02) 10%,
+						rgba(20, 40, 51, 0.05) 18%,
+						rgba(20, 40, 51, 0.12) 25%,
+						rgba(20, 40, 51, 0.2) 32%,
+						rgba(20, 40, 51, 0.29) 38%,
+						rgba(20, 40, 51, 0.39) 44%,
+						rgba(20, 40, 51, 0.5) 50%,
+						rgba(20, 40, 51, 0.61) 57%,
+						rgba(20, 40, 51, 0.71) 63%,
+						rgba(20, 40, 51, 0.8) 69%,
+						rgba(20, 40, 51, 0.88) 76%,
+						rgba(20, 40, 51, 0.95) 83%,
+						rgba(20, 40, 51, 0.98) 91%,
+						rgb(20, 40, 51) 100%
+					)`;
+		}
+	}};
 	z-index: var(--zIndex-background);
 `;
 
@@ -296,24 +333,60 @@ export const BgTop = styled.div`
 	top: 0px;
 	width: 100%;
 	height: 120px;
-	background-image: linear-gradient(
-		179.5deg,
-		rgba(17, 19, 25, 0.88) 0%,
-		rgba(17, 19, 25, 0.89) 9%,
-		rgba(17, 19, 25, 0.85) 17%,
-		rgba(17, 19, 25, 0.79) 24%,
-		rgba(17, 19, 25, 0.72) 31%,
-		rgba(17, 19, 25, 0.64) 37%,
-		rgba(17, 19, 25, 0.55) 44%,
-		rgba(17, 19, 25, 0.45) 50%,
-		rgba(17, 19, 25, 0.35) 56%,
-		rgba(17, 19, 25, 0.26) 63%,
-		rgba(17, 19, 25, 0.18) 69%,
-		rgba(17, 19, 25, 0.11) 76%,
-		rgba(17, 19, 25, 0.05) 83%,
-		rgba(17, 19, 25, 0.01) 91%,
-		rgba(17, 19, 25, 0) 100%
-	);
+	background-image: ${({ bgTopColor }) => {
+		if (bgTopColor) {
+			if (bgTopColor[0] === '#') {
+				bgTopColor = convertHEXToRGB(bgTopColor);
+			}
+
+			bgTopColor = bgTopColor
+				.trim()
+				.toLowerCase()
+				.replace(/rgba\(/gim, '')
+				.replace(/\)/gim, '')
+				.split(',');
+			let red = bgTopColor[0];
+			let green = bgTopColor[1];
+			let blue = bgTopColor[2];
+			return `linear-gradient(
+						179.5deg,
+						rgba(${red}, ${green}, ${blue}, 0.88) 0%,
+						rgba(${red}, ${green}, ${blue}, 0.89) 9%,
+						rgba(${red}, ${green}, ${blue}, 0.85) 17%,
+						rgba(${red}, ${green}, ${blue}, 0.79) 24%,
+						rgba(${red}, ${green}, ${blue}, 0.72) 31%,
+						rgba(${red}, ${green}, ${blue}, 0.64) 37%,
+						rgba(${red}, ${green}, ${blue}, 0.55) 44%,
+						rgba(${red}, ${green}, ${blue}, 0.45) 50%,
+						rgba(${red}, ${green}, ${blue}, 0.35) 56%,
+						rgba(${red}, ${green}, ${blue}, 0.26) 63%,
+						rgba(${red}, ${green}, ${blue}, 0.18) 69%,
+						rgba(${red}, ${green}, ${blue}, 0.11) 76%,
+						rgba(${red}, ${green}, ${blue}, 0.05) 83%,
+						rgba(${red}, ${green}, ${blue}, 0.01) 91%,
+						rgba(${red}, ${green}, ${blue}, 0) 100%
+					)`;
+		} else {
+			return `linear-gradient(
+						179.5deg,
+						rgba(17, 19, 25, 0.88) 0%,
+						rgba(17, 19, 25, 0.89) 9%,
+						rgba(17, 19, 25, 0.85) 17%,
+						rgba(17, 19, 25, 0.79) 24%,
+						rgba(17, 19, 25, 0.72) 31%,
+						rgba(17, 19, 25, 0.64) 37%,
+						rgba(17, 19, 25, 0.55) 44%,
+						rgba(17, 19, 25, 0.45) 50%,
+						rgba(17, 19, 25, 0.35) 56%,
+						rgba(17, 19, 25, 0.26) 63%,
+						rgba(17, 19, 25, 0.18) 69%,
+						rgba(17, 19, 25, 0.11) 76%,
+						rgba(17, 19, 25, 0.05) 83%,
+						rgba(17, 19, 25, 0.01) 91%,
+						rgba(17, 19, 25, 0) 100%
+					)`;
+		}
+	}};
 	z-index: var(--zIndex-background);
 `;
 
