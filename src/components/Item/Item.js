@@ -67,7 +67,7 @@ const Item = forwardRef(function (
 		setIsLoading(isLoadingCurrent);
 	}, [isLoadingCurrent]);
 
-	return isLoading ? (
+	return isLoading || type === 'SEARCH_TYPE' ? (
 		<$.Item
 			ref={ref}
 			src={to}
