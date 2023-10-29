@@ -4,6 +4,7 @@
 	"emmet.includeLanguages": {
 		"javascript": "javascriptreact"
 	},
+	"react-i18n.i18nPaths": "",
 	// "editor.codeActionsOnSave": {
 	// 	"source.fixAll": true,
 	// 	"source.organizeImports": true,

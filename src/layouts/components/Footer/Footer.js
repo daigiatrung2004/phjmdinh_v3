@@ -2,6 +2,7 @@ import { faInstagram, faSquareFacebook, faTwitter } from '@fortawesome/free-bran
 import { useEffect, useState } from 'react';
 import Label from '~/components/Label';
 import * as $ from './Styles';
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
 	const [percentDisplay, setPercentDisplay] = useState('opacity-transparent');
@@ -19,6 +20,7 @@ function Footer() {
 		return () => window.removeEventListener('scroll', handleDisplay);
 	}, []);
 
+	const { t } = useTranslation();
 	return (
 		<$.FooterSheet className={`footer-sheet ${percentDisplay}`}>
 			<$.CustomBg
@@ -38,109 +40,108 @@ function Footer() {
 						className="pointer footer"
 						style={{ color: 'var(--white)', marginBottom: '2rem' }}
 					>
-						Giới thiệu về chúng tôi
+						{t('aboutus')}
 					</Label>
 					<Label
 						className="pointer"
 						style={{ color: 'var(--white)', marginBottom: '2rem' }}
 					>
-						Hợp tác
+						{t('cooperate')}
 					</Label>
 					<Label
 						className="pointer"
 						style={{ color: 'var(--white)', marginBottom: '2rem' }}
 					>
-						Hỗ trợ và giúp đỡ
+						{t('support')}
 					</Label>
 					<Label
 						className="pointer"
 						style={{ color: 'var(--white)', marginBottom: '2rem' }}
 					>
-						Điều khoản dịch vụ
+						{t('termOfService')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/aboutus'}
 					>
-						Thông tin công ty
+						{t('companyInfo')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/partnership'}
 					>
-						Đăng quảng cáo
+						{t('advertisement')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/feedback'}
 					>
-						Phản ánh ý kiến
+						{t('feedback')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/privacy'}
 					>
-						Điểu khoản quyền riêng tư
+						{t('privacy')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
-						Giới thiệu dịch vụ sản phẩm
+						{t('introduce')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/partnership'}
 					>
-						Quan hệ kinh doanh
+						{t('business')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/oversea'}
 					>
-						Trung tâm phản hồi bảo mật
+						{t('feedbackSec')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/termofuse'}
 					>
-						Điều khoản sử dụng
+						{t('termOfUse')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 					>
-						Cách xem
+						{t('howToView')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/preinstall'}
 					>
-						Hợp tác cài đặt trước
+						{t('install')}
 					</Label>
 					<Label
 						className="hover-text-color pointer"
 						style={{ lineHeight: '2.1rem', fontWeight: 'normal', color: 'var(--text-color-search)' }}
 						src={'http://localhost:5000/support'}
 					>
-						Câu hỏi thường gặp
+						{t('question')}
 					</Label>
 				</$.Grid>
 			</$.CustomBg>
 			<$.Copy className="copy">
 				<$.CopyContent>
-					<$.CopyRight className="copy-right">Copyright © 2021 iQiyi All Rights Reserved</$.CopyRight>
+					<$.CopyRight className="copy-right">{t('copyright')}</$.CopyRight>
 					<$.CopyRight className="copy-right">
-						Chúng tôi sử dụng Cookies để cải thiện trải nghiệm sử dụng của bạn. Nếu bạn tiếp tục sử dụng
-						trang web của chúng tôi, có nghĩa là bạn đồng ý chúng tôi sử dụng Cookies. Đọc{' '}
+						{t('useCookies')}
 						<u>
 							<Label
 								src="./privacy-agreement"
@@ -149,7 +150,7 @@ function Footer() {
 								aria-label="iq-privacy-agreement"
 								style={{ fontSize: '1.2rem', color: 'var(--copy-color)' }}
 							>
-								Chính sách quyền riêng tư PHJMDINH
+								{t('privacyPolicy')}
 							</Label>
 						</u>
 					</$.CopyRight>

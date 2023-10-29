@@ -13,6 +13,7 @@ import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
 import { carouselDataDefault } from '~/utils/dataDefaults';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
 	const [itemsPopular, setItemsPopular] = useState([]);
@@ -404,6 +405,8 @@ function Home() {
 			desc: `"Thương Lan Quyết" do Y Tranh đạo diễn với sự tham gia của các diễn viên Ngu Thư Hân, Vương Hạc Đệ, Từ Hải Kiều, Phó Bạch Hàm, Quách Hiểu Đình, Trương Lăng Hác, Lâm Bá Duệ. Là một bộ phim truyền hình Trung Quốc, được chuyển thể từ tiểu thuyết Ma tôn của tác giả Cửu Lộ Phi Hương. Câu chuyện kể về mối lương duyên ngang trái giữa Thần nữ thuộc tộc Phách Tâm và Ma tôn Phương Đông Thanh Thương.Thần nữ Phách Tâm tộc bị Ma tôn Đông Phương Thanh Thương diệt tộc, vạn năm sau sống lại trở thành thần tiên cấp thấp ở tiên giới Hoa Lan Nhỏ, vô tình làm cho Ma tôn đang bị nhốt trong tháp Hạo Thiên sống lại. Để hóa giải phong ấn chú thuật trên người cũng như hồi sinh kẻ thù lớn nhất, lần này Đông Phương Thanh Thương cần phải hy sinh hồn thần nữ của Hoa Lan Nhỏ. Tuy nhiên trong quá trình đó, đại ma đầu đã dần yêu tiểu tiên nữ ranh ma đáng yêu.`,
 		},
 	];
+
+	const { t } = useTranslation();
 	return (
 		<>
 			<Carousel
@@ -449,7 +452,7 @@ function Home() {
 						// leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
 						// iconsize={'20px'}
 					>
-						Đề xuất hot
+						{t('recommendHot')}
 					</Label>
 					{/* <$.ItemsWrapper>
 						<Items
@@ -497,7 +500,7 @@ function Home() {
 						}
 						iconsize={'20px'}
 					>
-						TRENDING
+						{t('trending')}
 					</$.TitleLabel>
 					{/* <$.ItemsWrapper>
 						<Items
@@ -545,7 +548,7 @@ function Home() {
 						}
 						iconsize={'20px'}
 					>
-						NEW RELEASE
+						{t('release')}
 					</$.TitleLabel>
 					{/* <$.ItemsWrapper>
 						<Items
@@ -594,7 +597,7 @@ function Home() {
 						}
 						iconsize={'20px'}
 					>
-						UPCOMING
+						{t('upcoming')}
 					</$.TitleLabel>
 					{/* <$.ItemsWrapper>
 						<Items

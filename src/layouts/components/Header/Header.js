@@ -13,6 +13,8 @@ import Popper from '~/components/popper';
 import useDebounced from '~/hooks/useDebounced';
 import { search } from '~/services/searchService';
 import * as $ from './Styles';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 function Header({ layout = 'default' }) {
 	const [items, setItems] = useState([]);
@@ -21,8 +23,20 @@ function Header({ layout = 'default' }) {
 	const [showResults, setShowResults] = useState(false);
 	// const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
 	// const [lang, setLang] = useState(['Tiếng Việt', 'English']);
-	const kindFilms = ['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình'];
-	const lang = ['Tiếng Việt', 'English'];
+	const kindFilms = {
+		vi: ['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình'],
+		en: ['Series Movie', 'Korean film', 'Odd Movies', 'Cartoon'],
+	};
+	const lang = {
+		vi: 'Tiếng Việt',
+		en: 'English',
+	};
+
+	const recommendFilms = {
+		vi: 'Vân Chi Vũ',
+		en: 'My Journey to You',
+	};
+
 	// const [background, setBackground] = useState(false);
 
 	const kindFilmsRef = useRef();
@@ -95,6 +109,8 @@ function Header({ layout = 'default' }) {
 		setTextSearch(inputRef.current.value);
 	}
 
+	const { t } = useTranslation();
+
 	return (
 		<$.Header
 			ref={headerRef}
@@ -120,13 +136,13 @@ function Header({ layout = 'default' }) {
 							className={'channel hover-text-color pointer'}
 							style={{ color: 'var(--white)' }}
 						>
-							Đề xuất
+							{t('recommendation')}
 						</Label>
 						<Label
 							type={'label'}
 							className={'channel hover-text-color pointer'}
 						>
-							Vân Chi Vũ
+							{recommendFilms[i18next.resolvedLanguage]}
 						</Label>
 						<Tippy
 							interactive
@@ -135,7 +151,7 @@ function Header({ layout = 'default' }) {
 							render={() => {
 								return (
 									<Popper>
-										{kindFilms.map((item, index) => {
+										{kindFilms[i18next.resolvedLanguage].map((item, index) => {
 											return (
 												<$.MenuItem key={`channel-${index}`}>
 													<Label
@@ -158,7 +174,7 @@ function Header({ layout = 'default' }) {
 								className={'channel hover-text-color pointer'}
 								rightIcons={<FontAwesomeIcon icon={faCaretDown} />}
 							>
-								Khác
+								{t('filmsOther')}
 							</Label>
 						</Tippy>
 					</$.KindRecommend>
@@ -195,7 +211,7 @@ function Header({ layout = 'default' }) {
 							<$.Input
 								ref={inputRef}
 								type={'text'}
-								placeholder="Search"
+								placeholder={t('searchFilm')}
 								onChange={changeHandle}
 								onFocus={() => setShowResults(true)}
 							/>
@@ -248,7 +264,7 @@ function Header({ layout = 'default' }) {
 									color: 'var(--white)',
 								}}
 							>
-								Lịch sử xem
+								{t('history')}
 							</Label>
 						</Tippy>
 						<Tippy
@@ -260,15 +276,21 @@ function Header({ layout = 'default' }) {
 								return (
 									<Popper>
 										<$.LanguageArea>
-											{lang.map((item, index) => {
+											{Object.keys(lang).map(lng => {
 												return (
 													<Label
-														key={`language-${index}`}
+														key={`language-${lng}`}
 														type="label"
-														src="/recommend"
+														src="./"
 														className="language hover-text-color pointer"
+														onClick={() => i18next.changeLanguage(lng)}
+														style={
+															i18next.resolvedLanguage === lng
+																? { color: 'var(--white)' }
+																: { color: 'var(--text-color-search)' }
+														}
 													>
-														{item}
+														{lang[lng]}
 													</Label>
 												);
 											})}
@@ -288,7 +310,7 @@ function Header({ layout = 'default' }) {
 									color: 'var(--white)',
 								}}
 							>
-								Ngôn ngữ
+								{t('language')}
 							</Label>
 						</Tippy>
 						<Tippy
@@ -310,7 +332,7 @@ function Header({ layout = 'default' }) {
 													color: 'var(--white)',
 												}}
 											>
-												Đăng nhập để theo dõi các nội dung mới nhất
+												{t('accountContent')}
 											</Label>
 											<Button theme={{ type: 'primary', size: 'mini-small' }}>Đăng nhập</Button>
 										</$.Account>
@@ -329,7 +351,7 @@ function Header({ layout = 'default' }) {
 									color: 'var(--white)',
 								}}
 							>
-								Tài Khoản của tôi
+								{t('account')}
 							</Label>
 						</Tippy>
 						<Label
@@ -344,7 +366,7 @@ function Header({ layout = 'default' }) {
 								position: 'relative',
 							}}
 						>
-							<$.TitlePremote>Khuyên mãi có thời hạn</$.TitlePremote>
+							<$.TitlePremote>{t('promote')}</$.TitlePremote>
 						</Label>
 					</$.User>
 				</>
