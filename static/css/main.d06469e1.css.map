@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.d06469e1.css","mappings":"AAIA,gBACC,oBACD","sources":["pages/TestPopUp/test2.css"],"sourcesContent":[".dropzone {\r\n\r\n}\r\n\r\n.dropzone:focus {\r\n\tborder-color: #2196f3;\r\n}"],"names":[],"sourceRoot":""}
