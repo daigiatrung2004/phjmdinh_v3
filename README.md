@@ -25,3 +25,24 @@ https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
 # random background image
 
 https://codepen.io/mlorberdev/pen/OJvMJQq
+
+
+# design api
+https://dubdesign.net/javascript/toggle-treeaccordion/#JavaScript
+
+# turtorial devops
+https://www.cherryservers.com/blog/topics/devops
+
+# install postgresql in ubuntu
+https://www.cherryservers.com/blog/how-to-install-and-setup-postgresql-server-on-ubuntu-20-04
+
+
+# GoogleÅfs Fetch as Google tool
+# huong dan
+https://viblo.asia/p/seo-tren-website-su-dung-reactjs-p1-Eb85omB2Z2G
+
+
+
+
+
+
