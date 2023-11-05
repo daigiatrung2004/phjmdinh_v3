@@ -25,3 +25,9 @@ https://www.devart.com/dbforge/postgresql/how-to-install-postgresql-on-linux/
 # random background image
 
 https://codepen.io/mlorberdev/pen/OJvMJQq
+
+# fullstack api mern
+
+https://www.youtube.com/watch?v=rgFd17fyM4A&t=846s
+
+https://www.youtube.com/watch?v=khcjRUZCufs

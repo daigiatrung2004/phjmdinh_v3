@@ -1,8 +1,16 @@
-import { get } from '~/utils/httpRequest';
+import { get, getTest } from '~/utils/httpRequest';
 
 export const getTrending = async ({ page = 1, adults, ...options }) => {
 	try {
-		let response = await get('/movie/top_rated', {
+		// let response = await get('/movie/top_rated', {
+		// 	params: {
+		// 		page,
+		// 		adults,
+		// 		...options,
+		// 	},
+		// });
+
+		let response = await getTest('/trending', {
 			params: {
 				page,
 				adults,
