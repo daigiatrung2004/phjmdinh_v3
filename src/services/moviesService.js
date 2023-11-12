@@ -28,7 +28,14 @@ export const getTrending = async ({ page = 1, adults, ...options }) => {
 
 export const getUpComing = async ({ page = 1, adults, ...options }) => {
 	try {
-		let response = await get('/movie/upcoming', {
+		// let response = await get('/movie/upcoming', {
+		// 	params: {
+		// 		page,
+		// 		adults,
+		// 		...options,
+		// 	},
+		// });
+		let response = await getTest('/upcoming', {
 			params: {
 				page,
 				adults,
@@ -46,7 +53,14 @@ export const getUpComing = async ({ page = 1, adults, ...options }) => {
 
 export const getPopular = async ({ page = 1, adults, ...options }) => {
 	try {
-		let response = await get('/movie/popular', {
+		// let response = await get('/movie/popular', {
+		// 	params: {
+		// 		page,
+		// 		adults,
+		// 		...options,
+		// 	},
+		// });
+		let response = await getTest('/popular', {
 			params: {
 				page,
 				adults,
@@ -65,7 +79,14 @@ export const getPopular = async ({ page = 1, adults, ...options }) => {
 
 export const getLastest = async ({ page = 1, adults, ...options }) => {
 	try {
-		let response = await get('/movie/latest', {
+		// let response = await get('/movie/latest', {
+		// 	params: {
+		// 		page,
+		// 		adults,
+		// 		...options,
+		// 	},
+		// });
+		let response = await getTest('/latest', {
 			params: {
 				page,
 				adults,
