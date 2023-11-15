@@ -1,26 +1,117 @@
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { mediaQueries, device } from '~/utils/reponsive';
 import ImageComponent from '~/components/Image';
 
 // wrapper
 export const Header = styled.header`
-	width: 100%;
-	height: var(--width-header);
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	background-color: var(--color-transparent);
-	position: fixed;
-	transition: background-color 0.5s linear 0s;
-	z-index: 10000;
+	${mediaQueries(
+		'mobile',
+		`
+		width: 100%;
+		height: var(--width-header);
+		background-color: var(--bg-color-override);
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		width: 100%;
+		height: var(--width-header);
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		background-color: var(--color-transparent);
+		position: fixed;
+		transition: background-color 0.5s linear 0s;
+		z-index: 10000;
+		`
+	)}
+`;
+
+/*
+	component for mobile
+*/
+export const Bar = styled.div`
+	${mediaQueries(
+		'mobile',
+		`
+		color: var(--white);
+		font-size: 2rem;
+		cursor: pointer;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: none;
+		`
+	)}
+`;
+
+export const SearchMobile = styled.div`
+	${mediaQueries(
+		'mobile',
+		`
+		color: var(--white);
+		font-size: 2rem;
+		cursor: pointer;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: none;
+		`
+	)}
+`;
+
+export const InputSearchMobile = styled.input`
+	${mediaQueries(
+		'mobile',
+		`
+		position: absolute;
+		top: 6rem;
+		z-index: 1000;
+		padding: 1.5rem;
+		width: 100%;
+		color: var(--black);
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: none;
+		`
+	)}
 `;
 
 // logo
 export const Image = styled(ImageComponent)`
-	height: 100%;
-	width: 15rem;
-	display: flex;
+	${mediaQueries(
+		'mobile',
+		`
+		height: 100%;
+		width: 12rem;
+		display: flex;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+			height: 100%;
+			width: 15rem;
+			display: flex;
+		`
+	)}
 `;
 
 // search
@@ -38,7 +129,19 @@ export const Search = styled.div`
 	--height-lookup: 18px;
 	--right-lookup: 11px;
 
-	position: relative;
+	${mediaQueries(
+		'desktop',
+		`
+		position: relative;
+		`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
 `;
 
 export const Input = styled.input`
@@ -123,8 +226,20 @@ export const Close = styled(FontAwesomeIcon)`
 `;
 
 export const User = styled.div`
-	display: flex;
-	align-items: center;
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: flex;
+		align-items: center;
+		`
+	)}
 `;
 
 // User
@@ -133,14 +248,26 @@ export const SignUpIcon = styled(FontAwesomeIcon)`
 `;
 
 export const KindRecommend = styled.div`
-	margin-right: 270px;
-	position: relative;
-	display: flex;
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
 
-	& label.channel {
-		margin-left: 24px;
-		flex-shrink: 0;
-	}
+	${mediaQueries(
+		'desktop',
+		`
+		margin-right: 270px;
+		position: relative;
+		display: flex;
+
+		& label.channel {
+			margin-left: 24px;
+			flex-shrink: 0;
+		}
+		`
+	)}
 `;
 
 export const Tool = styled.div`
@@ -209,26 +336,50 @@ export const ListPage = styled.div`
 `;
 
 export const LanguageArea = styled.div`
-	position: relative;
-	padding: 8px 0px;
-	background-color: rgb(26, 28, 34);
-	width: 28.2rem;
-	height: 15rem;
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
 
-	& .language {
-		width: 248px;
-		padding: 0px 16px;
-		text-align: center;
-		position: relative;
-		height: 44px;
-		line-height: 44px;
-		font-size: 14px;
-	}
+	${mediaQueries(
+		'desktop',
+		`
+			position: relative;
+			padding: 8px 0px;
+			background-color: rgb(26, 28, 34);
+			width: 28.2rem;
+			height: 15rem;
+
+			& .language {
+				width: 248px;
+				padding: 0px 16px;
+				text-align: center;
+				position: relative;
+				height: 44px;
+				line-height: 44px;
+				font-size: 14px;
+			}
+		`
+	)}
 `;
 
 export const Account = styled.div`
-	text-align: center;
-	padding: 16px;
-	width: 280px;
-	height: 114px;
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		text-align: center;
+		padding: 16px;
+		width: 280px;
+		height: 114px;
+		`
+	)}
 `;

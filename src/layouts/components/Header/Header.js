@@ -1,6 +1,7 @@
-import { faCaretDown, faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCaretDown, faCircleXmark, faMagnifyingGlass, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 import { Suspense, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Images from '~/assets/images';
@@ -39,6 +40,7 @@ function Header({ layout = 'default' }) {
 
 	// const [background, setBackground] = useState(false);
 
+	const searchMobile = useRef();
 	const kindFilmsRef = useRef();
 	// const historyRef = useRef();
 	// const languageRef = useRef();
@@ -60,6 +62,12 @@ function Header({ layout = 'default' }) {
 			} else if (window.scrollY === '0') {
 				headerEle.style.backgroundColor = 'var(--color-transparent)';
 			}
+		}
+	}
+
+	function handleSearchMobile() {
+		if (searchMobile && searchMobile.current) {
+			searchMobile.current.classList.toggle('hidden');
 		}
 	}
 
@@ -120,11 +128,25 @@ function Header({ layout = 'default' }) {
 					: {}
 			}
 		>
+			<$.Bar>
+				<FontAwesomeIcon icon={faBars} />
+			</$.Bar>
 			<$.Image
 				src={Images.logo}
 				alt="logo"
 				href={'http://localhost:5000/'}
 			/>
+			<$.SearchMobile onClick={handleSearchMobile}>
+				<FontAwesomeIcon icon={faMagnifyingGlass} />
+			</$.SearchMobile>
+			{createPortal(
+				<$.InputSearchMobile
+					ref={searchMobile}
+					className="hidden"
+					placeholder={t('searchFilm')}
+				/>,
+				document.body
+			)}
 
 			{layout === 'landing' ? (
 				''

@@ -67,6 +67,10 @@ export const Style = createGlobalStyle`
 		list-style-type: none;
 	}
 
+	.hidden {
+		display: none;
+	}
+
 	.pointer {
 		cursor: pointer;
 	}
