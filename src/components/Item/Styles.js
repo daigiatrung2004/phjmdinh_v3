@@ -240,7 +240,9 @@ export const Image = styled(ImageComponent)`
 		width: ${({ w }) => (w ? w : 'calc(10rem * 1.5)')};
 		background-size: cover;
 		border: none;
-		border-radius: 15px;
+		/* border-radius: 15px; */
+		border-radius: 0.2rem;
+		padding: 0px;
 	}
 
 	&.img__horizontal {
@@ -467,4 +469,19 @@ export const HashTagSheet = styled.div`
 	-webkit-line-clamp: 1;
 	-webkit-box-orient: vertical;
 	overflow: hidden;
+`;
+
+export const EpisodeLabel = styled.div`
+	background-image: linear-gradient(90deg, rgb(0, 214, 57) 0%, rgb(0, 194, 52) 100%);
+	position: absolute;
+	right: 0rem;
+	top: 0rem;
+	display: inline-block;
+	font-size: 1.2rem;
+	color: rgb(255, 255, 255);
+	letter-spacing: 0px;
+	line-height: 1.4rem;
+	border-radius: 0.2rem;
+	text-align: center;
+	padding: 0.3rem 0.4rem;
 `;

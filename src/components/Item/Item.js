@@ -88,6 +88,7 @@ const Item = forwardRef(function (
 				>
 					{icon}
 				</$.Image>
+				<$.EpisodeLabel>Full 11/11 Vietsub</$.EpisodeLabel>
 				<$.ItemInfo isHide={isHideTitle}>
 					<Label
 						className={typeClassNames[type].title}
