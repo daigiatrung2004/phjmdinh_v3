@@ -3,6 +3,7 @@ import Background from '~/components/Background';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import Label from '~/components/Label';
+import { mediaQueries } from '~/utils/reponsive';
 
 export const Wrapper = styled.div`
 	/* padding-left: 83px; */
@@ -10,8 +11,21 @@ export const Wrapper = styled.div`
 	z-index: 1000;
 `;
 export const Row = styled.div`
-	position: relative;
-	margin-left: 8.3rem;
+	${mediaQueries(
+		'mobile',
+		`
+			position: relative;
+			margin-left: .5rem;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+			position: relative;
+			margin-left: 8.3rem;
+		`
+	)}
 `;
 export const ItemsWrapper = styled.div`
 	display: block;
@@ -24,6 +38,12 @@ export const ItemsWrapper = styled.div`
 	/* overflow-x: hidden;
 	padding-left: 2.5rem; */
 	margin-bottom: 8rem;
+	${mediaQueries(
+		'mobile',
+		`
+			margin-bottom: 0.5rem;
+		`
+	)}
 `;
 
 //trailers
@@ -48,14 +68,20 @@ export const PlayIcon = styled(FontAwesomeIcon).attrs(() => ({ icon: faPlay }))`
 /*style for carousel*/
 export const CarouselTitle = styled.div`
 	width: 20.5vw;
-	min-width: 180px;
-	max-width: 360px;
+	min-width: 18rem;
+	max-width: 36rem;
 	height: 13.67vw;
-	max-height: 240px;
-	min-height: 120px;
+	max-height: 24rem;
+	min-height: 12rem;
 	background-position: left bottom;
 	background-repeat: no-repeat;
 	color: rgb(230, 230, 230);
+	${mediaQueries(
+		'mobile',
+		`
+		min-height: 8rem;
+		`
+	)}
 `;
 
 export const Rank = styled.div`
@@ -76,15 +102,22 @@ export const Rank = styled.div`
 		align-items: center;
 		-webkit-box-pack: center;
 		justify-content: center;
-		height: 18px;
-		line-height: 18px;
-		font-size: 11px;
+		height: 1.8rem;
+		line-height: 1.8rem;
+		font-size: 1.1rem;
 		color: rgb(255, 255, 255);
-		padding: 0px 4px 0px 0px;
-		margin-right: 6px;
-		border-radius: 2px;
+		padding: 0px 0.4rem 0px 0px;
+		margin-right: 0.6rem;
+		border-radius: 0.2rem;
 		box-sizing: border-box;
 		font-weight: 700;
+
+		${mediaQueries(
+			'mobile',
+			`
+		font-size: .8rem
+		`
+		)}
 	}
 
 	& span.focus-item-label-rank {
@@ -209,6 +242,13 @@ export const Tags = styled.div`
 		background: rgba(255, 255, 255, 0.08);
 		border-radius: 2px;
 	}
+
+	${mediaQueries(
+		'mobile',
+		`
+		display:none;
+		`
+	)}
 `;
 
 export const Desc = styled.div`
@@ -226,6 +266,12 @@ export const Desc = styled.div`
 	text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
 	font-weight: 500;
 	color: var(--white);
+	${mediaQueries(
+		'mobile',
+		`
+		display:none;
+		`
+	)}
 `;
 
 export const WrapBtn = styled.div`
@@ -235,6 +281,12 @@ export const WrapBtn = styled.div`
 	width: 8.333vw;
 	max-width: 152px;
 	margin-top: 1.6rem;
+	${mediaQueries(
+		'mobile',
+		`
+		display:none;
+		`
+	)}
 `;
 
 export const PlayWrap = styled.div`
@@ -372,6 +424,15 @@ export const TitleLabel = styled(Label)`
 	&:hover .extend-icon {
 		width: 10rem;
 	}
+
+	${mediaQueries(
+		'mobile',
+		`
+		&:hover .extend-icon {
+			width: 7rem;
+		}
+		`
+	)}
 	transition: all 0.2s 0.4s ease;
 `;
 
@@ -384,4 +445,11 @@ export const ExtendIcon = styled.span`
 	font-size: 2rem;
 	font-weight: normal;
 	transition: all 0.1s 0.2s ease;
+
+	${mediaQueries(
+		'mobile',
+		`
+		font-size: 1.6rem;
+		`
+	)}
 `;

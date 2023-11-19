@@ -75,7 +75,10 @@ const Item = forwardRef(function (
 			className={`${typeClassNames[type].wrapperItem} item ${typeClassNames[type].hoverBgColor}`}
 			onMouseEnter={() => mouseEnter(src)}
 		>
-			<$.PresentItem className={`item-present ${typeClassNames[type].item} ${typeClassNames[type].wrapperItem}`}>
+			<$.PresentItem
+				className={`item-present ${typeClassNames[type].item} ${typeClassNames[type].wrapperItem}`}
+				{...propsDefault}
+			>
 				<$.Image
 					src={src}
 					alt={data.title}
@@ -86,7 +89,16 @@ const Item = forwardRef(function (
 					{icon}
 				</$.Image>
 				<$.ItemInfo isHide={isHideTitle}>
-					<Label className={typeClassNames[type].title}>{data.title}</Label>
+					<Label
+						className={typeClassNames[type].title}
+						devicearguments={{
+							mobile: {
+								style: 'font-size: 1.4rem; width: 9.1rem;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;',
+							},
+						}}
+					>
+						{data.title}
+					</Label>
 					<$.SubTitle>{data.originalTitle}</$.SubTitle>
 				</$.ItemInfo>
 			</$.PresentItem>

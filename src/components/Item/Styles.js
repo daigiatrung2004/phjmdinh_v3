@@ -2,6 +2,7 @@ import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import ImageComponent from '~/components/Image';
+import { mediaQueries } from '~/utils/reponsive';
 
 const frame = (sign, transform) => keyframes`
 	from {
@@ -137,18 +138,57 @@ export const Item = styled(ItemCustom)`
 		position: relative;
 	}
 
-	&:hover .cardo {
-		visibility: visible;
-		opacity: 1;
-		pointer-events: auto;
+	${mediaQueries(
+		'desktop',
+		`
+		&:hover .cardo {
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
 
-		/* width: 25.5rem;
-		transform: scale(1.05);
-		height: 110%; */
-	}
+			/* width: 25.5rem;
+			transform: scale(1.05);
+			height: 110%; */
+		}
+	`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+		&:hover .cardo {
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
+
+			/* width: 25.5rem;
+			transform: scale(0.7);
+			height: 110%; */
+			display:none;
+		}
+
+		&.item__display-vertical {
+			margin-right: 0px;
+			width: 9.1rem;
+		}
+
+		&.item__display-vertical .wrapper img {
+			padding: 0px;
+			border-radius: 0.8rem;
+		}
+	`
+	)}
 `;
 
 export const PresentItem = styled.div`
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
 	position: relative;
 	/* z-index: 100; */
 	/* &.item-present:hover ~ .cardo {
@@ -313,6 +353,12 @@ export const SubTitle = styled.small`
 	font-size: 1.5rem;
 	color: #a4a6a6;
 	font-style: italic;
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		`
+	)}
 `;
 
 export const ItemInfo = styled.div`
@@ -323,6 +369,22 @@ export const ItemInfo = styled.div`
 `;
 
 export const Cardo = styled.div`
+	${mediaQueries(
+		'desktop',
+		`
+		width: 25.5rem;
+		transform: scale(1.05);
+		height: 110%;
+	`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+		display: none;
+		transform: scale(.7);
+		`
+	)}
 	background-color: #1a1c22;
 	position: absolute;
 	top: 0%;
@@ -338,9 +400,6 @@ export const Cardo = styled.div`
 	z-index: 99;
 	overflow: hidden;
 	color: var(--white);
-	width: 25.5rem;
-	transform: scale(1.05);
-	height: 110%;
 	visibility: hidden;
 	pointer-events: none;
 

@@ -442,13 +442,17 @@ function Home() {
 				}}
 			/>
 			<$.Wrapper>
-				<$.Row>
+				<$.Row className="row">
 					<Label
 						type={'h3'}
 						fontSize="30px"
 						fontWeight="700"
 						className={'primary'}
-
+						devicearguments={{
+							mobile: {
+								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+						}}
 						// leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
 						// iconsize={'20px'}
 					>
@@ -467,6 +471,11 @@ function Home() {
 						{(isLoaded && (
 							<Carousel
 								CarouselItems={itemsPopular}
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -474,6 +483,11 @@ function Home() {
 						)) || (
 							<Carousel
 								CarouselItems={carouselDataDefault}
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								type="multi"
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -481,16 +495,21 @@ function Home() {
 						)}
 					</$.ItemsWrapper>
 				</$.Row>
-				<$.Row>
+				<$.Row className="row">
 					<$.TitleLabel
 						type={'h3'}
 						fontSize="30px"
 						fontWeight="700"
 						className={'primary'}
+						devicearguments={{
+							mobile: {
+								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+						}}
 						rightIcons={
 							<>
 								<$.ExtendIcon className="extend-icon">
-									<span style={{ flexShrink: '0' }}>xem thêm</span>
+									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
 								<FontAwesomeIcon
 									icon={faChevronRight}
@@ -516,6 +535,11 @@ function Home() {
 							<Carousel
 								CarouselItems={itemsTrending}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
@@ -523,22 +547,32 @@ function Home() {
 							<Carousel
 								CarouselItems={carouselDataDefault}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
 						)}
 					</$.ItemsWrapper>
 				</$.Row>
-				<$.Row>
+				<$.Row className="row">
 					<$.TitleLabel
 						type={'h3'}
 						fontSize="30px"
 						fontWeight="700"
 						className={'primary'}
+						devicearguments={{
+							mobile: {
+								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+						}}
 						rightIcons={
 							<>
 								<$.ExtendIcon className="extend-icon">
-									<span style={{ flexShrink: '0' }}>xem thêm</span>
+									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
 								<FontAwesomeIcon
 									icon={faChevronRight}
@@ -564,6 +598,11 @@ function Home() {
 							<Carousel
 								CarouselItems={itemsLastest}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
@@ -571,6 +610,11 @@ function Home() {
 							<Carousel
 								CarouselItems={carouselDataDefault}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
@@ -578,16 +622,21 @@ function Home() {
 					</$.ItemsWrapper>
 				</$.Row>
 
-				<$.Row>
+				<$.Row className="row">
 					<$.TitleLabel
 						type={'h3'}
 						fontSize="30px"
 						fontWeight="700"
 						className={'primary'}
+						devicearguments={{
+							mobile: {
+								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+						}}
 						rightIcons={
 							<>
 								<$.ExtendIcon className="extend-icon">
-									<span style={{ flexShrink: '0' }}>xem thêm</span>
+									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
 								<FontAwesomeIcon
 									icon={faChevronRight}
@@ -613,6 +662,11 @@ function Home() {
 							<Carousel
 								CarouselItems={itemsUpComing}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
@@ -620,6 +674,11 @@ function Home() {
 							<Carousel
 								CarouselItems={carouselDataDefault}
 								type="multi"
+								devicearguments={{
+									mobile: {
+										style: 'width: 9.1rem',
+									},
+								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
 							/>
@@ -673,7 +732,7 @@ function Home() {
 						<FontAwesomeIcon icon={faChevronUp} />
 					</$.BtnBackTop>
 				</$.BackTop>,
-				document.querySelector('div.App')
+				document.querySelector('.App')
 			)}
 		</>
 	);

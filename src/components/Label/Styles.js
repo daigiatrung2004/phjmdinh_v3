@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { forwardRef } from 'react';
+import { mediaQueries } from '~/utils/reponsive';
 
 const ElementTag = forwardRef(({ to, type, children, ...propsDefault }, ref) => {
 	let Element = 'h4';
@@ -21,6 +22,14 @@ const ElementTag = forwardRef(({ to, type, children, ...propsDefault }, ref) => 
 });
 
 export const Anchor = styled(ElementTag)`
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
 	font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
 	display: block;
 	clear: both;

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Background from '~/components/Background';
 import Label from '~/components/Label';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { mediaQueries } from '~/utils/reponsive';
 
 export const Footer = styled.footer`
 	clear: both;
@@ -99,6 +100,13 @@ export const FooterSheet = styled.div`
 	}
 
 	transition: all 0.5s 0.4s ease;
+
+	${mediaQueries(
+		'mobile',
+		`
+		display:none;
+		`
+	)}
 `;
 
 export const Social = styled(Label)``;

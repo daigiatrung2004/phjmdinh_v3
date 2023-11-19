@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { convertHEXToRGB } from '~/utils/utility.function';
+import { mediaQueries } from '~/utils/reponsive';
 
 const opacityFrame = keyframes`
 	from {
@@ -95,6 +96,13 @@ export const Sheet = styled.div`
 	&.bg-animation {
 		animation: ${opacityFrame} .2s ease-out forwards;
 	}
+
+	${mediaQueries(
+		'mobile',
+		`
+		height: 30rem;
+		`
+	)}
 `;
 export const SupperMultiSheet = styled.div`
 	--padding-left: 2.5rem;
@@ -112,6 +120,13 @@ export const SupperMultiSheet = styled.div`
 			font-size: ${({ fontsize }) => (fontsize ? fontsize : '3rem')};
 		}
 		z-index: var(--zIndex-general);
+
+		${mediaQueries(
+			'mobile',
+			`
+			font-size: '2rem';
+		`
+		)}
 	}
 
 	&.super-multi-sheet .control-right {
@@ -123,6 +138,12 @@ export const SupperMultiSheet = styled.div`
 			font-size: ${({ fontsize }) => (fontsize ? fontsize : '3rem')};
 		}
 		z-index: var(--zIndex-general);
+		${mediaQueries(
+			'mobile',
+			`
+			font-size: '2rem';
+		`
+		)}
 	}
 `;
 export const MultiSheet = styled.div`
@@ -137,14 +158,37 @@ export const MultiSheet = styled.div`
 	/* padding: 0rem 7rem 0rem 7rem; */
 	z-index: calc(var(--zIndex-general));
 	margin-left: ${({ space }) => (space ? `calc(${space} * -1)` : '')};
+	${mediaQueries(
+		'mobile',
+		`
+		justify-content: start;
+		`
+	)}
 `;
 
 export const ItemSheet = styled.div`
 	position: relative;
 	width: 100%;
 	display: grid;
+	grid-template-columns: repeat(${({ size }) => (size ? size : 20)}, minmax(23.7rem, 23.7rem));
 	/* background-color: red; */
-	grid-template-columns: repeat(${({ size }) => (size ? size : '20')}, minmax(23.7rem, 23.7rem));
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: grid;
+		
+		`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+			display: grid;
+			grid-template-columns: repeat(20, minmax(10.1rem, 10.1rem));
+		`
+	)}
+
 	/* overflow: hidden; */
 	height: 100%;
 	/* padding: 0rem var(--padding-left) 0rem var(--padding-left); */
@@ -153,6 +197,14 @@ export const ItemSheet = styled.div`
 	translate: ${({ distance }) => (distance ? distance : '0px')};
 	transition: all 0.4s var(--carousel-transition-2);
 	z-index: calc(var(--zIndex-general) - 1);
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
 `;
 
 const rightKeyFrame = keyframes`
@@ -185,6 +237,14 @@ export const CarouselItem = styled.div`
 	float: left;
 	position: relative;
 
+	${mediaQueries(
+		'mobile',
+		`
+		background-size: 50% 60%;
+		background-position: 90% 50%;
+		`
+	)}
+
 	&.right {
 		animation: ${rightKeyFrame} 0.5s var(--timing-function-carousel) forwards;
 	}
@@ -203,6 +263,16 @@ export const Infomation = styled.div`
 	bottom: ${({ offset }) => (offset[2] === 'unset' || (!offset[2] && offset[2] !== '0') ? 'auto' : offset[2])};
 	right: ${({ offset }) => (offset[3] === 'unset' || (!offset[3] && offset[3] !== '0') ? 'auto' : offset[3])};
 	z-index: 1000;
+
+	${mediaQueries(
+		'mobile',
+		`
+		top: auto;
+		left: 0rem;
+		bottom: 5rem;
+		right: auto;
+		`
+	)}
 `;
 
 export const SheetNeighbor = styled.div``;
@@ -225,10 +295,22 @@ export const Control = styled.div`
 
 	&.control-left {
 		left: 10px;
+		${mediaQueries(
+			'mobile',
+			`
+			font-size: 2rem;
+			`
+		)}
 	}
 
 	&.control-right {
 		right: 10px;
+		${mediaQueries(
+			'mobile',
+			`
+			font-size: 2rem;
+			`
+		)}
 	}
 
 	&:hover {
@@ -248,6 +330,16 @@ export const Indicators = styled.ul`
 	width: ${({ totalsize }) =>
 		totalsize ? `calc((var(--indicator-width) + var(--indicator-margin-left) + 1rem) * ${totalsize})` : '50%'};
 	z-index: var(--zIndex-carousel);
+
+	${mediaQueries(
+		'mobile',
+		`
+		top: auto;
+		right: 0rem;
+		bottom: 5rem;
+		left: auto;
+		`
+	)}
 `;
 
 export const Indicator = styled.li`
