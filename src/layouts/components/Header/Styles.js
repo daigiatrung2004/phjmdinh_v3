@@ -31,6 +31,21 @@ export const Header = styled.header`
 		z-index: 10000;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		width: 100%;
+		height: var(--width-header);
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		background-color: var(--color-transparent);
+		position: fixed;
+		transition: background-color 0.5s linear 0s;
+		z-index: 10000;
+		`
+	)}
 `;
 
 /*
@@ -52,6 +67,13 @@ export const Bar = styled.div`
 		display: none;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display: none;
+		`
+	)}
 `;
 
 export const SearchMobile = styled.div`
@@ -66,6 +88,13 @@ export const SearchMobile = styled.div`
 
 	${mediaQueries(
 		'desktop',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
 		`
 		display: none;
 		`
@@ -91,6 +120,13 @@ export const InputSearchMobile = styled.input`
 		display: none;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display: none;
+		`
+	)}
 `;
 
 // logo
@@ -106,6 +142,15 @@ export const Image = styled(ImageComponent)`
 
 	${mediaQueries(
 		'desktop',
+		`
+			height: 100%;
+			width: 15rem;
+			display: flex;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
 		`
 			height: 100%;
 			width: 15rem;
@@ -138,6 +183,13 @@ export const Search = styled.div`
 
 	${mediaQueries(
 		'mobile',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
 		`
 		display: none;
 		`
@@ -240,6 +292,14 @@ export const User = styled.div`
 		align-items: center;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display: flex;
+		align-items: center;
+		`
+	)}
 `;
 
 // User
@@ -258,7 +318,21 @@ export const KindRecommend = styled.div`
 	${mediaQueries(
 		'desktop',
 		`
-		margin-right: 270px;
+		margin-right: 27rem;
+		position: relative;
+		display: flex;
+
+		& label.channel {
+			margin-left: 2.4rem;
+			flex-shrink: 0;
+		}
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		margin-right: 6rem;
 		position: relative;
 		display: flex;
 
@@ -363,6 +437,27 @@ export const LanguageArea = styled.div`
 			}
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+			position: relative;
+			padding: 8px 0px;
+			background-color: rgb(26, 28, 34);
+			width: 28.2rem;
+			height: 15rem;
+
+			& .language {
+				width: 248px;
+				padding: 0px 16px;
+				text-align: center;
+				position: relative;
+				height: 44px;
+				line-height: 44px;
+				font-size: 14px;
+			}
+		`
+	)}
 `;
 
 export const Account = styled.div`
@@ -375,6 +470,16 @@ export const Account = styled.div`
 
 	${mediaQueries(
 		'desktop',
+		`
+		text-align: center;
+		padding: 16px;
+		width: 280px;
+		height: 114px;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
 		`
 		text-align: center;
 		padding: 16px;

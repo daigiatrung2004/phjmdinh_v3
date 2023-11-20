@@ -149,6 +149,9 @@ function Home() {
 							mobile: {
 								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
 							},
+							tablet: {
+								style: 'margin-left: 5.6rem;',
+							},
 						}}
 						// leftIcons={<FontAwesomeIcon icon={faPaperclip} />}
 						// iconsize={'20px'}
@@ -172,6 +175,9 @@ function Home() {
 									mobile: {
 										style: 'width: 9.1rem',
 									},
+									tablet: {
+										style: 'width: 14.7rem',
+									},
 								}}
 								type="multi"
 								step={'5'}
@@ -183,6 +189,9 @@ function Home() {
 								devicearguments={{
 									mobile: {
 										style: 'width: 9.1rem',
+									},
+									tablet: {
+										style: 'width: 14.7rem',
 									},
 								}}
 								type="multi"
@@ -201,6 +210,9 @@ function Home() {
 						devicearguments={{
 							mobile: {
 								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+							tablet: {
+								style: 'margin-left: 5.6rem;',
 							},
 						}}
 						rightIcons={
@@ -236,6 +248,9 @@ function Home() {
 									mobile: {
 										style: 'width: 9.1rem',
 									},
+									tablet: {
+										style: 'width: 14.7rem',
+									},
 								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -247,6 +262,9 @@ function Home() {
 								devicearguments={{
 									mobile: {
 										style: 'width: 9.1rem',
+									},
+									tablet: {
+										style: 'width: 14.7rem',
 									},
 								}}
 								step={'5'}
@@ -264,6 +282,9 @@ function Home() {
 						devicearguments={{
 							mobile: {
 								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+							tablet: {
+								style: 'margin-left: 5.6rem;',
 							},
 						}}
 						rightIcons={
@@ -299,6 +320,9 @@ function Home() {
 									mobile: {
 										style: 'width: 9.1rem',
 									},
+									tablet: {
+										style: 'width: 14.7rem',
+									},
 								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -310,6 +334,9 @@ function Home() {
 								devicearguments={{
 									mobile: {
 										style: 'width: 9.1rem',
+									},
+									tablet: {
+										style: 'width: 14.7rem',
 									},
 								}}
 								step={'5'}
@@ -328,6 +355,9 @@ function Home() {
 						devicearguments={{
 							mobile: {
 								style: 'font-size : 1.5rem;margin-left: 0px!important;color: white!important',
+							},
+							tablet: {
+								style: 'margin-left: 5.6rem;',
 							},
 						}}
 						rightIcons={
@@ -363,6 +393,9 @@ function Home() {
 									mobile: {
 										style: 'width: 9.1rem',
 									},
+									tablet: {
+										style: 'width: 14.7rem',
+									},
 								}}
 								step={'5'}
 								isLoadingCurrent={isLoaded}
@@ -374,6 +407,9 @@ function Home() {
 								devicearguments={{
 									mobile: {
 										style: 'width: 9.1rem',
+									},
+									tablet: {
+										style: 'width: 14.7rem',
 									},
 								}}
 								step={'5'}

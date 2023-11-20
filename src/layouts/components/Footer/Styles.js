@@ -107,6 +107,13 @@ export const FooterSheet = styled.div`
 		display:none;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display:none;
+		`
+	)}
 `;
 
 export const Social = styled(Label)``;

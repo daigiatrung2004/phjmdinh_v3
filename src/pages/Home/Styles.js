@@ -433,6 +433,16 @@ export const TitleLabel = styled(Label)`
 		}
 		`
 	)}
+
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
+
 	transition: all 0.2s 0.4s ease;
 `;
 

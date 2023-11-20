@@ -103,6 +103,13 @@ export const Sheet = styled.div`
 		height: 30rem;
 		`
 	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		height: 50rem;
+		`
+	)}
 `;
 export const SupperMultiSheet = styled.div`
 	--padding-left: 2.5rem;
@@ -162,6 +169,14 @@ export const MultiSheet = styled.div`
 		'mobile',
 		`
 		justify-content: start;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		justify-content: start;
+		margin-left: 0.075rem;
 		`
 	)}
 `;
@@ -245,6 +260,14 @@ export const CarouselItem = styled.div`
 		`
 	)}
 
+	${mediaQueries(
+		'tablet',
+		`
+		background-size: 40% 70%;
+		background-position: 80% 70%;
+		`
+	)}
+
 	&.right {
 		animation: ${rightKeyFrame} 0.5s var(--timing-function-carousel) forwards;
 	}
@@ -271,6 +294,13 @@ export const Infomation = styled.div`
 		left: 0rem;
 		bottom: 5rem;
 		right: auto;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		bottom: 10rem;
 		`
 	)}
 `;
@@ -338,6 +368,13 @@ export const Indicators = styled.ul`
 		right: 0rem;
 		bottom: 5rem;
 		left: auto;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		bottom: 10rem;
 		`
 	)}
 `;

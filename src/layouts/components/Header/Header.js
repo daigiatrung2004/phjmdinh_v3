@@ -157,12 +157,28 @@ function Header({ layout = 'default' }) {
 							type={'label'}
 							className={'channel hover-text-color pointer'}
 							style={{ color: 'var(--white)' }}
+							devicearguments={{
+								mobile: {
+									style: 'display: none',
+								},
+								tablet: {
+									style: 'display: none',
+								},
+							}}
 						>
 							{t('recommendation')}
 						</Label>
 						<Label
 							type={'label'}
 							className={'channel hover-text-color pointer'}
+							devicearguments={{
+								mobile: {
+									style: 'display: none',
+								},
+								tablet: {
+									style: 'display: none',
+								},
+							}}
 						>
 							{recommendFilms[i18next.resolvedLanguage]}
 						</Label>
