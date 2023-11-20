@@ -453,3 +453,12 @@ export const ExtendIcon = styled.span`
 		`
 	)}
 `;
+
+export const ArrowRight = styled(FontAwesomeIcon)`
+	${mediaQueries(
+		'mobile',
+		`
+	font-size: 1.4rem
+	`
+	)}
+`;

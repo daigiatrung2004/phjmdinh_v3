@@ -208,7 +208,7 @@ function Home() {
 								<$.ExtendIcon className="extend-icon">
 									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
-								<FontAwesomeIcon
+								<$.ArrowRight
 									icon={faChevronRight}
 									style={{ color: 'var(--text-color-search)' }}
 								/>
@@ -271,7 +271,7 @@ function Home() {
 								<$.ExtendIcon className="extend-icon">
 									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
-								<FontAwesomeIcon
+								<$.ArrowRight
 									icon={faChevronRight}
 									style={{ color: 'var(--text-color-search)' }}
 								/>
@@ -335,7 +335,7 @@ function Home() {
 								<$.ExtendIcon className="extend-icon">
 									<span style={{ flexShrink: '0', fontSize: '1.4rem' }}>xem thêm</span>
 								</$.ExtendIcon>
-								<FontAwesomeIcon
+								<$.ArrowRight
 									icon={faChevronRight}
 									style={{ color: 'var(--text-color-search)' }}
 								/>

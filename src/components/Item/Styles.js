@@ -484,4 +484,16 @@ export const EpisodeLabel = styled.div`
 	border-radius: 0.2rem;
 	text-align: center;
 	padding: 0.3rem 0.4rem;
+
+	${mediaQueries(
+		'mobile',
+		`
+		font-size: 1.2rem;
+		width: 100%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		height: 1.8rem;
+		`
+	)}
 `;
