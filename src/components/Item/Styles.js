@@ -154,6 +154,21 @@ export const Item = styled(ItemCustom)`
 	)}
 
 	${mediaQueries(
+		'tablet',
+		`
+		&:hover .cardo {
+			visibility: visible;
+			opacity: 1;
+			pointer-events: auto;
+
+			/* width: 25.5rem;
+			transform: scale(1.05);
+			height: 110%; */
+		}
+	`
+	)}
+
+	${mediaQueries(
 		'mobile',
 		`
 		&:hover .cardo {
@@ -165,6 +180,10 @@ export const Item = styled(ItemCustom)`
 			transform: scale(0.7);
 			height: 110%; */
 			display:none;
+		}
+
+		&:hover {
+			transform: scale(1.05);
 		}
 
 		&.item__display-vertical {
