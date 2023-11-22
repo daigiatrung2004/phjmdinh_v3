@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Loading from '~/components/Loading';
 import Footer from '~/layouts/components/Footer';
 import Header from '~/layouts/components/Header';
+import * as $ from './Styles';
 
 function DefaultLayout({ children }) {
 	// const Test = lazy(() => import('~/pages/WatchFilm'));
@@ -10,7 +11,7 @@ function DefaultLayout({ children }) {
 		<Suspense fallback={<Loading />}>
 			<Header />
 			{/* <Test /> */}
-			<main style={{ paddingBottom: '30rem' }}>{children}</main>
+			<$.Main>{children}</$.Main>
 			<Footer />
 		</Suspense>
 	);
