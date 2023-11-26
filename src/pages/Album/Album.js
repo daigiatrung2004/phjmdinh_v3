@@ -8,7 +8,6 @@ import { faArrowUpFromBracket, faBookBookmark, faBookmark, faPlay } from '@forta
 import Tabs from '~/components/Tabs';
 
 function Album() {
-	console.log('ListItems Album:', Array.isArray(ListItems) && ListItems.sortobj('index'));
 	return (
 		<>
 			<Carousel

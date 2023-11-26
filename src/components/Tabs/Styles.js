@@ -1,4 +1,17 @@
 import styled from 'styled-components';
+import Background from '~/components/Background';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
+
+export const PlayIcon = styled(FontAwesomeIcon).attrs(() => ({ icon: faPlay }))`
+	font-size: var(--size-icon);
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	transition: all var(--time-scale-item) ease-in-out;
+`;
 
 export const Container = styled.div`
 	--margin-left-default: 5.6rem;
@@ -43,3 +56,12 @@ export const Body = styled.main`
 	color: var(--white);
 `;
 export const Content = styled.div``;
+
+export const Trailer = styled.div`
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+
+	& > * {
+		z-index: 100;
+	}
+`;

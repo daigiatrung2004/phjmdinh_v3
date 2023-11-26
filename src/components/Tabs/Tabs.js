@@ -1,13 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as $ from './Styles';
+import Items from '~/components/FilmItems';
+import { getUpComing } from '~/services/moviesService';
+import handleError from '~/utils/handleError';
 
 function Tabs({ type = 'normal', tabList = [] }) {
 	const [selected, setSelected] = useState();
+	const [itemsLastest, setItemsLastest] = useState([]);
+
+	useEffect(() => {
+		// (async function getData() {
+		// 	let popularData = await handleError(getPopular({ page: 1, adults: false }));
+		// 	let trendingData = await handleError(getTrending({ page: 1, adults: false }));
+		// 	let upComingData = await handleError(getUpComing({ page: 1, adults: false }));
+		// 	let latestData = await handleError(getUpComing({ page: 1, adults: false }));
+		// 	setItemsPopular(popularData);
+		// 	setItemsTrending(trendingData);
+		// 	setItemsUpComing(upComingData);
+		// 	setItemsLastest(latestData);
+		// })();
+		Promise.all([handleError(getUpComing({ page: 1, adults: false }))])
+			.then(([latestData]) => {
+				setItemsLastest(latestData);
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}, []);
 	const Test = [
 		{
 			id: 'eposide',
 			header: 'Chọn tập',
-			content: 'Tab eposide',
+			content: (
+				<$.Trailer>
+					<Items
+						src="/reviewfilm/"
+						items={itemsLastest}
+						type={'HORIZON_DISPLAY_TYPE'}
+						icon={<$.PlayIcon />}
+						isLoadingCurrent={true}
+					/>
+				</$.Trailer>
+			),
 		},
 		{
 			id: 'unique-content',
