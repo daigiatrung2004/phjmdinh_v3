@@ -246,7 +246,47 @@ function Carousel(
 			);
 		case 'multi_one_step':
 			return <></>;
-
+		case 'wall':
+			console.log('listTmp:', CarouselItems);
+			return (
+				<$.WallSheet
+					height={height}
+					width={width}
+					{...attrs}
+					className={`sheet`}
+					ref={ref}
+					backgroundImage={CarouselItems.length > 0 ? CarouselItems[0].bgSrc : ImageDefault.noImage}
+				>
+					{CarouselItems.map((item, index) => {
+						return (
+							<Fragment key={'wrap-' + index}>
+								<$.CarouselItem
+									key={index}
+									src={item.imgSrc}
+									className={`carousel-item`}
+								>
+									<$.Infomation
+										key={`info-${index}`}
+										offset={offset}
+										className="infomation"
+									>
+										{render(item)}
+									</$.Infomation>
+									<$.BgWallLeft
+										bgLeftColor={item.bgColors[1]}
+										className="bg-left"
+									/>
+									<$.BgTop
+										bgTopColor={item.bgColors[0]}
+										className="bg-top"
+									/>
+									<$.BgBottom className="bg-bottom" />
+								</$.CarouselItem>
+							</Fragment>
+						);
+					})}
+				</$.WallSheet>
+			);
 		default:
 			return <></>;
 	}

@@ -24,4 +24,5 @@ export const More = styled(Label)`
 	bottom: -2.1rem;
 	right: 1rem;
 	font-size: 1.2rem;
+	cursor: pointer;
 `;

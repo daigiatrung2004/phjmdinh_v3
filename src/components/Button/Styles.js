@@ -45,9 +45,28 @@ export const Button = styled.button`
 		color: var(--white);
 		border-radius: 5px;
 
-		&:active {
-			background-color: white;
+		&:active:focus {
+			opacity: 1.2;
 			color: var(--black);
+		}
+
+		&:hover {
+			opacity: 1.2;
+		}
+	}
+
+	&.black-primary {
+		background: rgb(45, 47, 52);
+		cursor: pointer;
+		border-radius: 5px;
+		color: var(--white);
+		&:active {
+			background: rgb(86, 87, 91);
+			color: var(--black);
+		}
+
+		&:hover {
+			background: rgb(86, 87, 91);
 		}
 	}
 

@@ -2,22 +2,44 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from './Styles';
 import PropTypes from 'prop-types';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 
-function Paragraph({ children, className, isTextOverFlow = false, numLine, moreTitle = 'more', linkMore, ...attrs }) {
+function Paragraph({
+	children,
+	className,
+	isTextOverFlow = false,
+	numLine,
+	moreTitle = 'more',
+	linkMore,
+	isToggleFlag = false,
+	moreTitleDetail,
+	...attrs
+}) {
+	const [isTextOverFlowSt, setIsTextOverFlowSt] = useState(isTextOverFlow);
 	// not use when textoverflow
-	if (!isTextOverFlow) {
+	if (!isTextOverFlowSt) {
 		numLine = 'unset';
 	}
+
+	function moreHandleClick() {
+		if (isToggleFlag) {
+			setIsTextOverFlowSt(!isTextOverFlowSt);
+		}
+	}
+
+	useEffect(() => {
+		setIsTextOverFlowSt(isTextOverFlow);
+	}, [isTextOverFlow]);
 
 	return (
 		<$.ParagraphSheet
 			className={className}
-			isTextOverFlow={isTextOverFlow}
+			isTextOverFlow={isTextOverFlowSt}
 			numLine={numLine}
 			{...attrs}
 		>
 			<span>{children}</span>
-			{isTextOverFlow && (
+			{isTextOverFlowSt && (
 				<$.More
 					className={'primary flex-center'}
 					rightIcons={
@@ -27,8 +49,25 @@ function Paragraph({ children, className, isTextOverFlow = false, numLine, moreT
 							src={linkMore}
 						/>
 					}
+					onClick={moreHandleClick}
 				>
 					{moreTitle}
+				</$.More>
+			)}
+
+			{moreTitleDetail && isTextOverFlowSt === false && (
+				<$.More
+					className={'primary flex-center'}
+					rightIcons={
+						<FontAwesomeIcon
+							icon={faChevronRight}
+							style={{ marginLeft: '0rem' }}
+							src={linkMore}
+						/>
+					}
+					onClick={moreHandleClick}
+				>
+					{moreTitleDetail}
 				</$.More>
 			)}
 		</$.ParagraphSheet>

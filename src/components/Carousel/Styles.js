@@ -111,6 +111,59 @@ export const Sheet = styled.div`
 		`
 	)}
 `;
+
+export const WallSheet = styled.div`
+	--height-sheet: ${({ height }) => height}
+	--height-control: '80px';
+	--width-control: '60px';
+	--font-size-control: 4rem;
+	--indicator-width: .8rem;
+	--indicator-height: .8rem;
+	--indicator-margin-left: 0.5rem;
+	--zIndex-carousel: 1000;
+	--zIndex-background: 101;
+	--zIndex-caoursel: 100;
+	position: relative;
+	display: flex;
+	background: center right / cover no-repeat;
+	background-size: 71% 100%;
+	background-image: linear-gradient(
+			rgba(0, 0, 0, 0.8) 0%,
+			rgba(0, 0, 0, 0.3) 4%,
+			rgba(0, 0, 0, 0) 12%,
+			rgba(0, 0, 0, 0) 88%,
+			rgba(0, 0, 0, 0.3) 95%,
+			rgba(0, 0, 0, 0.8) 100%
+		),url(${({ backgroundImage }) => (backgroundImage ? backgroundImage : '')});
+	/* justify-content: center; */
+	height: ${({ height }) => height};
+	width: ${({ width }) => width};
+	overflow: hidden;
+
+	margin-bottom: -12.5%;
+
+	&.bg-animation-hide {
+		animation: ${opacityFrameHide} .3s ease forwards;
+	}
+
+	&.bg-animation {
+		animation: ${opacityFrame} .2s ease-out forwards;
+	}
+
+	${mediaQueries(
+		'mobile',
+		`
+		height: 30rem;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		height: 50rem;
+		`
+	)}
+`;
 export const SupperMultiSheet = styled.div`
 	--padding-left: 2.5rem;
 	--carousel-transition-2: cubic-bezier(0.3, 0.23, 0.63, 0.87);
@@ -453,6 +506,25 @@ export const BgLeft = styled.div`
 					)`;
 		}
 	}};
+	z-index: var(--zIndex-background);
+`;
+export const BgWallLeft = styled.div`
+	position: absolute;
+	top: 0;
+	left: 28%;
+	width: 30%;
+	height: 100%;
+	background-image: linear-gradient(
+		270deg,
+		rgba(17, 19, 25, 0) 0%,
+		rgba(17, 19, 25, 0.05) 16%,
+		rgba(17, 19, 25, 0.2) 30%,
+		rgba(17, 19, 25, 0.39) 43%,
+		rgba(17, 19, 25, 0.61) 55%,
+		rgba(17, 19, 25, 0.8) 68%,
+		rgba(17, 19, 25, 0.95) 82%,
+		rgb(17, 19, 25) 98%
+	);
 	z-index: var(--zIndex-background);
 `;
 

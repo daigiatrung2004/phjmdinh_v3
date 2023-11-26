@@ -5,6 +5,7 @@ import Error from '~/pages/Static/Error';
 import PageTool from '~/pages/PageTool';
 import Images from '~/assets/images';
 import Watch from '~/pages/WatchFilm';
+import Album from '~/pages/Album';
 import About from '~/pages/LandingPage/About';
 import Privacy from '~/pages/LandingPage/Privacy';
 import TermOfUse from '~/pages/LandingPage/TermOfUse';
@@ -48,15 +49,15 @@ export const privateRoutes = [
 		component: <Home />,
 	},
 	{
+		path: '/album',
+		component: <Album />,
+	},
+	{
 		path: '/reviewfilm/*',
 		component: <ReviewFilm />,
 	},
 	{
-		path: '/',
-		component: <Testpopup />,
-	},
-	{
-		path: '/watch ',
+		path: '/watch',
 		component: <Watch />,
 	},
 	{
@@ -98,6 +99,10 @@ export const privateRoutes = [
 		path: '/support',
 		component: <Support />,
 		denp: 'landing',
+	},
+	{
+		path: '/',
+		component: <Testpopup />,
 	},
 ];
 
