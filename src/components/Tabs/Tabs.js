@@ -3,6 +3,7 @@ import * as $ from './Styles';
 import Items from '~/components/FilmItems';
 import { getUpComing } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
+import { useTranslation } from 'react-i18next';
 
 function Tabs({ type = 'normal', tabList = [] }) {
 	const [selected, setSelected] = useState();
@@ -27,10 +28,11 @@ function Tabs({ type = 'normal', tabList = [] }) {
 				console.log(error);
 			});
 	}, []);
+	const { t } = useTranslation();
 	const Test = [
 		{
 			id: 'eposide',
-			header: 'Chọn tập',
+			header: t('eposide'),
 			content: (
 				<$.Trailer>
 					<Items
@@ -45,22 +47,22 @@ function Tabs({ type = 'normal', tabList = [] }) {
 		},
 		{
 			id: 'unique-content',
-			header: 'Nội dung đặc sắc',
+			header: t('uniqueContent'),
 			content: 'Tab unique-content',
 		},
 		{
 			id: 'performer',
-			header: 'Diễn viên',
+			header: t('performer'),
 			content: 'Tab performer',
 		},
 		{
 			id: 'collection-film',
-			header: 'Tuyển tập phim và truyền hình',
+			header: t('collectionFilm'),
 			content: 'Tab Film and television collection',
 		},
 		{
 			id: 'recommend-for-u',
-			header: 'Đề xuất cho bạn',
+			header: t('recommendForU'),
 			content: 'Tab Recommended for you',
 		},
 	];

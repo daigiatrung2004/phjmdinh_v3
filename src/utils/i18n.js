@@ -47,6 +47,13 @@ i18next
 					privacyPolicy: 'Chính sách quyền riêng tư PHJMDINH',
 					useCookies:
 						'Chúng tôi sử dụng Cookies để cải thiện trải nghiệm sử dụng của bạn. Nếu bạn tiếp tục sử dụng trang web của chúng tôi, có nghĩa là bạn đồng ý chúng tôi sử dụng Cookies.',
+
+					// tab
+					uniqueContent: 'Nội dung đặc sắc',
+					performer: 'Diễn viên',
+					collectionFilm: 'Tuyển tập phim và truyền hình',
+					recommendForU: 'Đề xuất cho bạn',
+					eposide: 'Chọn tập',
 				},
 			},
 			en: {
@@ -87,6 +94,13 @@ i18next
 					privacyPolicy: 'PHJMDINH Privacy Policy',
 					useCookies:
 						'We use Cookies to improve your user experience. If you continue to use our website, you agree to our use of Cookies.',
+
+					// tab
+					eposide: 'Eposide',
+					uniqueContent: 'Unique Content',
+					performer: 'Performer',
+					collectionFilm: 'Collection Film',
+					recommendForU: 'Recommend For You',
 				},
 			},
 		},
