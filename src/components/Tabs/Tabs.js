@@ -10,16 +10,6 @@ function Tabs({ type = 'normal', tabList = [] }) {
 	const [itemsLastest, setItemsLastest] = useState([]);
 
 	useEffect(() => {
-		// (async function getData() {
-		// 	let popularData = await handleError(getPopular({ page: 1, adults: false }));
-		// 	let trendingData = await handleError(getTrending({ page: 1, adults: false }));
-		// 	let upComingData = await handleError(getUpComing({ page: 1, adults: false }));
-		// 	let latestData = await handleError(getUpComing({ page: 1, adults: false }));
-		// 	setItemsPopular(popularData);
-		// 	setItemsTrending(trendingData);
-		// 	setItemsUpComing(upComingData);
-		// 	setItemsLastest(latestData);
-		// })();
 		Promise.all([handleError(getUpComing({ page: 1, adults: false }))])
 			.then(([latestData]) => {
 				setItemsLastest(latestData);
@@ -105,7 +95,7 @@ function Tabs({ type = 'normal', tabList = [] }) {
 								return (
 									<$.Content
 										id={item['id']}
-										className={(index === 0 && !selected) || selected == item['id'] ? '' : 'hidden'}
+										className={(index === 0 && !selected) || selected == item['id'] ? 'show' : ''}
 									>
 										{item['content']}
 									</$.Content>
