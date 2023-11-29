@@ -25,7 +25,7 @@ export const Header = styled.header`
 export const Line = styled.div`
 	opacity: 0.15;
 	height: 0.1rem;
-	margin: 0.2rem var(--margin-left-default);
+	margin: 0.2rem calc(var(--margin-left-default) - 0.55rem);
 	background-color: var(--white);
 `;
 export const List = styled.ul`
