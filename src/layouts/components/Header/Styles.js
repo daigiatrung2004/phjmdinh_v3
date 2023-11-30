@@ -488,3 +488,109 @@ export const Account = styled.div`
 		`
 	)}
 `;
+
+export const NabBarMbWrapper = styled.div`
+	--background-navbar-mobile: #23252b;
+	${mediaQueries(
+		'mobile',
+		`
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		z-index: var(--max-zIndex);
+		cursor: pointer;
+		width: 0%;
+		height: 100%;
+		overflow: hidden;
+		&.showNav {
+			width: 100%;
+		}
+		transition: all 0.5s var(--timing-function-carousel);
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display:none;
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display:none;
+		`
+	)}
+`;
+
+export const OverlayMb = styled.div`
+	${mediaQueries(
+		'mobile',
+		`
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: var(--black);
+		opacity: 0.5;
+		z-index: var(--max-zIndex);
+		display: none;
+		&.showNav {
+			display: block;
+		}
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display: none;
+		`
+	)}
+`;
+
+export const NavbarMb = styled.div`
+	${mediaQueries(
+		'mobile',
+		`
+		background-color: var(--background-navbar-mobile);
+		position: absolute;
+		height: 100%;
+		width: 0%;
+		overflow: hidden;
+		z-index: calc(var(--max-zIndex) + 1);
+		top: 0;
+		left: 0;
+		bottom: 0;
+		&.showNav {
+			width: 80%;
+		}
+		transition: all 0.5s var(--timing-function-carousel);
+		`
+	)}
+
+	${mediaQueries(
+		'desktop',
+		`
+		display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'tablet',
+		`
+		display: none;
+		`
+	)}
+`;

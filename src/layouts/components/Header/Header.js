@@ -22,6 +22,7 @@ function Header({ layout = 'default' }) {
 	const [textSearch, setTextSearch] = useState('');
 	const [toggle, setToggle] = useState(false);
 	const [showResults, setShowResults] = useState(false);
+	const [ShowNavMb, setShowNavMb] = useState('hideNav');
 	// const [kindFilms, setKindFilms] = useState(['Phim Bộ', 'Phim Hàn', 'Phim Lẻ', 'Hoạt Hình']);
 	// const [lang, setLang] = useState(['Tiếng Việt', 'English']);
 	const kindFilms = {
@@ -117,6 +118,15 @@ function Header({ layout = 'default' }) {
 		setTextSearch(inputRef.current.value);
 	}
 
+	function handleNavBarMb(className) {
+		setShowNavMb(className);
+		if (className === 'showNav') {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'auto';
+		}
+	}
+
 	const { t } = useTranslation();
 
 	return (
@@ -128,7 +138,20 @@ function Header({ layout = 'default' }) {
 					: {}
 			}
 		>
-			<$.Bar>
+			{createPortal(
+				<$.NabBarMbWrapper
+					className={`navbar ${ShowNavMb}`}
+					onClick={() => handleNavBarMb('')}
+				>
+					<$.NavbarMb
+						className={`navbar-detail ${ShowNavMb}`}
+						onClick={e => e.stopPropagation()}
+					></$.NavbarMb>
+					<$.OverlayMb className={`${ShowNavMb}`}></$.OverlayMb>
+				</$.NabBarMbWrapper>,
+				document.querySelector('body')
+			)}
+			<$.Bar onClick={() => handleNavBarMb('showNav')}>
 				<FontAwesomeIcon icon={faBars} />
 			</$.Bar>
 			<$.Image
