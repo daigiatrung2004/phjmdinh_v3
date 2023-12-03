@@ -102,14 +102,7 @@ export const FooterSheet = styled.div`
 	transition: all 0.5s 0.4s ease;
 
 	${mediaQueries(
-		'mobile',
-		`
-		display:none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['mobile', 'tablet'],
 		`
 		display:none;
 		`

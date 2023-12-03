@@ -3,16 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import * as $ from './Styles';
 
-function ToggleList({ children, subListItems }) {
+function ToggleList({ children, subListItems, transparentFlag, underlineFlag, colorLabel, ...attrs }) {
 	const [isShow, setIsShow] = useState(false);
 
 	return (
-		<$.TipSheet>
+		<$.TipSheet
+			{...attrs}
+			transparentFlag={transparentFlag}
+			underlineFlag={underlineFlag}
+		>
 			<$.Tip
 				className="tip"
 				onClick={() => setIsShow(!isShow)}
+				transparentFlag={transparentFlag}
+				underlineFlag={underlineFlag}
 			>
-				<span style={{ color: '#666', cursor: 'pointer' }}>{children}</span>
+				<$.Label colorLabel={colorLabel}>{children}</$.Label>
 				{(isShow && (
 					<FontAwesomeIcon
 						icon={faChevronUp}
@@ -26,7 +32,10 @@ function ToggleList({ children, subListItems }) {
 				)}
 			</$.Tip>
 			{isShow && (
-				<$.SubListUl>
+				<$.SubListUl
+					transparentFlag={transparentFlag}
+					underlineFlag={underlineFlag}
+				>
 					{subListItems &&
 						subListItems.map((content, index) => {
 							return <li key={`sublist-${index}`}>{content}</li>;

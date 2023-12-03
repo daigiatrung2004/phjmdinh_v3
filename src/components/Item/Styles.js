@@ -139,22 +139,7 @@ export const Item = styled(ItemCustom)`
 	}
 
 	${mediaQueries(
-		'desktop',
-		`
-		&:hover .cardo {
-			visibility: visible;
-			opacity: 1;
-			pointer-events: auto;
-
-			/* width: 25.5rem;
-			transform: scale(1.05);
-			height: 110%; */
-		}
-	`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['tablet', 'desktop'],
 		`
 		&:hover .cardo {
 			visibility: visible;

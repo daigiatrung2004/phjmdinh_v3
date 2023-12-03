@@ -1,7 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { mediaQueries, device } from '~/utils/reponsive';
+import { mediaQueries } from '~/utils/reponsive';
 import ImageComponent from '~/components/Image';
+import Images from '~/assets/images';
 
 // wrapper
 export const Header = styled.header`
@@ -18,22 +19,7 @@ export const Header = styled.header`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		width: 100%;
-		height: var(--width-header);
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		background-color: var(--color-transparent);
-		position: fixed;
-		transition: background-color 0.5s linear 0s;
-		z-index: 10000;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		width: 100%;
 		height: var(--width-header);
@@ -62,14 +48,7 @@ export const Bar = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		display: none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		display: none;
 		`
@@ -87,14 +66,7 @@ export const SearchMobile = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		display: none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		display: none;
 		`
@@ -115,14 +87,7 @@ export const InputSearchMobile = styled.input`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		display: none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		display: none;
 		`
@@ -141,16 +106,7 @@ export const Image = styled(ImageComponent)`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-			height: 100%;
-			width: 15rem;
-			display: flex;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 			height: 100%;
 			width: 15rem;
@@ -182,17 +138,11 @@ export const Search = styled.div`
 	)}
 
 	${mediaQueries(
-		'mobile',
+		['mobile', 'tablet'],
 		`
 		display: none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
-		`
-		display: none;
-		`
+		`,
+		true
 	)}
 `;
 
@@ -286,15 +236,7 @@ export const User = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		display: flex;
-		align-items: center;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		display: flex;
 		align-items: center;
@@ -337,7 +279,7 @@ export const KindRecommend = styled.div`
 		display: flex;
 
 		& label.channel {
-			margin-left: 24px;
+			margin-left: 2.4rem;
 			flex-shrink: 0;
 		}
 		`
@@ -418,28 +360,7 @@ export const LanguageArea = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-			position: relative;
-			padding: 8px 0px;
-			background-color: rgb(26, 28, 34);
-			width: 28.2rem;
-			height: 15rem;
-
-			& .language {
-				width: 248px;
-				padding: 0px 16px;
-				text-align: center;
-				position: relative;
-				height: 44px;
-				line-height: 44px;
-				font-size: 14px;
-			}
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 			position: relative;
 			padding: 8px 0px;
@@ -469,22 +390,12 @@ export const Account = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
+		['desktop', 'tablet'],
 		`
 		text-align: center;
-		padding: 16px;
-		width: 280px;
-		height: 114px;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
-		`
-		text-align: center;
-		padding: 16px;
-		width: 280px;
-		height: 114px;
+		padding: 1.6rem;
+		width: 28rem;
+		height: 11.4rem;
 		`
 	)}
 `;
@@ -512,14 +423,7 @@ export const NabBarMbWrapper = styled.div`
 	)}
 
 	${mediaQueries(
-		'tablet',
-		`
-		display:none;
-		`
-	)}
-
-	${mediaQueries(
-		'desktop',
+		['desktop', 'tablet'],
 		`
 		display:none;
 		`
@@ -546,14 +450,7 @@ export const OverlayMb = styled.div`
 	)}
 
 	${mediaQueries(
-		'desktop',
-		`
-		display: none;
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		display: none;
 		`
@@ -568,7 +465,7 @@ export const NavbarMb = styled.div`
 		position: absolute;
 		height: 100%;
 		width: 0%;
-		overflow: hidden;
+		overflow: scroll;
 		z-index: calc(var(--max-zIndex) + 1);
 		top: 0;
 		left: 0;
@@ -577,20 +474,89 @@ export const NavbarMb = styled.div`
 			width: 80%;
 		}
 		transition: all 0.5s var(--timing-function-carousel);
+
+		&::-webkit-scrollbar {
+			width: 0px;
+		}
 		`
 	)}
 
 	${mediaQueries(
-		'desktop',
+		['desktop', 'tablet'],
 		`
 		display: none;
 		`
 	)}
+`;
 
-	${mediaQueries(
-		'tablet',
-		`
-		display: none;
-		`
-	)}
+export const NavBarHeaderMb = styled.div`
+	height: 10rem;
+	background-image: linear-gradient(0deg, rgba(0, 214, 57, 0.6) 2%, rgba(0, 214, 57, 0.4) 100%),
+		url('${Images.BgAbout}');
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	padding-left: 1.6rem;
+	align-items: center;
+`;
+
+export const NavBarBodyMb = styled.div`
+	position: relative;
+	margin-top: 3rem;
+	padding-left: 1rem;
+	overflow: hidden;
+`;
+export const Line = styled.div`
+	content: '';
+	position: absolute;
+	right: 0px;
+	bottom: -8px;
+	width: 254px;
+	height: 1px;
+	background-color: rgb(45, 47, 52);
+`;
+
+export const AboutMb = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 24rem;
+	overflow: hidden;
+`;
+export const SettingsMb = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 24rem;
+	overflow: hidden;
+`;
+export const AccountMb = styled.div`
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-width: 24rem;
+	overflow: hidden;
+`;
+
+export const UserMb = styled.div`
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-width: 2rem;
+	width: 20rem;
+	overflow: hidden;
+`;
+
+export const UserNameMb = styled.span`
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	width: 15rem;
+	flex-shrink: 0;
+	color: var(--white);
+	font-weight: 700;
+	font-size: 1.6rem;
 `;

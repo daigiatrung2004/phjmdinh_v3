@@ -9,13 +9,15 @@ export const Tip = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 1px solid #eee;
-	background-color: var(--white);
+	border-bottom: ${({ underlineFlag }) => (underlineFlag ? 'none' : '1px solid #eee')};
+	background-color: ${({ transparentFlag }) => (transparentFlag ? 'transparent' : 'var(--white)')};
 	cursor: pointer;
 `;
 
 export const TipSheet = styled.div`
 	position: relative;
+	background-color: ${({ transparentFlag }) => (transparentFlag ? 'transparent' : 'var(--white)')};
+	cursor: pointer;
 `;
 
 export const SubListUl = styled.ul`
@@ -25,4 +27,10 @@ export const SubListUl = styled.ul`
 	background-color: var(--white);
 	overflow: hidden;
 	transition: all 0.2s ease;
+	background-color: ${({ transparentFlag }) => (transparentFlag ? 'transparent' : 'var(--white)')};
+`;
+
+export const Label = styled.span`
+	color: ${({ colorLabel }) => (colorLabel ? colorLabel : '#666')};
+	cursor: pointer;
 `;

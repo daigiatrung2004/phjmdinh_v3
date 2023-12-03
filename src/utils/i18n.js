@@ -54,6 +54,14 @@ i18next
 					collectionFilm: 'Tuyển tập phim và truyền hình',
 					recommendForU: 'Đề xuất cho bạn',
 					eposide: 'Chọn tập',
+
+					// navbar mobile
+					signinoutMb: 'Đăng nhập / Đăng ký',
+					settingsUserMb: 'Cài đặt cá nhân',
+					languageMb: 'Tiếng Việt',
+					collectionMb: 'Sưu tập của tôi',
+					bookFilmMb: 'Phim đặt trước',
+					subtitle: 'Bản dịch phụ đề',
 				},
 			},
 			en: {
@@ -101,6 +109,14 @@ i18next
 					performer: 'Performer',
 					collectionFilm: 'Collection Film',
 					recommendForU: 'Recommend For You',
+
+					// navbar mobile
+					signinoutMb: 'Log in / Sign up',
+					settingsUserMb: 'Privacy setting',
+					languageMb: 'English',
+					collectionMb: 'collection',
+					bookFilmMb: 'Pre-order movies',
+					subtitle: 'Subtitle',
 				},
 			},
 		},

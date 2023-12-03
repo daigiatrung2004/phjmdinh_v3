@@ -16,6 +16,7 @@ import { search } from '~/services/searchService';
 import * as $ from './Styles';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import ToggleList from '~/components/ToggleList';
 
 function Header({ layout = 'default' }) {
 	const [items, setItems] = useState([]);
@@ -146,7 +147,132 @@ function Header({ layout = 'default' }) {
 					<$.NavbarMb
 						className={`navbar-detail ${ShowNavMb}`}
 						onClick={e => e.stopPropagation()}
-					></$.NavbarMb>
+					>
+						<$.NavBarHeaderMb>
+							<$.UserMb>
+								<Image
+									src={Images.UserDefaultMb}
+									alt={'user'}
+									height="4rem"
+									width="4rem"
+								/>
+								<$.UserNameMb>{t('signinoutMb')}</$.UserNameMb>
+							</$.UserMb>
+						</$.NavBarHeaderMb>
+						<$.NavBarBodyMb>
+							<$.AboutMb>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('settingsUserMb')}
+								</Label>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('languageMb')}
+								</Label>
+								<$.Line />
+							</$.AboutMb>
+							<$.SettingsMb>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('history')}
+								</Label>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('collectionMb')}
+								</Label>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('bookFilmMb')}
+								</Label>
+								<Label
+									className={`hover-text-color`}
+									style={{
+										marginBottom: '2rem',
+										paddingLeft: '.6rem',
+										fontWeight: 'normal',
+										color: 'var(--white)',
+									}}
+								>
+									{t('subtitle')}
+								</Label>
+								<$.Line />
+							</$.SettingsMb>
+							<$.AccountMb>
+								<ToggleList
+									transparentFlag
+									underlineFlag
+									style={{ marginBottom: '0rem', color: 'var(--white)', flexShrink: '0' }}
+									colorLabel="var(--white)"
+									subListItems={[t('companyInfo'), t('introduce'), t('howToView')]}
+								>
+									{t('aboutus')}
+								</ToggleList>
+								<ToggleList
+									transparentFlag
+									underlineFlag
+									colorLabel="var(--white)"
+									style={{ marginBottom: '0rem', color: 'var(--white)', flexShrink: '0' }}
+									subListItems={[t('advertisement'), t('business'), t('install')]}
+								>
+									{t('cooperate')}
+								</ToggleList>
+								<ToggleList
+									transparentFlag
+									underlineFlag
+									colorLabel="var(--white)"
+									style={{ marginBottom: '0rem', color: 'var(--white)', flexShrink: '0' }}
+									subListItems={[t('feedback'), t('feedbackSec'), t('question')]}
+								>
+									{t('support')}
+								</ToggleList>
+								<ToggleList
+									transparentFlag
+									underlineFlag
+									colorLabel="var(--white)"
+									style={{ marginBottom: '2rem', color: 'var(--white)', flexShrink: '0' }}
+									subListItems={[t('privacy'), t('termOfUse')]}
+								>
+									{t('termOfService')}
+								</ToggleList>
+								<$.Line />
+							</$.AccountMb>
+						</$.NavBarBodyMb>
+					</$.NavbarMb>
 					<$.OverlayMb className={`${ShowNavMb}`}></$.OverlayMb>
 				</$.NabBarMbWrapper>,
 				document.querySelector('body')

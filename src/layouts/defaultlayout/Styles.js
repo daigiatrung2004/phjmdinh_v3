@@ -10,14 +10,7 @@ export const Main = styled.main`
 	)}
 
 	${mediaQueries(
-		'mobile',
-		`
-		padding-bottom: 5rem
-		`
-	)}
-
-	${mediaQueries(
-		'tablet',
+		['desktop', 'tablet'],
 		`
 		padding-bottom: 5rem
 		`
