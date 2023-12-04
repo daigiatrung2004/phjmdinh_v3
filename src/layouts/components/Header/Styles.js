@@ -412,11 +412,14 @@ export const NabBarMbWrapper = styled.div`
 		bottom: 0;
 		z-index: var(--max-zIndex);
 		cursor: pointer;
-		width: 0%;
+		opacity: 0;
+		width: 100%;
 		height: 100%;
+		visibility: hidden;
 		overflow: hidden;
 		&.showNav {
-			width: 100%;
+			opacity: 1;
+			visibility: visible;
 		}
 		transition: all 0.5s var(--timing-function-carousel);
 		`
