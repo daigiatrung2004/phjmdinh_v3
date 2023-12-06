@@ -1,10 +1,20 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import * as $ from './Styles';
 
-function ToggleList({ children, subListItems, transparentFlag, underlineFlag, colorLabel, ...attrs }) {
+function ToggleList({ children, subListItems = [], transparentFlag, underlineFlag, colorLabel, ...attrs }) {
 	const [isShow, setIsShow] = useState(false);
+	const ref = useRef();
+
+	const height = useMemo(() => {
+		if (isShow && ref.current) {
+			let style = ref.current.currentStyle || window.getComputedStyle(ref.current);
+			return (ref.current.offsetHeight + parseInt(style.marginTop)) * subListItems.length + 'px';
+		} else {
+			return '0px';
+		}
+	}, [isShow]);
 
 	return (
 		<$.TipSheet
@@ -31,17 +41,26 @@ function ToggleList({ children, subListItems, transparentFlag, underlineFlag, co
 					/>
 				)}
 			</$.Tip>
-			{isShow && (
+			{/* {isShow && ( */}
+			<$.SubListUlSheet subListUlHeight={height}>
 				<$.SubListUl
 					transparentFlag={transparentFlag}
 					underlineFlag={underlineFlag}
 				>
 					{subListItems &&
 						subListItems.map((content, index) => {
-							return <li key={`sublist-${index}`}>{content}</li>;
+							return (
+								<li
+									ref={ref}
+									key={`sublist-${index}`}
+								>
+									{content}
+								</li>
+							);
 						})}
 				</$.SubListUl>
-			)}
+			</$.SubListUlSheet>
+			{/* )} */}
 		</$.TipSheet>
 	);
 }

@@ -20,14 +20,21 @@ export const TipSheet = styled.div`
 	cursor: pointer;
 `;
 
+export const SubListUlSheet = styled.div`
+	display: flex;
+	overflow: hidden;
+	height: ${({ subListUlHeight }) => (subListUlHeight ? subListUlHeight : '0px')};
+	transition: all 0.2s ease;
+`;
+
 export const SubListUl = styled.ul`
 	padding: 2rem;
 
 	width: 100%;
 	background-color: var(--white);
 	overflow: hidden;
-	transition: all 0.2s ease;
 	background-color: ${({ transparentFlag }) => (transparentFlag ? 'transparent' : 'var(--white)')};
+	flex-shrink: 0;
 `;
 
 export const Label = styled.span`
