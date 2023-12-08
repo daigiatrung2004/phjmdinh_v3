@@ -343,7 +343,7 @@ export const Infomation = styled.div`
 	${mediaQueries(
 		'mobile',
 		`
-		top: auto;
+		top: 0rem;
 		left: 0rem;
 		bottom: 5rem;
 		right: auto;

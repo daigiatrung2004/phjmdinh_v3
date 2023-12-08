@@ -71,13 +71,13 @@ function Tabs({ type = 'normal', tabList = [] }) {
 			if (tabList.length > 0) {
 				return (
 					<$.Container>
-						<$.Header>
+						<$.Header className="header-tabList">
 							<$.List>
 								{tabList.map((item, index) => {
 									return (
 										<$.ListItemHeader
 											className={
-												selected && item['id'] == selected
+												selected && item['id'] === selected
 													? 'selected'
 													: index === 0 && !selected && 'selected'
 											}
@@ -95,7 +95,7 @@ function Tabs({ type = 'normal', tabList = [] }) {
 								return (
 									<$.Content
 										id={item['id']}
-										className={(index === 0 && !selected) || selected == item['id'] ? 'show' : ''}
+										className={(index === 0 && !selected) || selected === item['id'] ? 'show' : ''}
 									>
 										{item['content']}
 									</$.Content>

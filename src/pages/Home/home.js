@@ -117,10 +117,10 @@ function Home() {
 							<$.CarouselTitle
 								style={{ backgroundImage: `url(${item.titleSrc})`, backgroundSize: 'auto 100%' }}
 							/>
-							<$.Rank>{item.rank}</$.Rank>
-							<$.Info>{item.info}</$.Info>
-							<$.Tags>{item.tags}</$.Tags>
-							<$.Desc>{item.desc}</$.Desc>
+							<$.Rank className="Rank">{item.rank}</$.Rank>
+							<$.Info className="Info">{item.info}</$.Info>
+							<$.Tags className="Tags">{item.tags}</$.Tags>
+							<$.Desc className="desc">{item.desc}</$.Desc>
 							<$.WrapBtn>
 								<$.PlayWrap className="wrap pointer">
 									<Play />

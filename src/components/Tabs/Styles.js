@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Background from '~/components/Background';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { mediaQueries } from '~/utils/reponsive';
 
 export const PlayIcon = styled(FontAwesomeIcon).attrs(() => ({ icon: faPlay }))`
 	font-size: var(--size-icon);
@@ -17,20 +17,62 @@ export const Container = styled.div`
 	--margin-left-default: 5.6rem;
 	position: relative;
 `;
+
 export const Header = styled.header`
-	color: var(--white);
-	margin: 0px calc(var(--margin-left-default));
+	${mediaQueries(
+		'desktop',
+		`
+			color: var(--white);
+			margin: 0px calc(var(--margin-left-default));
+		`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+			&::-webkit-scrollbar {
+				height: 0px;
+			}
+			color: var(--white);
+			margin: 0px;
+			overflow-x: scroll;
+			display: flex;
+		`
+	)}
 `;
 
 export const Line = styled.div`
-	opacity: 0.15;
-	height: 0.1rem;
-	margin: 0.2rem calc(var(--margin-left-default) - 0.55rem);
-	background-color: var(--white);
+	${mediaQueries(
+		'desktop',
+		`
+			opacity: 0.15;
+			height: 0.1rem;
+			margin: 0.2rem calc(var(--margin-left-default) - 0.55rem);
+			background-color: var(--white);
+		`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+			background-color: var(--white);
+			opacity: 0.15;
+			height: 0.1rem;
+			margin: 0px;
+		`
+	)}
 `;
 export const List = styled.ul`
 	display: flex;
 	justify-content: flex-start;
+
+	${mediaQueries(
+		'mobile',
+		`
+		font-size: 1.4rem;
+		flex-shrink: 0;
+		`
+	)}
 `;
 export const ListItemHeader = styled.li`
 	position: relative;
@@ -70,6 +112,13 @@ export const ListItemHeader = styled.li`
 		cursor: pointer;
 		transition: all 0.5s var(--timing-function-carousel);
 	}
+
+	${mediaQueries(
+		'mobile',
+		`
+		font-size: 1.4rem;
+		`
+	)}
 
 	transition: all 0.5s var(--timing-function-carousel);
 `;

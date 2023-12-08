@@ -139,7 +139,7 @@ function Carousel(
 										<$.Infomation
 											key={`info-${index}`}
 											offset={offset}
-											className="infomation"
+											className="infomation strecth"
 										>
 											{render(item)}
 										</$.Infomation>
@@ -268,7 +268,7 @@ function Carousel(
 									<$.Infomation
 										key={`info-${index}`}
 										offset={offset}
-										className="infomation"
+										className="infomation wall"
 									>
 										{render(item)}
 									</$.Infomation>
