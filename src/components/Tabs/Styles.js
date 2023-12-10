@@ -30,13 +30,23 @@ export const Header = styled.header`
 	${mediaQueries(
 		'mobile',
 		`
-			&::-webkit-scrollbar {
-				height: 0px;
-			}
-			color: var(--white);
-			margin: 0px;
-			overflow-x: scroll;
-			display: flex;
+		display: none;
+		`
+	)}
+`;
+
+export const HeaderMB = styled.header`
+	${mediaQueries(
+		['desktop', 'tablet'],
+		`
+			display: none;
+		`
+	)}
+
+	${mediaQueries(
+		'mobile',
+		`
+		margin-left: .7rem;
 		`
 	)}
 `;
@@ -71,6 +81,7 @@ export const List = styled.ul`
 		`
 		font-size: 1.4rem;
 		flex-shrink: 0;
+		display: block;
 		`
 	)}
 `;
@@ -117,6 +128,24 @@ export const ListItemHeader = styled.li`
 		'mobile',
 		`
 		font-size: 1.4rem;
+		padding-left: 1rem;
+		margin-right: 0rem;
+		padding-right: 1rem;
+		overflow: hidden;
+		&.selected::after {
+			content: '';
+			opacity: 1;
+			background-color: var(--primary);
+			height: 0.4rem;
+			width: 100%;
+			pointer-events: all;
+		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, .1);
+			opacity: 1;
+
+		}
 		`
 	)}
 

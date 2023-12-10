@@ -6,14 +6,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Paragraph from '~/components/Paragraph';
 import { faArrowUpFromBracket, faBookBookmark, faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '~/components/Tabs';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 function Album() {
+	const paragraphRef = useRef();
+	const [heightParagraph, setHeightParagraph] = useState('0px');
+
 	return (
 		<>
 			<Carousel
 				CarouselItems={ListItems}
 				type="wall"
 				offset={['20rem', '5rem', 'unset']}
+				devicearguments={{
+					mobile: {
+						style: `background-size: 71% 29.2rem; background-repeat: no-repeat; background-position: top right; height: calc(30rem + ${heightParagraph})`,
+					},
+				}}
 				indicatorFlag
 				style={{ marginBottom: '2.5rem' }}
 				render={item => {
@@ -24,11 +33,18 @@ function Album() {
 							<$.Info>{item.info}</$.Info>
 							<$.Tags>{item.tags}</$.Tags>
 							<Paragraph
-								style={{
-									fontSize: '1.2rem',
-									marginTop: '1.2rem',
-									color: 'var(--white)',
-									width: '40%',
+								ref={paragraphRef}
+								handleSizeParagh={setHeightParagraph}
+								devicearguments={{
+									desktop: {
+										style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 40%;',
+									},
+									tablet: {
+										style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 40%;',
+									},
+									mobile: {
+										style: 'font-size: 1.2rem;margin-top: 1.2rem;color: var(--white);width: 60%;',
+									},
 								}}
 								isTextOverFlow
 								isToggleFlag

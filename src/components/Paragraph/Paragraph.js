@@ -1,20 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from './Styles';
 import PropTypes from 'prop-types';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { faChevronCircleDown, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { forwardRef, useEffect, useState } from 'react';
 
-function Paragraph({
-	children,
-	className,
-	isTextOverFlow = false,
-	numLine,
-	moreTitle = 'more',
-	linkMore,
-	isToggleFlag = false,
-	moreTitleDetail,
-	...attrs
-}) {
+const Paragraph = forwardRef(function Paragraph(
+	{
+		children,
+		className,
+		isTextOverFlow = false,
+		numLine,
+		moreTitle = 'more',
+		linkMore,
+		isToggleFlag = false,
+		moreTitleDetail,
+		handleSizeParagh,
+		...attrs
+	},
+	ref
+) {
 	const [isTextOverFlowSt, setIsTextOverFlowSt] = useState(isTextOverFlow);
 	// not use when textoverflow
 	if (!isTextOverFlowSt) {
@@ -28,11 +32,23 @@ function Paragraph({
 	}
 
 	useEffect(() => {
+		console.log('isTextOverFlow', isTextOverFlow);
+		if (ref.current) {
+			let style = ref.current.currentStyle || window.getComputedStyle(ref.current);
+			console.log('ref.current.offsetHeight:', ref.current.offsetHeight);
+			handleSizeParagh(ref.current.offsetHeight + parseInt(style.marginTop) + 'px');
+		} else {
+			handleSizeParagh('0px');
+		}
+	}, [isTextOverFlowSt]);
+
+	useEffect(() => {
 		setIsTextOverFlowSt(isTextOverFlow);
 	}, [isTextOverFlow]);
 
 	return (
 		<$.ParagraphSheet
+			ref={ref}
 			className={className}
 			isTextOverFlow={isTextOverFlowSt}
 			numLine={numLine}
@@ -44,7 +60,7 @@ function Paragraph({
 					className={'primary flex-center'}
 					rightIcons={
 						<FontAwesomeIcon
-							icon={faChevronRight}
+							icon={faChevronDown}
 							style={{ marginLeft: '0rem' }}
 							src={linkMore}
 						/>
@@ -72,15 +88,15 @@ function Paragraph({
 			)}
 		</$.ParagraphSheet>
 	);
-}
+});
 
-Paragraph.propTypes = {
-	children: PropTypes.string,
-	className: PropTypes.string,
-	isTextOverFlow: PropTypes.bool,
-	numLine: PropTypes.number,
-	moreTitle: PropTypes.string,
-	linkMore: PropTypes.string,
-};
+// Paragraph.propTypes = {
+// 	children: PropTypes.string,
+// 	className: PropTypes.string,
+// 	isTextOverFlow: PropTypes.bool,
+// 	numLine: PropTypes.number,
+// 	moreTitle: PropTypes.string,
+// 	linkMore: PropTypes.string,
+// };
 
 export default Paragraph;

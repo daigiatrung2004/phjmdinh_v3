@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Label from '~/components/Label';
+import { mediaQueries } from '~/utils/reponsive';
 
 export const ParagraphSheet = styled.p`
 	position: relative;
@@ -17,6 +18,15 @@ export const ParagraphSheet = styled.p`
 	&.primary {
 		color: var(--primary);
 	}
+
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
 `;
 
 export const More = styled(Label)`

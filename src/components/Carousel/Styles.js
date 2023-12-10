@@ -110,6 +110,7 @@ export const Sheet = styled.div`
 		height: 50rem;
 		`
 	)}
+
 `;
 
 export const WallSheet = styled.div`
@@ -123,6 +124,7 @@ export const WallSheet = styled.div`
 	--zIndex-carousel: 1000;
 	--zIndex-background: 101;
 	--zIndex-caoursel: 100;
+	--height-mb: 30rem;
 	position: relative;
 	display: flex;
 	background: center right / cover no-repeat;
@@ -153,7 +155,7 @@ export const WallSheet = styled.div`
 	${mediaQueries(
 		'mobile',
 		`
-		height: 30rem;
+		height: var(--height-mb);
 		`
 	)}
 
@@ -163,6 +165,15 @@ export const WallSheet = styled.div`
 		height: 50rem;
 		`
 	)}
+
+	${({ devicearguments }) => {
+		if (devicearguments) {
+			let queries = Object.keys(devicearguments).map(key => {
+				return mediaQueries(key, devicearguments[key]['style']);
+			});
+			return queries.join('');
+		}
+	}}
 `;
 export const SupperMultiSheet = styled.div`
 	--padding-left: 2.5rem;
@@ -308,8 +319,8 @@ export const CarouselItem = styled.div`
 	${mediaQueries(
 		'mobile',
 		`
-		background-size: 50% 60%;
-		background-position: 90% 50%;
+		background-size: 20rem 30rem;
+		background-position: top right;
 		`
 	)}
 

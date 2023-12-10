@@ -172,6 +172,8 @@ export function convertRGBToHEX(red, green, blue, opacity) {
 	return '#' + red + green + blue + opacity;
 }
 
+export function calcElementSize(attr = 'width') {}
+
 function load() {
 	window.isobjempty = isObjEmpty;
 	// eslint-disable-next-line

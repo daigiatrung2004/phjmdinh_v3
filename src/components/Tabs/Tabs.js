@@ -4,6 +4,11 @@ import Items from '~/components/FilmItems';
 import { getUpComing } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
 import { useTranslation } from 'react-i18next';
+import Tippy from '@tippyjs/react/headless';
+import Label from '~/components/Label';
+import Popper from '~/components/popper';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Tabs({ type = 'normal', tabList = [] }) {
 	const [selected, setSelected] = useState();
@@ -89,13 +94,55 @@ function Tabs({ type = 'normal', tabList = [] }) {
 								})}
 							</$.List>
 						</$.Header>
+						<$.HeaderMB>
+							<Tippy
+								interactive
+								placement={'bottom-start'}
+								offset={[-1, 13]}
+								render={() => {
+									return (
+										<Popper>
+											<$.List>
+												{tabList.map((item, index) => {
+													return (
+														<$.ListItemHeader
+															className={
+																selected && item['id'] === selected
+																	? 'selected'
+																	: index === 0 && !selected && 'selected'
+															}
+															onClick={() => handleClickTab(item['id'])}
+														>
+															{item['header']}
+														</$.ListItemHeader>
+													);
+												})}
+											</$.List>
+										</Popper>
+									);
+								}}
+							>
+								<Label
+									type={'label'}
+									className={'channel hover-text-color pointer'}
+									rightIcons={<FontAwesomeIcon icon={faCaretDown} />}
+									style={{ marginBottom: '1rem' }}
+								>
+									{t('categoryTabLists')}
+								</Label>
+							</Tippy>
+						</$.HeaderMB>
 						<$.Line />
 						<$.Body>
 							{tabList.map((item, index) => {
 								return (
 									<$.Content
 										id={item['id']}
-										className={(index === 0 && !selected) || selected === item['id'] ? 'show' : ''}
+										className={
+											(index === 0 && !selected) || selected === item['id']
+												? 'show content'
+												: 'content'
+										}
 									>
 										{item['content']}
 									</$.Content>

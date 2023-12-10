@@ -62,6 +62,9 @@ i18next
 					collectionMb: 'Sưu tập của tôi',
 					bookFilmMb: 'Phim đặt trước',
 					subtitle: 'Bản dịch phụ đề',
+
+					// tab list mobile
+					categoryTabLists: 'Danh mục',
 				},
 			},
 			en: {
@@ -117,6 +120,9 @@ i18next
 					collectionMb: 'collection',
 					bookFilmMb: 'Pre-order movies',
 					subtitle: 'Subtitle',
+
+					// tab list mobile
+					categoryTabLists: 'Categories',
 				},
 			},
 		},
