@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as $ from './Styles';
-import PropTypes from 'prop-types';
-import { faChevronCircleDown, faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+// import PropTypes from 'prop-types';
+import { faChevronDown, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { forwardRef, useEffect, useState } from 'react';
 
+const calback = () => {
+	return;
+};
 const Paragraph = forwardRef(function Paragraph(
 	{
 		children,
@@ -14,7 +17,7 @@ const Paragraph = forwardRef(function Paragraph(
 		linkMore,
 		isToggleFlag = false,
 		moreTitleDetail,
-		handleSizeParagh,
+		handleSizeParagh = calback,
 		...attrs
 	},
 	ref
@@ -32,15 +35,13 @@ const Paragraph = forwardRef(function Paragraph(
 	}
 
 	useEffect(() => {
-		console.log('isTextOverFlow', isTextOverFlow);
-		if (ref.current) {
+		if (ref && ref.current) {
 			let style = ref.current.currentStyle || window.getComputedStyle(ref.current);
-			console.log('ref.current.offsetHeight:', ref.current.offsetHeight);
 			handleSizeParagh(ref.current.offsetHeight + parseInt(style.marginTop) + 'px');
 		} else {
-			handleSizeParagh('0px');
+			handleSizeParagh && handleSizeParagh('0px');
 		}
-	}, [isTextOverFlowSt]);
+	}, [isTextOverFlowSt, handleSizeParagh, ref]);
 
 	useEffect(() => {
 		setIsTextOverFlowSt(isTextOverFlow);
