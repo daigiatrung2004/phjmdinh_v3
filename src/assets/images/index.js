@@ -5,7 +5,7 @@ const Images = {
 	warning: require('./warning-real.png'),
 	BGerror: require('./bg-err.png'),
 	error: require('./img-err.gif'),
-	music: require('./IBl7-unscreen.gif'),
+	music: require('./playing_gif_green.gif'),
 	blank: require('./fallback-2.png'),
 	BgAbout: require('./bg1024-aboutus.png'),
 	BgEarthAbout: require('./earth-aboutus.png'),
