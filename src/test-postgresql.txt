@@ -1,1 +1,1 @@
-select '{"name":"amit","age":44,"likes":["some","things"],"afterprocess":"function test(data) {\n\tdata.test = [];\n\tdata.test2 = \"\";\n}"}'::jsonb -> 'parent'
+select '{"name":"amit","age":44,"likes":["some","things"],"afterprocess":"function test(data) {\n\tdata.test = [];\n\tdata.test2 = \"\";\n}"}'::jsonb -> 'parent'	
