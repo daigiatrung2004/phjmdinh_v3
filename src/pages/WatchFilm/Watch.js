@@ -1,13 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
-import Video from './Video';
-import * as $ from './Styles';
-import Label from '~/components/Label';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpFromBracket, faBookBookmark } from '@fortawesome/free-solid-svg-icons';
-import handleError from '~/utils/handleError';
-import { getPopular, getTrending, getUpComing } from '~/services/moviesService';
-import TabList from '~/components/TabList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useRef, useState } from 'react';
 import Carousel from '~/components/Carousel';
+import Label from '~/components/Label';
+import TabList from '~/components/TabList';
+import { getPopular } from '~/services/moviesService';
+import handleError from '~/utils/handleError';
+import * as $ from './Styles';
+import Video from './Video';
 
 function Watch() {
 	let videoRef = useRef();

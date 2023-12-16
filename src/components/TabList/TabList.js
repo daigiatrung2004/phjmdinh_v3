@@ -62,14 +62,14 @@ const TabList = forwardRef(function ({ settings }, ref) {
 					return (
 						<$.Tab
 							key={'menu-' + index}
-							isActive={index == isActive ? 1 : 0}
+							isActive={index === isActive ? 1 : 0}
 							onClick={() => setIsActive(index)}
 						>
-							{item['header']['icon']['position'] == 'left' && (
+							{item['header']['icon']['position'] === 'left' && (
 								<span className="icon">{item['header']['icon']['srcIcon']}</span>
 							)}
 							<span>{item['header']['title']}</span>
-							{item['header']['icon']['position'] == 'right' && (
+							{item['header']['icon']['position'] === 'right' && (
 								<span className="icon">{item['header']['icon']['srcIcon']}</span>
 							)}
 						</$.Tab>
@@ -77,9 +77,9 @@ const TabList = forwardRef(function ({ settings }, ref) {
 				})}
 			</$.Header>
 			{config.map((item, index) => {
-				if (item['detail']['type'] == 'Seperate') {
+				if (item['detail']['type'] === 'Seperate') {
 					return (
-						index == isActive && (
+						index === isActive && (
 							<$.Detail key={'menu-' + index}>
 								{Array(item['detail']['sizeSupply'])
 									.fill(0)
@@ -87,7 +87,7 @@ const TabList = forwardRef(function ({ settings }, ref) {
 										var i = index + 1;
 										return i <= item['detail']['sizeReal'] ? (
 											<$.Item
-												className={`active ${liveNum > 0 && liveNum == i ? 'live' : ''}`}
+												className={`active ${liveNum > 0 && liveNum === i ? 'live' : ''}`}
 												key={'list-' + i}
 												onClick={() => setLiveNum(i)}
 											>
@@ -101,7 +101,7 @@ const TabList = forwardRef(function ({ settings }, ref) {
 						)
 					);
 				} else {
-					return index == isActive && <$.Detail>{item['detail']['content']}</$.Detail>;
+					return index === isActive && <$.Detail>{item['detail']['content']}</$.Detail>;
 				}
 			})}
 		</$.Tabs>
