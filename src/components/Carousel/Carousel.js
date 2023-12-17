@@ -17,6 +17,7 @@ function Carousel(
 		step = '1',
 		indicatorFlag,
 		offsetIndicator,
+		carouselItemsType = 'VERTICAL_DISPLAY_TYPE',
 		...attrs
 	},
 	ref
@@ -218,7 +219,7 @@ function Carousel(
 								ref={refItem}
 								// src="/reviewfilm/"
 								items={listTmp}
-								type="VERTICAL_DISPLAY_TYPE"
+								type={carouselItemsType}
 								hImage={'25.35rem'}
 								wImage={'23rem'}
 								hoverCardoFlag

@@ -74,6 +74,7 @@ const ItemCustom = forwardRef(({ src, className, children, state, setState, tran
 });
 
 export const Item = styled(ItemCustom)`
+	--scale-item: 1.15;
 	--height-img-item: 40px;
 	--width-img-item: 40px;
 	display: flex;
@@ -221,7 +222,14 @@ export const PresentItem = styled.div`
 		}
 	}
 
-	&.item-vertical {
+	&.item-circle:hover {
+		transform: scale(var(--scale-item));
+		& label.normal {
+			color: var(--primary);
+		}
+	}
+
+	&.item-circle:hover + &.item-vertical {
 		flex-direction: column;
 	}
 
@@ -259,8 +267,18 @@ export const Image = styled(ImageComponent)`
 		border-radius: 15px;
 	}
 
+	&.img__circle {
+		max-height: none;
+		max-width: none;
+		height: 7rem;
+		width: 7rem;
+		border-radius: 100%;
+		background-image: url('${({ src }) => (src ? src : '')}');
+		background-size: 100% 100%;
+	}
+
 	&.hover-scaling:hover ~ svg {
-		font-size: calc(var(--scale-item) * var(--size-icon) + 10px);
+		font-size: calc(var(--scale-item) * var(--size-icon) + 1rem);
 	}
 
 	&.hover-scaling:hover {
@@ -369,7 +387,7 @@ export const SubTitle = styled.small`
 
 export const ItemInfo = styled.div`
 	flex-grow: 1;
-	width: 125px;
+	width: 12.5rem;
 	word-break: break-word;
 	display: ${props => (props.isHide ? 'none' : 'block')};
 `;

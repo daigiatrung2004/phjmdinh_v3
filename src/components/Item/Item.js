@@ -31,6 +31,9 @@ const Item = forwardRef(function (
 
 	if (type === 'HORIZON_DISPLAY_TYPE') {
 		src = data.backdropPath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.backdropPath}` : '';
+	} else if (type === 'PROFILE_TYPE') {
+		src = data.profilePath ? `${process.env.REACT_APP_BASE_IMAGE_URL_500}/${data.profilePath}` : '';
+		hoverCardoFlag = false;
 	}
 
 	let mouseEnter = useContext(ItemContext);
@@ -61,6 +64,13 @@ const Item = forwardRef(function (
 			item: 'item-horizontal',
 			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
 		},
+		PROFILE_TYPE: {
+			img: 'img__circle',
+			wrapperItem: 'item__display-circle',
+			title: 'normal hover-text-color',
+			item: 'item-circle',
+			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
+		},
 	};
 
 	useEffect(() => {
@@ -81,14 +91,16 @@ const Item = forwardRef(function (
 			>
 				<$.Image
 					src={src}
-					alt={data.title}
+					alt={type !== 'PROFILE_TYPE' ? data.title : data.name}
 					h={'100%'}
 					w={'100%'}
 					className={typeClassNames[type].img}
 				>
 					{icon}
 				</$.Image>
-				{type !== 'SEARCH_TYPE' && <$.EpisodeLabel>Full 11/11 Vietsub</$.EpisodeLabel>}
+				{type !== 'SEARCH_TYPE' && type !== 'PROFILE_TYPE' && (
+					<$.EpisodeLabel>Full 11/11 Vietsub</$.EpisodeLabel>
+				)}
 				<$.ItemInfo isHide={isHideTitle}>
 					<Label
 						className={typeClassNames[type].title}
@@ -98,9 +110,9 @@ const Item = forwardRef(function (
 							},
 						}}
 					>
-						{data.title}
+						{type !== 'PROFILE_TYPE' ? data.title : data.name}
 					</Label>
-					<$.SubTitle>{data.originalTitle}</$.SubTitle>
+					{type !== 'PROFILE_TYPE' && <$.SubTitle>{data.originalTitle}</$.SubTitle>}
 				</$.ItemInfo>
 			</$.PresentItem>
 			{hoverCardoFlag && (

@@ -42,6 +42,16 @@ export const Anchor = styled(ElementTag)`
 		color: var(--primary);
 	}
 
+	&.normal {
+		font-weight: normal;
+		color: var(--white);
+		font-size: 1.4rem;
+		width: 7rem;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
 	&.hover-under:hover {
 		text-decoration: underline;
 	}
@@ -69,6 +79,11 @@ export const Anchor = styled(ElementTag)`
 
 	&.hover-text-color:hover .icon > svg path {
 		fill: var(--primary) !important;
+	}
+
+	&.hover-text-scaling:hover {
+		font-size: calc(var(--scale-item) * var(--size-icon));
+		transition: all 0.2s var(--timing-function-carousel);
 	}
 
 	&.pointer {

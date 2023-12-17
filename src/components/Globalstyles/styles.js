@@ -21,7 +21,7 @@ export const Style = createGlobalStyle`
 		--bg-search: rgba(255, 255, 255, 0.2);
 		--text-color-search: #ffffff99;
 		--bg-img-after: rgba(35, 78, 109, 0.35);
-		--scale-item: 1.05;
+		--scale-item: 1.15;
 		--size-icon: 40px;
 		--time-scale-item:0.25s;
 		--timing-function-carousel: cubic-bezier(.54,.36,.31,1);
