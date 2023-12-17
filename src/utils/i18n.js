@@ -65,6 +65,15 @@ i18next
 
 					// tab list mobile
 					categoryTabLists: 'Danh mục',
+
+					// watch film
+					share: 'Chia sẻ',
+					saved: 'Sưu tầm',
+					error: 'Báo lỗi',
+					infoZoomIn: 'Giới thiệu',
+					infoZoomOut: 'Thu nhỏ giới thiệu',
+					calendarEposide: 'Lịch chiếu',
+					server: 'Máy chủ',
 				},
 			},
 			en: {
@@ -123,6 +132,15 @@ i18next
 
 					// tab list mobile
 					categoryTabLists: 'Categories',
+
+					// watch film
+					share: 'Share',
+					saved: 'Collection',
+					error: 'Error',
+					infoZoomIn: 'Introduction',
+					infoZoomOut: 'Zoom out introduction',
+					calendarEposide: 'Showtimes',
+					server: 'Server',
 				},
 			},
 		},

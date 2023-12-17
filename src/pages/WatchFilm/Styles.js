@@ -9,13 +9,14 @@ export const WatchArea = styled.div`
 	flex-direction: column;
 	padding-left: 8rem;
 	padding-right: 8rem;
+	padding-top: 8rem;
 `;
 
 export const WatchContainer = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-columns: 9fr 1fr;
-	margin-top: 8rem;
+	margin-top: 2rem;
 	background-color: var(--bg-color-override);
 	margin-bottom: 2rem;
 `;
@@ -210,6 +211,16 @@ export const Info = styled.div`
 	}
 `;
 
+export const CalendarEposide = styled.div`
+	border: 1px solid var(--primary);
+	margin-bottom: 2rem;
+	padding-left: 1rem;
+`;
+
+export const ChatFbArea = styled.div`
+	min-height: 20rem;
+	background-color: var(--white);
+`;
 export const Tags = styled.div`
 	& div.focus-item-tags {
 		margin-top: 13px;

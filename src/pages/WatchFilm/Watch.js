@@ -1,4 +1,4 @@
-import { faArrowUpFromBracket, faBookBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpFromBracket, faBookBookmark, faCircleInfo, faServer } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
 import Carousel from '~/components/Carousel';
@@ -11,6 +11,10 @@ import handleError from '~/utils/handleError';
 import * as $ from './Styles';
 import Video from './Video';
 import ListItems from './datasets';
+import { useTranslation } from 'react-i18next';
+import Tippy from '@tippyjs/react/headless';
+import Popper from '~/components/popper';
+import i18next from 'i18next';
 
 function Watch() {
 	let videoRef = useRef();
@@ -30,8 +34,47 @@ function Watch() {
 				console.log(error);
 			});
 	}, []);
+
+	const { t } = useTranslation();
 	return (
 		<$.WatchArea>
+			<$.CalendarEposide>
+				<Paragraph
+					devicearguments={{
+						desktop: {
+							style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 100%;',
+						},
+						tablet: {
+							style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 40%;',
+						},
+						mobile: {
+							style: 'font-size: 1.2rem;margin-top: 1.2rem;color: var(--white);width: 60%;',
+						},
+					}}
+					linkMore={'./reviewfilm/'}
+				>
+					Nhà Mọt (MotChill) có địa chỉ duy nhất là motchilli.net, mọi trang khác đều là giả mạo! Xem phim tại
+					motchilli.net là góp phần ủng hộ Subteam
+				</Paragraph>
+			</$.CalendarEposide>
+			<$.CalendarEposide>
+				<Paragraph
+					devicearguments={{
+						desktop: {
+							style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 100%;',
+						},
+						tablet: {
+							style: 'font-size: 1.2rem; margin-top: 1.2rem;color: var(--white);width: 40%;',
+						},
+						mobile: {
+							style: 'font-size: 1.2rem;margin-top: 1.2rem;color: var(--white);width: 60%;',
+						},
+					}}
+					linkMore={'./reviewfilm/'}
+				>
+					{`${t('calendarEposide')}: 2 Tập mỗi tối trên Mọt Chill.`}
+				</Paragraph>
+			</$.CalendarEposide>
 			<$.WatchContainer>
 				<$.PresentationFilmArea>
 					<$.VideoArea>
@@ -53,7 +96,7 @@ function Watch() {
 							}}
 							leftIcons={<FontAwesomeIcon icon={faBookBookmark} />}
 						>
-							Collection
+							{t('saved')}
 						</Label>
 						<Label
 							className={'channel hover-text-color pointer'}
@@ -65,8 +108,71 @@ function Watch() {
 							}}
 							leftIcons={<FontAwesomeIcon icon={faArrowUpFromBracket} />}
 						>
-							Share
+							{t('share')}
 						</Label>
+						<Label
+							className={'channel hover-text-color pointer'}
+							style={{
+								color: 'var(--white)',
+								fontSize: '1.6rem',
+								fontWeight: 'normal',
+								marginLeft: '1.5rem',
+							}}
+							leftIcons={<FontAwesomeIcon icon={faCircleInfo} />}
+						>
+							{t('error')}
+						</Label>
+						<Tippy
+							interactive
+							placement={'bottom-start'}
+							offset={[0, 25]}
+							render={() => {
+								return (
+									<Popper>
+										<>
+											<Label
+												className={'channel hover-text-color pointer primary'}
+												style={{
+													fontSize: '1.6rem',
+													fontWeight: 'normal',
+													padding: '1rem',
+													textAlign: 'center',
+													minWidth: '10rem',
+												}}
+											>
+												VIP1
+											</Label>
+											<Label
+												className={'channel hover-text-color pointer'}
+												style={{
+													color: 'var(--white)',
+													fontSize: '1.6rem',
+													fontWeight: 'normal',
+													padding: '1rem',
+													textAlign: 'center',
+													minWidth: '10rem',
+												}}
+											>
+												VIP2
+											</Label>
+										</>
+									</Popper>
+								);
+							}}
+						>
+							<Label
+								className={'channel hover-text-color pointer'}
+								style={{
+									color: 'var(--white)',
+									fontSize: '1.6rem',
+									fontWeight: 'normal',
+									marginLeft: '1.5rem',
+								}}
+								leftIcons={<FontAwesomeIcon icon={faServer} />}
+							>
+								{t('server')}
+							</Label>
+						</Tippy>
 					</$.FooterPresentationArea>
 				</$.PresentationFilmArea>
 				<$.EposideArea>
@@ -125,8 +231,9 @@ function Watch() {
 					isLoadingCurrent={true}
 				/>
 			</$.ContentFilm>
+			<$.ChatFbArea>Add chat fb</$.ChatFbArea>
 			<$.RecommendFilmArea>
-				<Label style={{ color: 'var(--white)', fontSize: '3rem' }}>Đề xuất cho bạn</Label>
+				<Label style={{ color: 'var(--white)', fontSize: '3rem' }}>{t('recommendForU')}</Label>
 				<Carousel
 					CarouselItems={itemsPopular}
 					devicearguments={{
