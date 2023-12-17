@@ -68,7 +68,7 @@ const Item = forwardRef(function (
 			img: 'img__circle',
 			wrapperItem: 'item__display-circle',
 			title: 'normal hover-text-color',
-			item: 'item-circle',
+			item: 'item-circle item__display_circle',
 			hoverBgColor: hoverBackgroundColorFlag ? 'hover-background' : '',
 		},
 	};
@@ -94,6 +94,7 @@ const Item = forwardRef(function (
 					alt={type !== 'PROFILE_TYPE' ? data.title : data.name}
 					h={'100%'}
 					w={'100%'}
+					type={type}
 					className={typeClassNames[type].img}
 				>
 					{icon}

@@ -15,6 +15,20 @@ const frame = (sign, transform) => keyframes`
 
 // state pass params.true false
 //
+const ImageCustom = ({ src, children, type, ...attrs }) => {
+	let Ele = ImageComponent;
+	if (type === 'PROFILE_TYPE') {
+		Ele = 'div';
+	}
+	return (
+		<Ele
+			src={src}
+			{...attrs}
+		>
+			{children}
+		</Ele>
+	);
+};
 
 // item
 const ItemCustom = forwardRef(({ src, className, children, state, setState, transitiontime, ...propsDefault }, ref) => {
@@ -227,6 +241,10 @@ export const PresentItem = styled.div`
 		& label.normal {
 			color: var(--primary);
 		}
+
+		& div.img__circle::after {
+			opacity: 1;
+		}
 	}
 
 	&.item-circle:hover + &.item-vertical {
@@ -238,7 +256,7 @@ export const PresentItem = styled.div`
 	}
 `;
 
-export const Image = styled(ImageComponent)`
+export const Image = styled(ImageCustom)`
 	max-height: var(--height-img-item);
 	max-width: var(--width-img-item);
 	padding-right: 5px;
@@ -270,11 +288,24 @@ export const Image = styled(ImageComponent)`
 	&.img__circle {
 		max-height: none;
 		max-width: none;
-		height: 7rem;
-		width: 7rem;
+		height: 7.2rem;
+		width: 7.2rem;
 		border-radius: 100%;
 		background-image: url('${({ src }) => (src ? src : '')}');
 		background-size: 100% 100%;
+		position: relative;
+		background-repeat: no-repeat;
+		padding: 0px;
+	}
+
+	&.img__circle::after {
+		content: '';
+		height: 7rem;
+		width: 7rem;
+		border: 2px solid var(--primary);
+		border-radius: 100%;
+		display: block;
+		opacity: 0;
 	}
 
 	&.hover-scaling:hover ~ svg {
