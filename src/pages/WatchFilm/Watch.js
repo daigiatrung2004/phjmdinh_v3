@@ -1,20 +1,19 @@
 import { faArrowUpFromBracket, faBookBookmark, faCircleInfo, faServer } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Tippy from '@tippyjs/react/headless';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Carousel from '~/components/Carousel';
 import Label from '~/components/Label';
 import Paragraph from '~/components/Paragraph';
 import TabList from '~/components/TabList';
+import Popper from '~/components/popper';
 import { getCastFilms } from '~/services/actorService';
 import { getPopular } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
 import Video from './Video';
 import ListItems from './datasets';
-import { useTranslation } from 'react-i18next';
-import Tippy from '@tippyjs/react/headless';
-import Popper from '~/components/popper';
-import i18next from 'i18next';
 
 function Watch() {
 	let videoRef = useRef();
@@ -215,21 +214,27 @@ function Watch() {
 							</>
 						);
 					})}
-				<Carousel
-					CarouselItems={casts}
-					carouselItemsType="PROFILE_TYPE"
-					devicearguments={{
-						mobile: {
-							style: 'width: 9.1rem',
-						},
-						tablet: {
-							style: 'width: 14.7rem',
-						},
-					}}
-					type="multi"
-					step={'5'}
-					isLoadingCurrent={true}
-				/>
+				<$.ActorsArea>
+					<Label style={{ color: 'var(--white)', fontSize: '3rem' }}>{t('actors')}</Label>
+					<Carousel
+						CarouselItems={casts}
+						carouselItemsType="PROFILE_TYPE"
+						devicearguments={{
+							mobile: {
+								style: 'width: 9.1rem',
+							},
+							tablet: {
+								style: 'width: 14.7rem',
+							},
+							desktop: {
+								style: 'padding-top: 1rem',
+							},
+						}}
+						type="multi"
+						step={'5'}
+						isLoadingCurrent={true}
+					/>
+				</$.ActorsArea>
 			</$.ContentFilm>
 			<$.ChatFbArea>Add chat fb</$.ChatFbArea>
 			<$.RecommendFilmArea>

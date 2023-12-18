@@ -138,6 +138,8 @@ export const Rank = styled.div`
 	}
 `;
 
+export const ActorsArea = styled.div``;
+
 export const Info = styled.div`
 	& div.focus-item-info {
 		font-weight: 500;

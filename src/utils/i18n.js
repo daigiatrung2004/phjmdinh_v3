@@ -74,6 +74,7 @@ i18next
 					infoZoomOut: 'Thu nhỏ giới thiệu',
 					calendarEposide: 'Lịch chiếu',
 					server: 'Máy chủ',
+					actors: 'Diễn viên',
 				},
 			},
 			en: {
@@ -141,6 +142,7 @@ i18next
 					infoZoomOut: 'Zoom out introduction',
 					calendarEposide: 'Showtimes',
 					server: 'Server',
+					actors: 'Actors',
 				},
 			},
 		},
