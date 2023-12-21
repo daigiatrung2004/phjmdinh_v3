@@ -1,12 +1,12 @@
-import Carousel from '~/components/Carousel';
-import ListItems from './datasets';
-import * as $ from './Styles';
-import Button from '~/components/Button';
+import { faArrowUpFromBracket, faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRef, useState } from 'react';
+import Button from '~/components/Button';
+import Carousel from '~/components/Carousel';
 import Paragraph from '~/components/Paragraph';
-import { faArrowUpFromBracket, faBookBookmark, faBookmark, faPlay } from '@fortawesome/free-solid-svg-icons';
 import Tabs from '~/components/Tabs';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import * as $ from './Styles';
+import ListItems from './datasets';
 
 function Album() {
 	const paragraphRef = useRef();

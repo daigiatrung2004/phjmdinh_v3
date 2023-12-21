@@ -1,6 +1,6 @@
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import * as $ from './Styles';
 
 function ToggleList({ children, subListItems = [], transparentFlag, underlineFlag, colorLabel, ...attrs }) {
@@ -14,7 +14,7 @@ function ToggleList({ children, subListItems = [], transparentFlag, underlineFla
 		} else {
 			return '0px';
 		}
-	}, [isShow]);
+	}, [isShow, subListItems.length]);
 
 	return (
 		<$.TipSheet

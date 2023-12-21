@@ -221,6 +221,9 @@ export const CalendarEposide = styled.div`
 
 export const ChatFbArea = styled.div`
 	min-height: 20rem;
+`;
+
+export const ChatBody = styled.div`
 	background-color: var(--white);
 `;
 export const Tags = styled.div`

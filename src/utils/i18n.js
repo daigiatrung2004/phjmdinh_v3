@@ -75,6 +75,7 @@ i18next
 					calendarEposide: 'Lịch chiếu',
 					server: 'Máy chủ',
 					actors: 'Diễn viên',
+					comment: 'Bình Luận',
 				},
 			},
 			en: {
@@ -143,6 +144,7 @@ i18next
 					calendarEposide: 'Showtimes',
 					server: 'Server',
 					actors: 'Actors',
+					comment: 'Comments',
 				},
 			},
 		},

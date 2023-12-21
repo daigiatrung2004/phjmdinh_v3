@@ -14,6 +14,7 @@ import handleError from '~/utils/handleError';
 import * as $ from './Styles';
 import Video from './Video';
 import ListItems from './datasets';
+import { FacebookProvider, Comments } from 'react-facebook';
 
 function Watch() {
 	let videoRef = useRef();
@@ -236,7 +237,20 @@ function Watch() {
 					/>
 				</$.ActorsArea>
 			</$.ContentFilm>
-			<$.ChatFbArea>Add chat fb</$.ChatFbArea>
+			<$.ChatFbArea>
+				<Label style={{ color: 'var(--white)', fontSize: '3rem', paddingBottom: '3rem' }}>{t('comment')}</Label>
+				<$.ChatBody>
+					<FacebookProvider
+						appId="849633732416047"
+						className={'facebook'}
+					>
+						<Comments
+							href="http://www.facebook.com"
+							width="100%"
+						/>
+					</FacebookProvider>
+				</$.ChatBody>
+			</$.ChatFbArea>
 			<$.RecommendFilmArea>
 				<Label style={{ color: 'var(--white)', fontSize: '3rem' }}>{t('recommendForU')}</Label>
 				<Carousel
