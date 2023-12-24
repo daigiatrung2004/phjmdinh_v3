@@ -1,9 +1,9 @@
-import { forwardRef, useImperativeHandle, useRef, useState, useEffect } from 'react';
-import * as $ from './Styles';
-import Label from '~/components/Label';
 import { faExpand, faGear, faPause, faPlay, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { MiniPlayer } from '~/components/Icons';
+import Label from '~/components/Label';
+import * as $ from './Styles';
 
 function Video({ src, height, width }, ref) {
 	const videoRef = useRef();

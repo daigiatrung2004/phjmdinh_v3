@@ -1,16 +1,7 @@
-import * as $ from './Styles';
-import PopUp from '~/components/PopUp';
-import { PUSettings } from '~/utils/StylesBase';
-import { createContext, useState, useEffect } from 'react';
-import { Success } from '~/components/Icons';
-import TabList from '~/components/TabList';
-import Slide from '~/components/Slide/Slide';
-import { useTransition, animated } from '@react-spring/web';
+import { animated, useTransition } from '@react-spring/web';
+import { createContext, useEffect, useState } from 'react';
 import Image from '~/components/Image';
 import './test.css';
-import { flushSync } from 'react-dom';
-import Loading from '~/components/Loading';
-import Carousel from '~/components/Carousel/Carousel';
 
 export const TestContext = createContext('123');
 
