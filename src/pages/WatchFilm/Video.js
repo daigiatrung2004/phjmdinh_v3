@@ -1,6 +1,4 @@
-import { useImperativeHandle } from 'react';
-import { useRef } from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import video from '~/assets/videos/a.mp4';
 
 function Video({ width }, ref) {

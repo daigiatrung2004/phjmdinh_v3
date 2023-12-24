@@ -12,9 +12,10 @@ import { getCastFilms } from '~/services/actorService';
 import { getPopular } from '~/services/moviesService';
 import handleError from '~/utils/handleError';
 import * as $ from './Styles';
-import Video from './Video';
+import Video from '~/components/Video';
 import ListItems from './datasets';
 import { FacebookProvider, Comments } from 'react-facebook';
+import src from '~/assets/videos/a.mp4';
 
 function Watch() {
 	let videoRef = useRef();
@@ -79,6 +80,7 @@ function Watch() {
 				<$.PresentationFilmArea>
 					<$.VideoArea>
 						<Video
+							src={src}
 							ref={videoRef}
 							width={'100%'}
 						/>

@@ -68,6 +68,13 @@ export const Style = createGlobalStyle`
 		list-style-type: none;
 	}
 
+	.ytp-svg-shadow {
+		stroke: #000;
+		stroke-opacity: .15;
+		stroke-width: 2px;
+		fill: none;
+	}
+
 	.overflow-hidden {
 		overflow: hidden!important;
 	}
