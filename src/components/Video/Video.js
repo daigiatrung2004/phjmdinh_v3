@@ -92,6 +92,28 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
+	function togglePictureInPicture() {
+		console.log('co vao day====', videoRef.current);
+		if (document.pictureInPictureElement) {
+			document.exitPictureInPicture();
+		} else if (document.pictureInPictureEnabled && videoRef.current) {
+			videoRef.current.requestPictureInPicture();
+		}
+	}
+
+	function toggleFullScreen() {
+		let elem = videoRef.current;
+		if (elem && elem.requestFullscreen) {
+			elem.requestFullscreen();
+		} else if (elem && elem.mozRequestFullScreen) {
+			elem.mozRequestFullScreen();
+		} else if (elem && elem.webkitRequestFullscreen) {
+			elem.webkitRequestFullscreen();
+		} else if (elem && elem.msRequestFullscreen) {
+			elem.msRequestFullscreen();
+		}
+	}
+
 	return (
 		<$.Area
 			onMouseEnter={() => controlRef.current.classList.add('control')}
@@ -137,13 +159,13 @@ function Video({ src, height, width }, ref) {
 						</$.ControlItem>
 					</$.ControlsLeft>
 					<$.ControlsRight>
-						<$.ControlItem>
+						<$.ControlItem onClick={togglePictureInPicture}>
 							<MiniPlayer />
 						</$.ControlItem>
 						<$.ControlItem>
 							<FontAwesomeIcon icon={faGear} />
 						</$.ControlItem>
-						<$.ControlItem>
+						<$.ControlItem onClick={toggleFullScreen}>
 							<FontAwesomeIcon icon={faExpand} />
 						</$.ControlItem>
 					</$.ControlsRight>
