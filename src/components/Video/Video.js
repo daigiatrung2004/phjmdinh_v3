@@ -4,6 +4,9 @@ import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { MiniPlayer } from '~/components/Icons';
 import Label from '~/components/Label';
 import * as $ from './Styles';
+import Tippy from '@tippyjs/react/headless';
+import Popper from '~/components/popper';
+import ToggleList from '../ToggleList/ToggleList';
 
 function Video({ src, height, width }, ref) {
 	const videoRef = useRef();
@@ -12,6 +15,7 @@ function Video({ src, height, width }, ref) {
 	const controlRef = useRef();
 	const [duration, setDuration] = useState('00:00:00');
 	const [currentTime, setCurrentTime] = useState('00:00');
+	const [transitionSetting, setTransitionSetting] = useState('');
 	useImperativeHandle(
 		ref,
 		() => ({
@@ -114,6 +118,14 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
+	function toggleSettings() {
+		if (transitionSetting === '' || transitionSetting === 'transformDefault') {
+			setTransitionSetting('transformLeft');
+		} else {
+			setTransitionSetting('transformDefault');
+		}
+	}
+
 	return (
 		<$.Area
 			onMouseEnter={() => controlRef.current.classList.add('control')}
@@ -162,9 +174,25 @@ function Video({ src, height, width }, ref) {
 						<$.ControlItem onClick={togglePictureInPicture}>
 							<MiniPlayer />
 						</$.ControlItem>
-						<$.ControlItem>
-							<FontAwesomeIcon icon={faGear} />
+						<Tippy
+							interactive
+							placement={'bottom-start'}
+							offset={[-60, 25]}
+							hideOnClick
+							render={() => {
+								return (
+									<Popper>
+										<ul>
+											<li><ToggleList transparentFlag underlineFlag subListItems={['0.25x', '0.5x','0.75x', '1x', '1.25x', '1.5x', '2x']}>Tốc độ phát</ToggleList></li>
+										</ul>
+									</Popper>
+								);
+							}}
+						>
+						<$.ControlItem  className={`${transitionSetting}`} onClick={toggleSettings}>
+							<FontAwesomeIcon icon={faGear}/>
 						</$.ControlItem>
+						</Tippy>
 						<$.ControlItem onClick={toggleFullScreen}>
 							<FontAwesomeIcon icon={faExpand} />
 						</$.ControlItem>

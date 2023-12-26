@@ -14,6 +14,10 @@ export const Area = styled.div`
 export const PresentVideo = styled.video`
 	height: 100%;
 	width: 100%;
+
+	&::-webkit-media-controls {
+		display:none !important;
+	}
 `;
 
 export const ControlArea = styled.div`
@@ -32,6 +36,8 @@ export const ControlArea = styled.div`
 	&.control {
 		height: ${({ height }) => (height ? height : '4.8rem')};
 	}
+
+	z-index: 2147483647;
 	/* justify-content: center; */
 `;
 
@@ -99,6 +105,18 @@ export const ControlItem = styled.div`
 	padding-left: 2rem;
 	cursor: pointer;
 	display: flex;
+
+	&.transformLeft {
+		transform: rotate(-45deg);
+		transform-origin: center;
+		transition: all .2s var(--timing-function-carousel);
+	}
+
+	&.transformDefault {
+		transform: rotate(0deg);
+		transform-origin: center;
+		transition: all .2s var(--timing-function-carousel);
+	}
 `;
 
 export const ControlsLeft = styled.div`

@@ -5,6 +5,7 @@
 		"javascript": "javascriptreact"
 	},
 	"react-i18n.i18nPaths": "",
+	"commentTranslate.hover.enabled": false,
 	// "editor.codeActionsOnSave": {
 	// 	"source.fixAll": true,
 	// 	"source.organizeImports": true,
