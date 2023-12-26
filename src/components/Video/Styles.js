@@ -108,13 +108,13 @@ export const ControlItem = styled.div`
 
 	&.transformLeft {
 		transform: rotate(-45deg);
-		transform-origin: center;
+		transform-origin: 75% 50%;
 		transition: all .2s var(--timing-function-carousel);
 	}
 
 	&.transformDefault {
 		transform: rotate(0deg);
-		transform-origin: center;
+		transform-origin: 75% 50%;
 		transition: all .2s var(--timing-function-carousel);
 	}
 `;
