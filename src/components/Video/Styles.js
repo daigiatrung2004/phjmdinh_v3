@@ -27,23 +27,23 @@ export const ControlArea = styled.div`
 	left: 0rem;
 	right: 0rem;
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.1);
+	/* background-color: rgba(255, 255, 255, 0.1); */
 	display: flex;
 	overflow: hidden;
 	height: 0px;
 	transition: all 0.2s var(--timing-function-carousel);
 
 	&.control {
-		height: ${({ height }) => (height ? height : '4.8rem')};
+		height: ${({ height }) => (height ? height : '6rem')};
 	}
 
-	z-index: 2147483647;
+	/* z-index: 2147483647; */
 	/* justify-content: center; */
 `;
 
 export const ProgressBar = styled.div`
 	position: absolute;
-	top: 0;
+	top: 1rem;
 	left: 0;
 	right: 0;
 	height: var(--progress-height);
@@ -105,6 +105,9 @@ export const ControlItem = styled.div`
 	padding-left: 2rem;
 	cursor: pointer;
 	display: flex;
+	transform-origin: 75% 50%;
+	transition: all .2s var(--timing-function-carousel);
+	flex-shrink: 0;
 
 	&.transformLeft {
 		transform: rotate(-45deg);
@@ -131,4 +134,12 @@ export const ControlsRight = styled.div`
 
 export const VolumeRangeArea = styled.div`
 	margin-left: 1rem;
+`;
+
+export const SettingsExpandArea = styled.div`
+	position: absolute;
+	width: 12.8rem;
+	bottom: 6rem;
+	right: 1rem;
+	color: var(--white);
 `;

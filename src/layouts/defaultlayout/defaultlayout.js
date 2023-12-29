@@ -9,10 +9,10 @@ function DefaultLayout({ children }) {
 	// const Test = lazy(() => import('~/pages/WatchFilm'));
 	return (
 		<Suspense fallback={<Loading />}>
-			<Header />
+			{/* <Header /> */}
 			{/* <Test /> */}
 			<$.Main>{children}</$.Main>
-			<Footer />
+			{/* <Footer /> */}
 		</Suspense>
 	);
 }

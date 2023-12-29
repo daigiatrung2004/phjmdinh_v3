@@ -1,6 +1,6 @@
-import { faExpand, faGear, faPause, faPlay, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+import { faCompress, faExpand, faGear, faPause, faPlay, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { MiniPlayer } from '~/components/Icons';
 import Label from '~/components/Label';
 import * as $ from './Styles';
@@ -10,12 +10,15 @@ import ToggleList from '../ToggleList/ToggleList';
 
 function Video({ src, height, width }, ref) {
 	const videoRef = useRef();
-	const [isPlay, setIsplay] = useState(true);
-	const [widthProgress, setWidthProgress] = useState(0);
 	const controlRef = useRef();
+	const areaRef = useRef();
+	const [isPlay, setIsplay] = useState(true);
+	const [isFullScreen, setIsFullScreen] = useState(false);
+	const [widthProgress, setWidthProgress] = useState(0);
 	const [duration, setDuration] = useState('00:00:00');
 	const [currentTime, setCurrentTime] = useState('00:00');
 	const [transitionSetting, setTransitionSetting] = useState('');
+	const [isExpandSetting, setIsExpandSetting] = useState(false);
 	useImperativeHandle(
 		ref,
 		() => ({
@@ -44,6 +47,10 @@ function Video({ src, height, width }, ref) {
 		// process duration
 		setCurrentTime(timingHandle(currentTime));
 		setDuration(timingHandle(videoRef.current.duration));
+	}
+
+	function updateCurrentTime(event) {
+
 	}
 
 	function timingHandle(time) {
@@ -86,6 +93,7 @@ function Video({ src, height, width }, ref) {
 		if (e.target.closest('.control')) {
 			return;
 		} else {
+			setIsExpandSetting(false);
 			return controlRef.current.classList.remove('control');
 		}
 	}
@@ -97,7 +105,6 @@ function Video({ src, height, width }, ref) {
 	}
 
 	function togglePictureInPicture() {
-		console.log('co vao day====', videoRef.current);
 		if (document.pictureInPictureElement) {
 			document.exitPictureInPicture();
 		} else if (document.pictureInPictureEnabled && videoRef.current) {
@@ -106,7 +113,12 @@ function Video({ src, height, width }, ref) {
 	}
 
 	function toggleFullScreen() {
-		let elem = videoRef.current;
+		let elem = areaRef.current;
+		if (isFullScreen && document.fullscreenElement) {
+			document.exitFullscreen();
+			return;
+		}
+
 		if (elem && elem.requestFullscreen) {
 			elem.requestFullscreen();
 		} else if (elem && elem.mozRequestFullScreen) {
@@ -121,16 +133,40 @@ function Video({ src, height, width }, ref) {
 	function toggleSettings() {
 		if (transitionSetting === '' || transitionSetting === 'transformDefault') {
 			setTransitionSetting('transformLeft');
+			setIsExpandSetting(true);
 		} else {
 			setTransitionSetting('transformDefault');
+			setIsExpandSetting(false);
 		}
 	}
 
+	function checkFullScreenChange(e) {
+		if (document.fullscreenElement && e.target === document.fullscreenElement) {
+			setIsFullScreen(true);
+		} else {
+			setIsFullScreen(false);
+		}
+	}
+
+	useEffect(() => {
+		if (areaRef.current) {
+			areaRef.current.addEventListener('fullscreenchange', checkFullScreenChange)
+		}
+		return () => {
+			if (areaRef.current) {
+				areaRef.current.removeEventListener('fullscreenchange', checkFullScreenChange);
+			}
+		};
+	}, [areaRef.current]);
+
 	return (
 		<$.Area
-			onMouseEnter={() => controlRef.current.classList.add('control')}
+			onMouseEnter={() => {
+				controlRef.current.classList.add('control');
+			}}
 			onMouseOver={() => controlRef.current.classList.add('control')}
 			onMouseOut={mouseHandle}
+			ref={areaRef}
 		>
 			<$.PresentVideo
 				ref={videoRef}
@@ -139,9 +175,10 @@ function Video({ src, height, width }, ref) {
 				height={height}
 				onTimeUpdate={timeUpdateHandle}
 				onLoadedMetadata={durationLoadedHandle}
-			/>
+			>
+			</$.PresentVideo>
 			<$.ControlArea ref={controlRef}>
-				<$.ProgressBar>
+				<$.ProgressBar onClick={}>
 					<$.ProgressActive
 						className="active"
 						width={widthProgress}
@@ -174,31 +211,28 @@ function Video({ src, height, width }, ref) {
 						<$.ControlItem onClick={togglePictureInPicture}>
 							<MiniPlayer />
 						</$.ControlItem>
-						<Tippy
-							interactive
-							placement={'bottom-start'}
-							offset={[-60, 25]}
-							hideOnClick
-							render={() => {
-								return (
-									<Popper>
-										<ul>
-											<li><ToggleList transparentFlag underlineFlag subListItems={['0.25x', '0.5x','0.75x', '1x', '1.25x', '1.5x', '2x']}>Tốc độ phát</ToggleList></li>
-										</ul>
-									</Popper>
-								);
-							}}
-						>
 						<$.ControlItem  className={`${transitionSetting}`} onClick={toggleSettings}>
 							<FontAwesomeIcon icon={faGear}/>
 						</$.ControlItem>
-						</Tippy>
-						<$.ControlItem onClick={toggleFullScreen}>
+{						isFullScreen ? 
+						(<$.ControlItem onClick={toggleFullScreen}>
+							<FontAwesomeIcon icon={faCompress} />
+						</$.ControlItem>)
+						:(<$.ControlItem onClick={toggleFullScreen}>
 							<FontAwesomeIcon icon={faExpand} />
-						</$.ControlItem>
+						</$.ControlItem>)}
 					</$.ControlsRight>
 				</$.ControlsArea>
 			</$.ControlArea>
+			{isExpandSetting &&
+				<$.SettingsExpandArea>
+					<Popper>
+						<ul>
+							<li><ToggleList colorLabel={'var(--white)'} transparentFlag underlineFlag subListItems={['0.25x', '0.5x','0.75x', '1x', '1.25x', '1.5x', '2x']}>Tốc độ phát</ToggleList></li>
+						</ul>
+					</Popper>
+				</$.SettingsExpandArea>
+			}
 		</$.Area>
 	);
 }
