@@ -12,6 +12,7 @@ function Video({ src, height, width }, ref) {
 	const videoRef = useRef();
 	const controlRef = useRef();
 	const areaRef = useRef();
+	const progressRef = useRef();
 	const [isPlay, setIsplay] = useState(true);
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [widthProgress, setWidthProgress] = useState(0);
@@ -47,10 +48,6 @@ function Video({ src, height, width }, ref) {
 		// process duration
 		setCurrentTime(timingHandle(currentTime));
 		setDuration(timingHandle(videoRef.current.duration));
-	}
-
-	function updateCurrentTime(event) {
-
 	}
 
 	function timingHandle(time) {
@@ -104,6 +101,23 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
+	function changeTimeVideo(event) {
+		if (event) {
+			let offsetX = event.nativeEvent.offsetX;
+			let width = progressRef.current.clientWidth;
+			let percent = (offsetX / width) * 100;
+			let duration = videoRef.current.duration;
+			let currentTime = (percent * duration) / 100;
+
+			setWidthProgress(percent);
+			if (currentTime) {
+				console.log('percent:', currentTime);
+				videoRef.current.currentTime = parseFloat(currentTime) ?? 0;
+			}
+			setCurrentTime(timingHandle(currentTime));
+		}
+	}
+
 	function togglePictureInPicture() {
 		if (document.pictureInPictureElement) {
 			document.exitPictureInPicture();
@@ -150,7 +164,7 @@ function Video({ src, height, width }, ref) {
 
 	useEffect(() => {
 		if (areaRef.current) {
-			areaRef.current.addEventListener('fullscreenchange', checkFullScreenChange)
+			areaRef.current.addEventListener('fullscreenchange', checkFullScreenChange);
 		}
 		return () => {
 			if (areaRef.current) {
@@ -175,10 +189,12 @@ function Video({ src, height, width }, ref) {
 				height={height}
 				onTimeUpdate={timeUpdateHandle}
 				onLoadedMetadata={durationLoadedHandle}
-			>
-			</$.PresentVideo>
+			></$.PresentVideo>
 			<$.ControlArea ref={controlRef}>
-				<$.ProgressBar onClick={}>
+				<$.ProgressBar
+					ref={progressRef}
+					onClick={event => changeTimeVideo(event)}
+				>
 					<$.ProgressActive
 						className="active"
 						width={widthProgress}
@@ -211,28 +227,42 @@ function Video({ src, height, width }, ref) {
 						<$.ControlItem onClick={togglePictureInPicture}>
 							<MiniPlayer />
 						</$.ControlItem>
-						<$.ControlItem  className={`${transitionSetting}`} onClick={toggleSettings}>
-							<FontAwesomeIcon icon={faGear}/>
+						<$.ControlItem
+							className={`${transitionSetting}`}
+							onClick={toggleSettings}
+						>
+							<FontAwesomeIcon icon={faGear} />
 						</$.ControlItem>
-{						isFullScreen ? 
-						(<$.ControlItem onClick={toggleFullScreen}>
-							<FontAwesomeIcon icon={faCompress} />
-						</$.ControlItem>)
-						:(<$.ControlItem onClick={toggleFullScreen}>
-							<FontAwesomeIcon icon={faExpand} />
-						</$.ControlItem>)}
+						{isFullScreen ? (
+							<$.ControlItem onClick={toggleFullScreen}>
+								<FontAwesomeIcon icon={faCompress} />
+							</$.ControlItem>
+						) : (
+							<$.ControlItem onClick={toggleFullScreen}>
+								<FontAwesomeIcon icon={faExpand} />
+							</$.ControlItem>
+						)}
 					</$.ControlsRight>
 				</$.ControlsArea>
 			</$.ControlArea>
-			{isExpandSetting &&
+			{isExpandSetting && (
 				<$.SettingsExpandArea>
 					<Popper>
 						<ul>
-							<li><ToggleList colorLabel={'var(--white)'} transparentFlag underlineFlag subListItems={['0.25x', '0.5x','0.75x', '1x', '1.25x', '1.5x', '2x']}>Tốc độ phát</ToggleList></li>
+							<li>
+								<ToggleList
+									colorLabel={'var(--white)'}
+									transparentFlag
+									underlineFlag
+									subListItems={['0.25x', '0.5x', '0.75x', '1x', '1.25x', '1.5x', '2x']}
+								>
+									Tốc độ phát
+								</ToggleList>
+							</li>
 						</ul>
 					</Popper>
 				</$.SettingsExpandArea>
-			}
+			)}
 		</$.Area>
 	);
 }
