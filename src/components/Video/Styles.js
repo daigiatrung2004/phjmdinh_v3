@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Area = styled.div`
 	--progress-height: 0.5rem;
@@ -11,12 +11,20 @@ export const Area = styled.div`
 	width: ${({ width }) => (width ? width : '73.8rem')};
 `;
 
+export const VideoArea = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	right: 0;
+`;
+
 export const PresentVideo = styled.video`
 	height: 100%;
 	width: 100%;
 
 	&::-webkit-media-controls {
-		display:none !important;
+		display: none !important;
 	}
 `;
 
@@ -106,19 +114,19 @@ export const ControlItem = styled.div`
 	cursor: pointer;
 	display: flex;
 	transform-origin: 75% 50%;
-	transition: all .2s var(--timing-function-carousel);
+	transition: all 0.2s var(--timing-function-carousel);
 	flex-shrink: 0;
 
 	&.transformLeft {
 		transform: rotate(-45deg);
 		transform-origin: 75% 50%;
-		transition: all .2s var(--timing-function-carousel);
+		transition: all 0.2s var(--timing-function-carousel);
 	}
 
 	&.transformDefault {
 		transform: rotate(0deg);
 		transform-origin: 75% 50%;
-		transition: all .2s var(--timing-function-carousel);
+		transition: all 0.2s var(--timing-function-carousel);
 	}
 `;
 
@@ -138,8 +146,58 @@ export const VolumeRangeArea = styled.div`
 
 export const SettingsExpandArea = styled.div`
 	position: absolute;
-	width: 12.8rem;
+	width: auto;
 	bottom: 6rem;
 	right: 1rem;
 	color: var(--white);
+	background: rgba(28, 28, 28, 0.9);
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+`;
+
+export const Overlay = styled.div`
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 1;
+
+	&.hide {
+		opacity: 0;
+	}
+	transition: all 0.2s var(--timing-function-carousel);
+`;
+
+const keyFrames = keyframes`
+	0% {
+		transform: scale(0.85);
+		opacity: 1;
+	}
+
+	66% {
+		transform: scale(1.15);
+		opacity: 0.5;
+	}
+
+	100% {
+		opacity: 0;
+	}
+`;
+
+export const ControlLarge = styled.div`
+	height: 4.8rem;
+	width: 4.8rem;
+	border-radius: 50%;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&.animation {
+		animation: ${keyFrames} 0.2s var(--timing-function-carousel) forwards;
+	}
 `;

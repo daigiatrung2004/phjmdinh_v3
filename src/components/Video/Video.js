@@ -1,19 +1,37 @@
-import { faCompress, faExpand, faGear, faPause, faPlay, faVolumeHigh } from '@fortawesome/free-solid-svg-icons';
+import {
+	faBackward,
+	faCompress,
+	faExpand,
+	faForward,
+	faGear,
+	faPause,
+	faPlay,
+	faPlayCircle,
+	faSliders,
+	faVolumeHigh,
+	faVolumeLow,
+	faVolumeOff,
+	faVolumeXmark,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { MiniPlayer } from '~/components/Icons';
 import Label from '~/components/Label';
-import * as $ from './Styles';
-import Tippy from '@tippyjs/react/headless';
 import Popper from '~/components/popper';
 import ToggleList from '../ToggleList/ToggleList';
+import * as $ from './Styles';
 
 function Video({ src, height, width }, ref) {
 	const videoRef = useRef();
 	const controlRef = useRef();
 	const areaRef = useRef();
 	const progressRef = useRef();
+	const inputRef = useRef();
+
+	const [stateVolume, setStateVolume] = useState(faVolumeHigh);
+	const [stateVolumeClass, setStateVolumeClass] = useState('volume-high');
 	const [isPlay, setIsplay] = useState(true);
+	const [animationPlay, setAnimationPlay] = useState('');
 	const [isFullScreen, setIsFullScreen] = useState(false);
 	const [widthProgress, setWidthProgress] = useState(0);
 	const [duration, setDuration] = useState('00:00:00');
@@ -37,6 +55,14 @@ function Video({ src, height, width }, ref) {
 			setIsplay(true);
 			videoRef.current.pause();
 		}
+	}
+
+	function skipForWardHandle() {
+		videoRef.current.currentTime += 5;
+	}
+
+	function skipBackWardHandle() {
+		videoRef.current.currentTime -= 5;
 	}
 
 	function timeUpdateHandle(event) {
@@ -162,16 +188,86 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
-	useEffect(() => {
-		if (areaRef.current) {
-			areaRef.current.addEventListener('fullscreenchange', checkFullScreenChange);
+	function volumneClickHandle(e) {
+		let dataOld = videoRef.current.dataset.dataOld ?? 0.9;
+		if (
+			e.target.closest('.volume').classList.contains('volume-off') ||
+			e.target.closest('.volume').classList.contains('volume-high') ||
+			e.target.closest('.volume').classList.contains('volume-low')
+		) {
+			setStateVolume(faVolumeXmark);
+			setStateVolumeClass('volume-xmark');
+			inputRef.current.value = 0.0;
+			videoRef.current.dataset.dataOld = videoRef.current.volume;
+			videoRef.current.volume = 0.0;
+		} else if (dataOld > 0.8) {
+			setStateVolume(faVolumeHigh);
+			setStateVolumeClass('volume-high');
+			videoRef.current.dataset.dataOld = 0.0;
+			videoRef.current.volume = dataOld;
+		} else if (dataOld < 0.5 && dataOld > 0.3) {
+			setStateVolume(faVolumeLow);
+			setStateVolumeClass('volume-low');
+			videoRef.current.dataset.dataOld = 0.0;
+			videoRef.current.volume = dataOld;
+		} else if (dataOld < 0.3 && dataOld > 0.0) {
+			setStateVolume(faVolumeOff);
+			setStateVolumeClass('volume-off');
+			videoRef.current.dataset.dataOld = 0.0;
+			videoRef.current.volume = dataOld;
 		}
-		return () => {
-			if (areaRef.current) {
-				areaRef.current.removeEventListener('fullscreenchange', checkFullScreenChange);
+		inputRef.current.value = videoRef.current.volume;
+	}
+
+	function volumeChangeInputHandle(e) {
+		let volume = inputRef.current.value;
+		if (videoRef.current.volume < 0.1) {
+			setStateVolume(faVolumeXmark);
+			setStateVolumeClass('volume-xmark');
+		} else if (videoRef.current.volume > 0.8) {
+			setStateVolume(faVolumeHigh);
+			setStateVolumeClass('volume-high');
+		} else if (videoRef.current.volume < 0.5 && videoRef.current.volume > 0.3) {
+			setStateVolume(faVolumeLow);
+			setStateVolumeClass('volume-low');
+		} else if (videoRef.current.volume < 0.3 && videoRef.current.volume > 0.0) {
+			setStateVolume(faVolumeOff);
+			setStateVolumeClass('volume-off');
+		}
+		videoRef.current.volume = volume;
+	}
+
+	useEffect(() => {
+		document.body.onkeyup = e => {
+			if (e.keyCode === 37) {
+				skipBackWardHandle();
+			} else if (e.keyCode === 39) {
+				skipForWardHandle();
 			}
 		};
-	}, [areaRef.current]);
+		var element;
+		if (areaRef.current) {
+			element = areaRef.current;
+			element.addEventListener('fullscreenchange', checkFullScreenChange);
+		}
+		return () => {
+			if (element) {
+				element.removeEventListener('fullscreenchange', checkFullScreenChange);
+			}
+		};
+	}, []);
+
+	function clickAreaHandle(e) {
+		if (isPlay) {
+			setAnimationPlay('animation');
+			setIsplay(false);
+			videoRef.current.play();
+		} else {
+			setAnimationPlay('');
+			setIsplay(true);
+			videoRef.current.pause();
+		}
+	}
 
 	return (
 		<$.Area
@@ -181,15 +277,43 @@ function Video({ src, height, width }, ref) {
 			onMouseOver={() => controlRef.current.classList.add('control')}
 			onMouseOut={mouseHandle}
 			ref={areaRef}
+			className="area"
 		>
-			<$.PresentVideo
-				ref={videoRef}
-				src={src}
-				width={width}
-				height={height}
-				onTimeUpdate={timeUpdateHandle}
-				onLoadedMetadata={durationLoadedHandle}
-			></$.PresentVideo>
+			<$.VideoArea onClick={clickAreaHandle}>
+				<$.PresentVideo
+					ref={videoRef}
+					src={src}
+					width={width}
+					height={height}
+					onTimeUpdate={timeUpdateHandle}
+					onLoadedMetadata={durationLoadedHandle}
+				></$.PresentVideo>
+				<$.Overlay className={animationPlay || isPlay ? '' : 'hide'}>
+					{isPlay ? (
+						<$.ControlLarge
+							className={animationPlay}
+							onAnimationEnd={() => setAnimationPlay('')}
+						>
+							<FontAwesomeIcon
+								icon={faPlayCircle}
+								style={{ fontSize: '4.8rem', color: 'var(--white)' }}
+							/>
+						</$.ControlLarge>
+					) : (
+						animationPlay && (
+							<$.ControlLarge
+								className={animationPlay}
+								onAnimationEnd={() => setAnimationPlay('')}
+							>
+								<FontAwesomeIcon
+									icon={faPause}
+									style={{ fontSize: '4.8rem', color: 'var(--white)' }}
+								/>
+							</$.ControlLarge>
+						)
+					)}
+				</$.Overlay>
+			</$.VideoArea>
 			<$.ControlArea ref={controlRef}>
 				<$.ProgressBar
 					ref={progressRef}
@@ -202,6 +326,9 @@ function Video({ src, height, width }, ref) {
 				</$.ProgressBar>
 				<$.ControlsArea>
 					<$.ControlsLeft>
+						<$.ControlItem onClick={skipBackWardHandle}>
+							<FontAwesomeIcon icon={faBackward} />
+						</$.ControlItem>
 						{isPlay ? (
 							<$.ControlItem onClick={togglePlayHandle}>
 								<FontAwesomeIcon icon={faPlay} />
@@ -211,10 +338,24 @@ function Video({ src, height, width }, ref) {
 								<FontAwesomeIcon icon={faPause} />
 							</$.ControlItem>
 						)}
-						<$.ControlItem>
-							<FontAwesomeIcon icon={faVolumeHigh} />
+						<$.ControlItem onClick={skipForWardHandle}>
+							<FontAwesomeIcon icon={faForward} />
+						</$.ControlItem>
+						<$.ControlItem className={`volume ${stateVolumeClass}`}>
+							<FontAwesomeIcon
+								className={stateVolumeClass}
+								icon={stateVolume}
+								onClick={volumneClickHandle}
+							/>
 							<$.VolumeRangeArea>
-								<input type="range" />
+								<input
+									type="range"
+									onInput={volumeChangeInputHandle}
+									ref={inputRef}
+									min={'0'}
+									max={'1'}
+									step={'any'}
+								/>
 							</$.VolumeRangeArea>
 						</$.ControlItem>
 						<$.ControlItem>
@@ -247,7 +388,7 @@ function Video({ src, height, width }, ref) {
 			</$.ControlArea>
 			{isExpandSetting && (
 				<$.SettingsExpandArea>
-					<Popper>
+					<Popper transparentFlag>
 						<ul>
 							<li>
 								<ToggleList
@@ -256,7 +397,25 @@ function Video({ src, height, width }, ref) {
 									underlineFlag
 									subListItems={['0.25x', '0.5x', '0.75x', '1x', '1.25x', '1.5x', '2x']}
 								>
-									Tốc độ phát
+									<Label
+										style={{ color: 'var(--white)' }}
+										leftIcons={<FontAwesomeIcon icon={faPlayCircle} />}
+									>
+										Tốc độ phát
+									</Label>
+								</ToggleList>
+								<ToggleList
+									colorLabel={'var(--white)'}
+									transparentFlag
+									underlineFlag
+									subListItems={['720p', '480p', '360p', '240p', '144p', 'Tự động']}
+								>
+									<Label
+										style={{ color: 'var(--white)' }}
+										leftIcons={<FontAwesomeIcon icon={faSliders} />}
+									>
+										Chất lượng
+									</Label>
 								</ToggleList>
 							</li>
 						</ul>
