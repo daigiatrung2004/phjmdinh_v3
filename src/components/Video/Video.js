@@ -269,6 +269,13 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
+	function inputHandle() {
+		const slide = inputRef.current;
+		const value = slide.value;
+		console.log('value:', value);
+		slide.setAttribute('length', value * 100);
+	}
+
 	return (
 		<$.Area
 			onMouseEnter={() => {
@@ -352,6 +359,7 @@ function Video({ src, height, width }, ref) {
 									type="range"
 									onInput={volumeChangeInputHandle}
 									ref={inputRef}
+									onInput={inputHandle}
 									min={'0'}
 									max={'1'}
 									step={'any'}

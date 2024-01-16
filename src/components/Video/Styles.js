@@ -107,6 +107,7 @@ export const ControlsArea = styled.div`
 `;
 
 export const ControlItem = styled.div`
+	user-select: none;
 	color: var(--white);
 	font-size: 2rem;
 	align-items: center;
@@ -142,6 +143,38 @@ export const ControlsRight = styled.div`
 
 export const VolumeRangeArea = styled.div`
 	margin-left: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+
+	& input {
+		-webkit-appearance: none;
+		height: 3px;
+		width: 100%;
+		background-color: rgba(255, 255, 255, 0.6);
+		border-radius: 0.5rem;
+		border: none;
+		outline: none;
+		position: relative;
+	}
+
+	& input::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		height: 2rem;
+		width: 2rem;
+		border-radius: 50%;
+		background-color: var(--white);
+		position: relative;
+	}
+
+	& input::after {
+		content: '';
+		position: absolute;
+		height: 0.3rem;
+		width: attr(length %);
+		background-color: var(--white);
+	}
 `;
 
 export const SettingsExpandArea = styled.div`
