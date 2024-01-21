@@ -27,6 +27,7 @@ function Video({ src, height, width }, ref) {
 	const areaRef = useRef();
 	const progressRef = useRef();
 	const inputRef = useRef();
+	const delayId = useRef();
 
 	const [stateVolume, setStateVolume] = useState(faVolumeHigh);
 	const [stateVolumeClass, setStateVolumeClass] = useState('volume-high');
@@ -114,7 +115,7 @@ function Video({ src, height, width }, ref) {
 	}
 
 	function mouseHandle(e) {
-		if (e.target.closest('.control')) {
+		if (e.target.closest('.control') || e.target.closest('.area')) {
 			return;
 		} else {
 			setIsExpandSetting(false);
@@ -138,7 +139,6 @@ function Video({ src, height, width }, ref) {
 
 			setWidthProgress(percent);
 			if (currentTime) {
-				console.log('percent:', currentTime);
 				videoRef.current.currentTime = parseFloat(currentTime) ?? 0;
 			}
 			setCurrentTime(timingHandle(currentTime));
@@ -183,8 +183,8 @@ function Video({ src, height, width }, ref) {
 
 	function checkFullScreenChange(e) {
 		if (document.fullscreenElement && e.target === document.fullscreenElement) {
-			controlRef.current.classList.remove('control');
-			controlRef.current.classList.remove('vjs-fade-out');
+			// controlRef.current.classList.remove('control');
+			// controlRef.current.classList.remove('vjs-fade-out');
 			setIsFullScreen(true);
 		} else {
 			setIsFullScreen(false);
@@ -246,7 +246,6 @@ function Video({ src, height, width }, ref) {
 	function changeWidthVolumeActive() {
 		const slide = inputRef.current;
 		const value = slide.value;
-		console.log('value:', value);
 		slide.setAttribute('length', value * 100);
 		setWidthActiveVolume(value * 100);
 	}
@@ -283,15 +282,31 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
+	function delayHideControlHandle(e) {
+		if (e.target.closest('.control') || e.target.closest('.area')) {
+			console.log('delay value=====: ', delayId);
+			if (delayId.current) {
+				clearTimeout(delayId.current);
+			}
+
+			let id = setTimeout(() => {
+				controlRef.current.classList.remove('control');
+				controlRef.current.classList.remove('vjs-fade-out');
+			}, 1500);
+			delayId.current = id;
+		}
+	}
+
 	return (
 		<$.Area
 			onMouseEnter={() => {
 				controlRef.current.classList.add('control');
 				controlRef.current.classList.add('vjs-fade-out');
 			}}
-			onMouseOver={() => {
+			onMouseMove={e => {
 				controlRef.current.classList.add('control');
 				controlRef.current.classList.remove('vjs-fade-out');
+				delayHideControlHandle(e);
 			}}
 			onMouseOut={mouseHandle}
 			ref={areaRef}
