@@ -38,6 +38,7 @@ function Video({ src, height, width }, ref) {
 	const [currentTime, setCurrentTime] = useState('00:00');
 	const [transitionSetting, setTransitionSetting] = useState('');
 	const [isExpandSetting, setIsExpandSetting] = useState(false);
+	const [widthActiveVolume, setWidthActiveVolume] = useState(100);
 	useImperativeHandle(
 		ref,
 		() => ({
@@ -182,6 +183,8 @@ function Video({ src, height, width }, ref) {
 
 	function checkFullScreenChange(e) {
 		if (document.fullscreenElement && e.target === document.fullscreenElement) {
+			controlRef.current.classList.remove('control');
+			controlRef.current.classList.remove('vjs-fade-out');
 			setIsFullScreen(true);
 		} else {
 			setIsFullScreen(false);
@@ -217,24 +220,35 @@ function Video({ src, height, width }, ref) {
 			videoRef.current.volume = dataOld;
 		}
 		inputRef.current.value = videoRef.current.volume;
+		changeWidthVolumeActive();
 	}
 
 	function volumeChangeInputHandle(e) {
 		let volume = inputRef.current.value;
-		if (videoRef.current.volume < 0.1) {
+		if (volume < 0.1) {
 			setStateVolume(faVolumeXmark);
 			setStateVolumeClass('volume-xmark');
-		} else if (videoRef.current.volume > 0.8) {
+		} else if (volume > 0.8) {
 			setStateVolume(faVolumeHigh);
 			setStateVolumeClass('volume-high');
-		} else if (videoRef.current.volume < 0.5 && videoRef.current.volume > 0.3) {
+		} else if (volume < 0.5 && volume > 0.3) {
 			setStateVolume(faVolumeLow);
 			setStateVolumeClass('volume-low');
-		} else if (videoRef.current.volume < 0.3 && videoRef.current.volume > 0.0) {
+		} else if (volume < 0.3 && volume > 0.0) {
 			setStateVolume(faVolumeOff);
 			setStateVolumeClass('volume-off');
 		}
 		videoRef.current.volume = volume;
+
+		changeWidthVolumeActive();
+	}
+
+	function changeWidthVolumeActive() {
+		const slide = inputRef.current;
+		const value = slide.value;
+		console.log('value:', value);
+		slide.setAttribute('length', value * 100);
+		setWidthActiveVolume(value * 100);
 	}
 
 	useEffect(() => {
@@ -269,19 +283,16 @@ function Video({ src, height, width }, ref) {
 		}
 	}
 
-	function inputHandle() {
-		const slide = inputRef.current;
-		const value = slide.value;
-		console.log('value:', value);
-		slide.setAttribute('length', value * 100);
-	}
-
 	return (
 		<$.Area
 			onMouseEnter={() => {
 				controlRef.current.classList.add('control');
+				controlRef.current.classList.add('vjs-fade-out');
 			}}
-			onMouseOver={() => controlRef.current.classList.add('control')}
+			onMouseOver={() => {
+				controlRef.current.classList.add('control');
+				controlRef.current.classList.remove('vjs-fade-out');
+			}}
 			onMouseOut={mouseHandle}
 			ref={areaRef}
 			className="area"
@@ -353,17 +364,18 @@ function Video({ src, height, width }, ref) {
 								className={stateVolumeClass}
 								icon={stateVolume}
 								onClick={volumneClickHandle}
+								style={{ width: '2.5rem' }}
 							/>
 							<$.VolumeRangeArea>
 								<input
 									type="range"
 									onInput={volumeChangeInputHandle}
 									ref={inputRef}
-									onInput={inputHandle}
 									min={'0'}
 									max={'1'}
 									step={'any'}
 								/>
+								<$.ActiveVolume width={widthActiveVolume} />
 							</$.VolumeRangeArea>
 						</$.ControlItem>
 						<$.ControlItem>

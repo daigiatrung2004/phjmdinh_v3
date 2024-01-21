@@ -45,6 +45,25 @@ export const ControlArea = styled.div`
 		height: ${({ height }) => (height ? height : '6rem')};
 	}
 
+	&.vjs-fade-out {
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+
+		-webkit-transition: visibility 1.5s, opacity 1.5s;
+		-moz-transition: visibility 1.5s, opacity 1.5s;
+		-ms-transition: visibility 1.5s, opacity 1.5s;
+		-o-transition: visibility 1.5s, opacity 1.5s;
+		transition: visibility 1.5s, opacity 1.5s;
+
+		/* Wait a moment before fading out the control bar */
+		-webkit-transition-delay: 2s;
+		-moz-transition-delay: 2s;
+		-ms-transition-delay: 2s;
+		-o-transition-delay: 2s;
+		transition-delay: 2s;
+	}
+
 	/* z-index: 2147483647; */
 	/* justify-content: center; */
 `;
@@ -104,6 +123,8 @@ export const ControlsArea = styled.div`
 	padding-top: calc(var(--progress-height) + 1rem);
 	flex-grow: 1;
 	display: flex;
+	height: 6rem;
+	overflow: hidden;
 `;
 
 export const ControlItem = styled.div`
@@ -167,14 +188,6 @@ export const VolumeRangeArea = styled.div`
 		background-color: var(--white);
 		position: relative;
 	}
-
-	& input::after {
-		content: '';
-		position: absolute;
-		height: 0.3rem;
-		width: attr(length %);
-		background-color: var(--white);
-	}
 `;
 
 export const SettingsExpandArea = styled.div`
@@ -233,4 +246,12 @@ export const ControlLarge = styled.div`
 	&.animation {
 		animation: ${keyFrames} 0.2s var(--timing-function-carousel) forwards;
 	}
+`;
+
+export const ActiveVolume = styled.div`
+	height: 0.3rem;
+	width: ${({ width }) => (width || width == '0' ? width + '%' : '100%')};
+	background-color: var(--white);
+	position: absolute;
+	left: 0;
 `;
