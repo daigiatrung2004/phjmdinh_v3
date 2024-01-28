@@ -60,11 +60,17 @@ function Video({ src, height, width }, ref) {
 	}
 
 	function skipForWardHandle() {
-		videoRef.current.currentTime += 5;
+		videoRef.current.currentTime += 10;
+		if (videoRef.current.currentTime > videoRef.current.duration) {
+			videoRef.current.currentTime = videoRef.current.duration;
+		}
 	}
 
 	function skipBackWardHandle() {
-		videoRef.current.currentTime -= 5;
+		videoRef.current.currentTime -= 10;
+		if (videoRef.current.currentTime < 0) {
+			videoRef.current.currentTime = 0;
+		}
 	}
 
 	function timeUpdateHandle(event) {
@@ -242,7 +248,6 @@ function Video({ src, height, width }, ref) {
 
 		changeWidthVolumeActive();
 	}
-
 	function changeWidthVolumeActive() {
 		const slide = inputRef.current;
 		const value = slide.value;
@@ -252,9 +257,10 @@ function Video({ src, height, width }, ref) {
 
 	useEffect(() => {
 		document.body.onkeyup = e => {
-			if (e.keyCode === 37) {
+			let event = e || window.Event;
+			if (event.keyCode === 37) {
 				skipBackWardHandle();
-			} else if (e.keyCode === 39) {
+			} else if (event.keyCode === 39) {
 				skipForWardHandle();
 			}
 		};
@@ -290,8 +296,10 @@ function Video({ src, height, width }, ref) {
 			}
 
 			let id = setTimeout(() => {
-				controlRef.current.classList.remove('control');
-				controlRef.current.classList.remove('vjs-fade-out');
+				if (!isPlay) {
+					controlRef.current.classList.remove('control');
+					controlRef.current.classList.remove('vjs-fade-out');
+				}
 			}, 1500);
 			delayId.current = id;
 		}

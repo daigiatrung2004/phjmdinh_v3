@@ -7,7 +7,8 @@ export const Area = styled.div`
 	display: block;
 	width: fit-content;
 	background-color: ${({ bgColor }) => (bgColor ? bgColor : 'transparent')};
-	height: ${({ height }) => (height ? height : '41.5rem')};
+	/* height: ${({ height }) => (height ? height : '41.5rem')}; */
+	height: ${({ height }) => (height ? height : '100%')};
 	width: ${({ width }) => (width ? width : '73.8rem')};
 `;
 
@@ -16,7 +17,7 @@ export const VideoArea = styled.div`
 	top: 0;
 	right: 0;
 	left: 0;
-	right: 0;
+	bottom: 0;
 `;
 
 export const PresentVideo = styled.video`
@@ -250,7 +251,7 @@ export const ControlLarge = styled.div`
 
 export const ActiveVolume = styled.div`
 	height: 0.3rem;
-	width: ${({ width }) => (width || width == '0' ? width + '%' : '100%')};
+	width: ${({ width }) => (width || width === '0' ? width + '%' : '100%')};
 	background-color: var(--white);
 	position: absolute;
 	left: 0;

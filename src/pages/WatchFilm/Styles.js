@@ -27,8 +27,8 @@ export const PresentationFilmArea = styled.div`
 `;
 
 export const VideoArea = styled.div`
-	border-right: 1px solid rgba(255, 255, 255, 0.3);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	/* border-right: 1px solid rgba(255, 255, 255, 0.3);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
 `;
 
 export const FooterPresentationArea = styled.div`

@@ -1,7 +1,7 @@
 import { faArrowUpFromBracket, faBookBookmark, faCircleInfo, faServer } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react/headless';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import Carousel from '~/components/Carousel';
 import Label from '~/components/Label';
@@ -16,11 +16,15 @@ import Video from '~/components/Video';
 import ListItems from './datasets';
 import { FacebookProvider, Comments } from 'react-facebook';
 import src from '~/assets/videos/a.mp4';
+import PopUp from '~/components/PopUp';
+import { PUSettings } from '~/utils/StylesBase';
+import Button from '~/components/Button';
 
 function Watch() {
 	let videoRef = useRef();
 	const [itemsPopular, setItemsPopular] = useState([]);
 	const [casts, setCasts] = useState([]);
+	const [showPopUp, setShowPopUp] = useState(false);
 
 	useEffect(() => {
 		Promise.all([
@@ -37,8 +41,33 @@ function Watch() {
 	}, []);
 
 	const { t } = useTranslation();
+	const config = {
+		shape: PUSettings['shape']['square'],
+		// srcIcon: Success,
+		isFooter: false,
+		isHeader: false,
+		content: (
+			<>
+				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ FACEBOOK</Button>
+				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ TELEGRAM</Button>
+				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ TIKTOK</Button>
+				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ X</Button>
+			</>
+		),
+	};
+
+	const handlePopUP = useCallback(() => {
+		setShowPopUp(false);
+	}, []);
+
 	return (
 		<$.WatchArea>
+			{showPopUp && (
+				<PopUp
+					settings={config}
+					onClick={handlePopUP}
+				/>
+			)}
 			<$.CalendarEposide>
 				<Paragraph
 					devicearguments={{
@@ -109,6 +138,7 @@ function Watch() {
 								marginLeft: '1.5rem',
 							}}
 							leftIcons={<FontAwesomeIcon icon={faArrowUpFromBracket} />}
+							onClick={() => setShowPopUp(true)}
 						>
 							{t('share')}
 						</Label>
