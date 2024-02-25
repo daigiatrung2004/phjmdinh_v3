@@ -58,7 +58,15 @@ const Square = styled.div`
 `;
 
 const Rectangle = styled(Square)`
-	height: 520px;
+	--height-rectangle: ${({ height }) => (height ? height : '520px')};
+	--width-rectangle: ${({ width }) => (width ? width : '320px')};
+	height: var(--height-rectangle);
+	position: ${({ position }) => (position === 'center' ? `fixed` : 'absolute')};
+	top: ${({ position, width }) => (position === 'center' ? `calc(50% - var(--width-rectangle)/2)` : '0px')};
+	left: ${({ position, height }) => (position === 'center' ? `calc(50% - var(--height-rectangle)/2)` : '0px')};
+	${({ position, height, width }) => {
+		console.log('test position===========:', position, ',height:', height, 'width:', width);
+	}};
 `;
 
 const Toast = styled.div`

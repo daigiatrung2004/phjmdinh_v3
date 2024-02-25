@@ -57,7 +57,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 			rightIcon: false,
 			centerIcon: true,
 			srcIcon: {
-				type: Image,
+				Type: Image,
 				props: {
 					className: 'icon',
 					src: Images.warning,
@@ -80,6 +80,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 			left: width => (window.innerWidth - width.replace('px', '') - 3) / 2 + 'px',
 			isOverlay: false,
 			timeVibrate: 600,
+			hideFlag: true,
 		},
 		Error: {
 			type: 'Error',
@@ -89,7 +90,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 			isFooter: false,
 			isHeader: true,
 			srcIcon: {
-				type: FontAwesomeIcon,
+				Type: FontAwesomeIcon,
 				props: {
 					icon: faCircleCheck,
 					style: { fontSize: '20px', color: '#3dff3d' },
@@ -105,6 +106,34 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 			isOverlay: false,
 			timeOut: 2000,
 			timeTransition: 600,
+			hideFlag: true,
+		},
+		Annoucement: {
+			type: 'Annouce',
+			shape: PUSettings['shape']['Rectangle'],
+			leftIcon: false,
+			rightIcon: false,
+			centerIcon: true,
+			isFooter: false,
+			isHeader: false,
+			srcIcon: {
+				Type: Image,
+				props: {
+					className: 'icon',
+					src: Images.logo,
+					width: '150px',
+					height: '100px',
+				},
+			},
+			content: 'No message!!!',
+			contrast: PUSettings['contrast']['light'],
+			hIcon: '80px',
+			wIcon: '80px',
+			height: '320px',
+			width: '520px',
+			position: 'center',
+			isOverlay: true,
+			hideFlag: false,
 		},
 	};
 
@@ -118,7 +147,7 @@ const PopUp = forwardRef(function ({ settings, onClick, type = 'Error', ...props
 	let isExpiredTime = useTimeOutEffect(isShow, (config[type].timeOut ?? 0) + 300);
 
 	useEffect(() => {
-		if (type === 'Error' && isShow) setIsShow(isExpiredTime);
+		if (type === 'Error' && isShow && config[type].hideFlag) setIsShow(isExpiredTime);
 	}, [isExpiredTime, isShow, type]);
 
 	if (typeof config[type].srcIcon === 'string') {

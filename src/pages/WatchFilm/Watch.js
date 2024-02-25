@@ -19,6 +19,7 @@ import src from '~/assets/videos/a.mp4';
 import PopUp from '~/components/PopUp';
 import { PUSettings } from '~/utils/StylesBase';
 import Button from '~/components/Button';
+import { faFacebookF, faTelegram, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 function Watch() {
 	let videoRef = useRef();
@@ -42,18 +43,54 @@ function Watch() {
 
 	const { t } = useTranslation();
 	const config = {
-		shape: PUSettings['shape']['square'],
-		// srcIcon: Success,
+		type: 'Annoucement',
+		shape: PUSettings['shape']['Rectangle'],
+		leftIcon: false,
+		rightIcon: false,
+		centerIcon: true,
 		isFooter: false,
-		isHeader: false,
+		isHeader: true,
 		content: (
 			<>
-				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ FACEBOOK</Button>
-				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ TELEGRAM</Button>
-				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ TIKTOK</Button>
-				<Button theme={{ type: 'rounded', size: 'large' }}>Chia sẻ X</Button>
+				<Button
+					theme={{ type: 'rounded', size: 'large fullW' }}
+					style={{ marginBottom: '2.5rem' }}
+					leftIcon={<FontAwesomeIcon icon={faFacebookF} />}
+				>
+					Chia sẻ FACEBOOK
+				</Button>
+				<Button
+					theme={{ type: 'rounded', size: 'large fullW' }}
+					style={{ marginBottom: '2.5rem' }}
+					leftIcon={<FontAwesomeIcon icon={faTelegram} />}
+				>
+					Chia sẻ TELEGRAM
+				</Button>
+				<Button
+					theme={{ type: 'rounded', size: 'large fullW' }}
+					style={{ marginBottom: '2.5rem' }}
+					leftIcon={<FontAwesomeIcon icon={faTiktok} />}
+				>
+					Chia sẻ TIKTOK
+				</Button>
+				<Button
+					theme={{ type: 'rounded', size: 'large fullW' }}
+					style={{ marginBottom: '2.5rem' }}
+					leftIcon={<FontAwesomeIcon icon={faTwitter} />}
+				>
+					Chia sẻ X
+				</Button>
 			</>
 		),
+		contrast: PUSettings['contrast']['light'],
+		hIcon: '80px',
+		wIcon: '80px',
+		height: '480px',
+		width: '420px',
+		position: 'center',
+		isOverlay: true,
+		hideFlag: false,
+		shape: PUSettings['shape']['rectangle'],
 	};
 
 	const handlePopUP = useCallback(() => {
@@ -66,6 +103,7 @@ function Watch() {
 				<PopUp
 					settings={config}
 					onClick={handlePopUP}
+					type={'Annoucement'}
 				/>
 			)}
 			<$.CalendarEposide>

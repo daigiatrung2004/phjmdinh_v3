@@ -248,10 +248,9 @@ export const ControlLarge = styled.div`
 		animation: ${keyFrames} 0.2s var(--timing-function-carousel) forwards;
 	}
 `;
-
 export const ActiveVolume = styled.div`
 	height: 0.3rem;
-	width: ${({ width }) => (width || width === '0' ? width + '%' : '100%')};
+	width: ${({ width }) => (width || width === 0 ? width + '%' : '100%')};
 	background-color: var(--white);
 	position: absolute;
 	left: 0;

@@ -251,6 +251,8 @@ function Video({ src, height, width }, ref) {
 	function changeWidthVolumeActive() {
 		const slide = inputRef.current;
 		const value = slide.value;
+		console.log('slide2024=======', slide);
+		console.log('value2024=======', value);
 		slide.setAttribute('length', value * 100);
 		setWidthActiveVolume(value * 100);
 	}
@@ -359,6 +361,7 @@ function Video({ src, height, width }, ref) {
 				<$.ProgressBar
 					ref={progressRef}
 					onClick={event => changeTimeVideo(event)}
+					className="progressbar"
 				>
 					<$.ProgressActive
 						className="active"
@@ -367,20 +370,32 @@ function Video({ src, height, width }, ref) {
 				</$.ProgressBar>
 				<$.ControlsArea>
 					<$.ControlsLeft>
-						<$.ControlItem onClick={skipBackWardHandle}>
-							<FontAwesomeIcon icon={faBackward} />
+						<$.ControlItem>
+							<FontAwesomeIcon
+								icon={faBackward}
+								onClick={skipBackWardHandle}
+							/>
 						</$.ControlItem>
 						{isPlay ? (
-							<$.ControlItem onClick={togglePlayHandle}>
-								<FontAwesomeIcon icon={faPlay} />
+							<$.ControlItem>
+								<FontAwesomeIcon
+									icon={faPlay}
+									onClick={togglePlayHandle}
+								/>
 							</$.ControlItem>
 						) : (
-							<$.ControlItem onClick={togglePlayHandle}>
-								<FontAwesomeIcon icon={faPause} />
+							<$.ControlItem>
+								<FontAwesomeIcon
+									icon={faPause}
+									onClick={togglePlayHandle}
+								/>
 							</$.ControlItem>
 						)}
-						<$.ControlItem onClick={skipForWardHandle}>
-							<FontAwesomeIcon icon={faForward} />
+						<$.ControlItem>
+							<FontAwesomeIcon
+								icon={faForward}
+								onClick={skipForWardHandle}
+							/>
 						</$.ControlItem>
 						<$.ControlItem className={`volume ${stateVolumeClass}`}>
 							<FontAwesomeIcon
