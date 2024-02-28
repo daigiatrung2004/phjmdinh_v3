@@ -217,7 +217,7 @@ function Carousel(
 						>
 							<Items
 								ref={refItem}
-								// src="/reviewfilm/"
+								src="/album/"
 								items={listTmp}
 								type={carouselItemsType}
 								hImage={'25.35rem'}
