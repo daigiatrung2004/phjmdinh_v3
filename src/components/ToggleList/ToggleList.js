@@ -10,7 +10,7 @@ function ToggleList({ children, subListItems = [], transparentFlag, underlineFla
 	const height = useMemo(() => {
 		if (isShow && ref.current) {
 			let style = ref.current.currentStyle || window.getComputedStyle(ref.current);
-			return (ref.current.offsetHeight + parseInt(style.marginTop)) * subListItems.length + 'px';
+			return (ref.current.offsetHeight + parseInt(style.marginTop)) * subListItems.length + 40 + 'px';
 		} else {
 			return '0px';
 		}
