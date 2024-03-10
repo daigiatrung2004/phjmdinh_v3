@@ -3,7 +3,7 @@ import * as $ from './Styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 
-function Admin() {
+function Admin({ children }) {
 	return (
 		<$.Container>
 			<$.Header>
@@ -26,7 +26,7 @@ function Admin() {
 					</ToggleList>
 				</$.List>
 			</$.Navbar>
-			<$.Content></$.Content>
+			<$.Content className="content">{children}</$.Content>
 		</$.Container>
 	);
 }

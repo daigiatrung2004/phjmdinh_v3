@@ -15,7 +15,7 @@ import PartnerShip from '~/pages/LandingPage/PartnerShip';
 import { lazy } from 'react';
 import Feedback from '~/pages/LandingPage/Feedback';
 import Support from '~/pages/LandingPage/Support';
-import Admin from '~/pages/Admin';
+import Admin from '~/pages/Admin/ManageFilm';
 
 const Home = lazy(() => import('~/pages/Home'));
 
@@ -102,12 +102,13 @@ export const privateRoutes = [
 		denp: 'landing',
 	},
 	{
-		path: '/',
-		component: <Testpopup />,
+		path: '/admin',
+		denp: 'admin',
+		component: <Admin />,
 	},
 	{
-		path: '/Admin',
-		component: <Admin />,
+		path: '/',
+		component: <Testpopup />,
 	},
 ];
 

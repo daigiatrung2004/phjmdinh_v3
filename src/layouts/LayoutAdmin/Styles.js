@@ -5,6 +5,7 @@ export const Header = styled.div`
 	background-color: var(--primary);
 	height: 6rem;
 	position: relative;
+	z-index: 100;
 `;
 
 export const Username = styled.div`
@@ -33,6 +34,7 @@ export const Navbar = styled.div`
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
+	z-index: 100;
 `;
 
 export const NavbarHeader = styled.div`
@@ -47,6 +49,16 @@ export const List = styled.div`
 	padding: 5rem 1rem 5rem 1rem;
 	flex-grow: 1;
 `;
-export const Content = styled.div``;
 
-export const Container = styled.div``;
+export const Content = styled.div`
+	width: 102rem;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-color: var(--white);
+	z-index: 1;
+`;
+export const Container = styled.div`
+	background-color: var(--white);
+`;

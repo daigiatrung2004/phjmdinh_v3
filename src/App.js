@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { LoadingIcon } from '~/components/Icons';
 import DefaultLayout from '~/layouts/defaultlayout';
 import LandingLayout from '~/layouts/LayoutLanding';
+import LayoutAdmin from '~/layouts/LayoutAdmin';
 import routes from '~/routes';
 
 function App() {
@@ -18,7 +19,9 @@ function App() {
 									case 'landing':
 										Layout = LandingLayout;
 										break;
-
+									case 'admin':
+										Layout = LayoutAdmin;
+										break;
 									default:
 										Layout = DefaultLayout;
 										break;
