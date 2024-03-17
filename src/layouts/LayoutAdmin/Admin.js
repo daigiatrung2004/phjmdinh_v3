@@ -44,7 +44,12 @@ function Admin({ children }) {
 					</ToggleList>
 				</$.List>
 			</$.Navbar>
-			<$.Content className="content">{children}</$.Content>
+			<$.Content
+				className="content"
+				isShowNav={isShowNav}
+			>
+				{children}
+			</$.Content>
 		</$.Container>
 	);
 }

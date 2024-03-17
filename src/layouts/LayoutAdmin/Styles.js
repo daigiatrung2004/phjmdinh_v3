@@ -3,7 +3,7 @@ import Images from '~/assets/images';
 
 export const Header = styled.div`
 	background-color: var(--primary);
-	height: 6rem;
+	height: var(--height-header);
 	position: relative;
 	z-index: 100;
 `;
@@ -28,8 +28,8 @@ export const Name = styled.p`
 export const Navbar = styled.div`
 	position: absolute;
 	background-color: var(--bg-color-override);
-	min-width: ${({ isShowNav }) => (isShowNav ? '35rem' : '0rem')};
-	width: ${({ isShowNav }) => (isShowNav ? '35rem' : '0rem')};
+	min-width: ${({ isShowNav }) => (isShowNav ? 'var(--width-navbar)' : '0rem')};
+	width: ${({ isShowNav }) => (isShowNav ? 'var(--width-navbar)' : '0rem')};
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -54,21 +54,26 @@ export const List = styled.div`
 `;
 
 export const Content = styled.div`
-	width: 102rem;
+	width: ${({ isShowNav }) => (isShowNav ? 'calc(100% + (-1) * var(--width-navbar))' : '100%')};
 	position: absolute;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	background-color: var(--white);
 	z-index: 1;
+	flex-grow: 1;
 `;
 export const Container = styled.div`
+	--width-navbar: 35rem;
+	--height-header: 6rem;
 	background-color: var(--white);
+	display: flex;
+	flex-direction: column;
 `;
 
 export const Bars = styled.div`
 	position: absolute;
-	left: ${({ isShowNav }) => (isShowNav ? '37rem' : '2rem')};
+	left: ${({ isShowNav }) => (isShowNav ? 'calc(var(--width-navbar) + 2rem)' : '2rem')};
 	top: 1.5rem;
 	cursor: pointer;
 	transition: all 0.2s var(--timing-function-carousel);
