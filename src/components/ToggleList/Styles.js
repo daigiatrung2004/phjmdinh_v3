@@ -25,6 +25,7 @@ export const SubListUlSheet = styled.div`
 	overflow: hidden;
 	height: ${({ subListUlHeight }) => (subListUlHeight ? subListUlHeight : '0px')};
 	transition: all 0.2s ease;
+	color: var(--white);
 `;
 
 export const SubListUl = styled.ul`

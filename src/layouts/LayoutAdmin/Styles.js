@@ -28,13 +28,16 @@ export const Name = styled.p`
 export const Navbar = styled.div`
 	position: absolute;
 	background-color: var(--bg-color-override);
-	min-width: 35rem;
+	min-width: ${({ isShowNav }) => (isShowNav ? '35rem' : '0rem')};
+	width: ${({ isShowNav }) => (isShowNav ? '35rem' : '0rem')};
 	top: 0;
 	left: 0;
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
 	z-index: 100;
+	transition: all 0.2s var(--timing-function-carousel);
+	overflow: hidden;
 `;
 
 export const NavbarHeader = styled.div`
@@ -61,4 +64,12 @@ export const Content = styled.div`
 `;
 export const Container = styled.div`
 	background-color: var(--white);
+`;
+
+export const Bars = styled.div`
+	position: absolute;
+	left: ${({ isShowNav }) => (isShowNav ? '37rem' : '2rem')};
+	top: 1.5rem;
+	cursor: pointer;
+	transition: all 0.2s var(--timing-function-carousel);
 `;

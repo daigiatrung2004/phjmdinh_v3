@@ -1,9 +1,11 @@
 import ToggleList from '~/components/ToggleList';
 import * as $ from './Styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
 function Admin({ children }) {
+	const [isShowNav, setIsShowNav] = useState(true);
 	return (
 		<$.Container>
 			<$.Header>
@@ -14,8 +16,18 @@ function Admin({ children }) {
 					/>
 					<$.Name>Hi, Vu!</$.Name>
 				</$.Username>
+				<$.Bars
+					className="bars"
+					onClick={() => setIsShowNav(!isShowNav)}
+					isShowNav={isShowNav}
+				>
+					<FontAwesomeIcon
+						icon={faBars}
+						style={{ fontSize: '2rem', color: 'white', marginBottom: '.3rem' }}
+					/>
+				</$.Bars>
 			</$.Header>
-			<$.Navbar>
+			<$.Navbar isShowNav={isShowNav}>
 				<$.NavbarHeader />
 				<$.List>
 					<ToggleList
@@ -23,6 +35,12 @@ function Admin({ children }) {
 						subListItems={['Chart']}
 					>
 						Trading View
+					</ToggleList>
+					<ToggleList
+						transparentFlag={true}
+						subListItems={['Create Films Info']}
+					>
+						Films Info
 					</ToggleList>
 				</$.List>
 			</$.Navbar>

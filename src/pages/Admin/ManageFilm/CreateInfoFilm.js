@@ -4,6 +4,7 @@ import Dropify from '~/components/Dropify';
 import Label from '~/components/Label';
 import TextArea from '~/components/TextArea';
 import DropDown from '~/components/DropDown';
+import Button from '~/components/Button';
 
 function CreateInfoFilm() {
 	const optionsGenre = [
@@ -117,6 +118,12 @@ function CreateInfoFilm() {
 						<small>Chỉ hỗ trợ định dạng png, jpg, jpeg</small>
 					</Dropify>
 				</$.ProfilePath>
+				<Button
+					theme={{ type: 'primary rounded', size: 'large fullW' }}
+					style={{ marginBottom: '2.5rem' }}
+				>
+					Create info
+				</Button>
 			</$.Form>
 		</$.Container>
 	);

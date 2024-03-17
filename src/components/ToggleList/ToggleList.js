@@ -3,7 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMemo, useRef, useState } from 'react';
 import * as $ from './Styles';
 
-function ToggleList({ children, subListItems = [], transparentFlag, underlineFlag, colorLabel, ...attrs }) {
+function ToggleList({
+	children,
+	subListItems = [],
+	transparentFlag,
+	underlineFlag,
+	colorLabel,
+	isBlackList,
+	...attrs
+}) {
 	const [isShow, setIsShow] = useState(false);
 	const ref = useRef();
 
