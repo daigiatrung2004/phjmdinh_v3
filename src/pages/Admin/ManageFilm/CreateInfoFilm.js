@@ -49,7 +49,7 @@ function CreateInfoFilm() {
 	];
 	return (
 		<$.Container>
-			<h1>CREATE INFO FILM</h1>
+			<h1 style={{ color: 'var(--primary)' }}>CREATE INFO FILM</h1>
 
 			<$.Form>
 				<Input
@@ -69,19 +69,19 @@ function CreateInfoFilm() {
 					labelText="Limit Age:"
 					options={optionsLimit}
 					defaultText="Vui lòng chọn giới hạn độ tuổi"
-					style={{ width: '66rem', color: 'black' }}
+					style={{ color: 'black' }}
 				/>
 				<DropDown
 					labelText="Original Language:"
 					options={optionsGenre}
 					defaultText="Vui lòng chọn thể loại phim"
-					style={{ width: '66rem', color: 'black' }}
+					style={{ color: 'black' }}
 				/>
 				<DropDown
 					labelText="Genre:"
 					options={optionsLanguage}
 					defaultText="Vui lòng chọn thể loại phim"
-					style={{ width: '66rem', color: 'black' }}
+					style={{ color: 'black' }}
 				/>
 				<Input
 					type="number"
@@ -102,7 +102,9 @@ function CreateInfoFilm() {
 				<TextArea
 					title={'Overview:'}
 					placeholder={'Tổng quan'}
-					cols={'100'}
+					cols={'114'}
+					rows={'25'}
+					styleLabel={{ color: 'var(--primary)' }}
 				></TextArea>
 				<$.ProfilePath>
 					<Label>Backdrop Image</Label>

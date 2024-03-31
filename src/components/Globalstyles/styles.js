@@ -28,6 +28,7 @@ export const Style = createGlobalStyle`
 		--zIndex-general: 1000;
 		--max-zIndex: 1000000;
 		--width-header: 60px;
+		--disabled: #9593932e;
 	}
 
 	html {
@@ -56,6 +57,11 @@ export const Style = createGlobalStyle`
 	[tabindex] {
 		border: none;
 		outline: none;
+	}
+
+	input:disabled,
+	button:disabled {
+		background-color: var(--disabled);
 	}
 
 	a[href] {

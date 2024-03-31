@@ -6,6 +6,9 @@ export const StyleGeneral = styled.div`
 	--border-width: 0.1rem;
 	flex-grow: 1;
 	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 2rem;
 `;
 
 export const InputText = styled.input`
@@ -31,4 +34,5 @@ export const LabelRadio = styled.label`
 
 export const LabelText = styled.label`
 	color: var(--black);
+	width: 10rem;
 `;

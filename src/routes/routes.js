@@ -16,6 +16,7 @@ import { lazy } from 'react';
 import Feedback from '~/pages/LandingPage/Feedback';
 import Support from '~/pages/LandingPage/Support';
 import Admin from '~/pages/Admin/ManageFilm';
+import Crypto from '~/pages/Admin/Crypto';
 
 const Home = lazy(() => import('~/pages/Home'));
 
@@ -100,6 +101,11 @@ export const privateRoutes = [
 		path: '/support',
 		component: <Support />,
 		denp: 'landing',
+	},
+	{
+		path: '/admin/crypto',
+		denp: 'admin',
+		component: <Crypto />,
 	},
 	{
 		path: '/admin',

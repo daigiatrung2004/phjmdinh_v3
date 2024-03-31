@@ -1,9 +1,9 @@
 import * as $ from './Styles';
 
-function TextArea({ children, title, ...attrs }) {
+function TextArea({ children, title, styleLabel, ...attrs }) {
 	return (
 		<$.StyleGeneral>
-			<h1>{title}</h1>
+			<h1 style={styleLabel}>{title}</h1>
 			<$.TextArea {...attrs}>{children}</$.TextArea>
 		</$.StyleGeneral>
 	);
