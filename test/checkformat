@@ -1,0 +1,15 @@
+"STRING
+    NUMBERSTRING    : 1234                    000a
+    SINGLEBYTESTRING: ab12ｱ                    あ
+    MULTIBYTESTRING    : １あア漢字ａ            1aｱ
+    OPERATOR        : ab12ｱ                    あ
+    ''                : １あア漢字ａ1aｱ        ''
+
+NUMBER
+    TELFAX            : 134-1                    12-a
+    UNSIGNEDNUMBER    : 123                    -5, a１
+    SIGNEDNUMBER    : -123                    ９
+    ''=SIGNEDNUMBER
+
+DATE, DATETIME:
+    CHeck theo format : YYYYMMDD", a12
