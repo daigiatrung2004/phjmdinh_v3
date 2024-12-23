@@ -1,0 +1,11 @@
+* realize price : gia thuc te doi mot san pham nao do
+- cach tinh realize:
+b1: tinh tong cac giao dich(tran saction) trong mot khoang thoi gian (vi du 1 ngay)(hay gia tri khi gia di chuyen)
+b2: tinh tong so luong 
+b3: t?nh realzied price theo cong thuc
+Realized?Price=Total?Cost / Total?Quantity
+
+* MVRV (Market Value to Realized Value Ratio) chi so danh gia token dang co qua ban
+hoac qua mua
+Chi so nay > 1: qua mua (cao)
+Chi so nay < 1: qua ban (thap)
