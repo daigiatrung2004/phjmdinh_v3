@@ -1,0 +1,70 @@
+1. $? : dung check status cuu cau lenh thuc thi gan nhat truoc do
+0: Lệnh đã thành công.
+
+Khác 0: Lệnh đã gặp lỗi. Mã lỗi cụ thể có thể khác nhau, tùy thuộc vào lệnh và lỗi gặp phải.
+#!/bin/bash
+
+# Thực thi lệnh
+ls /nonexistentdirectory
+# Kiểm tra mã trạng thái của lệnh vừa thực thi
+echo "Mã trạng thái của lệnh trước đó: $?"
+
+# Thực thi lệnh thành công
+ls /
+# Kiểm tra mã trạng thái của lệnh vừa thực thi
+echo "Mã trạng thái của lệnh trước đó: $?"
+
+
+2. command so sanh
+-eq : Equal to
+
+-ne : Not equal to
+
+-lt : Less than
+
+-le : Less than or equal to
+
+-gt : Greater than
+
+-ge : Greater than or equal to
+
+fi: ket thuc block if condition
+
+printenv: dung xem bien moi truong
+
+pwd:xuat ra thu muc duong dan hien tai.
+
+"$(command)": thuc thi cau lenh trong chuoi.
+vd: echo "$(pwd)"
+
+3.command connect remote server
+vd :ssh uvuser@192.168.1.22
+
+3.1 RDP (Remote Desktop Protocol)
+
+1.Open the Run dialog by pressing Win + R.
+
+2.Type mstsc and press Enter.
+
+3.Enter the IP address or hostname of the remote server.
+
+3.2 Use poderosa, ftp.
+
+3.3 Bien $@ mang chua cac param dc truyen vao
+
+* exit: dung de thoat disconnect remote server
+
+4. command connect remote server with private key file
+ssh -i C:\Users\DELL\Desktop\TASK\note_NEXT10.0\nt-u117-dev-sework.pem ntuser@
+172.28.8.152
+
+-i: khai bao ket noi khoa rieng
+
+5. Bien moi truong (variable environment): cap gia tri duoc luu trong he thong hay moi
+truong thuc thi thuogn duoc dung luu cac gia tri mac dinh he thong, set up he thong.
+
+6. vim : là editor mac dinh duoc cai san trong cac he dieu hanh ubuntu.
+
+7. write file
+echo 'xin chao123' > test.txt: ghi de vao file
+echo 'xin chao123' >> test.txt: insert vao cuoi file

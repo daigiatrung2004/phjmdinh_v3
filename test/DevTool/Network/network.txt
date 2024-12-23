@@ -1,0 +1,9 @@
+* Settings NetWork
+1. Preserve log:
++ Save request cũ khi page loading.
+2. record network log (must)
++ dùng đẻ ghi log các request
+3. network request blocking
++ dùng để block một số request để test và debug trường hợp thiếu tài nguyên.
+4. Disable cache while Devtool is open
++ Khi mở devtool thì disable cache reload page sẽ xem như người mới được cập nhật tài nguyên mới nhát.
