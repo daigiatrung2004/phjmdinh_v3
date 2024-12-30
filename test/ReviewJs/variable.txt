@@ -1,0 +1,46 @@
+/*
+co 3 kieu khai bao bien trong js
+var,let, const
+khac nhau gi ?
+giong nhau 
+deu co tinh chat hoisting : khi thuc thi bien duoc khai bao va duoc dua len dau pham vi.
+khac nhau scope: neu nam ngoai function thi 3 kieu nay co pham vi nhu nhau
+*trong function 
+var scope : thi dc dua len dau pham vi function scope dc su dung truoc khi ma bien duoc thuc thi
+let, const: c? pham vi trong block scope dau {} 
+let, const khong dc su dung cho den khi cau khai bao dc thuc thi nhung van dc hoisting va nam trong temporal dead zone block o
+day khong dc su dung.
+const bat buoc phai set value khi khai bao va khong duoc set gia tri, gia tri khong dc thay doi.
+
+overloading vs overriding trong js
+overloading: js kh?ng c? overloading, overloading l? cung phuong thuc khac tham so van co the su dung.
+overriding: lun overring lun th?c thi function duoc khai bao sau cung cua cac function cung ten.
+
+split(seperator, limit): dung cat chuoi thanh mang
++ seperator: 'c?t b?i character g?'
++ limit: 'so luot cat character'
+
+array.push(1 hoac nhieu param) return vi tri insert vao cuoi.
+
+khi khai bao bien trung ten th? var duoc phep, con let, const thi khong duoc ?
+vi var duoc hoisting dua len dau va pham vi chi phan khai bao va viec khai bao 
+nhieu bien cung pham vi thi no duoc xem la 1 bien dung cho toan pham vi do.
+
+let, const chi duoc su dung khi thuc thi cau len khai bao thi bao engine biet la khai bao neu co 
+2 hay nhieu khai bao dc xem la cac khai bao rieng biet va js k cho viec khai bao nhieu lan.
+
+vi du ve loi su dung var trong vong lap ?
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => {
+        console.log(i); // 3, 3, 3
+    }, 1000);
+}
+
+
+*** i++ va ++i
+var i = 0;
+i++: la xuat truoc r moi thuc hien gan 
+console.log(i++) // 0
+++i: la thuc thi cong truoc r moi xuat
+console.log(++i) // 1
+*/

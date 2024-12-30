@@ -68,3 +68,10 @@ truong thuc thi thuogn duoc dung luu cac gia tri mac dinh he thong, set up he th
 7. write file
 echo 'xin chao123' > test.txt: ghi de vao file
 echo 'xin chao123' >> test.txt: insert vao cuoi file
+
+8. command java
+- co the bien dich , run file java in shell script giong nhu command line tren
+window can cai java set moi truong.
+
+-cp cung cap trong command bien dich hay run java dung de khai bao classpath de tiep
+cac class cua thu vien trong qua trinh runtime.

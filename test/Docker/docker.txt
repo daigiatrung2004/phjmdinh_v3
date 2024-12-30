@@ -1,0 +1,17 @@
+docker file : la bang huong dan dung de thuc hien cac thao set up de build image.
+
+docker build -t <image_name>:<tag> <path_to_dockerfile>: build image
+
+tag: dung de quan ly cac version(phien ban) cua cac image, to chuc va truy cap de dang vao cac phien ban
+vd: v1.0, v1.1, latest, v.v
+
+docker image: la noi chua source, thu vien du an
+
+docker run -p <port_project>:<port> <image_name>:<tag_image>
+-p: port.
+
+image_name: ten the image
+
+docker run -p 5000:3000 phjmdinhv3:standard (dung de run khoi tao container bang image)
+
+docker images: dung de xem thong tin cac image trong local repository hien tai.
