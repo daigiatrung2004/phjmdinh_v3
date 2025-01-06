@@ -1,0 +1,17 @@
+https://000001.awsstudygroup.com/vi/
+khai niem co ban
+1. aws lambda: dung support moi truong dang server khong can ton chi phi ve quan ly co so ha tang server, viet truc
+tiep cac ma lien quan den phia server-side va tuong tac den cac service.
+
+2. EC2(ELASTIC COMPUTE CLOUD): dung create va quan li cac may ao vat ly tren aws.
+3. ECR(ECR AWS Amazon Elastic Container Registry): n?i quan li cac docker image tren aws thay
+vi quan li docker hub nh? trong docker.co tich hop ecs va eks trien khai docker tren moi truong aws de dang.
+4. budget: dung de quan li chi phi khi su dung cac dich vu tren aws, xem duoc chi phi thuc 
+te va du bao, nhan thong bao khi qua ngan sach.
++Cost Budget: thiet lap nguong chi phi va canh bao khi vuot qua nguong
++Usage budget: cho biet muc su dung cac dich vu (vd : su dung bao nhieu lan)
++RI Budget: cho biet muc su dung cac dich vu tra truoc va thong bao khi vuot nguong
++Savings Plans Budget: cho biet muc su dung cac dich vu save plan budget va thong bao khi vuot nguong
+
+4. VPC: tao, quan li moi truong mang ao giup co the cau hinh ip, subnet, route tables v? security groups.
+noi config hosting connect app from client

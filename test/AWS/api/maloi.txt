@@ -1,0 +1,31 @@
+status code co tu 1xx -> 5xx
+
+code 1xx: infomation(khong quan tam)
+code 2xx: success
+code 3xx: redirect(khong quan tam)
+code 4xx: error phia client
+code 5xx: error phia server
+****2xx**
+200: ok (get data)
+201: ok (update, created data)
+
+***4xx***
+400: bad request : co url nhung thieu param truyen hoac header sai.
+404: not found khong tim thay url tai nguyen ban truy cap.
+401: unauthorized:(khong phai la user) khong co quyen vi khong biet ban la ai nen k cap phep su dung tai nguyen.
+403:forbidden user khong duoc su dung tai nguyen vd: k the dang nhap vao trang admin.
+429: too many request: api tra phi gioi han request, vuot qua request co the bao loi nay
+chu khong the de no quay hoai duoc.
+408: request time out vuot qua thoi gian request se thong bao loi nay.
+(nhu request chay den proxy ma k chay qua server trong thoi gian quy dinh thi se
+bi loi nay)
+405: method not allowed : sai phuong thuc vd: post dung get chay thi bi loi nay.(khong cho dung)
+
+*** 5xx ****
+500: internal server error: khi server bi exception, throw thi se bi loi nay.
+502: bad gateway: gui request tu may chu ao proxy bang user cua minh no nhan thuc duoc
+nguon bi loi nay(neu may chu khong cho phep dung proxy), hoac server crash,..
+503: service unavailable: request dang qua tai khong kip su ly.
+504: server time out: xay ra khi proxy chua nhan duoc response cua may chu ao trong thoi
+gian quy dinh.
+501:not implement method truoc duoc trien khai giong 405 (chua cho dung)

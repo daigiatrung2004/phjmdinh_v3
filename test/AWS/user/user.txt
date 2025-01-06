@@ -1,0 +1,8 @@
+*****t?i kho?n AWS : khi tao tk aws se cap 1 tk duoc goi root user
++ root user: la cao nhat duoc lam moi thao tac tren aws giong nhu root user tren ubuntu linux
++ thiet lap MFA(Multi-factor Authentication): gia tang bao mat cho tai khoan. kich hoat nay thi no se gui OTP moi khi dang nhap.
++ root user co the tao ra user khac duoc gioi han quyen truy cap goi IAM.
++ IAM group : quan li 1 nhom nguoi co cung quyen han truy cap.
++ IAM user: don vi nguoi dung khi dang nhap vao aws thi se dang nhap dang nay.
+neu dang nhap lan dau tien thi goi la root user.
++ AWS Management Console: giao dien nguoi dung quan li cac service tren aws.

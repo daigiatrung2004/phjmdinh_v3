@@ -1,7 +1,7 @@
 1. $? : dung check status cuu cau lenh thuc thi gan nhat truoc do
-0: Lệnh đã thành công.
+0: Lệnh đã th�?nh công.
 
-Khác 0: Lệnh đã gặp lỗi. Mã lỗi cụ thể có thể khác nhau, tùy thuộc vào lệnh và lỗi gặp phải.
+Khác 0: Lệnh đã gặp lỗi. Mã lỗi cụ th�? có th�? khác nhau, tùy thuộc v�?o lệnh v�? lỗi gặp phải.
 #!/bin/bash
 
 # Thực thi lệnh
@@ -9,7 +9,7 @@ ls /nonexistentdirectory
 # Kiểm tra mã trạng thái của lệnh vừa thực thi
 echo "Mã trạng thái của lệnh trước đó: $?"
 
-# Thực thi lệnh thành công
+# Thực thi lệnh th�?nh công
 ls /
 # Kiểm tra mã trạng thái của lệnh vừa thực thi
 echo "Mã trạng thái của lệnh trước đó: $?"
@@ -63,7 +63,7 @@ ssh -i C:\Users\DELL\Desktop\TASK\note_NEXT10.0\nt-u117-dev-sework.pem ntuser@
 5. Bien moi truong (variable environment): cap gia tri duoc luu trong he thong hay moi
 truong thuc thi thuogn duoc dung luu cac gia tri mac dinh he thong, set up he thong.
 
-6. vim : là editor mac dinh duoc cai san trong cac he dieu hanh ubuntu.
+6. vim : l�? editor mac dinh duoc cai san trong cac he dieu hanh ubuntu.
 
 7. write file
 echo 'xin chao123' > test.txt: ghi de vao file
@@ -75,3 +75,19 @@ window can cai java set moi truong.
 
 -cp cung cap trong command bien dich hay run java dung de khai bao classpath de tiep
 cac class cua thu vien trong qua trinh runtime.
+
+// create linux server
+nettools package: dung de xem ipconfig
+
+ufw app list: danh sach thong qua tuong lua.
+
+ufw allow ssh: cap phep cho truy van bang ssh.
+ufw status: xem trang thai danh sach duoc allow
+ufw enable : bat tuong lua
+
+
+* folder etc in server dung de lam gi
+
+etc: chua tep cau hinh he thong va cau hinh cho cac ung dung.
+/etc/passwd: luu thong tin tai khoan tren he thong
+/etc

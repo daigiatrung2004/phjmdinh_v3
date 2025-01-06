@@ -9,9 +9,44 @@ docker image: la noi chua source, thu vien du an
 
 docker run -p <port_project>:<port> <image_name>:<tag_image>
 -p: port.
+* mac dinh thi de ma ben ngoai giao tiep voi container thi qua host 0.0.0.0
 
 image_name: ten the image
 
 docker run -p 5000:3000 phjmdinhv3:standard (dung de run khoi tao container bang image)
 
 docker images: dung de xem thong tin cac image trong local repository hien tai.
+
+docker ps [options]: xem cac container dang chay tren he thong.
+* k co option thi mac dinh get container dang chay.
+
++ container id: ma id cua moi container
++ image: <image_name>:<tag_name>
++ command: lenh dang duoc thuc thi
+vd: node app.js
+
++created: thoi gian container duoc tao.
++ status: 
+ 1. up: container is running
+ 2. excited: container duoc stop.
++ ports: mapping giua container vs host
++names: ten container
+vd: angry_satoshi(tu tao khi run)
+
+[options]
+-a or --all: tat ca container ke ca container off hay dang chay
+-q or --quiet: get container id
+-f or --filter: dua tren dk cung cap de loc
+vd: docker ps -f status=exited
+
+docker ps --format "{{.Command}}":de lay may column khac
+
+docker stop <container_id>| <container_name>: dung stop container
+
+// xoa docker image
+docker rmi <ID | NAME IMAGE>
+vd: docker rmi d1e34f455a7d
+IF CO LOI
+1. docker stop <container_id>
+2. docker rm <container_id>
+3. docker rmi <image_id>

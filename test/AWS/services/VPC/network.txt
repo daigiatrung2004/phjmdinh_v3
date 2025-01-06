@@ -1,0 +1,89 @@
+subnet mask : dung de chia mang lon thanh nhung mang con
+chia lam 2 phan :
+	1. Phan mang(<> 0)
+	2. Phan host(= 0)
+V? d?:
+??a ch? IP: 192.168.1.10 Subnet mask: 255.255.255.0
+Trong v? d? tr?n:
+
+Ph?n m?ng l?: 192.168.1
+
+Ph?n host l?: 10
+cach tinh subnet
+	S? m?ng con (subnets): 2^n, trong do n la so bit muon tu phan host cho phan mang
+	S? host m?i m?ng con:2^n - 2, n l? s? bit c?n l?i d?nh cho ph?n host
+(tr? ?i 2 ?? d?nh cho ??a ch? m?ng v? ??a ch? broadcast).
+vd: gia su ??a ch? IP 192.168.1.0/24 chia 4 mang
+trong do ph?n /24 ???c g?i l? "CIDR notation" (Classless Inter-Domain Routing)
+/24 bi?u th? s? l??ng bit ???c s? d?ng cho ph?n m?ng c?a ??a ch? IP
+
+2^8: 
+2 tuong trung cho 2 bit (0, 1)
+8: tuong trung 8 bit trong day
+tinh so dia chi ip: 256 - (2^n)
+(n la so bit con lai)
+
+vd:
+??a ch? IP IPv4 c? 32 bit, ???c chia th?nh 4 nh?m 8 bit (octet). Trong 192.168.1.0/24
+24 bit ??u ti?n (3 octet ??u ti?n) ??i di?n cho ph?n m?ng: 192.168.1
+8 bit c?n l?i ??i di?n cho ph?n host trong m?ng con.
+??a ch? IP: 192.168.1.0
+
+=> 11000000.10101000.00000001.00000000
+Subnet Mask: /24 (hay 255.255.255.0)
+11111111.11111111.11111111.00000000
+
+C? t?ng c?ng 256 ??a ch? IP trong m?ng con n?y (2^8), bao g?m ??a ch? m?ng (192.168.1.0) v? ??a ch? broadcast (192.168.1.255).
+
+Availability Zone: vung trung tam du lieu con nam trong region
+region : dai dien cum may chu o khu vuc do vi du : chau a.
+mot hoac nhieu subnet nam trong 1 vung k dc mo rong ra vung khac.
+cac mang subnet deu la private duoc dung ben trong mang nay ben ngoai thi khong connect duoc.
+gom 3 loai:
++ Public subnet:co route table dieu huong luu luong truy cap
++ Private subnet: k co route table k dieu huong
++ VPN-only subnet: co route table dieu huong luu luong truy cap toi VPG
+
+
+****** ROUTE TABLE **********
+moi subnet trong mang se duoc gan mot route table
+route table: la bang huong dan cac bo dinh tuyen ben trong chua dia chi 
+mang ket noi vd o day[ :route entry destination:10.10.0.0/16 target:local]
+khi ket noi thi chay vao 2 subnet nay de dieu huong luu luong truy cap.
+
+********INTERNET GATEWAY*******
+CONG INTERNET GIUP EC2 giao tiep data ra ngoai internet, chuyen doi private ip thanh public ip
+gui va nhan data ra ngoai internet. mapping 1-1 cho toi dia chi public ip duoc giai phong
+
+*******NAT********
+EC2 mac dinh thi k the giao tiep duoc voi internet gateway ma no
+phai qua cac phuong thuc trung gian nat gateway hoac nat instance
+bang cach chi dinh mang con public k duoc lien ket instance hay network interface nao.
+
+*******tuong lua cua vpc********
+tuong lua giong nhu ubuntu kiem soat luu luong truy cap ra vao vpc co 2 tinh nang cinh
+security group, network access control lists 
++ security group: kiem soat luu luong truy cap vao EC2
+**inbound rule : nguyen tac dung trong quan tri mang quan li luu luong truy cap nao duoc di vao he thong
+vd: ban co mot ec2 instance va muon cho phep luu luong http (cong 80) truy cap vao moi dia chi:
+Type: HTTP
+Protocol: TCP
+Port Range: 80
+Source: 0.0.0.0/0 (dai dien cho tat ca dia chi ip truy cap)
+
+vd2: chan truy cap ngoai tru http va https
+Type: HTTP
+Protocol: TCP
+Port Range: 80
+Source: 0.0.0.0/0
+
+Type: HTTPS
+Protocol: TCP
+Port Range: 443
+Source: 0.0.0.0/0
+
+
+
+** outbound rule: nguoc lai kiem soat cho phep loai traffic cho phep roi khoi resource nhu server hay subnet.
+
++ network access control lists: kiem soat luu luong ra vao cua nhieu subnet trong vpc
