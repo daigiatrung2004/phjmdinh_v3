@@ -15,3 +15,129 @@ te va du bao, nhan thong bao khi qua ngan sach.
 
 4. VPC: tao, quan li moi truong mang ao giup co the cau hinh ip, subnet, route tables v? security groups.
 noi config hosting connect app from client
+
+5. ECS(elastic container service) : dung de quan ly, trien khai den viec dung cac container trong aws
+phu hop dung cho cac truong hop xu li hang loat nhu chay batch
+ ++ TASKS definition dinh nghia thong tin container duoc trien khai trong task bao gom ca thong tin cpu,docker image, evenronment chay container do.
+ ++ containers: container thuc thi dua tren cau hinh dinh nghia trong task definition
+ ++ Task Role:IAM role g?n task co quyen truy cap aws thuc hien chay container.
+
+vd:
+ {
+  "family": "web-app",
+  "containerDefinitions": [
+    {
+      "name": "web",
+      "image": "nginx",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        }
+      ]
+    },
+    {
+      "name": "db",
+      "image": "mysql",
+      "cpu": 256,
+      "memory": 512,
+      "essential": true,
+      "environment": [
+        {
+          "name": "MYSQL_ROOT_PASSWORD",
+          "value": "password"
+        }
+      ]
+    }
+  ]
+}
+
+
+* cach thuc hoat dong:
+Task Definition: dinh nghia container va library can thiet cho viec 
++ xem task Definition
+aws ecs describe-task-definition --task-definition <task-definition-name>
+
+aws ecs list-task-definitions: xem danh sach cac task-definitions
+
+service: so luong container phuc vu cho Task
+cluster: tap hop cac may chu de chay container.(bao gom cac ec2 va cac fargate tasks, phan bo quan li tai nguyen can thiet nhu cpu, bo nho, mang)
+
+vd: 1 webapp chay su dung tai nguyen cua container khac nhau dien hinh dang object thi
+co the tao cluster quan li container nay de trien khai web mot cach de dang.
+
+execute-command: tac dong vao container tu xa.kiem tra, dieu chinh, xu ly loi tren container.
+--cluster: dung khai bao ten cluster de thuc hien hanh dong.(muc dich xac dinh cluster hanh dong khi co nhieu cluster)
+
+aws ecs list-tasks --cluster my-cluster
+list-tasks: dung de xem danh sach cac tasks trong cluster
+
+aws ecs describe-tasks --cluster my-cluster --tasks my-task-id
+describe-tasks: dung de xem mo ta cua tung tasks
+
+task: la don vi cong viec la noi chua cac container va tai nguyen can thiet de chay container do.
+
+--task my-task-id: chi task thuc thi cac container.
+
+6. su khac biet giua ec2 va ecs ?
+ec2: cung cap dich vu may chu ao
+ecs: quan ly chay docker container khong can quan li cau hinh he thong nhu ec2
+7.co nhat thiet dung ec2 trong ecs hay khong ?
+khong nhat thiet,
++ neu trien khai dang ec2 launch type thi can
++ neu trien khai dang Fargate Launch Type thi k can
+
+ec2 launch type: quan li co so ha tang
+Fargate Launch Type: khong can quan li co so ha tang
+
+EC2 Launch Type: kiem soat co so ha tang va toi uu ec2 dung loai nay
+Fargate Launch Type: trien khai nhanh k can quan li
+
+8 dung EC2 Launch Type, Fargate Launch Type nen dung cai nao co loi hon?
+trien khai nhanh kieu dang demo thi dung Fargate Launch Type co the chi phi cao ec2, k can quan li co so ha tang
+neu lam lau dai va on dinh chi phi thap EC2 Launch Type, nhung can quan li co so ha tang.
+
+9.--container:chi dinh container trong task thuc hien hanh dong
+aws ecs describe-tasks --cluster <cluster-name> --tasks <task-id>: xem danh sach container trong task
+
+danh sach task id trong ecs BatchCluster:
+13bef0ab80284296a02be44129a27d0f x => container name: OnlineHTask
+51f700d0b7d64b81adf463499373db0a x => container name: ExportTask
+7971df704eae4b509e6d479e28559a7d x => container name: OnlineATask
+a5e5f2d474c340868ab587abe5045bcf x => container name: OrderTask
+c1ceba72116f4e6aa3f281eedfad9b5e x => container name: OnlineATask
+e27c27549d974355a9b5b91b991054b3 x => container name: OnlineHTask
+e86e30e1b9e3451480c62242d1f53323 x => container name: ExportTask
+
+dinh danh taskid thay doi lien tuc khong co dinh ?
+
+task id duoc cap nhat khi nao ?
+1. tao task moi: su dung lenh runtask
+2. task scaling(up va down): dieu chinh so luong task
+3. khoi dong lai task
+4. cap nhat task definition
+5. chien luoc bo tri task : nhu binpack, spread, random cac task di chuyen va khoi dong lai
+
+**ARN trong aws **
+ARN(Amazon Resource Name): la dinh danh doc nhat duoc dung de xac dinh nguon tai nguyen
+
+CT:
+arn:partition:service:region:account-id:resource
++arn: tien to co dinh cho tat ca
++partition: phan vung aws ma tai nguyen thuoc ve
+vd: aws cho tk cong cong, aws-cn cho trung quoc, aws-us-gov cho chinh phu hoa ky
++service: dich vu chua tai nguyen vd: s3, ec2, iam
++region: khu vuc luu tru tai nguyen vd:us-west-2, ap-southeast-1
++account-id: id so huu tai nguyen
++resource: dinh danh tai nguyen theo dich vu, vd:ten bucket s3, id instance ec2
+
+10. xem danh sach cluster
+CT: aws ecs list-clusters
+        "arn:aws:ecs:ap-northeast-1:507721973395:cluster/BatchCluster",
+        "arn:aws:ecs:ap-northeast-1:507721973395:cluster/DBReplicationCluster",
+        "arn:aws:ecs:ap-northeast-1:507721973395:cluster/WebAppCluster",
+        "arn:aws:ecs:ap-northeast-1:507721973395:cluster/AutoSchedulerCluster"
+

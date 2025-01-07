@@ -1,0 +1,7 @@
++ why su dung nhieu server trong nexttarus ?
+server cung chi dung 1
+server database thi dung 4 server
+1. HEOS:server goc day du thong tin
+2. BUSSINESS(TRANS): luu tru cac hoat dong kinh doanh
+3. 2 server area: data phan loai theo khu vuc san pham dac san ban theo tung khu vuc
+4. server:backup(du lieu xay ra su co khi mat data)
