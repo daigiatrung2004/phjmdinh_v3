@@ -175,6 +175,13 @@ server luu tru la server nao tai sao phai dong bo data server chinh voi server l
 ***SQS***
 SQS(Simple Queue Service):dung luu tru, gui, nhan tin nhan giua cac dich vu hay ung dung.
 
+SQS co 3 thanh phan chinh:
+producer: gui tin nhan vao hang doi.
+queue: noi luu tru tin nhan
+consumer: nhan tin nhan hang doi, thuc hien nhiem vu cua tin nhan, xoa tin nhan trong hang doi.
+
+
+
 ***credentials***
 cat ~/.aws/credentials: xem accesskey, secret_access_key tren server
 
