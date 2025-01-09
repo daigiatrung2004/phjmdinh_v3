@@ -1,7 +1,21 @@
 https://000001.awsstudygroup.com/vi/
+vi sao su dung aws ?
+3 y chinh: tinh san sang, linh hoat, mo rong
++ tinh san sang: truoc day khi trien khai tren moi truong khach hang khi he thong xay ra su co hay loi thi store phai dung hoat dong
+va khi ben minh bao tri thi phai chuyen doi app hien tai thanh app site backup roi moi tien hanh bao tri viec ton rat nhieu thoi gian va lam gian doan qua trinh phia khach hang
+=> doi ung cho viec nay use docker image use ecr quan li theo phien ban cua image doi ung nhanh cho viec bao tri va backup phuc hoi cac hoat dong.
++ tinh linh hoat, mo rong: khi nhu cau khach hang cang lon ty le thuan voi viec tang data dan den cac tac vu xu ly bussiness, thong ke doanh so duoc cap nhat vao dem du lieu qua lon, kem 
+theo cpu, ram co gioi han => aws khac phuc duoc nhuoc diem co scale up , scale down linh hoat, power, dung nhieu tra nhieu k bi, giam chi phi ha tang
+=> dong thoi muon giam quan li cac chi phi ve co so ha tang ma loi nhuan k dc nhieu
+=> dong mo rong ket noi app khac thong qua api,...
+
 khai niem co ban
 1. aws lambda: dung support moi truong dang server khong can ton chi phi ve quan ly co so ha tang server, viet truc
 tiep cac ma lien quan den phia server-side va tuong tac den cac service.
+
++ aws lambda list-functions: xem danh sach lambda.
++ aws lambda get-function --function-name QueueExecute: xem config lambda cua function name nao do
+trong do co thuoc tinh [location] duong dan cho phan code lambda.
 
 2. EC2(ELASTIC COMPUTE CLOUD): dung create va quan li cac may ao vat ly tren aws.
 3. ECR(ECR AWS Amazon Elastic Container Registry): n?i quan li cac docker image tren aws thay
@@ -84,7 +98,7 @@ task: la don vi cong viec la noi chua cac container va tai nguyen can thiet de c
 
 6. su khac biet giua ec2 va ecs ?
 ec2: cung cap dich vu may chu ao
-ecs: quan ly chay docker container khong can quan li cau hinh he thong nhu ec2
+ecs(Elastic Container Service): quan ly chay docker container khong can quan li cau hinh he thong nhu ec2
 7.co nhat thiet dung ec2 trong ecs hay khong ?
 khong nhat thiet,
 + neu trien khai dang ec2 launch type thi can
@@ -140,4 +154,31 @@ CT: aws ecs list-clusters
         "arn:aws:ecs:ap-northeast-1:507721973395:cluster/DBReplicationCluster",
         "arn:aws:ecs:ap-northeast-1:507721973395:cluster/WebAppCluster",
         "arn:aws:ecs:ap-northeast-1:507721973395:cluster/AutoSchedulerCluster"
+
+
+* don vi do luong cpu trong aws:
+
+1vCPU(Virtual CPU): 1 don vi CPU ?o trong ecs 
+1 vCPU = 1024 CPU units: trong ecs thi su dung "CPU units" la don vi tinh
+neu khong du tai nguyen cpu khoi dong container thi no se k khoi dong container
+
+"cpu": 512
+
+co loai 2 cpu la cpu va cpuReservation
+cpu (co Burstable CPU): neu fix nhieu hon nguon tai nguyen khoi dong container thi container se duoc nhan nhieu hon
+cpuReservation: neu khai bao dang nay thi cpu se chi khoi luong cpu it nhat co the.
+
+** server xac thuc login duoc tach ra lam db rieng thi viec giu session dang nhap lam the nao ?
+tai sao phai chia server bussiness va server cua hange , server tru so chinh ?
+server luu tru la server nao tai sao phai dong bo data server chinh voi server luu tru.
+
+***SQS***
+SQS(Simple Queue Service):dung luu tru, gui, nhan tin nhan giua cac dich vu hay ung dung.
+
+***credentials***
+cat ~/.aws/credentials: xem accesskey, secret_access_key tren server
+
+****AWS RDS *** 
+- Dung de quan li co so quan he tren aws co the chay cac co so du lieu tren aws nhu postgresql, mysql, ...
+
 

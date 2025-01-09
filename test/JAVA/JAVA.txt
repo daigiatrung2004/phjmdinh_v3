@@ -1,0 +1,23 @@
+1. su khac biet giua interface va abstract class ?
+***interface: 
++ chi chua cac phuong thuc truu tuong va bien public static final.va default
++ co the ke thua nhieu interface khac nhau.
+
+***abstract class:
++ co the chua thuoc tinh, phuong thuc binh thuong, phuong thuc truu tuong.
++ lop con chi ke thua duoc mot class abstract.
++ cac phuong thuc truu tuong bat buoc phai ghi de o lop con.
+
+
+2.khi nao su dung interface va abstract class
++ abstract class su dung khi mot nhom doi tuong co cung ban chat ke thua class cha
++ interface su dung khi cac doi tuong khac ban chat nhung co cung hanh vi.
+
+IDBAccessDAO(cu the DBAccessPostgreSQL): dung connect database
+IDBDefineProcess(cu the DBDefineProcessPostgreSQL): dung thuc thi truy van tao database
+IFuncProcess(cu the PostgreSQLExecuteDBSearch): dung de thuc thi truc tiep process duoc dinh nghia trong generatetool.
+
+duoc set loai search PostgreSQLExecuteDBSearch() khi goi controlDBAccess.getIDefineProcess().getFuncProcessDefine trong dataaccess.
+getDataOutputStipulatedCondition(): man hinh search export f6.
+
+SET SESSION UNICCS.DBPASSWORD TO TRIM(i_DBPassWord): dung set thay doi cau hinh trong 1 phien lam viec cua minh.

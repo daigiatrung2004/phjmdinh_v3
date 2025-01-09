@@ -17,7 +17,7 @@ Realized Cap: $650,000,000,000 (this data might come from historical transaction
 viec tinh tong gia tri mua trong 1 khoang thoi gian 
 
 1.Calculate Market Cap:
-Market?Cap=50,000Å~18,000,000=900,000,000,000 USD
+Market?Cap=50,000ù~18,000,000=900,000,000,000 USD
 
 2.Compute MVRV:
 MVRV=900,000,000,000/650,000,000,000=1.38(dang mua voi gia cao)

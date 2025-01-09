@@ -1,0 +1,16 @@
+quote_literal: su dung de tao ra chuoi van ban duoc trich dan tu gia 
+tri nguyen thuy dac biet phu hop cho nhung chuoi co ky tu dang biet hoac
+truyen dong cau sql 
+
+vd:
+DO $$
+DECLARE
+    input_text TEXT := 'Hello, it''s PostgreSQL!';
+    query TEXT;
+BEGIN
+    query := 'SELECT ' || quote_literal(input_text) || ' AS greeting';
+    EXECUTE query;
+END $$;
+
+vd2:
+SELECT 'The book title is ' || quote_literal(book_title) || '.' FROM books;
