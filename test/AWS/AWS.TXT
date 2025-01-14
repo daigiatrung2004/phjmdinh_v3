@@ -174,6 +174,7 @@ server luu tru la server nao tai sao phai dong bo data server chinh voi server l
 
 ***SQS***
 SQS(Simple Queue Service):dung luu tru, gui, nhan tin nhan giua cac dich vu hay ung dung.
+dung cho chay batch trong server nexttarus
 
 SQS co 3 thanh phan chinh:
 producer: gui tin nhan vao hang doi.
@@ -188,4 +189,137 @@ cat ~/.aws/credentials: xem accesskey, secret_access_key tren server
 ****AWS RDS *** 
 - Dung de quan li co so quan he tren aws co the chay cac co so du lieu tren aws nhu postgresql, mysql, ...
 
+s3(simple storage service): luu tru data duoi dang cac doi tuong trong cac bucket
+S3Client.builder().build(): tao mot doi tuong s3 mac dinh de tuong tac voi dich vu s3 tren aws.
+HeadBucketRequest.builder().bucket(bucketName).build(): kiem tra su ton tai va xac nhan quyentruy cap vao 1 bucket.
+=> return (empty response body) chi ra co quyen truy cap vao he thong hay khong.
 
+LifecycleRule: mot phan cua co che quan li vong doi cua du lieu 
+giup tu dong quan li cac phien ban cua doi tuong dua tren nguyen tac.
+** cac thanh phan chinh:
+ID: dinh danh duy nhat cho moi rule
+prefix: ap dung rule cho cac ten bucket co tien to vd: prefix("t") cac bucket co chu t dung truoc.
+status: trang thai rule dang duoc bat hay tat.
+transition: chuyen cac doi tuong tu lop luu tru hien tai sang lop luu tru khac sau khoang thoi gian xac dinh.
+Expiration: xac dinh thoi diem doi tuong bi xoa.
+
+vd:
+{
+  "Rules": [
+    {
+      "ID": "MoveToGlacierAndExpire",
+      "Prefix": "",
+      "Status": "Enabled",
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Expiration": {
+        "Days": 365
+      },
+      "NoncurrentVersionTransitions": [
+        {
+          "NoncurrentDays": 30,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "NoncurrentVersionExpiration": {
+        "NoncurrentDays": 365
+      },
+      "AbortIncompleteMultipartUpload": {
+        "DaysAfterInitiation": 7
+      }
+    }
+  ]
+}
+
+vd2: trong java,
+xay dung LifecycleRule
+
+final LifecycleRule lifeCycleRule = LifecycleRule.builder()
+		.expiration(LifecycleExpiration.builder().days(7).build())
+		.filter(LifecycleRuleFilter.builder().prefix("").build())
+		.status(ExpirationStatus.ENABLED)
+		.build();
+final BucketLifecycleConfiguration lifecycleConfig = BucketLifecycleConfiguration.builder()
+		.rules(lifeCycleRule)
+		.build();
+
+tao bucket va ap dung lifecycleConfig
+s3.createBucket(CreateBucketRequest.builder().bucket(bucketName).build());
+s3.putBucketLifecycleConfiguration(PutBucketLifecycleConfigurationRequest.builder()
+		.bucket(bucketName)
+		.lifecycleConfiguration(lifecycleConfig)
+		.build());
+
+** MessageAttributeValue : duoc dung de them thong tin thuoc tinh (attirbutes) hay message duoc
+gui len thong tin hang doi (queue sqs)
+
+Name: ten cua thuoc tinh
+type: kieu thuoc tinh string, number, binary
+value: gia tri thuoc tinh phu thoc loai du lieu.
+
+vd:
+MessageAttributeValue.builder().dataType("String")
+.stringValue(batchExecParams.getFuncProcessDefine().getBatchQueueName()).build()
+: tao MessageAttributeValue
+
+**ExtendedClientConfiguration: la 1 doi tuong cau hinh tuy chon gui va nhan data 
+lon hon 256 kb den 2gb bang cach luu du lieu trong s3 va gui duong dan truc tiep den s3.
+withPayloadSupportEnabled: khai bao support cho truyen tai du lieu tu s3 trong sqs.
+
+vd: 
+final ExtendedClientConfiguration extendedClientConfig = new ExtendedClientConfiguration().withPayloadSupportEnabled(s3, bucketName);
+
+**AmazonSQSExtendedClient: la mot extension giup luu tru data du lieu lon trong s3 va gui dia chi s3 den sqs de xu li.
+vd: final SqsClient sqsExtended = new AmazonSQSExtendedClient(SqsClient.builder().build(), extendedClientConfig);
+
+**GetQueueUrlRequest: dung de lay url cua hang doi dua tren ten cua sqs hang doi do.
+vd:	GetQueueUrlRequest request = GetQueueUrlRequest.builder().queueName(parentQueueName).build();
+**GetQueueUrlResponse :lay url tu hang doi ve tu viec tao request yeu cau hang doi
+vd: GetQueueUrlResponse response = sqsExtended.getQueueUrl(request);
+
+** SendMessageRequest: mot lop tao yeu cau gui thong diep den sqs
+SendMessageRequest send_msg_request =  SendMessageRequest.builder()
+			.queueUrl(queueUrl)
+			.messageDeduplicationId(String.valueOf(uuid))
+			.messageAttributes(messageAttributes)
+			.messageGroupId("parentBatchQueueProcess")
+			.messageBody(jsonData.toString())
+			.build();
+sqsExtended.sendMessage(send_msg_request); // gui message den sqs
+sqsExtended.close();
+
+*** ham fill trong DBAccessPostgreSQL dung de thuc thi sql don.
+vd:	public ResultSet fill(String commandText) throws SQLException {
+
+		Statement statement = null;
+		ResultSet rs = null;
+
+		try{
+			statement = this.m_connection.createStatement();
+
+			if ( this.m_fillFetchSize != null ) {
+				statement.setFetchSize(this.m_fillFetchSize);
+			}
+
+			rs = statement.executeQuery(commandText);
+		}
+		catch ( SQLException e ) {
+			throw e;
+		}
+
+		return rs;
+	}
+
+thread chay batch :
+b1: call BatchJobRequestController.java <- tshbatchexec.sh
+b2: BatchManager.ExecuteBatchRequest(batchExecParam);// de goi xu ly batch
+b3: call sqs => string ("200 OK") // test batchManager.ExecuteBatchRequest(batchExecParam) 
+** question:
+1. tai sao phai chay goi sqs, tai sao phai chay  batchManager.ExecuteBatchRequest(batchExecParam) them lan nua de lam gi ?
+2. khong thay sqs xu ly cho chay server nao ?
+
+b4: get BATCHQUEUEKEY AS BATCHQUEUEKEY, BATCHCOLLECTKEY, BATCHCOLLECT_CD => return result from batchExecParam, BATCHQUEUEKEY AS BATCHQUEUEKEY, BATCHCOLLECTKEY, BATCHCOLLECT_CD
