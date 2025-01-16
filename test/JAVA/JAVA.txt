@@ -21,3 +21,17 @@ duoc set loai search PostgreSQLExecuteDBSearch() khi goi controlDBAccess.getIDef
 getDataOutputStipulatedCondition(): man hinh search export f6.
 
 SET SESSION UNICCS.DBPASSWORD TO TRIM(i_DBPassWord): dung set thay doi cau hinh trong 1 phien lam viec cua minh.
+
+
+***suppresswarning: dung de tat canh bao phuong thuc hoac bien trong java
+
+
+*** executeQuery(): la phuong thuc thuc thi query database, retrievedata 
+return doi tuong ResultSet.
+
+*** createStatement(): la phuong thuc tao ra doi tuong statement cho phep thuc thi cac cau lenh sql select, insert, update, delete.
+
+*** prepareCall(): la phuong thuc tao ra mot doi tuong callablestatement dung de goi cac thu tuc luu tru trong sql (store procedure)
+
+@Component: annotation danh dau la thanh phan cua spring va no se dc quan li vong doi cua doi tuong nay, tu dong phat hien trong
+qua trinh quet cac thanh phan.
