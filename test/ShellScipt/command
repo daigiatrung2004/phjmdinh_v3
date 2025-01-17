@@ -91,3 +91,54 @@ ufw enable : bat tuong lua
 etc: chua tep cau hinh he thong va cau hinh cho cac ung dung.
 /etc/passwd: luu thong tin tai khoan tren he thong
 /etc
+
+sudo apt install postgresql postgresql-contrib: install postgres sql.
+psql --version: phien ban
+
+sudo passwd postgres: dung de thay doi mat khau postgres.
+
+su - postgres: chuyen doi cac tai khoan user database postgres
+
+\l hoac SELECT datname FROM pg_database;: dung de liet ke database dang co tren server
+
+sudo -u postgres psql: tiep can psql.
+
+\c mydb: change go to database.
+
+
+\q: de thoat moi truong postgres
+
+wq!: save va thoat trong vim
+!:override
+q:quit
+w:save
+
+psql: dung login in database.
+
+sudo -i -u user: chuyen doi nguoi dung sang mot tai khoan khac.
+
+ls -la: liet ke danh sach ke ca file hay thu muc an.
+
+\du: dung de kiem tra quyen han tai khoan trong postgres.
+
+ALTER ROLE your_username CREATEDB;: neu khong co quyen co the add them.
+
+create database:(luu y vao co dau; o cuoi)
+postgres=# -> postgres-#: co nghia cu phap ket thuc chua dung
+
+sudo -u postgres createuser --interactive: dung tao user co cung ten trong user ubuntu tuong tac database.
+
+*** cach them quyen cho user***
+b1: cd /etc/postgresql/<postgres-version>/main
+
+b2: sudo vi pg_hba.conf
+
+edit peer to trust.:edit quyen cho local(tat ca cac thu co chu peer)
+
+tiep can database tu window.
+vi postgresql.conf
+
+bo comment cho listen_address va thay doi thanh listen_address = '*'
+
+set up password cho admin user:
+sudo -u postgres psql -c "ALTER USER postgres PASSWORD 'postgres';"
