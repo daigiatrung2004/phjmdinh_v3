@@ -35,3 +35,6 @@ return doi tuong ResultSet.
 
 @Component: annotation danh dau la thanh phan cua spring va no se dc quan li vong doi cua doi tuong nay, tu dong phat hien trong
 qua trinh quet cac thanh phan.
+
+registerOutParameter: la phuong thuc cua doi tuong callablestatement duoc dung de dang
+ky dau ra store procedure, cac gia tri tra ra co the duoc truyen qua cac tham so nay.
