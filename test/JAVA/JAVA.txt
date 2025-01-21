@@ -38,3 +38,54 @@ qua trinh quet cac thanh phan.
 
 registerOutParameter: la phuong thuc cua doi tuong callablestatement duoc dung de dang
 ky dau ra store procedure, cac gia tri tra ra co the duoc truyen qua cac tham so nay.
+
+AUTHORIZATION dung ap dung cho user trong moi truong postgres cai tren server duoc thuc thi sp do.
+
+printWritter: la mot object dung ghi du lieu duoi dang text vao reponse giup truyen du lieu 
+dang text tu server toi client.
+
+resultSet.getObject: truy xuat du lieu duoi dang object khong can khai bao
+theo dung kieu du lieu xuat ra.
+
+commit : thuc thi command database that vinh vien hoac ghi du lieu ra file
+
+vd: cach ghi du lieu ra file
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class BatchExample {
+    public static void main(String[] args) {
+        PrintWriter writer = null;
+        try {
+            // T?o PrintWriter ?? ghi d? li?u v?o file "output.txt"
+            writer = new PrintWriter(new FileWriter("output.txt"));
+
+            // Ghi d? li?u v?o file
+            writer.println("Hello, World!");
+            writer.println("This is a batch processing example.");
+            writer.println("Data processing complete.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                // ??ng PrintWriter ?? gi?i ph?ng t?i nguy?n
+                writer.close();
+            }
+        }
+    }
+}
+
+khi goi batch luc nao cung goi thang nay Execute -> BatchFileFactory
+use createFile trong BatchSimpleFile de tao va luu gia tri vao trong file
+CALL CREATEFILE FROM BATCHSIMPLEFILEFACTOR
+getFileCreateDefine -> GET FROM UMF_FILECREATEDEF
+
+createCallableStatementBigData -> processobjectname de thuc thi
+convertRowData -> from filecreatedefine.java 
+printWriter = new PrintWriter(
+ outputStreamWriter
+);: ghi du lieu ra file
+
+
