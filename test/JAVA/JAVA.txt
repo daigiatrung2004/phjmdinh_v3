@@ -49,6 +49,31 @@ theo dung kieu du lieu xuat ra.
 
 commit : thuc thi command database that vinh vien hoac ghi du lieu ra file
 
+ResultSetMetaData la mot giao dien thuoc goi java.sql dung de lay cau truc cua resultset bao gom so luong cot, ten cot, kieu gia tri cua cot
+
+getmetadata(): la phuong thuc tra ve ResultSetMetaData lay cau truc data tra ve.
+
+getColumnTypeName(): dung de lay kieu du lieu cua 1 cot cu the theo index nhap vao
+vd:
+				while ( procExecuteResult.getDBResultSet().next() ) {
+
+					//ÅúrowDataList = new ArrayList<String>();
+					for ( int i=0; i<columnNameListCount ; i++ ) {
+
+						String columnNameType = procExecuteResult.getDBResultSet().getMetaData().getColumnTypeName(i + 1);
+						String columnName = columnNameList.get(i).toString();
+
+						// UI-116ÇÃëŒâûÅBébíËÇæÇ»ÅB
+						if ( columnNameType.equals("NUMBER") ) {
+							strResult = formatNumber(procExecuteResult.getDBResultSet().getBigDecimal(columnName));
+						} else if (columnNameType.equals("date")) {
+							strResult = formatDate(procExecuteResult.getDBResultSet().getDate(columnName));
+						} else {
+							strResult = procExecuteResult.getDBResultSet().getString(columnName);
+						}
+					}
+				}
+
 vd: cach ghi du lieu ra file
 import java.io.FileWriter;
 import java.io.IOException;
