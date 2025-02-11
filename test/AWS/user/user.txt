@@ -6,3 +6,5 @@
 + IAM user: don vi nguoi dung khi dang nhap vao aws thi se dang nhap dang nay.
 neu dang nhap lan dau tien thi goi la root user.
 + AWS Management Console: giao dien nguoi dung quan li cac service tren aws.
+
+role trong IAM : dung set quyen han truy cap service.
